@@ -1,136 +1,87 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
+
 const Testimonial = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const res = await axios.get(
+          "http://192.168.1.48:8000/api/testimonials"
+        );
+        setTestimonials(res.data.results || []);
+      } catch (error) {
+        console.log("Error fetching testimonials:", error);
+      }
+    };
+
+    fetchTestimonials();
+  }, []);
+
   return (
     <section className="googleReview py-0 py-md-4">
       <div className="container my-3 pb-5">
-        <div className="py-4 py-md-2 text-center ">
+        <div className="py-4 py-md-2 text-center">
           <h2 className="fw-bold mainFont">Testimonials</h2>
           <p className="text-center mainFont-2">
-            Success isn’t our untils its yours
+            Success isn’t ours until it's yours
           </p>
         </div>
+
         <Swiper
-          modules={[Autoplay, EffectFade]}
+          modules={[Autoplay, EffectFade, Pagination]}
           slidesPerView={3}
           spaceBetween={30}
-          autoplay={{ delay: 0, disableOnInteraction: false }}
-          speed={4000} // 👈 transition speed in ms (higher = smoother)
+          autoplay={{ delay: 2500, disableOnInteraction: false }}
           loop={true}
-          freeMode={true}
-          pagination={{
-            clickable: true,
-          }}
+          pagination={{ clickable: true }}
           breakpoints={{
-            0: {
-              slidesPerView: 1, // 👈 mobile (default)
-            },
-            768: {
-              slidesPerView: 2, // 👈 tablets
-            },
-            1024: {
-              slidesPerView: 3, // 👈 desktop
-            },
+            0: { slidesPerView: 1 },
+            768: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
           }}
           className="mySwiper-2"
         >
-          <SwiperSlide>
-            <div class="testimonial-wrapper googleReviewslider testimonial-style-2">
-              <div class="testimonial-quote">
-                <img class="img-fluid" src="/straight-quotes.png" alt="" />
-              </div>
-              <div class="testimonial-content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Dolorem minus sapiente ab rem corrupti numquam aperiam,
-                  impedit possimus, culpa debitis ipsam omnis? Natus, fuga aut!
-                  ipsam omnis? Natus, fuga aut!
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img class="img-fluid" src="/02.png" alt="" />
+          {testimonials.length > 0 ? (
+            testimonials.map((item) => (
+              <SwiperSlide key={item.id}>
+                <div className="testimonial-wrapper googleReviewslider testimonial-style-2">
+                  <div className="testimonial-quote">
+                    <img
+                      className="img-fluid"
+                      src="/straight-quotes.png"
+                      alt=""
+                    />
+                  </div>
+
+                  <div className="testimonial-content">
+                    <p>{item.content}</p>
+                  </div>
+
+                  <div className="testimonial-author">
+                    <div className="author-image">
+                      <img
+                        className="img-fluid"
+                        src={item.image}
+                        alt={item.name}
+                      />
+                    </div>
+                    <div className="author-info">
+                      <h6 className="author-name">{item.name}</h6>
+                      <span className="author-position">
+                        {item.designation}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div class="author-info">
-                  <h6 class="author-name">Rohit Mehta</h6>
-                  <span class="author-position">Guest</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div class="testimonial-wrapper googleReviewslider testimonial-style-2">
-              <div class="testimonial-quote">
-                <img class="img-fluid" src="/straight-quotes.png" alt="" />
-              </div>
-              <div class="testimonial-content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Dolorem minus sapiente ab rem corrupti numquam aperiam,
-                  impedit possimus, culpa debitis ipsam omnis? Natus, fuga aut!
-                  ipsam omnis? Natus, fuga aut!
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img class="img-fluid" src="/02.png" alt="" />
-                </div>
-                <div class="author-info">
-                  <h6 class="author-name">Rohit Mehta</h6>
-                  <span class="author-position">Guest</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div class="testimonial-wrapper googleReviewslider testimonial-style-2">
-              <div class="testimonial-quote">
-                <img class="img-fluid" src="/straight-quotes.png" alt="" />
-              </div>
-              <div class="testimonial-content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Dolorem minus sapiente ab rem corrupti numquam aperiam,
-                  impedit possimus, culpa debitis ipsam omnis? Natus, fuga aut!
-                  ipsam omnis? Natus, fuga aut!
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img class="img-fluid" src="/02.png" alt="" />
-                </div>
-                <div class="author-info">
-                  <h6 class="author-name">Rohit Mehta</h6>
-                  <span class="author-position">Guest</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div class="testimonial-wrapper googleReviewslider testimonial-style-2">
-              <div class="testimonial-quote">
-                <img class="img-fluid" src="/straight-quotes.png" alt="" />
-              </div>
-              <div class="testimonial-content">
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Dolorem minus sapiente ab rem corrupti numquam aperiam,
-                  impedit possimus, culpa debitis ipsam omnis? Natus, fuga aut!
-                  ipsam omnis? Natus, fuga aut!
-                </p>
-              </div>
-              <div class="testimonial-author">
-                <div class="author-image">
-                  <img class="img-fluid" src="/02.png" alt="" />
-                </div>
-                <div class="author-info">
-                  <h6 class="author-name">Rohit Mehta</h6>
-                  <span class="author-position">Guest</span>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
+              </SwiperSlide>
+            ))
+          ) : (
+            <p className="text-center">Loading testimonials...</p>
+          )}
         </Swiper>
       </div>
     </section>

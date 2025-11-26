@@ -574,6 +574,8 @@ span img {
   width: 40px;
   height: 40px;
   border-radius: 50px;
+  object-fit: cover;
+  object-position: top;
 }
 
 .testimonial-wrapper.testimonial-style-2 .testimonial-author .author-name {
@@ -1111,7 +1113,7 @@ span img {
   cursor: pointer;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease,scale 0.5s ease, visibility 0.3s ease;
+  transition: opacity 0.3s ease, scale 0.5s ease, visibility 0.3s ease;
   z-index: 1000;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
