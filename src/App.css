@@ -2392,7 +2392,7 @@ p {
 
 .projectDetail .formcol {
   position: sticky;
-  top: 60px;
+  top: 100px;
 }
 
 .features .txt {
@@ -3088,3 +3088,15 @@ overflow: hidden;
   border: none;
   background: none;
 }
+
+/*  */
+/* .banner-content:before {
+    position: absolute;
+    content: '';
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(0, transparent, #ffffffba, #fffffff7, #fffffff7, #ffffffba, transparent);
+    z-index: -1;
+} */

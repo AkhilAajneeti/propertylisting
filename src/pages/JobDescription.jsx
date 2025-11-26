@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import { IoBriefcase, IoLocationSharp } from "react-icons/io5";
 import { FaUserTie } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
+import { getJobById, submitJobApplication } from "../api/jobApi";
 const JobDescription = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
-
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -21,10 +19,11 @@ const JobDescription = () => {
 
   // Fetch job detail by ID
   useEffect(() => {
-    axios
-      .get(`${api}/job-postings/${id}/`)
-      .then((res) => setJob(res.data))
-      .catch((err) => console.error(err));
+    getJobById(id)
+      .then((data) => {
+        setJob(data);
+      })
+      .catch((err) => console.log("Error fetching jobs:", err));
   }, [id]);
 
   // Handle text fields
@@ -51,10 +50,7 @@ const JobDescription = () => {
     sendData.append("resume", formData.resume);
 
     try {
-      await axios.post(`${api}/job-applications/`, sendData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
-
+      await submitJobApplication(sendData);
       toast.success("Application Submitted Successfully 🎉");
       setTimeout(() => navigate("/thank-you"), 1500);
     } catch (err) {

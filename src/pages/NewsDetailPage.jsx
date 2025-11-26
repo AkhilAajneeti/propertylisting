@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import {
   FaRegUser,
   FaFacebookF,
@@ -9,18 +8,17 @@ import {
 } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { FaRegNewspaper } from "react-icons/fa6";
+import { getNewsById } from "../api/newsApi";
 
 const NewsDetailPage = () => {
   const { id } = useParams();
-  const api = import.meta.env.VITE_BACKEND_API;
   const [news, setNews] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${api}/news/${id}/`)
-      .then((res) => setNews(res.data))
-      .catch((err) => console.log(err));
-  }, [api,id]);
+    getNewsById(id)
+      .then((data) => setNews(data))
+      .catch((err) => console.log("Error fetching blog details:", err));
+  }, [id]);
 
   if (!news) return <p className="text-center mt-5">Loading...</p>;
 

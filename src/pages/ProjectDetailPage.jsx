@@ -13,6 +13,7 @@ import DetailPageNavbar from "../components/DetailPageNavbar";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
 import ContactBtn from "../components/ContactBtn";
+import { getProjectsById } from "../api/projectApi";
 const ProjectDetailPage = () => {
   const api = import.meta.env.VITE_BACKEND_API;
   const { id } = useParams();
@@ -20,10 +21,9 @@ const ProjectDetailPage = () => {
 
   // Fetch project
   useEffect(() => {
-    axios
-      .get(`${api}/projects/${id}`)
-      .then((res) => setProject(res.data))
-      .catch((err) => console.log(err));
+    getProjectsById(id)
+      .then((data) => setProject(data))
+      .catch((err) => console.log("Error fetching blog details:", err));
   }, [id]);
 
   //pixel code
@@ -167,10 +167,7 @@ const ProjectDetailPage = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        `${api}/projects/${id}/enquiry/`,
-        form
-      );
+      const res = await axios.post(`${api}/projects/${id}/enquiry/`, form);
 
       if (res.status === 201 || res.status === 200) {
         // OPTIONAL: Toast
@@ -202,11 +199,10 @@ const ProjectDetailPage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        }}
-      >
+        }} >
         <div className="banner-content position-absolute top-50 start-50 translate-middle text-white text-center">
           <h1 className="split2">{project.Title}</h1>
-          <p className="text-drop__line split2">
+          <p className="text-drop__line split2 text-center">
             {project.Project_Location}, {project.City}
           </p>
         </div>
@@ -214,7 +210,7 @@ const ProjectDetailPage = () => {
       </div>
 
       <div className="detail-sticky-nav">
-        <DetailPageNavbar project={project}/>
+        <DetailPageNavbar project={project} />
       </div>
 
       {/* ================== MAIN CONTENT ================== */}
@@ -227,9 +223,8 @@ const ProjectDetailPage = () => {
                 project.Bann1,
                 project.Bann2,
                 project.Bann3,
-                ...project.gallery_images,
-              ]}
-            />
+                ...(project.gallery_images || []),
+              ]} />
 
             {/* OVERVIEW */}
             <div className="overview py-5" id="Overview">

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import {
   FaRegUser,
   FaFacebookF,
@@ -9,17 +8,16 @@ import {
 } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { FaRegNewspaper } from "react-icons/fa6";
+import { getBlogById } from "../api/blogApi";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
-  const api = import.meta.env.VITE_BACKEND_API;
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${api}/blogs/${id}/`)
-      .then((res) => setBlog(res.data))
-      .catch((err) => console.log(err));
+    getBlogById(id)
+      .then((data) => setBlog(data))
+      .catch((err) => console.log("Error fetching blog details:", err));
   }, [id]);
 
   if (!blog) return <p className="text-center mt-5">Loading...</p>;

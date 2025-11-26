@@ -6,18 +6,16 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import axios from "axios";
+import { getBlogs } from "../api/blogApi";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Blog = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
   const [blogs, setBlog] = useState([]);
   // Fetch blogs
   useEffect(() => {
-    axios
-      .get(`${api}/blogs`)
-      .then((res) => setBlog(res.data.results)) // FIXED
-      .catch((err) => console.log(err));
+    getBlogs()
+      .then((data) => setBlog(data))
+      .catch((err) => console.log("Error fetching blogs:", err));
   }, []);
 
   useEffect(() => {

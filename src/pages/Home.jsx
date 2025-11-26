@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Slider from "../components/Slider";
 import RealEstateTabs from "../components/RealEstateTabs";
 import Testimonial from "../components/Testimonial";
@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import Loader from "../components/Loader";
+import { getProjects } from "../api/projectApi";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,19 +21,14 @@ const Home = () => {
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await axios.get(`${api}/projects/`);
-        setProjects(response.data.results || []); // store data
-      } catch (error) {
+    setLoading(true);
+    getProjects()
+      .then((data) => setProjects(data))
+      .catch((error) => {
         console.error("Error fetching projects:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProjects();
-  }, []);
+      })
+      .finally(() => setLoading(false));
+  }, [api]);
 
   // ✅ Optional GSAP setup (your scroll effects)
   useEffect(() => {

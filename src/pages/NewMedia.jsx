@@ -7,12 +7,11 @@ import { PiClockClockwiseLight } from "react-icons/pi";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { getNews } from "../api/newsApi";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 const NewMedia = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
   // requirements
   const [News, setNews] = useState([]);
   const [filteredNews, setFilteredNews] = useState([]);
@@ -21,13 +20,9 @@ const NewMedia = () => {
 
   // Fetch blogs
   useEffect(() => {
-    axios.get(`${api}/news`)
-      .then((res) => {
-        setNews(res.data.results);
-        setFilteredNews(res.data.results);
-      }) // FIXED
-
-      .catch((err) => console.log(err));
+    getNews()
+      .then((data) => setNews(data))
+      .catch((err) => console.log("Error fetching blogs:", err));
   }, []);
 
   useEffect(() => {
@@ -109,7 +104,10 @@ const NewMedia = () => {
   return (
     <div>
       <div>
-        <div className="object-fit-cover position-relative" style={{ height: "550px", width: "100vw" }}  >
+        <div
+          className="object-fit-cover position-relative"
+          style={{ height: "550px", width: "100vw" }}
+        >
           {News.length > 0 && News[0].video ? (
             <video
               className="object-fit-cover"
@@ -280,7 +278,9 @@ const NewMedia = () => {
                     <div className="text-uppercase small text-muted fw-semibold mb-2">
                       Author – {news.author}
                     </div>
-                    <Link to={`/insight/news&media/${news.id}/${news.newsslug}`} >
+                    <Link
+                      to={`/insight/news&media/${news.id}/${news.newsslug}`}
+                    >
                       <h5 className="card-title fw-bold">{news.title}</h5>
                     </Link>
                     <p className="card-text text-muted">

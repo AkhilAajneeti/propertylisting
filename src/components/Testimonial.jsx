@@ -4,14 +4,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
 
 const Testimonial = () => {
+  const api = import.meta.env.VITE_BACKEND_API;
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await axios.get(
-          "http://192.168.1.48:8000/api/testimonials"
-        );
+        const res = await axios.get(`${api}/testimonials`);
         setTestimonials(res.data.results || []);
       } catch (error) {
         console.log("Error fetching testimonials:", error);
@@ -19,7 +18,7 @@ const Testimonial = () => {
     };
 
     fetchTestimonials();
-  }, []);
+  }, [api]);
 
   return (
     <section className="googleReview py-0 py-md-4">

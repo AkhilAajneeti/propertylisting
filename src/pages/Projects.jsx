@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 import Loader from "../components/Loader";
+import { getProjects } from "../api/projectApi";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,23 +43,34 @@ const Projects = () => {
   }, [urlCity]);
 
   // ---------- fetch projects from API ----------
-  useEffect(() => {
-    const fetchProjects = async () => {
-      setLoading(true);
-      try {
-        const res = await fetch(`${api}/projects/`);
-        const json = await res.json();
-        // API returns { count, next, previous, results: [...] }
-        setProjectsData(json.results || []);
-      } catch (err) {
-        console.error("Failed fetching projects:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const res = await fetch(`${api}/projects/`);
+  //       const json = await res.json();
+  //       // API returns { count, next, previous, results: [...] }
+  //       setProjectsData(json.results || []);
+  //     } catch (err) {
+  //       console.error("Failed fetching projects:", err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchProjects();
-  }, []);
+  //   fetchProjects();
+  // }, []);
+
+  // ✅ Fetch data once when component mounts
+    useEffect(() => {
+      setLoading(true);
+      getProjects()
+        .then((data) => setProjectsData(data || []))
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
+        })
+        .finally(() => setLoading(false));
+    }, [api]);
 
   // ---------- apply filters ----------
   useEffect(() => {

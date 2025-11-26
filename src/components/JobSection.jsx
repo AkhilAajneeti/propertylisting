@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FaBriefcase, FaRegBuilding } from "react-icons/fa";
 import { CiSearch } from "react-icons/ci";
 import { FaLocationDot } from "react-icons/fa6";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import { getJobs } from "../api/jobApi";
 
 const JobSection = () => {
-   const api = import.meta.env.VITE_BACKEND_API;
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
 
@@ -16,14 +15,12 @@ const JobSection = () => {
   });
 
   useEffect(() => {
-    axios
-      .get(`${api}/job-postings`)
-      .then((res) => {
-        const data = res.data?.results || res.data || [];
+    getJobs()
+      .then((data) => {
         setJobs(data);
         setFilteredJobs(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log("Error fetching jobs:", err));
   }, []);
 
   // Create dynamic dropdown values
@@ -107,8 +104,9 @@ const JobSection = () => {
                   <span>{job.location}</span>
                 </p>
               </div>
-               <Link className="apply-btn" to={`/job/${job.id}`}>Apply Now</Link>
-             
+              <Link className="apply-btn" to={`/job/${job.id}`}>
+                Apply Now
+              </Link>
             </div>
           ))
         ) : (

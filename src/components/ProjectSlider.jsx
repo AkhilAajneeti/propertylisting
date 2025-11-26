@@ -1,28 +1,18 @@
-// ProjectSlider.jsx
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import {  Thumbs, Autoplay } from "swiper/modules";
+import { Thumbs, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-
-const images = [
-"/building.jpg",
-  "/build1.jpeg",
-  "/build2.jpeg",
-  "/build3.jpeg",
-  "/build2.jpeg",
-];
-
-const ProjectSlider = () => {
+const ProjectSlider = ({ images = [] }) => {
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
 
   return (
     <div className="project-slider-wrapper">
       {/* Main Slider */}
       <Swiper
-        modules={[ Thumbs, Autoplay]}
+        modules={[Thumbs, Autoplay]}
         spaceBetween={10}
         loop={true}
         autoplay={{ delay: 3000 }}
@@ -38,14 +28,13 @@ const ProjectSlider = () => {
 
       {/* Thumbnail Slider */}
       <Swiper
-        modules={[ Thumbs, Autoplay]}
+        modules={[Thumbs, Autoplay]}
         onSwiper={setThumbsSwiper}
         spaceBetween={24}
         slidesPerView={4}
         loop={true}
         freeMode={true}
         watchSlidesProgress={true}
-   
         breakpoints={{
           0: { slidesPerView: 2, spaceBetween: 15 },
           480: { slidesPerView: 3, spaceBetween: 15 },
