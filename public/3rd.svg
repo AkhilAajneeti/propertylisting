@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="353.1" height="365.4" viewBox="0 0 353.1 365.4">
+    <defs>
+        <linearGradient id="ckeart7q2a" x1=".809" y1=".863" x2=".134" y2=".185" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fcd095"/>
+            <stop offset="1" stop-color="#fff"/>
+        </linearGradient>
+        <linearGradient id="g79c3rfeyb" x1=".809" y1=".863" x2=".128" y2=".183" xlink:href="#ckeart7q2a"/>
+        <linearGradient id="u27fhp2q9c" x1=".855" y1=".819" x2=".146" y2=".182" xlink:href="#ckeart7q2a"/>
+    </defs>
+    <g transform="translate(112.001 -2.562)">
+        <circle data-name="Ellipse 2919" cx="79.534" cy="79.534" r="79.534" transform="rotate(-136.14 75.427 183.435)" style="fill:url(#ckeart7q2a);opacity:.4"/>
+        <circle data-name="Ellipse 2918" cx="68.422" cy="68.422" transform="rotate(-136.14 112.608 68.573)" style="fill:url(#g79c3rfeyb);opacity:.4" r="68.422"/>
+        <circle data-name="Ellipse 2920" cx="37.241" cy="37.241" transform="rotate(48.09 21.252 188.326)" style="fill:url(#u27fhp2q9c);opacity:.4" r="37.241"/>
+    </g>
+</svg>

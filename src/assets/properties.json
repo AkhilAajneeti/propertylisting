@@ -1,0 +1,224 @@
+[
+  {
+    "category": "Residential",
+    "bannerImage": "/banner-6.png",
+    "bannerVideo": "/residentialVideo.mp4"
+  },
+  {
+    "category": "Commercial",
+    "bannerImage": "/banner-7.png",
+    "bannerVideo": "/commercialvideo.mp4"
+  },
+  {
+    "category": "Studio",
+    "bannerImage": "/banner-7.png",
+    "content": "Find your dream home with us",
+    "bannerVideo": ""
+  },
+  {
+    "category": "Plots",
+    "bannerImage": "/banner-9.png",
+    "content": "Find your dream home with us",
+    "bannerVideo": ""
+  },
+  {
+    "id": 1,
+    "name": "Skyline Heights",
+    "type": "Residential",
+    "city": "Bengaluru",
+    "location": "Whitefield",
+    "configuration": "2BHK",
+    "price": "₹75 Lakhs",
+    "image": "/Pune.png"
+  },
+  {
+    "id": 2,
+    "name": "Urban Vista",
+    "type": "Residential",
+    "city": "Mumbai",
+    "location": "Andheri East",
+    "configuration": "3BHK",
+    "price": "₹1.4 Cr",
+    "image": "/hydrabad.png"
+  },
+  {
+    "id": 3,
+    "name": "Palm Residency",
+    "type": "Residential",
+    "city": "Pune",
+    "location": "Hinjewadi",
+    "configuration": "2BHK",
+    "price": "₹68 Lakhs",
+    "image": "/Chennai.png"
+  },
+  {
+    "id": 4,
+    "name": "Elite Enclave",
+    "type": "Residential",
+    "city": "Delhi",
+    "location": "Dwarka",
+    "configuration": "4BHK",
+    "price": "₹2.1 Cr",
+    "image": "/Thumbnail.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "Sunrise Meadows",
+    "type": "Plots",
+    "city": "Hyderabad",
+    "location": "Shamshabad",
+    "configuration": "NA",
+    "price": "₹45 Lakhs",
+    "image": "/Q2.png"
+  },
+  {
+    "id": 6,
+    "name": "Green Acres",
+    "type": "Plots",
+    "city": "Bengaluru",
+    "location": "Sarjapur",
+    "configuration": "NA",
+    "price": "₹52 Lakhs",
+    "image": "/Pune.png"
+  },
+  {
+    "id": 7,
+    "name": "Lakeview Plots",
+    "type": "Plots",
+    "city": "Chennai",
+    "location": "Tambaram",
+    "configuration": "NA",
+    "price": "₹38 Lakhs",
+    "image": "/Delhi.png"
+  },
+  {
+    "id": 8,
+    "name": "Harmony Square",
+    "type": "Commercial",
+    "city": "Gurugram",
+    "location": "Sector 62",
+    "configuration": "Office Space",
+    "price": "₹3.5 Cr",
+    "image": "/Chennai.png"
+  },
+  {
+    "id": 9,
+    "name": "Trade Tower",
+    "type": "Commercial",
+    "city": "Mumbai",
+    "location": "BKC",
+    "configuration": "Retail Space",
+    "price": "₹5.2 Cr",
+    "image": "/Delhi.png"
+  },
+  {
+    "id": 10,
+    "name": "Corporate Plaza",
+    "type": "Commercial",
+    "city": "Pune",
+    "location": "Kalyani Nagar",
+    "configuration": "Office Space",
+    "price": "₹2.8 Cr",
+    "image": "/Q2.png"
+  },
+  {
+    "id": 11,
+    "name": "Studio 9",
+    "type": "Studio Apartment",
+    "city": "Bengaluru",
+    "location": "Koramangala",
+    "configuration": "1RK",
+    "price": "₹42 Lakhs",
+    "image": "/new6.png"
+  },
+  {
+    "id": 12,
+    "name": "Metro Studios",
+    "type": "Studio Apartment",
+    "city": "Mumbai",
+    "location": "Powai",
+    "configuration": "1RK",
+    "price": "₹58 Lakhs",
+    "image": "/building.jpg"
+  },
+  {
+    "id": 13,
+    "name": "Downtown Suites",
+    "type": "Studio Apartment",
+    "city": "Pune",
+    "location": "Baner",
+    "configuration": "1BHK",
+    "price": "₹49 Lakhs",
+    "image": "/Chennai.png"
+  },
+  {
+    "id": 14,
+    "name": "Prime Residency",
+    "type": "Residential",
+    "city": "Hyderabad",
+    "location": "Kondapur",
+    "configuration": "3BHK",
+    "price": "₹85 Lakhs",
+    "image": "/new244.png"
+  },
+  {
+    "id": 15,
+    "name": "Golden Estates",
+    "type": "Plots",
+    "city": "Delhi",
+    "location": "Rohini",
+    "configuration": "NA",
+    "price": "₹55 Lakhs",
+    "image": "/banner-8.png"
+  },
+  {
+    "id": 16,
+    "name": "Central Hub",
+    "type": "Commercial",
+    "city": "Noida",
+    "location": "Sector 18",
+    "configuration": "Retail Space",
+    "price": "₹4.7 Cr",
+    "image": "/Thumbnail.jpeg"
+  },
+  {
+    "id": 17,
+    "name": "City Homes",
+    "type": "Residential",
+    "city": "Chennai",
+    "location": "OMR",
+    "configuration": "2BHK",
+    "price": "₹67 Lakhs",
+    "image": "/Chennai.png"
+  },
+  {
+    "id": 18,
+    "name": "Urban Plots",
+    "type": "Plots",
+    "city": "Pune",
+    "location": "Wagholi",
+    "configuration": "NA",
+    "price": "₹49 Lakhs",
+    "image": "/new244.png"
+  },
+  {
+    "id": 19,
+    "name": "Sky Tower",
+    "type": "Commercial",
+    "city": "Hyderabad",
+    "location": "Madhapur",
+    "configuration": "Office Space",
+    "price": "₹3.9 Cr",
+    "image": "/Q2.png"
+  },
+  {
+    "id": 20,
+    "name": "Studio Park",
+    "type": "Studio Apartment",
+    "city": "Delhi",
+    "location": "Lajpat Nagar",
+    "configuration": "1BHK",
+    "price": "₹52 Lakhs",
+    "image": "/Chennai.png"
+  }
+]
