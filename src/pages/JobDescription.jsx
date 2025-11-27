@@ -52,7 +52,7 @@ const JobDescription = () => {
     try {
       await submitJobApplication(sendData);
       toast.success("Application Submitted Successfully 🎉");
-      setTimeout(() => navigate("/thank-you"), 1500);
+      setTimeout(() => navigate("/thankyou"), 1500);
     } catch (err) {
       console.error("Error submitting application", err);
       toast.error("❌ Something went wrong! Please try again.");

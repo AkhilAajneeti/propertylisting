@@ -7,7 +7,6 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import axios from "axios";
 import { IoIosCall } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
 import { PiPhoneCallFill } from "react-icons/pi";
@@ -19,10 +18,13 @@ import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 import { toast } from "react-toastify";
 import Loader from "../components/Loader";
+import { submitContactForm } from "../api/contactApi";
+import { useNavigate } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 const Contact = () => {
   // const [isActive, setIsActive] = useState(false);
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     // --- LENIS SMOOTH SCROLL SETUP ---
     const lenis = new Lenis({
@@ -89,31 +91,28 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     try {
-      const formData = new FormData();
-      formData.append("name", form.name);
-      formData.append("email", form.email);
-      formData.append("mobile", form.mobile);
-      formData.append("message", form.message);
+      await submitContactForm(form);
 
-      const res = await axios.post(
-        "http://192.168.1.48:8000/api/contact/",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      toast.success("Message sent successfully 🎉");
 
-      if (res.status === 201 || res.status === 200) {
-        toast.success("Message sent!");
-        setTimeout(() => {
-          window.location.href = "/thankyou";
-        }, 500);
-      }
+      setForm({
+        name: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+
+      setTimeout(() => {
+        navigate("/thankyou");
+      }, 1000);
     } catch (err) {
-      console.log("Contact Form Error:", err.response?.data || err);
-      toast.error("Something went wrong!");
+      console.error("Contact Form Error:", err);
+      toast.error("Something went wrong ❌");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -128,7 +127,7 @@ const Contact = () => {
         <div className="container">
           <div className="text-center">
             <h1 className="text-drop__line text-gradient">Get In Touch</h1>
-            <p className="text-drop__line">
+            <p className="text-drop__line text-center">
               Wheather you are looking for invest , enquire or collaborate - our
               team is always here to help you
             </p>
@@ -186,8 +185,18 @@ const Contact = () => {
                   </div>
 
                   <div className="col-12 text-center">
-                    <button type="submit" className={`animated-btn`}>
-                      Submit <FaTelegramPlane />
+                    <button
+                      type="submit"
+                      className="animated-btn"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        "Sending..."
+                      ) : (
+                        <>
+                          Submit <FaTelegramPlane />
+                        </>
+                      )}
                     </button>
                   </div>
                 </div>

@@ -8,23 +8,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getNews } from "../api/newsApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNews } from "../redux/slices/newsSlice";
+import Loader from "../components/Loader";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 const NewMedia = () => {
   // requirements
-  const [News, setNews] = useState([]);
+  const dispatch = useDispatch();
+  const { data: News, loading, error } = useSelector((state) => state.news);
+
   const [filteredNews, setFilteredNews] = useState([]);
   const [category, setCategory] = useState("All");
   const [year, setYear] = useState("All");
 
   // Fetch blogs
   useEffect(() => {
-    getNews()
-      .then((data) => setNews(data))
-      .catch((err) => console.log("Error fetching blogs:", err));
-  }, []);
-
+    dispatch(fetchNews());
+  }, [dispatch]);
   useEffect(() => {
     // --- LENIS SMOOTH SCROLL SETUP ---
     const lenis = new Lenis({
@@ -80,19 +81,19 @@ const NewMedia = () => {
 
   // Filter Function
   useEffect(() => {
-    let data = News;
+    let filtered = News;
 
     if (category !== "All") {
-      data = data.filter((i) => i.newscategory === category);
+      filtered = filtered.filter((i) => i.newscategory === category);
     }
 
     if (year !== "All") {
-      data = data.filter(
+      filtered = filtered.filter(
         (i) => new Date(i.date).getFullYear().toString() === year
       );
     }
 
-    setFilteredNews(data);
+    setFilteredNews(filtered);
   }, [category, year, News]);
 
   const handleClear = () => {
@@ -100,7 +101,10 @@ const NewMedia = () => {
     setYear("All");
     setFilteredNews(News);
   };
-
+  if (loading) return <Loader />;
+  if (error) return <p className="text-danger">{error}</p>;
+  if (!News || News.length === 0)
+  return <p className="text-center mt-5">No News Available</p>;
   return (
     <div>
       <div>
@@ -149,7 +153,7 @@ const NewMedia = () => {
               className="text-uppercase text-light"
               style={{ fontSize: "30px" }}
             >
-              {News.length > 0 ? News[0].title : "In The News"}
+              {News?.[0]?.title ?? "In The News"}
             </div>
           </div>
         </div>

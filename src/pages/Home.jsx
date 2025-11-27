@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 // import axios from "axios";
 import Slider from "../components/Slider";
 import RealEstateTabs from "../components/RealEstateTabs";
@@ -10,24 +10,24 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import Loader from "../components/Loader";
-import { getProjects } from "../api/projectApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects } from "../redux/slices/propertySlice";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  // const [projects, setProjects] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  const { data: projects, loading, error } = useSelector(
+    (state) => state.projects
+  );
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
-    setLoading(true);
-    getProjects()
-      .then((data) => setProjects(data))
-      .catch((error) => {
-        console.error("Error fetching projects:", error);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+    // setLoading(true);
+    dispatch(fetchProjects());
+  }, [dispatch]);
 
   // ✅ Optional GSAP setup (your scroll effects)
   useEffect(() => {
@@ -77,10 +77,9 @@ const Home = () => {
 
   if (loading)
     return (
-      <p>
         <Loader />
-      </p>
     );
+    if (error) return <p>Error loading projects: {error}</p>;
 
   return (
     <div>
@@ -88,7 +87,7 @@ const Home = () => {
       <Counter />
 
       {/* Pass projects directly to your RealEstateTabs */}
-      <RealEstateTabs projects={projects} />
+      <RealEstateTabs projects={projects || []} />
 
       <Portfolio />
       <Testimonial />

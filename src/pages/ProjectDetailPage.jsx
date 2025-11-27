@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 gsap.registerPlugin(ScrollTrigger);
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaTelegramPlane } from "react-icons/fa";
 import ProjectSlider from "../components/ProjectSlider";
 import FloorPlan from "../components/FloorPlan";
@@ -13,22 +13,27 @@ import DetailPageNavbar from "../components/DetailPageNavbar";
 import Loader from "../components/Loader";
 import { toast } from "react-toastify";
 import ContactBtn from "../components/ContactBtn";
-import { getProjectsById } from "../api/projectApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjectById } from "../redux/slices/propertySlice";
+import { submitProjectEnquiry } from "../api/projectFormApi";
 const ProjectDetailPage = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
+  const navigate=useNavigate();
   const { id } = useParams();
-  const [project, setProject] = useState(null);
-
+  const dispatch = useDispatch();
+  const {
+    currentProject: project,
+    loading,
+    error,
+  } = useSelector((state) => state.projects);
   // Fetch project
+  // Fetch project using Redux
   useEffect(() => {
-    getProjectsById(id)
-      .then((data) => setProject(data))
-      .catch((err) => console.log("Error fetching blog details:", err));
-  }, [id]);
+    dispatch(fetchProjectById({ id }));
+  }, [id, dispatch]);
 
   //pixel code
   useEffect(() => {
-    if (project?.gtm_id) {
+    if (project?.pixel_code) {
       const script = document.createElement("script");
       script.innerHTML = project.gtm_id;
       script.type = "text/javascript";
@@ -167,24 +172,21 @@ const ProjectDetailPage = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(`${api}/projects/${id}/enquiry/`, form);
+      await submitProjectEnquiry(id, form);
 
-      if (res.status === 201 || res.status === 200) {
-        // OPTIONAL: Toast
-        toast.success("Thank you! Redirecting...");
-      }
+      toast.success("Thank you! Redirecting...");
+       setTimeout(() => {
+        navigate("/thankyou");
+      }, 1000); // small delay for toast visibility
     } catch (error) {
       console.error("Enquiry Submit Error:", error);
-      alert("Something went wrong. Try again!");
+      toast.error("Something went wrong. Try again!");
     }
   };
 
-  if (!project)
-    return (
-      <p className="text-center py-5">
-        <Loader />
-      </p>
-    );
+  if (loading) return <Loader />;
+  if (error) return <p className="text-danger text-center">{error}</p>;
+  if (!project) return null;
 
   return (
     <>
@@ -201,7 +203,7 @@ const ProjectDetailPage = () => {
           justifyContent: "center",
         }}
       >
-        <div className="banner-content position-absolute top-50 start-50 translate-middle text-center projectBanner ">
+        <div className="banner-content position-absolute top-50 start-50 translate-middle text-center text-white">
           <h1 className="split2">{project.Title}</h1>
           <h5 className="text-drop__line split2 text-center">
             {project.Project_Location}, {project.City}
@@ -427,10 +429,10 @@ const ProjectDetailPage = () => {
             </div>
             <div className="col-sm-6  d-flex align-content-center flex-column">
               <div className="locationContent">
-                 <h2 className="mainFont">
-                Location <span className="text-gradient2">Advantage.</span>
-              </h2>
-                 <p>{project.Location_Content}</p>
+                <h2 className="mainFont">
+                  Location <span className="text-gradient2">Advantage.</span>
+                </h2>
+                <p>{project.Location_Content}</p>
               </div>
             </div>
           </div>
@@ -448,7 +450,7 @@ const ProjectDetailPage = () => {
               <p>{project.Abt_builder}</p>
             </div>
             <div className="col-sm-6">
-              <img src="/public/contact2.jpg" alt="" className="img-fluid" />
+              <img src="/contact2.jpg" alt="" className="img-fluid" />
             </div>
           </div>
         </div>

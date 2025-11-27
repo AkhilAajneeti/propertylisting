@@ -9,16 +9,21 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 import Loader from "../components/Loader";
-import { getProjects } from "../api/projectApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects } from "../redux/slices/propertySlice";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Projects = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
+  const dispatch = useDispatch();
+  const {
+    data: projects,
+    loading,
+    error,
+  } = useSelector((state) => state.projects);
   // ---------- state ----------
-  const [projectsData, setProjectsData] = useState([]); // all projects from API
+  
   const [filteredProjects, setFilteredProjects] = useState([]); // shown projects
-  const [loading, setLoading] = useState(true);
 
   // filters state (controlled)
   const [filters, setFilters] = useState({
@@ -42,39 +47,17 @@ const Projects = () => {
     }
   }, [urlCity]);
 
-  // ---------- fetch projects from API ----------
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     setLoading(true);
-  //     try {
-  //       const res = await fetch(`${api}/projects/`);
-  //       const json = await res.json();
-  //       // API returns { count, next, previous, results: [...] }
-  //       setProjectsData(json.results || []);
-  //     } catch (err) {
-  //       console.error("Failed fetching projects:", err);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProjects();
-  // }, []);
-
   // ✅ Fetch data once when component mounts
-    useEffect(() => {
-      setLoading(true);
-      getProjects()
-        .then((data) => setProjectsData(data || []))
-        .catch((error) => {
-          console.error("Error fetching projects:", error);
-        })
-        .finally(() => setLoading(false));
-    }, [api]);
+  useEffect(() => {
+    if (projects.length === 0) {
+      dispatch(fetchProjects());
+    }
+  }, [dispatch, projects.length]);
+
 
   // ---------- apply filters ----------
   useEffect(() => {
-    let result = Array.isArray(projectsData) ? [...projectsData] : [];
+    let result = Array.isArray(projects) ? [...projects] : [];
 
     // Filter by propertyType (category/subcategory)
     if (propertyType) {
@@ -86,14 +69,14 @@ const Projects = () => {
       );
     }
 
-    // Filter by city (API gives string, not object)
+    // Filter by city
     if (filters.city) {
       result = result.filter(
         (p) => (p.City || "").toLowerCase() === filters.city.toLowerCase()
       );
     }
 
-    // Filter by location (API: Project_Location)
+    // Filter by location
     if (filters.location) {
       const loc = filters.location.toLowerCase();
       result = result.filter(
@@ -114,7 +97,7 @@ const Projects = () => {
     }
 
     setFilteredProjects(result);
-  }, [projectsData, propertyType, filters]);
+  }, [projects, propertyType, filters]);
 
   // ---------- animations (Lenis + GSAP + SplitType) ----------
   useEffect(() => {
@@ -214,17 +197,13 @@ const Projects = () => {
 
   // ---------- helper: unique lists for selects ----------
   const uniqueCities = [
-    ...new Set(projectsData.map((p) => p.City).filter(Boolean)),
+    ...new Set(projects.map((p) => p.City).filter(Boolean)),
   ];
-
   const uniqueLocation = [
-    ...new Set(projectsData.map((p) => p.Project_Location).filter(Boolean)),
+    ...new Set(projects.map((p) => p.Project_Location).filter(Boolean)),
   ];
-
   const uniqueConfigurations = [
-    ...new Set(
-      projectsData.flatMap((p) => p.Configuration || []).filter(Boolean)
-    ),
+    ...new Set(projects.flatMap((p) => p.Configuration || []).filter(Boolean)),
   ];
 
   // ---------- handlers ----------
@@ -239,7 +218,7 @@ const Projects = () => {
 
   // ---------- banner logic ----------
   const activeBannerProject =
-    projectsData.find(
+    projects.find(
       (p) =>
         (propertyType &&
           (p.category || "")
@@ -259,7 +238,7 @@ const Projects = () => {
   };
 
   const handleSearch = () => {
-    let result = [...projectsData];
+    let result = [...projects];
 
     if (propertyType) {
       const lower = propertyType.toLowerCase();
@@ -297,13 +276,9 @@ const Projects = () => {
   };
 
   // ---------- loading fallback ----------
-  if (loading) {
-    return (
-      <div className="text-center py-10">
-        <Loader />
-      </div>
-    );
-  }
+  if (loading) return <Loader />;
+
+  if (error) return <p className="text-danger text-center">Error: {error}</p>;
 
   return (
     <div>

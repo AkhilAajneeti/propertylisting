@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Loader from "../components/Loader";
+
 import {
   FaRegUser,
   FaFacebookF,
@@ -8,19 +10,22 @@ import {
 } from "react-icons/fa";
 import { SlCalender } from "react-icons/sl";
 import { FaRegNewspaper } from "react-icons/fa6";
-import { getNewsById } from "../api/newsApi";
-
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNewsById } from "../redux/slices/newsSlice";
 const NewsDetailPage = () => {
   const { id } = useParams();
-  const [news, setNews] = useState(null);
+ const dispatch = useDispatch();
+  const { currentNews: news, loading, error } = useSelector(
+    (state) => state.news
+  );
 
-  useEffect(() => {
-    getNewsById(id)
-      .then((data) => setNews(data))
-      .catch((err) => console.log("Error fetching blog details:", err));
-  }, [id]);
+ useEffect(() => {
+    dispatch(fetchNewsById({id}));
+  }, [id, dispatch]);
 
-  if (!news) return <p className="text-center mt-5">Loading...</p>;
+  if (loading) return <Loader />;
+  if (error) return <p className="text-danger text-center">{error}</p>;
+  if (!news) return null;
 
   return (
     <div>

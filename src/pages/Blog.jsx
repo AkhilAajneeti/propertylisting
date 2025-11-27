@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { PiClockClockwiseLight } from "react-icons/pi";
 import { SlCalender } from "react-icons/sl";
 import { Link } from "react-router-dom";
-
+import Loader from "../components/Loader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
-import { getBlogs } from "../api/blogApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBlogs } from "../redux/slices/blogSlice";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Blog = () => {
-  const [blogs, setBlog] = useState([]);
+  const dispatch = useDispatch();
+  const { data: blogs=[], loading, error } = useSelector((state) => state.blogs);
+
   // Fetch blogs
   useEffect(() => {
-    getBlogs()
-      .then((data) => setBlog(data))
-      .catch((err) => console.log("Error fetching blogs:", err));
-  }, []);
+    if (!blogs || blogs.length === 0) {
+      dispatch(fetchBlogs());
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     gsap.from(".blog-list .blog-card", {
@@ -76,7 +79,8 @@ const Blog = () => {
 
     return () => ctx.revert(); // cleanup on unmount
   }, []);
-
+  if (loading) return <Loader />;
+  if (error) return <p className="text-danger text-center">{error}</p>;
   return (
     <div>
       <div className="BlogBanner">

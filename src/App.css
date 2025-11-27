@@ -1,4 +1,5 @@
 /* Reset */
+
 *,
 *::before,
 *::after {
@@ -1134,7 +1135,7 @@ html {
   color: white;
 }
 .CareerBanner {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/public/careerBanner-2.jpg');
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/careerBanner-2.jpg');
   width: 100%;
   height: 80vh;
   background-position: bottom;
@@ -2847,7 +2848,7 @@ p {
 /* From Uiverse.io by mobinkakei */ 
 .wrapper-2 {
   width: 200px;
-  height: 60px;
+  height: 100px;
   position: relative;
   z-index: 1;
 }
@@ -3108,7 +3109,7 @@ overflow: hidden;
   width: 90%;
   background:linear-gradient(100deg, #f5ebac 50.49%, #b49249 100%)!important;
 }
-.projectBanner:before {
+/* .projectBanner:before {
     position: absolute;
     content: '';
     height: 100%;

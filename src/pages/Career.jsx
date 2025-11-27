@@ -15,6 +15,8 @@ import "aos/dist/aos.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import Lenis from "@studio-freight/lenis";
+import EmployeeTestimonial from "../components/EmployeeTestimonial";
+import CompanyStory from "../components/CompanyStory";
 gsap.registerPlugin(ScrollTrigger);
 const Career = () => {
   useEffect(() => {
@@ -100,16 +102,9 @@ const Career = () => {
     });
   }, []);
 
-  useEffect(() => {
-    Fancybox.bind("[data-fancybox='gallery']", {});
-    return () => Fancybox.destroy();
-  }, []);
-
   return (
     <div style={{ overflowX: "hidden" }}>
-      <div className="CareerBanner">
-       
-      </div>
+      <div className="CareerBanner"></div>
 
       {/* section 2 */}
       <div className=" py-5">
@@ -149,234 +144,10 @@ const Career = () => {
       {/* career section */}
 
       {/* employeeTestimonial */}
-      <div className="employeeTestimonial  container py-5">
-        <h1 className="text-start split2">Employee Testimonials</h1>
-        <p className="text-start split2">Stories of Growth and Success</p>
-        <div className=" d-flex flex-column align-items-center justify-content-center">
-          {/*  */}
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            loop
-            autoHeight
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            pagination={{
-              el: ".custom-pagination",
-              clickable: true,
-              renderBullet: (index, className) =>
-                `<span class="${className}"></span>`,
-            }}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            modules={[Pagination, Autoplay, Navigation]}
-            breakpoints={{
-              0: {
-                slidesPerView: 1, // 👈 mobile
-              },
-              768: {
-                slidesPerView: 2, // 👈 tablets
-              },
-              1024: {
-                slidesPerView: 3, // 👈 desktop
-              },
-            }}
-            className="mySwiper-3"
-          >
-            {[
-              {
-                image: "/client1.jpg",
-                name: "Emma Davis",
-                role: "Frontend Engineer",
-                description:
-                  "Building responsive, high-performance web apps using React and GSAP animations.",
-              },
-              {
-                image: "/client2.jpg",
-                name: "Michael Brown",
-                role: "Backend Developer",
-                description:
-                  "Specialized in Node.js and Express for scalable and secure server-side solutions.",
-              },
-              {
-                image: "/client3.jpg",
-                name: "Sophia Lee",
-                role: "UI/UX Designer",
-                description:
-                  "Designing intuitive user experiences with attention to detail and accessibility.",
-              },
-              {
-                image: "/client4.jpg",
-                name: "Liam Wilson",
-                role: "Full Stack Developer",
-                description:
-                  "Bridging frontend and backend technologies to build complete, robust web applications.",
-              },
-            ].map((testi, index) => (
-              <SwiperSlide key={index}>
-                <CareerTesti {...testi} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div className="swiper-controls d-flex justify-content-center align-items-center mt-3">
-            <div className="swiper-button-prev"></div>
-            <div className="custom-pagination mx-3"></div>
-            <div className="swiper-button-next"></div>
-          </div>
-        </div>
-      </div>
+      <EmployeeTestimonial />
       {/* story section */}
-      <div className="StorySection py-5">
-        <h1 className="split2">Be Part of Our Story</h1>
-        <p data-aos="fade-up" data-aos-duration="6000">
-          Create memories that inspire, celebrate milestones that matter, and
-          grow alongside people who believe in you.
-        </p>
-        <div className="container">
-          <div className=" d-flex flex-column align-items-center justify-content-center">
-            {/*  */}
-            <Swiper
-              slidesPerView={3}
-              spaceBetween={30}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              loop={true}
-              modules={[Autoplay]}
-              pagination={{
-                el: ".custom-pagination",
-                clickable: true,
-                renderBullet: (index, className) => {
-                  return `<span class="${className}"></span>`;
-                },
-              }}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1, // 👈 mobile (default)
-                },
-                768: {
-                  slidesPerView: 1, // 👈 tablets
-                },
-                1024: {
-                  slidesPerView: 3, // 👈 desktop
-                },
-              }}
-              className="mySwiper-2 py-3"
-            >
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-1.jpg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-1.jpg"
-                      alt="Story 1"
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-2.jpg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-2.jpg"
-                      alt="Story 2"
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-3.jpg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-3.jpg"
-                      alt="Story 2"
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-4.jpeg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-4.jpeg"
-                      alt="Story 2"
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-5.jpeg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-5.jpeg"
-                      alt="Story 2"
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-6.jpeg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-6.jpeg"
-                      alt="Story 2"
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href="/JENIKA/story-7.jpeg">
-                    <img
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        objectFit: "cover",
-                      }}
-                      src="/JENIKA/story-7.jpeg"
-                      alt="Story 2"
-                    />
-                  </a>
-                 
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          </div>
-        </div>
-      </div>
 
+      <CompanyStory />
       {/* extra's */}
       <div className="extraCareer">
         <h1 className="text-drop__line">Didn’t spot the perfect role yet?</h1>
