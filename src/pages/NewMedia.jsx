@@ -372,17 +372,19 @@ const NewMedia = () => {
               Management Profiles
             </h5>
           </div>
-          <button
-            className="btn border-0 text-dark"
-            style={{
-              background:
-                "linear-gradient(68deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%)",
-              fontWeight: "500",
-              fontSize: "25px",
-            }}
-          >
-            View Profiles
-          </button>
+          <Link to="/our-team">
+            <button
+              className="btn border-0 text-dark"
+              style={{
+                background:
+                  "linear-gradient(68deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%)",
+                fontWeight: "500",
+                fontSize: "25px",
+              }}
+            >
+              View Profiles
+            </button>
+          </Link>
         </div>
 
         {/* Bottom gradient line */}

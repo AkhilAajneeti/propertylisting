@@ -1,4 +1,4 @@
-import { React, useState,useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import {
   FaTelegramPlane,
   FaFacebookF,
@@ -17,115 +17,106 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
- import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import Loader from "../components/Loader";
 gsap.registerPlugin(ScrollTrigger);
 const Contact = () => {
   // const [isActive, setIsActive] = useState(false);
 
-    useEffect(() => {
-      // --- LENIS SMOOTH SCROLL SETUP ---
-      const lenis = new Lenis({
-        smooth: true,
-        lerp: 0.08,
-        direction: "vertical",
-        smoothTouch: true,
-      });
-  
-      // keep Lenis and ScrollTrigger in sync
-      lenis.on("scroll", ScrollTrigger.update);
-  
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
+  useEffect(() => {
+    // --- LENIS SMOOTH SCROLL SETUP ---
+    const lenis = new Lenis({
+      smooth: true,
+      lerp: 0.08,
+      direction: "vertical",
+      smoothTouch: true,
+    });
+
+    // keep Lenis and ScrollTrigger in sync
+    lenis.on("scroll", ScrollTrigger.update);
+
+    function raf(time) {
+      lenis.raf(time);
       requestAnimationFrame(raf);
-  
-      // normalize scroll for GSAP
-      ScrollTrigger.normalizeScroll(true);
-  
-      // Reset scroll triggers on resize
-      const handleResize = () => ScrollTrigger.refresh();
-      window.addEventListener("resize", handleResize);
-  
-      // --- TEXT ANIMATION ---
-      gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
-        gsap.fromTo(
-          line,
-          { y: 50, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out",
-            delay: i * 0.1, // slight stagger
-            scrollTrigger: {
-              trigger: line,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-
-  
-      // Cleanup
-      return () => {
-        window.removeEventListener("resize", handleResize);
-        ScrollTrigger.getAll().forEach((t) => t.kill());
-        lenis.destroy();
-      };
-    }, []);
-
-
-    const [form, setForm] = useState({
-  name: "",
-  email: "",
-  mobile: "",
-  message: "",
-});
-
-const handleChange = (e) => {
-  setForm({ ...form, [e.target.name]: e.target.value });
-};
-
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  try {
-    const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("email", form.email);
-    formData.append("mobile", form.mobile);
-    formData.append("message", form.message);
-
-    const res = await axios.post(
-      "http://192.168.1.48:8000/api/contact/",
-      formData,
-      {
-        headers: { "Content-Type": "multipart/form-data" },
-      }
-    );
-
-    if (res.status === 201 || res.status === 200) {
-      toast.success("Message sent!");
-      setTimeout(() => {
-        window.location.href = "/thankyou";
-      }, 500);
     }
-  } catch (err) {
-    console.log("Contact Form Error:", err.response?.data || err);
-    toast.error("Something went wrong!");
-  }
-};
+    requestAnimationFrame(raf);
 
-  // const handleSubmit = (event) => {
-  //   event.preventDefault();
-  //   setIsActive(true);
+    // normalize scroll for GSAP
+    ScrollTrigger.normalizeScroll(true);
 
-  //   // Reset button back to normal after 3 seconds (optional)
-  //   setTimeout(() => setIsActive(false), 3000);
-  // };
+    // Reset scroll triggers on resize
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", handleResize);
+
+    // --- TEXT ANIMATION ---
+    gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
+      gsap.fromTo(
+        line,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: i * 0.1, // slight stagger
+          scrollTrigger: {
+            trigger: line,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    });
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+      lenis.destroy();
+    };
+  }, []);
+
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    mobile: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("mobile", form.mobile);
+      formData.append("message", form.message);
+
+      const res = await axios.post(
+        "http://192.168.1.48:8000/api/contact/",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      if (res.status === 201 || res.status === 200) {
+        toast.success("Message sent!");
+        setTimeout(() => {
+          window.location.href = "/thankyou";
+        }, 500);
+      }
+    } catch (err) {
+      console.log("Contact Form Error:", err.response?.data || err);
+      toast.error("Something went wrong!");
+    }
+  };
+
   return (
     <div>
       <div className="ContactBanner">
@@ -144,75 +135,63 @@ const handleSubmit = async (e) => {
           </div>
           <div className="row py-5">
             <div className="col-12 col-sm-6 formcol">
-              <h1>Send us a <span className="brown">message</span></h1>
-             <form className="pt-4" onSubmit={handleSubmit}>
-  <div className="row gy-4">
+              <h1>
+                Send us a <span className="brown">message</span>
+              </h1>
+              <p className="text-white">We’ll Contact You Within 24 Hours</p>
+              <form className="pt-4" onSubmit={handleSubmit}>
+                <div className="row gy-4">
+                  <div className="col-6">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={form.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-    <div className="col-6">
-      <input
-        type="text"
-        name="name"
-        placeholder="Your Name"
-        value={form.name}
-        onChange={handleChange}
-        required
-      />
-    </div>
+                  <div className="col-6">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email Address"
+                      value={form.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-    <div className="col-6">
-      <input
-        type="email"
-        name="email"
-        placeholder="Your Email Address"
-        value={form.email}
-        onChange={handleChange}
-        required
-      />
-    </div>
+                  <div className="col-12">
+                    <input
+                      type="tel"
+                      name="mobile"
+                      placeholder="Your phone number"
+                      value={form.mobile}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-    <div className="col-6">
-      <input
-        type="tel"
-        name="mobile"
-        placeholder="Your phone number"
-        value={form.mobile}
-        onChange={handleChange}
-        required
-      />
-    </div>
+                  <div className="col-12">
+                    <textarea
+                      rows={5}
+                      name="message"
+                      placeholder="Your Message"
+                      value={form.message}
+                      onChange={handleChange}
+                      required
+                    ></textarea>
+                  </div>
 
-    <div className="col-6">
-      <input
-        type="text"
-        placeholder="Your Subject (optional)"
-        disabled
-        style={{ background: "#f3f3f3", cursor: "not-allowed" }}
-      />
-    </div>
-
-    <div className="col-12">
-      <textarea
-        rows={5}
-        name="message"
-        placeholder="Your Message"
-        value={form.message}
-        onChange={handleChange}
-        required
-      ></textarea>
-    </div>
-
-    <div className="col-12 text-center">
-      <button
-        type="submit"
-        className={`animated-btn`}
-      >
-        Submit <FaTelegramPlane />
-      </button>
-    </div>
-
-  </div>
-</form>
-
+                  <div className="col-12 text-center">
+                    <button type="submit" className={`animated-btn`}>
+                      Submit <FaTelegramPlane />
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
             <div className="col-12 col-sm-5 addressCol offset-sm-1 ">
               <div className="addressSection ">
@@ -303,7 +282,9 @@ const handleSubmit = async (e) => {
           <div className="presenceContent d-flex justify-content-between align-items-center py-1">
             <div className="left">
               <h1 className="text-drop__line ">Our Presence</h1>
-              <p className="text-drop__line">Let’s Connect and Build Your Dream Home Together</p>
+              <p className="text-drop__line">
+                Let’s Connect and Build Your Dream Home Together
+              </p>
             </div>
             <div className="right">
               <div class="tg-button-wrap">
@@ -338,7 +319,7 @@ const handleSubmit = async (e) => {
                   </li>
                 </ul>
                 <button>Direction</button>
-                <img src="/globe.png" alt="" className="overflowImg"/>
+                <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </div>
             <div className="col-12 col-sm-4">
@@ -365,7 +346,7 @@ const handleSubmit = async (e) => {
                   </li>
                 </ul>
                 <button>Direction</button>
-                <img src="/globe.png" alt="" className="overflowImg"/>
+                <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </div>
             <div className="col-12 col-sm-4">
@@ -385,14 +366,14 @@ const handleSubmit = async (e) => {
                     HSR Layout, Bengaluru, Karnataka 560102
                   </li>
                   <li>
-                   <IoIosCall /> 6390509090
+                    <IoIosCall /> 6390509090
                   </li>
                   <li>
                     <IoIosMail /> info@jenikaventures.com
                   </li>
                 </ul>
                 <button>Direction</button>
-                <img src="/globe.png" alt="" className="overflowImg"/>
+                <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </div>
           </div>

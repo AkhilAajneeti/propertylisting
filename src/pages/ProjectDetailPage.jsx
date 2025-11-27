@@ -199,11 +199,18 @@ const ProjectDetailPage = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        }} >
-        <div className="banner-content position-absolute top-50 start-50 translate-middle text-white text-center">
+        }}
+      >
+        <div className="banner-content position-absolute top-50 start-50 translate-middle text-center projectBanner ">
           <h1 className="split2">{project.Title}</h1>
-          <p className="text-drop__line split2 text-center">
+          <h5 className="text-drop__line split2 text-center">
             {project.Project_Location}, {project.City}
+          </h5>
+          <p className="text-drop__line split2 text-center">
+            {project.Configuration} Estates
+          </p>
+          <p className="text-drop__line split2 text-center">
+            Starting Price : {project.Price}
           </p>
         </div>
         <div className="overlay"></div>
@@ -224,7 +231,8 @@ const ProjectDetailPage = () => {
                 project.Bann2,
                 project.Bann3,
                 ...(project.gallery_images || []),
-              ]} />
+              ]}
+            />
 
             {/* OVERVIEW */}
             <div className="overview py-5" id="Overview">
@@ -296,28 +304,7 @@ const ProjectDetailPage = () => {
             <div id="Floorplan">
               <FloorPlan plans={project.floor_plans} />
             </div>
-
-            {/* LOCATION */}
-            <div className="location py-5" id="Location">
-              <h2 className="split2">Location</h2>
-              <div className="locationMap text-drop__img-box mt-3">
-                <iframe
-                  src={
-                    project.Map_Link ||
-                    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.980683027153!2d77.38062529999999!3d28.510228899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce900468ba7fd%3A0x84d67f24f2380e07!2sTOWER%20B-163%2C%2016TH%20FLOOR%20ATS%20BOUQUET!5e0!3m2!1sen!2sin!4v1763974927344!5m2!1sen!2sin"
-                  }
-                  width="600"
-                  height="450"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Project Location"
-                ></iframe>
-              </div>
-            </div>
           </div>
-
           {/* ================== CONTACT FORM ================== */}
           <div className="col-sm-4 contactform">
             <div className="formcol formRadius">
@@ -413,6 +400,43 @@ const ProjectDetailPage = () => {
           </div>
         </div>
       </div>
+
+      {/* location advantage */}
+      {/* LOCATION */}
+      <div className="projectLocation">
+        <div className="container">
+          <div className="row">
+            <div className="col-sm-6">
+              <div className="location " id="Location">
+                <div className="locationMap text-drop__img-box mt-3">
+                  <iframe
+                    src={
+                      project.Map_Link ||
+                      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.980683027153!2d77.38062529999999!3d28.510228899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce900468ba7fd%3A0x84d67f24f2380e07!2sTOWER%20B-163%2C%2016TH%20FLOOR%20ATS%20BOUQUET!5e0!3m2!1sen!2sin!4v1763974927344!5m2!1sen!2sin"
+                    }
+                    width="600"
+                    height="450"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Project Location"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div className="col-sm-6  d-flex align-content-center flex-column">
+              <div className="locationContent">
+                 <h2 className="mainFont">
+                Location <span className="text-gradient2">Advantage.</span>
+              </h2>
+                 <p>{project.Location_Content}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* developer content */}
       <div className="developerContent py-5" id="Developer">
         <div className="container">

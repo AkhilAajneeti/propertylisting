@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
@@ -10,9 +10,22 @@ import "aos/dist/aos.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
+import { getTestimonials } from "../api/testimonialApi";
+import Loader from "../components/Loader";
 
 gsap.registerPlugin(ScrollTrigger);
 const ClientTestimonials = () => {
+  const [loading, setLoading] = useState(true);
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    getTestimonials()
+      .then((data) => setTestimonials(data))
+      .catch((error) => {
+        console.error("Error fetching projects:", error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
   useEffect(() => {
     // --- LENIS SMOOTH SCROLL SETUP ---
     const lenis = new Lenis({
@@ -72,16 +85,16 @@ const ClientTestimonials = () => {
       easing: "ease-in-out",
     });
   }, []);
+
+  if (loading)
+    return (
+      <p>
+        <Loader />
+      </p>
+    );
   return (
     <div>
-      <div className="ClientTestimonial">
-        {/* <h2 className="fw-bold " data-aos="fade-up" data-aos-duration="0.4s">
-          Client{" "}
-          <span data-aos="fade-up" data-aos-duration="0.9s">
-            Testimonials
-          </span>
-        </h2> */}
-      </div>
+      <div className="ClientTestimonial"></div>
 
       {/* ClientTestimonials */}
       <div className="container py-5">
@@ -177,150 +190,60 @@ const ClientTestimonials = () => {
                 1024: {
                   slidesPerView: 1, // 👈 desktop
                 },
-              }}
-              className="mySwiper-2 py-3"
-            >
-              <SwiperSlide>
-                <div
-                  className="card shadow-sm border-1 p-4 rounded-3"
-                  style={{ borderColor: "#e94b35" }}
-                >
-                  {/* Rating */}
-                  <div className="mb-2 text-warning">
-                    <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStar />
-                  </div>
-
-                  {/* Review */}
-                  <p className="fst-italic text-secondary fw-semibold">
-                    “Jenika Ventures has given me incredible exposure to the
-                    real estate industry and helped me evolve both personally
-                    and professionally. The collaborative culture and guidance
-                    from senior leaders have shaped my strategic thinking and
-                    client-handling skills”
-                  </p>
-
-                  {/* Profile Section */}
-                  <div className="d-flex justify-content-between align-items-center mt-4">
-                    <div className="d-flex align-items-center">
-                      <img
-                        src="/public/client-1.png"
-                        alt="Marvin McKinney"
-                        className="rounded-circle me-3"
-                        width="70"
-                        height="70"
-                      />
-                      <div>
-                        {/* <h6 className="mb-0 fw-bold text-dark">
-                          Marvin McKinney
-                        </h6>
-                        <small className="text-muted">Product Manager</small> */}
-                      </div>
+              }} className="mySwiper-2 py-3" >
+              {testimonials.map((item, index) => (
+                <SwiperSlide key={index}>
+                  <div
+                    className="card shadow-sm border-1 p-4 rounded-3"
+                    style={{ borderColor: "#e94b35" }}
+                  >
+                    {/* Rating Dynamic */}
+                    <div className="mb-2 text-warning">
+                      {[...Array(5)].map((_, i) =>
+                        i < item.rating ? (
+                          <FaStar key={i} />
+                        ) : (
+                          <FaRegStar key={i} />
+                        )
+                      )}
                     </div>
 
-                    {/* Quote Icon */}
-                    <img
-                      width="80"
-                      height="80"
-                      src="/straight-quotes.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  className="card shadow-sm border-1 p-4 rounded-3"
-                  style={{ borderColor: "#e94b35" }}
-                >
-                  {/* Rating */}
-                  <div className="mb-2 text-warning">
-                    <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaRegStar />
-                  </div>
+                    {/* Review Dynamic */}
+                    <p className="fst-italic text-secondary fw-semibold">
+                      “{item.content}”
+                    </p>
 
-                  {/* Review */}
-                  <p className="fst-italic text-secondary fw-semibold">
-                    “My journey with Jenika Ventures has been truly rewarding.
-                    From building strong client relationships to exploring new
-                    markets, every day brings an opportunity to learn and lead.
-                    The organization’s vision keeps us motivated to go beyond
-                    boundaries. ”
-                  </p>
-
-                  {/* Profile Section */}
-                  <div className="d-flex justify-content-between align-items-center mt-4">
-                    <div className="d-flex align-items-center">
-                      <img
-                        src="/public/client-2.png"
-                        alt="Marvin McKinney"
-                        className="rounded-circle me-3"
-                        width="70"
-                        height="70"
-                      />
-                      <div>
-                        {/* <h6 className="mb-0 fw-bold text-dark">
-                          Marvin McKinney
-                        </h6>
-                        <small className="text-muted">Product Manager</small> */}
+                    {/* Profile Section Dynamic */}
+                    <div className="d-flex justify-content-between align-items-center mt-4">
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={item.image || "/client-1.png"}
+                          alt={item.name}
+                          className="rounded-circle me-3"
+                          width="70"
+                          height="70"
+                        />
+                        <div>
+                          <h6 className="mb-0 fw-bold text-dark">
+                            {item.name}
+                          </h6>
+                          <small className="text-muted">
+                            {item.designation}
+                          </small>
+                        </div>
                       </div>
-                    </div>
 
-                    {/* Quote Icon */}
-                    <img
-                      width="80"
-                      height="80"
-                      src="/straight-quotes.png"
-                      alt=""
-                    />
-                  </div>
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div
-                  className="card shadow-sm border-1 p-4 rounded-3"
-                  style={{ borderColor: "#e94b35" }}
-                >
-                  {/* Rating */}
-                  <div className="mb-2 text-warning">
-                    <FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaRegStar />
-                  </div>
-
-                  {/* Review */}
-                  <p className="fst-italic text-secondary fw-semibold">
-                    “My journey at Jenika Ventures has taught me that success
-                    isn’t built overnight — it’s built through people who
-                    believe, collaborate and grow together. Every milestone
-                    we’ve achieved stands as proof that when trust meets
-                    teamwork, excellence follows naturally.”
-                  </p>
-
-                  {/* Profile Section */}
-                  <div className="d-flex justify-content-between align-items-center mt-4">
-                    <div className="d-flex align-items-center">
+                      {/* Quote Icon */}
                       <img
-                        src="/public/client-3.png"
-                        alt="Marvin McKinney"
-                        className="rounded-circle me-3"
-                        width="70"
-                        height="70"
+                        width="80"
+                        height="80"
+                        src="/straight-quotes.png"
+                        alt=""
                       />
-                      <div>
-                        {/* <h6 className="mb-0 fw-bold text-dark">
-                          Marvin McKinney
-                        </h6>
-                        <small className="text-muted">Product Manager</small> */}
-                      </div>
                     </div>
-
-                    {/* Quote Icon */}
-                    <img
-                      width="80"
-                      height="80"
-                      src="/straight-quotes.png"
-                      alt=""
-                    />
                   </div>
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
+              ))}
             </Swiper>
             <div className="swiper-controls d-flex justify-content-center align-items-center mt-3">
               <div className="swiper-button-prev"></div>

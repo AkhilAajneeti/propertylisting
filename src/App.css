@@ -2513,7 +2513,7 @@ p {
 /* location */
 .location {
   text-align: start;
-  padding: 40px 0px;
+  /* padding: 40px 0px; */
 }
 
 .location h2 {
@@ -3088,9 +3088,27 @@ overflow: hidden;
   border: none;
   background: none;
 }
+.projectLocation{
+  padding-top: 30px;
+  padding-bottom: 60px;
+}
 
 /*  */
-/* .banner-content:before {
+.projectBanner{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.projectBanner h1,.projectBanner p{
+  z-index: 99;
+}
+/* .projectBanner p{
+  width: 90%;
+  background:linear-gradient(100deg, #f5ebac 50.49%, #b49249 100%)!important;
+}
+.projectBanner:before {
     position: absolute;
     content: '';
     height: 100%;
@@ -3100,3 +3118,4 @@ overflow: hidden;
     background: linear-gradient(0, transparent, #ffffffba, #fffffff7, #fffffff7, #ffffffba, transparent);
     z-index: -1;
 } */
+

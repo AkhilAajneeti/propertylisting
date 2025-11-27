@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
+import AOS from "aos";
+import "aos/dist/aos.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const OurTeam = () => {
@@ -84,35 +86,6 @@ const OurTeam = () => {
       });
     });
 
-    gsap.from(".leadershipTeam img", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out",
-
-      scrollTrigger: {
-        trigger: ".leadershipTeam",
-        start: "top 70%", // you can try 70% or even 60%
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-    gsap.from(".managementTeam img", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out",
-
-      scrollTrigger: {
-        trigger: ".managementTeam",
-        start: "top 70%", // you can try 70% or even 60%
-        end: "bottom 20%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
     // Cleanup
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -147,6 +120,14 @@ const OurTeam = () => {
       });
     });
   }, []);
+
+   useEffect(() => {
+      AOS.init({
+        duration: 1200, // default duration
+        once: true, // whether animation should happen only once
+        easing: "ease-in-out",
+      });
+    }, []);
   return (
     <div>
       <div className="OurTeambanner has-prlx">
@@ -242,12 +223,12 @@ const OurTeam = () => {
       <div className="leadershipTeam container py-md-5">
         <div className="row gy-4">
           <div className="col-12">
-            <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder">
+            <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"  data-aos="fade-down">
               Leadership Team
             </h2>
           </div>
           <div className="col-12 col-md-4">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/Director1.png"
@@ -271,7 +252,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <div className="shine-animate-item ">
+            <div className="shine-animate-item " data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/Director2.png"
@@ -295,7 +276,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/Director3.png"
@@ -325,12 +306,12 @@ const OurTeam = () => {
       <div className="managementTeam container py-5">
         <div className="row gy-4">
           <div className="col-12">
-            <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder">
+            <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"data-aos="fade-up">
               Management Team
             </h2>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/yogesh.png" alt="" className="img-fluid" />
                 <a href="">
@@ -350,7 +331,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/satishbatra.png"
@@ -374,7 +355,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/ashutosh.png" alt="" className="img-fluid" />
                 <a href="">
@@ -394,7 +375,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/Taufique.png" alt="" className="img-fluid" />
                 <a href="">
@@ -414,7 +395,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/shailendra.png"
@@ -438,7 +419,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/chandra.png" alt="" className="img-fluid" />
                 <a href="">
@@ -458,7 +439,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/akshay.png" alt="" className="img-fluid" />
                 <a href="">
@@ -478,7 +459,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/sandeep.png" alt="" className="img-fluid" />
                 <a href="">
@@ -498,7 +479,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/abbas.png" alt="" className="img-fluid" />
                 <a href="">
@@ -518,7 +499,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/manish.png" alt="" className="img-fluid" />
                 <a href="">
@@ -538,7 +519,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/mohak.png" alt="" className="img-fluid" />
                 <a href="">
@@ -558,7 +539,7 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-3">
-            <div className="shine-animate-item">
+            <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img src="/ourTeam/sudhesh.png" alt="" className="img-fluid" />
                 <a href="">

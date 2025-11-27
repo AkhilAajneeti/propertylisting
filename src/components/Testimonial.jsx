@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade } from "swiper/modules";
+import { getTestimonials } from "../api/testimonialApi";
+import Loader from "./Loader";
 
 const Testimonial = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
+  const [loading, setLoading] = useState(true);
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const res = await axios.get(`${api}/testimonials`);
-        setTestimonials(res.data.results || []);
-      } catch (error) {
-        console.log("Error fetching testimonials:", error);
-      }
-    };
-
-    fetchTestimonials();
-  }, [api]);
-
+    getTestimonials()
+      .then((data) => setTestimonials(data))
+      .catch((error) => {
+        console.error("Error fetching projects:", error);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+  if (loading) return <Loader />;
   return (
     <section className="googleReview py-0 py-md-4">
       <div className="container my-3 pb-5">

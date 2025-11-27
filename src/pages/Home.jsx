@@ -15,7 +15,6 @@ import { getProjects } from "../api/projectApi";
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
-  const api = import.meta.env.VITE_BACKEND_API;
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +27,7 @@ const Home = () => {
         console.error("Error fetching projects:", error);
       })
       .finally(() => setLoading(false));
-  }, [api]);
+  }, []);
 
   // ✅ Optional GSAP setup (your scroll effects)
   useEffect(() => {
