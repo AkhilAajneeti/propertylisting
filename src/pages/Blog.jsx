@@ -19,7 +19,7 @@ const Blog = () => {
     if (!blogs || blogs.length === 0) {
       dispatch(fetchBlogs());
     }
-  }, [dispatch]);
+  }, [dispatch,blogs]);
 
   useEffect(() => {
     gsap.from(".blog-list .blog-card", {
