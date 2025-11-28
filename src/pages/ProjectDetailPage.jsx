@@ -232,7 +232,7 @@ const ProjectDetailPage = () => {
                 project.Bann1,
                 project.Bann2,
                 project.Bann3,
-                ...(project.gallery_images || []),
+                ...(project.gallery_images?.map(img => img.image) || []),
               ]}
             />
 
