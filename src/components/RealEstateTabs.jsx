@@ -7,9 +7,10 @@ import { PiClockClockwiseLight } from "react-icons/pi";
 import { SlCalender } from "react-icons/sl";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade, Navigation } from "swiper/modules";
-import { Link } from "react-router-dom";
-import { getBlogs } from "../api/blogApi";
-import { getNews } from "../api/newsApi";
+import { Link } from "react-router-dom"; 
+import { useDispatch, useSelector } from "react-redux";
+import { fetchBlogs } from "../redux/slices/blogSlice";
+import { fetchNews } from "../redux/slices/newsSlice";
 // import projectsData from "../assets/properties.json"; // import mock data
 
 function CustomTabPanel(props) {
@@ -41,27 +42,30 @@ function a11yProps(index) {
   };
 }
 export default function RealEstateTabs({ projects }) {
+  const dispatch = useDispatch();
+  const { data: blogs=[], loading, error } = useSelector((state) => state.blogs);
+  const { data: News } = useSelector((state) => state.news);
   console.log("Projects in RealEstateTabs:", projects);
   const [value, setValue] = useState(0);
-  const [blogs, setBlogs] = useState([]);
-  const [news, setNews] = useState([]);
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+// Fetch blogs
   useEffect(() => {
-    getBlogs()
-      .then((data) => setBlogs(data))
-      .catch((err) => console.log("Error fetching blogs:", err));
-  }, []);
-  useEffect(() => {
-    getNews()
-      .then((data) => setNews(data))
-      .catch((err) => console.log("Error fetching blogs:", err));
-  }, []);
+    if (!blogs || blogs.length === 0) {
+      dispatch(fetchBlogs());
+    }
+  }, [dispatch,blogs]);
+   useEffect(() => {
+     dispatch(fetchNews());
+   }, [dispatch]);
   const hotDeals = projects.filter((p) => p.is_featured);
   const limitedProjects = hotDeals.length ? hotDeals : projects.slice(0, 8);
   const limitedBlogs = blogs.slice(0, 8);
-  const limitedNews = news.slice(0, 8);
+  const limitedNews = News.slice(0, 8);
+  if (loading) return <Loader />;
+  if (error) return <p className="text-danger text-center">{error}</p>;
   return (
     <>
       <div className="container pt-5">

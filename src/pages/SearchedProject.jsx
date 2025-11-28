@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../components/Loader";
 import { fetchSearchProjects } from "../redux/slices/propertySlice";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 const SearchedProject = () => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -13,6 +14,13 @@ const SearchedProject = () => {
   const { searchResults, loading, error } = useSelector(
     (state) => state.projects
   );
+  useEffect(() => {
+    AOS.init({
+      duration: 1200, // default duration
+      once: true, // whether animation should happen only once
+      easing: "ease-in-out",
+    });
+  }, []);
 
   // Fetch search results
   useEffect(() => {
@@ -20,14 +28,15 @@ const SearchedProject = () => {
       dispatch(fetchSearchProjects(query));
     }
   }, [query, dispatch]);
-
   if (loading) return <Loader />;
   if (error) return <p className="text-danger text-center">{error}</p>;
 
   return (
     <>
       <div className="BlogBanner">
-        <h1 className="text-drop__line ">Searched Projects</h1>
+        <h1 className=" " data-aos="fade-up">
+          Searched Projects
+        </h1>
       </div>
       <div className="container py-5">
         <h2 className="mb-4">
@@ -36,9 +45,9 @@ const SearchedProject = () => {
 
         <div className="row gy-5">
           {searchResults.length > 0 ? (
-            searchResults.map((project) => (
+            searchResults.map((project,index) => (
               <div className="col-sm-4" key={project.id}>
-                <div className="cards-3 section-gray text-drop__img-box">
+                <div className="cards-3 section-gray" data-aos="fade-up" data-aos-delay={index * 150} >
                   <div className="card card-blog">
                     <div className="card-image news-box-items">
                       <Link to={`/projects/${project.id}`}>

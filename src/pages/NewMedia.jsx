@@ -22,7 +22,7 @@ const NewMedia = () => {
   const [category, setCategory] = useState("All");
   const [year, setYear] = useState("All");
 
-  // Fetch blogs
+  // Fetch News
   useEffect(() => {
     dispatch(fetchNews());
   }, [dispatch]);
