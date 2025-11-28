@@ -12,9 +12,11 @@
 body {
   overflow-x: hidden;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 :root {
   --primary: #6a59ff;
   --white: #ffffff;
@@ -978,6 +980,7 @@ html {
 /*  */
 .card {
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
 }
 
 .card-img-wrapper {
@@ -1049,8 +1052,9 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .text-gradient2 {
-  background:linear-gradient(to top, #be973e 3.99%, #cec484 55.49%, #b49249 100%);
+  background: linear-gradient(to top, #be973e 3.99%, #cec484 55.49%, #b49249 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -1085,6 +1089,7 @@ html {
   align-items: baseline;
   justify-content: center;
 }
+
 .OurTeambanner {
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('/ourTeam/Team-2.jpg');
   width: 100%;
@@ -1134,6 +1139,7 @@ html {
   flex-direction: column;
   color: white;
 }
+
 .CareerBanner {
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/careerBanner-2.jpg');
   width: 100%;
@@ -1292,6 +1298,15 @@ html {
     justify-content: center;
     flex-direction: column;
     color: white;
+  }
+
+  .CareerBanner,
+  .ContactBanner,.ClientTestimonial {
+    height: 35vh;
+  }
+
+  .Careercontent p {
+    text-align: center !important;
   }
 }
 
@@ -2405,8 +2420,9 @@ p {
   grid-template-columns: repeat(2, 1fr);
   gap: clamp(12px, 1.05vw, 20px);
 }
+
 .ul-ameneties .icon img {
- transform:rotate(0deg)!important;
+  transform: rotate(0deg) !important;
 }
 
 .discibe .icon {
@@ -2807,6 +2823,7 @@ p {
 
 .card a img {
   width: 100% !important;
+  border-radius: 5px;
 }
 
 /* drop down */
@@ -2837,15 +2854,17 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.2); /* adjust opacity as needed */
+  background-color: rgba(0, 0, 0, 0.2);
+  /* adjust opacity as needed */
   z-index: 1;
 }
-.banner-content{
+
+.banner-content {
   z-index: 99;
 }
 
 
-/* From Uiverse.io by mobinkakei */ 
+/* From Uiverse.io by mobinkakei */
 .wrapper-2 {
   width: 200px;
   height: 100px;
@@ -2871,11 +2890,13 @@ p {
     border-radius: 50px 50px 25px 25px;
     transform: scaleX(1.7);
   }
+
   40% {
     height: 20px;
     border-radius: 50%;
     transform: scaleX(1);
   }
+
   100% {
     top: 0%;
   }
@@ -2896,7 +2917,7 @@ p {
   width: 20px;
   height: 4px;
   border-radius: 50%;
-  background-color: rgba(0,0,0,0.9);
+  background-color: rgba(0, 0, 0, 0.9);
   position: absolute;
   top: 62px;
   transform-origin: 50%;
@@ -2907,9 +2928,19 @@ p {
 }
 
 @keyframes shadow046 {
-  0% { transform: scaleX(1.5); }
-  40% { transform: scaleX(1); opacity: .7; }
-  100% { transform: scaleX(.2); opacity: .4; }
+  0% {
+    transform: scaleX(1.5);
+  }
+
+  40% {
+    transform: scaleX(1);
+    opacity: .7;
+  }
+
+  100% {
+    transform: scaleX(.2);
+    opacity: .4;
+  }
 }
 
 .wrapper-2 .shadow:nth-child(4) {
@@ -2922,14 +2953,17 @@ p {
   right: 15%;
   animation-delay: .3s;
 }
-.thankyou{
+
+.thankyou {
   z-index: 999;
 }
-.thankyouBg img{
+
+.thankyouBg img {
   position: relative;
-overflow: hidden;
+  overflow: hidden;
 }
-.thankyouBg img{
+
+.thankyouBg img {
   position: absolute;
   top: 0;
   right: 0px;
@@ -2938,15 +2972,17 @@ overflow: hidden;
   z-index: 0;
 }
 
-.developerContent{
+.developerContent {
   background-image: url('/developerContent.png');
-  background-size:auto;
+  background-size: auto;
   background-position: center;
 }
-.developerContent img{
+
+.developerContent img {
   border-radius: 12px;
 }
-.formtagline{
+
+.formtagline {
   color: white;
 }
 
@@ -2956,12 +2992,14 @@ overflow: hidden;
   transition: all 0.3s ease;
   border-bottom: 1px solid #eee;
 }
+
 .detail-sticky-nav {
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 999;
-  transform: translateY(-100%); /* start hidden */
+  transform: translateY(-100%);
+  /* start hidden */
   will-change: transform;
 }
 
@@ -2976,11 +3014,12 @@ overflow: hidden;
 
 .active-nav-link {
   font-weight: 700;
-  color: #c80a17 !important; /* highlight color */
+  color: #c80a17 !important;
+  /* highlight color */
   border-bottom: 2px solid #c80a17;
 }
 
-#detail-nav .nav-link{
+#detail-nav .nav-link {
   font-size: 20px;
 }
 
@@ -2997,20 +3036,21 @@ overflow: hidden;
 .contact-floating-btn a {
   width: 48px;
   height: 48px;
-  background: #c80a17; /* main theme color */
+  background: #c80a17;
+  /* main theme color */
   color: #fff;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .contact-floating-btn a:hover {
   transform: scale(1.1);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
 .whatsapp-btn {
@@ -3021,23 +3061,26 @@ overflow: hidden;
   background: #c80a17;
 }
 
-.formBg{
+.formBg {
   background-color: #d1e7ff;
   padding: 40px;
   border-radius: 10px;
 }
-.salary{
+
+.salary {
   font-size: 18px;
 }
-.applyBTN{
-      background: linear-gradient(90deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 12px;
-      font-size: 18px;
+
+.applyBTN {
+  background: linear-gradient(90deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 18px;
 }
-.projectLogo{
+
+.projectLogo {
   height: 80px;
 }
 
@@ -3046,13 +3089,13 @@ overflow: hidden;
 .blog-detailBanner .overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .glass-card {
-  background: rgba(255,255,255,0.9);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.4);
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .blog-content p {
@@ -3085,26 +3128,31 @@ overflow: hidden;
   background: black;
   color: white;
 }
-.border-none{
+
+.border-none {
   border: none;
   background: none;
 }
-.projectLocation{
+
+.projectLocation {
   padding-top: 30px;
   padding-bottom: 60px;
 }
 
 /*  */
-.projectBanner{
+.projectBanner {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.projectBanner h1,.projectBanner p{
+
+.projectBanner h1,
+.projectBanner p {
   z-index: 99;
 }
+
 /* .projectBanner p{
   width: 90%;
   background:linear-gradient(100deg, #f5ebac 50.49%, #b49249 100%)!important;
@@ -3119,4 +3167,3 @@ overflow: hidden;
     background: linear-gradient(0, transparent, #ffffffba, #fffffff7, #fffffff7, #ffffffba, transparent);
     z-index: -1;
 } */
-

@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Slider() {
   const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
+  const [location, setLocation] = useState("");
   const [activeTab, setActiveTab] = useState("Residential");
   useEffect(() => {
     document.fonts.ready.then(() => {
@@ -48,8 +50,15 @@ export default function Slider() {
 
     // 👇 Navigate to a page based on tab
     if (tab === "Residential") navigate("/projects?propertytype=Residential");
-    else if (tab === "Commercial") navigate("/projects?propertytype=Commercial");
+    else if (tab === "Commercial")
+      navigate("/projects?propertytype=Commercial");
     else if (tab === "Plots") navigate("/projects?propertytype=Plots");
+  };
+  const handleSearch = () => {
+    let query = searchText || location;
+    if (!query) return;
+
+    navigate(`/search-projects?q=${encodeURIComponent(query)}`);
   };
   return (
     <>
@@ -124,7 +133,7 @@ export default function Slider() {
         {/* 🔍 Search Section Overlay (Fixed over all slides) */}
         <div className="search-overlay">
           <h2 className="split2">Discover Most Suitable Property</h2>
-          <p>
+          <p className="text-center">
             Building credibility, increasing customer loyalty, and creating
             empowerment.
           </p>
@@ -149,11 +158,13 @@ export default function Slider() {
                   className="icon"
                   style={{ color: "rgb(205 181 112)" }}
                 />
-                <select>
-                  <option>Gurugram</option>
-                  <option>Delhi</option>
-                  <option>Bengaluru</option>
-                  <option>Mumbai</option>
+                <select onChange={(e) => setLocation(e.target.value)}>
+                  <option value="">Select Location</option>
+                  <option value="Gurugram">Gurugram</option>
+                  <option value="Noida">Noida</option>
+                  <option value="Delhi">Delhi</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                  <option value="Mumbai">Mumbai</option>
                 </select>
               </div>
 
@@ -161,8 +172,10 @@ export default function Slider() {
                 type="text"
                 placeholder="Search property or builders"
                 className="property-input"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
               />
-              <button className="search-btn">
+              <button className="search-btn" onClick={handleSearch}>
                 <FaSearch />
               </button>
             </div>

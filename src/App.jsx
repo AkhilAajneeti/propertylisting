@@ -18,6 +18,7 @@ import RefreshFromTop from "./components/RefreshFromTop";
 import Thankyou from "./pages/Thankyou";
 import JobDescription from "./pages/JobDescription";
 import NewsDetailPage from "./pages/NewsDetailPage";
+import SearchedProject from "./pages/SearchedProject";
 
 function App() {
   return (
@@ -32,14 +33,18 @@ function App() {
         <Route path="/our-team" element={<OurTeam />} />
         <Route path="/client-testimonial" element={<ClientTestimonials />} />
         <Route path="/insight/news&media" element={<NewMedia />} />
-        <Route path="/insight/news&media/:id/:slug" element={<NewsDetailPage/>} />
+        <Route
+          path="/insight/news&media/:id/:slug"
+          element={<NewsDetailPage />}
+        />
         <Route path="/contact" element={<Contact />} />
         <Route path="/career" element={<Career />} />
         <Route path="/aboutus/awards" element={<Awards />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:id" element={<ProjectDetailPage />} />
-        <Route path="/thankyou" element={<Thankyou/>} />
-         <Route path="/job/:id" element={<JobDescription />} />
+        <Route path="/thankyou" element={<Thankyou />} />
+        <Route path="/job/:id" element={<JobDescription />} />
+        <Route path="/search-projects" element={<SearchedProject />} />
       </Routes>
       <Footer />
     </>
