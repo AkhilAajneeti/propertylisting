@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../redux/slices/blogSlice";
 import { fetchNews } from "../redux/slices/newsSlice";
+import Loader from "./Loader";
 // import projectsData from "../assets/properties.json"; // import mock data
-
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
