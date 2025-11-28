@@ -229,6 +229,9 @@ const ProjectDetailPage = () => {
             {/* SLIDER */}
             <ProjectSlider
               images={[
+                project.Bann1,
+                project.Bann2,
+                project.Bann3,
                 ...(project.gallery_images || []),
               ]}
             />
