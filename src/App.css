@@ -2389,7 +2389,7 @@ p {
 }
 
 /* .overview */
-.overview p {
+.overview p,#Highlight p {
   text-align: justify;
   color: #565656;
   font-size: 20px;

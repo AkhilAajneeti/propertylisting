@@ -43,7 +43,7 @@ const Career = () => {
 
       {/* Section 2 */}
       <div className="py-5">
-        <div className="Careercontent container">
+        <div className="Careercontent">
           <div className="row gy-5 align-items-center">
             <div className="col-12 col-sm-6">
               <img src="/campass.png" alt="Career" className="img-fluid" />

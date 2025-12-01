@@ -81,7 +81,7 @@ export default function Slider() {
               className="slide-img d-none d-sm-block"
             />
             <img
-              src="/mobBig-1.png"
+              src="/mobBig-1.jpeg"
               alt="Banner 1"
               className="slide-img d-sm-none"
             />
@@ -95,7 +95,7 @@ export default function Slider() {
               className="slide-img d-none d-sm-block"
             />
             <img
-              src="/mobBig-2.png"
+              src="/mobBig-2.jpeg"
               alt="Banner 2"
               className="slide-img d-sm-none"
             />
@@ -109,22 +109,8 @@ export default function Slider() {
               className="slide-img d-none d-sm-block"
             />
             <img
-              src="/mobBig-1.png"
+              src="/mobBig-1.jpeg"
               alt="Banner 3"
-              className="slide-img d-sm-none"
-            />
-          </SwiperSlide>
-
-          {/* Slide 4 */}
-          <SwiperSlide>
-            <img
-              src="/banner-8.png"
-              alt="Banner 4"
-              className="slide-img d-none d-sm-block"
-            />
-            <img
-              src="/mobBig-2.png"
-              alt="Banner 4"
               className="slide-img d-sm-none"
             />
           </SwiperSlide>
