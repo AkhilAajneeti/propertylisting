@@ -35,8 +35,7 @@ function CustomNavbar() {
                 id="aboutus-dropdown"
                 show={hoveredDropdown === "about"}
                 onMouseEnter={() => setHoveredDropdown("about")}
-                onMouseLeave={() => setHoveredDropdown(null)}
-              >
+               onMouseLeave={() => setTimeout(() => setHoveredDropdown(null), 150)}>
                 <NavDropdown.Item
                   as={NavLink}
                   to="/whoweare"

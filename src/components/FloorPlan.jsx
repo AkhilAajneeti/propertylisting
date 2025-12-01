@@ -14,7 +14,6 @@ const FloorPlan = ({ plans = [], images = [] }) => {
       <h2 className="floorplan-title">Floor Plan</h2>
 
       <div className="floorplan-content">
-
         {/* LEFT IMAGE */}
         <div className="floorplan-image">
           <img
@@ -26,7 +25,6 @@ const FloorPlan = ({ plans = [], images = [] }) => {
 
         {/* RIGHT TABS */}
         <div className="floorplan-tabs">
-
           <div
             className="tab-buttons"
             style={{
@@ -55,11 +53,27 @@ const FloorPlan = ({ plans = [], images = [] }) => {
           <div className="tab-content">
             {plans.length > 0 && (
               <div className="tab">
-                <p>Showing floor plan details for: <strong>{plans[activeIndex]}</strong></p>
+                <p>
+                  Showing floor plan details for:{" "}
+                  <strong>{plans[activeIndex]}</strong>
+                </p>
+                {/* Size */}
+                {/* {plans[activeIndex]?.Size && (
+                  <p>
+                    <span className="fw-bold">Size:</span>{" "}
+                    {plans[activeIndex].Size}
+                  </p>
+                )} */}
+                {/* Size */}
+                {/* {plans[activeIndex]?.Price && (
+                  <p>
+                    <span className="fw-bold">Price:</span>{" "}
+                    {plans[activeIndex].Price}
+                  </p>
+                )} */}
               </div>
             )}
           </div>
-
         </div>
       </div>
     </div>

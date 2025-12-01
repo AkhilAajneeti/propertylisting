@@ -9,7 +9,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import { getTestimonials } from "../api/testimonialApi";
 import Loader from "../components/Loader";
 
@@ -27,30 +26,6 @@ const ClientTestimonials = () => {
       .finally(() => setLoading(false));
   }, []);
   useEffect(() => {
-    // --- LENIS SMOOTH SCROLL SETUP ---
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
-
-    // keep Lenis and ScrollTrigger in sync
-    lenis.on("scroll", ScrollTrigger.update);
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // normalize scroll for GSAP
-    ScrollTrigger.normalizeScroll(true);
-
-    // Reset scroll triggers on resize
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-
     // --- TEXT ANIMATION ---
     gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
       gsap.fromTo(
@@ -72,11 +47,7 @@ const ClientTestimonials = () => {
     });
 
     // Cleanup
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
-    };
+   
   }, []);
   useEffect(() => {
     AOS.init({
@@ -106,7 +77,7 @@ const ClientTestimonials = () => {
                 data-aos="fade-up"
                 data-aos-duration="1000"
               >
-                <img src="/icons8-home.gif" alt="" className="gif" />
+                <img src="/icons8-home.gif" alt="clientImg" className="gif" />
                 Client Testimonial
               </p>
               <h2
@@ -130,24 +101,24 @@ const ClientTestimonials = () => {
                   className="rounded-circle"
                   width="50"
                   height="50"
-                  src="/public/client-1.png"
-                  alt=""
+                  src="/client-1.png"
+                  alt="clientImg"
                 />
                 <img
                   className="rounded-circle"
                   style={{ border: "2px solid #fff", marginLeft: "-15px" }}
                   width="50"
                   height="50"
-                  src="/public/client-2.png"
-                  alt=""
+                  src="/client-2.png"
+                  alt="clientImg"
                 />
                 <img
                   className="rounded-circle"
                   style={{ border: "2px solid #fff", marginLeft: "-15px" }}
                   width="50"
                   height="50"
-                  src="/public/client-3.png"
-                  alt=""
+                  src="/client-3.png"
+                  alt="clientImg"
                 />
                 <p className="ciclecards">10K</p>
               </div>
@@ -238,7 +209,7 @@ const ClientTestimonials = () => {
                         width="80"
                         height="80"
                         src="/straight-quotes.png"
-                        alt=""
+                        alt="clientImg"
                       />
                     </div>
                   </div>

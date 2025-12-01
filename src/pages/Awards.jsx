@@ -1,36 +1,11 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 import ScrollSections from "../components/ScrollSections";
 gsap.registerPlugin(ScrollTrigger);
 const Awards = () => {
       useEffect(() => {
-        // --- LENIS SMOOTH SCROLL SETUP ---
-        const lenis = new Lenis({
-          smooth: true,
-          lerp: 0.08,
-          direction: "vertical",
-          smoothTouch: true,
-        });
-    
-        // keep Lenis and ScrollTrigger in sync
-        lenis.on("scroll", ScrollTrigger.update);
-    
-        function raf(time) {
-          lenis.raf(time);
-          requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-    
-        // normalize scroll for GSAP
-        ScrollTrigger.normalizeScroll(true);
-    
-        // Reset scroll triggers on resize
-        const handleResize = () => ScrollTrigger.refresh();
-        window.addEventListener("resize", handleResize);
-    
         // --- TEXT ANIMATION ---
         gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
           gsap.fromTo(
@@ -112,13 +87,7 @@ const Awards = () => {
             toggleActions: "play none none reverse",
           },
         });
-    
-        // Cleanup
-        return () => {
-          window.removeEventListener("resize", handleResize);
-          ScrollTrigger.getAll().forEach((t) => t.kill());
-          lenis.destroy();
-        };
+       
       }, []);
       useEffect(() => {
         // Wait for fonts to load before animation
@@ -160,8 +129,8 @@ const Awards = () => {
       <span className="py-5 text-center split2">r</span>
       <span className="py-5 text-center split2">d</span>
       <span className="py-5 text-center split2">s</span>
-      <img src="/awards/trophy.png" alt="" className="img-fluid" style={{height:"80px"}}/>
-      {/* <img src="/public/awards/bgnon.png" alt="" className="img-fluid" style={{height:"100px"}}/> */}
+      <img src="/awards/trophy.png" alt="AwardsImg" className="img-fluid" style={{height:"80px"}}/>
+      
       </div>
       <ScrollSections/>
     </div>

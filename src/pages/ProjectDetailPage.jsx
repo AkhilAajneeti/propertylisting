@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 gsap.registerPlugin(ScrollTrigger);
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProjectById } from "../redux/slices/propertySlice";
 import { submitProjectEnquiry } from "../api/projectFormApi";
 const ProjectDetailPage = () => {
-  const navigate=useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const {
@@ -33,39 +31,50 @@ const ProjectDetailPage = () => {
 
   //pixel code
   useEffect(() => {
-    if (project?.pixel_code) {
-      const script = document.createElement("script");
-      script.innerHTML = project.gtm_id;
-      script.type = "text/javascript";
-      document.head.appendChild(script);
+    if (!project?.pixel_code) return;
 
-      return () => {
-        document.head.removeChild(script); // cleanup on route change
-      };
-    }
+    const pixelId = project.pixel_code;
+
+    // --- Create Script for fbq ---
+    const script = document.createElement("script");
+    script.innerHTML = `
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){ n.callMethod ?
+      n.callMethod.apply(n,arguments) : n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e); t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    
+    fbq('init', '${pixelId}');
+    fbq('track', 'PageView');
+  `;
+    script.type = "text/javascript";
+    document.head.appendChild(script);
+
+    // --- noscript fallback ---
+    const noscript = document.createElement("noscript");
+    noscript.innerHTML = `
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=${pixelId}&ev=PageView&noscript=1"/>
+  `;
+    document.body.appendChild(noscript);
+
+    return () => {
+      document.head.removeChild(script);
+      document.body.removeChild(noscript);
+    };
   }, [project]);
 
   // Animations
   useEffect(() => {
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    ScrollTrigger.normalizeScroll(true);
-
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-
     gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
       gsap.fromTo(
         line,
@@ -107,21 +116,12 @@ const ProjectDetailPage = () => {
         },
       });
     });
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
-    };
-  }, []);
-
-  useEffect(() => {
     document.fonts.ready.then(() => {
       gsap.set(".split2", { opacity: 1 });
-
       const elements = document.querySelectorAll(".split2");
-      elements.forEach((el, i) => {
-        const split = new SplitType(el, { types: "words", tagName: "span" });
+
+      elements.forEach((el) => {
+        const split = new SplitType(el, { types: "words" });
 
         gsap.from(split.words, {
           opacity: 0,
@@ -129,11 +129,13 @@ const ProjectDetailPage = () => {
           duration: 1,
           ease: "sine.out",
           stagger: 0.2,
-          delay: i * 0.3,
           scrollTrigger: { trigger: el, start: "top 85%" },
         });
       });
     });
+    return () => {
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
   }, []);
 
   // navbar
@@ -175,7 +177,7 @@ const ProjectDetailPage = () => {
       await submitProjectEnquiry(id, form);
 
       toast.success("Thank you! Redirecting...");
-       setTimeout(() => {
+      setTimeout(() => {
         navigate("/thankyou");
       }, 1000); // small delay for toast visibility
     } catch (error) {
@@ -232,7 +234,7 @@ const ProjectDetailPage = () => {
                 project.Bann1,
                 project.Bann2,
                 project.Bann3,
-                ...(project.gallery_images?.map(img => img.image) || []),
+                ...(project.gallery_images?.map((img) => img.image) || []),
               ]}
             />
 
@@ -432,7 +434,11 @@ const ProjectDetailPage = () => {
                 <h2 className="mainFont">
                   Location <span className="text-gradient2">Advantage.</span>
                 </h2>
-                <p>{project.Location_Content}</p>
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: project.Location_Content?.replace(/,/g, "<br/>"),
+                  }}
+                ></p>
               </div>
             </div>
           </div>
@@ -450,7 +456,7 @@ const ProjectDetailPage = () => {
               <p>{project.Abt_builder}</p>
             </div>
             <div className="col-sm-6">
-              <img src="/contact2.jpg" alt="" className="img-fluid" />
+              <img src="/contact2.jpg" alt="Jenikaimg" className="img-fluid" />
             </div>
           </div>
         </div>

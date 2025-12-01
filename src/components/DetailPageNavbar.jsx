@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-const DetailPageNavbar = ({project}) => {
+const DetailPageNavbar = ({ project }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [activeSection, setActiveSection] = useState("overview");
   const [expanded, setExpanded] = useState(false);
@@ -52,7 +52,12 @@ const DetailPageNavbar = ({project}) => {
       expanded={expanded}
     >
       <Container>
-        <img src={project.Proj_Logo} alt="" className="projectLogo"/>
+        <img
+          src={project.Proj_Logo}
+          alt={project.Proj_Logo}
+          className="projectLogo"
+          style={{ mixBlendMode: project.transparent ? "normal" : "multiply" }}
+        />
         <Navbar.Toggle
           aria-controls="detail-nav"
           onClick={() => setExpanded(expanded ? false : true)}
@@ -73,6 +78,13 @@ const DetailPageNavbar = ({project}) => {
             ))}
           </Nav>
         </Navbar.Collapse>
+        <a href="/">
+          <img
+            src="/JV-Logo.png"
+            alt="/JV-Logo.png"
+            className="projectLogo d-none d-md-block"
+          />
+        </a>
       </Container>
     </Navbar>
   );

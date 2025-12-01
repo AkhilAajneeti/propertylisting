@@ -839,11 +839,11 @@ html {
 }
 
 .redgradient {
-  background: #e00d22;
+  background: #7A0A1E;
 }
 
 .bg-brown-2 {
-  background: #2E2E2E;
+  background: #0D1A3A;
 }
 
 .redgradient-2 {
@@ -851,11 +851,11 @@ html {
 }
 
 .yellowgradient-2 {
-  background: #f3b807;
+  background: #6A1B9A;
 }
 
 .greengradient-2 {
-  background: #198754;
+  background: #f77f00;
 }
 
 .process-box {
@@ -991,7 +991,8 @@ html {
 .card-img-wrapper img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 250px;
+  object-fit: cover;
   transition: transform 0.7s ease;
 }
 
@@ -1301,7 +1302,8 @@ html {
   }
 
   .CareerBanner,
-  .ContactBanner,.ClientTestimonial {
+  .ContactBanner,
+  .ClientTestimonial {
     height: 35vh;
   }
 
@@ -2839,13 +2841,17 @@ p {
   object-fit: cover;
 }
 
-
+.fs-30{
+  font-size: 30px;
+}
 @media (max-width:720px) {
   .projectBanner video {
     height: auto;
     object-fit: cover;
   }
-
+.fs-30{
+  font-size: 20px!important;
+}
 }
 
 .overlay {
@@ -2987,6 +2993,29 @@ p {
 }
 
 /* another navbar */
+.detail-navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Mobile Fixes */
+@media (max-width: 768px) {
+  .detail-navbar {
+    min-height: 65px;
+    padding: 6px 10px;
+  }
+
+  .hamburger-btn {
+    z-index: 99999;
+    margin-left: auto;
+  }
+
+  #detail-nav {
+    background: #ffffff;
+    padding: 12px 0;
+  }
+}
 .detail-navbar {
   background: #ffffff;
   transition: all 0.3s ease;
@@ -3081,7 +3110,20 @@ p {
 }
 
 .projectLogo {
-  height: 80px;
+  height: 60px;          /* Fixed height for correct visibility */
+  width: auto;           /* Let width adjust naturally */
+  max-width: 240px;      /* Support wide logos */
+  object-fit: contain;
+  object-position: left center;
+  padding: 0 8px;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 768px) {
+  .projectLogo {
+    height: 60px;
+    max-width: 180px;
+  }
 }
 
 
@@ -3167,3 +3209,4 @@ p {
     background: linear-gradient(0, transparent, #ffffffba, #fffffff7, #fffffff7, #ffffffba, transparent);
     z-index: -1;
 } */
+

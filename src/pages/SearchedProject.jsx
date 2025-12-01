@@ -16,10 +16,12 @@ const SearchedProject = () => {
   );
   useEffect(() => {
     AOS.init({
-      duration: 1200, // default duration
-      once: true, // whether animation should happen only once
+      duration: 1200,
+      once: true,
       easing: "ease-in-out",
     });
+
+    return () => AOS.refreshHard(); // 🧹 cleanup when component unmounts
   }, []);
 
   // Fetch search results
@@ -44,10 +46,14 @@ const SearchedProject = () => {
         </h2>
 
         <div className="row gy-5">
-          {searchResults.length > 0 ? (
-            searchResults.map((project,index) => (
+          {searchResults?.length > 0 ? (
+            searchResults.map((project, index) => (
               <div className="col-sm-4" key={project.id}>
-                <div className="cards-3 section-gray" data-aos="fade-up" data-aos-delay={index * 150} >
+                <div
+                  className="cards-3 section-gray"
+                  data-aos="fade-up"
+                  data-aos-delay={index * 150}
+                >
                   <div className="card card-blog">
                     <div className="card-image news-box-items">
                       <Link to={`/projects/${project.id}`}>

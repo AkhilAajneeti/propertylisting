@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import SplitType from "split-type";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -9,30 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const OurTeam = () => {
   useEffect(() => {
-    // --- LENIS SMOOTH SCROLL SETUP ---
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
-
-    // keep Lenis and ScrollTrigger in sync
-    lenis.on("scroll", ScrollTrigger.update);
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // normalize scroll for GSAP
-    ScrollTrigger.normalizeScroll(true);
-
-    // Reset scroll triggers on resize
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-
     // --- TEXT ANIMATION ---
     gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
       gsap.fromTo(
@@ -88,9 +63,9 @@ const OurTeam = () => {
 
     // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
+
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
+
     };
   }, []);
   useEffect(() => {
@@ -131,7 +106,7 @@ const OurTeam = () => {
   return (
     <div>
       <div className="OurTeambanner has-prlx">
-        <h2 className=" fw-bold split2  ">Our Team</h2>
+        {/* <h2 className=" fw-bold split2  ">Our Team</h2> */}
       </div>
 
       {/* Founders Section */}
@@ -144,7 +119,7 @@ const OurTeam = () => {
           <div className="col-12 col-sm-6">
             <img
               src="/ourTeam/boss1.png"
-              alt=""
+              alt="teamImg"
               className="img-fluid text-drop__img-box"
               style={{ borderRadius: "10px" }}
             />
@@ -157,7 +132,7 @@ const OurTeam = () => {
               <a href="">
                 <img
                   src="/linkedin2.png"
-                  alt=""
+                  alt="teamImg"
                   className="links text-drop__line"
                 />
               </a>
@@ -187,7 +162,7 @@ const OurTeam = () => {
               <a href="">
                 <img
                   src="/linkedin2.png"
-                  alt=""
+                  alt="teamImg"
                   className="links text-drop__line"
                 />
               </a>
@@ -211,7 +186,7 @@ const OurTeam = () => {
           <div className="col-12 col-sm-6 order-sm-2 order-1">
             <img
               src="/ourTeam/boss2.png"
-              alt=""
+              alt="teamImg"
               className="img-fluid text-drop__img-box"
               style={{ borderRadius: "10px" }}
             />
@@ -224,21 +199,21 @@ const OurTeam = () => {
         <div className="row gy-4">
           <div className="col-12">
             <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"  data-aos="fade-down">
-              Leadership Team
+              Management Team
             </h2>
           </div>
           <div className="col-12 col-md-4">
-            <div className="shine-animate-item" data-aos="fade-up">
+            <div className="shine-animate-item p-4" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/Director1.png"
-                  alt=""
+                  alt="teamImg"
                   className="img-fluid"
                 />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "28px",
@@ -252,17 +227,17 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <div className="shine-animate-item " data-aos="fade-up">
+            <div className="shine-animate-item  p-4" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/Director2.png"
-                  alt=""
+                  alt="teamImg"
                   className="img-fluid"
                 />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "28px",
@@ -276,17 +251,17 @@ const OurTeam = () => {
             </div>
           </div>
           <div className="col-12 col-md-4">
-            <div className="shine-animate-item" data-aos="fade-up">
+            <div className="shine-animate-item p-4" data-aos="fade-up">
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/Director3.png"
-                  alt=""
+                  alt="teamImg"
                   className="img-fluid"
                 />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "28px",
@@ -304,20 +279,20 @@ const OurTeam = () => {
 
       {/* Management Team */}
       <div className="managementTeam container py-5">
-        <div className="row gy-4">
+        <div className="row gy-5">
           <div className="col-12">
             <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"data-aos="fade-up">
-              Management Team
+              Leadership Team
             </h2>
           </div>
           <div className="col-12 col-md-3">
             <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/yogesh.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/yogesh.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -335,13 +310,13 @@ const OurTeam = () => {
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/satishbatra.png"
-                  alt=""
+                  alt="teamImg"
                   className="img-fluid"
                 />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -357,11 +332,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/ashutosh.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/ashutosh.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -377,11 +352,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item" data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/Taufique.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/Taufique.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -399,13 +374,13 @@ const OurTeam = () => {
               <div className="shine-animate position-relative">
                 <img
                   src="/ourTeam/shailendra.png"
-                  alt=""
+                  alt="teamImg"
                   className="img-fluid"
                 />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -421,11 +396,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/chandra.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/chandra.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -441,11 +416,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/akshay.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/akshay.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -461,11 +436,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/sandeep.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/sandeep.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -481,11 +456,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/abbas.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/abbas.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -501,11 +476,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/manish.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/manish.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -521,11 +496,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/mohak.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/mohak.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",
@@ -541,11 +516,11 @@ const OurTeam = () => {
           <div className="col-12 col-md-3">
             <div className="shine-animate-item"data-aos="fade-up">
               <div className="shine-animate position-relative">
-                <img src="/ourTeam/sudhesh.png" alt="" className="img-fluid" />
+                <img src="/ourTeam/sudhesh.png" alt="teamImg" className="img-fluid" />
                 <a href="">
                   <img
                     src="/linkedin2.png"
-                    alt=""
+                    alt="teamImg"
                     style={{
                       position: "absolute",
                       right: "10px",

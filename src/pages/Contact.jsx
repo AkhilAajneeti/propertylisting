@@ -14,10 +14,9 @@ import { IoIosMail } from "react-icons/io";
 import { PiBuildingOfficeFill } from "react-icons/pi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
+
 import SplitType from "split-type";
 import { toast } from "react-toastify";
-import Loader from "../components/Loader";
 import { submitContactForm } from "../api/contactApi";
 import { useNavigate } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
@@ -25,56 +24,29 @@ const Contact = () => {
   // const [isActive, setIsActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
+  // 🔥 Optimized GSAP Animation Setup
   useEffect(() => {
-    // --- LENIS SMOOTH SCROLL SETUP ---
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
+    document.fonts.ready.then(() => {
+      const elements = document.querySelectorAll(".text-animate");
 
-    // keep Lenis and ScrollTrigger in sync
-    lenis.on("scroll", ScrollTrigger.update);
+      elements.forEach((el) => {
+        const split = new SplitType(el, { types: "words" });
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // normalize scroll for GSAP
-    ScrollTrigger.normalizeScroll(true);
-
-    // Reset scroll triggers on resize
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-
-    // --- TEXT ANIMATION ---
-    gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
-      gsap.fromTo(
-        line,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: i * 0.1, // slight stagger
+        gsap.from(split.words, {
+          opacity: 0,
+          y: 30,
+          duration: 1,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
-            trigger: line,
+            trigger: el,
             start: "top 85%",
-            toggleActions: "play none none reverse",
           },
-        }
-      );
+        });
+      });
     });
-
-    // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
     };
   }, []);
 
@@ -119,7 +91,7 @@ const Contact = () => {
   return (
     <div>
       <div className="ContactBanner">
-        <h1 className="text-drop__line ">Contact Us</h1>
+        <h1 className="text-animate">Contact Us</h1>
       </div>
 
       {/* contact form */}

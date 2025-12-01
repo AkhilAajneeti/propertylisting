@@ -114,7 +114,7 @@ export default function RealEstateTabs({ projects }) {
                       <div className="cards-3 section-gray">
                         <div className="card card-blog">
                           <div className="card-image news-box-items">
-                            <Link to={`/projects/${project.id}`}>
+                            <Link to={`/projects/${project.id}/${project.project_slug}`}>
                               <div className="news-image">
                                 <img
                                   src={project.Bann1 || project.Proj_Logo}
@@ -131,7 +131,7 @@ export default function RealEstateTabs({ projects }) {
                                 {project.Project_Location}
                               </h6>
                               <Link
-                                to={`/projects/${project.id}`}
+                                to={`/projects/${project.id}/${project.project_slug}`}
                                 style={{ textDecoration: "none" }}
                               >
                                 <p className="card-description fs-4">
@@ -142,7 +142,7 @@ export default function RealEstateTabs({ projects }) {
                                 </p>
                               </Link>
                               <div className="pt-4">
-                                <Link to={`/projects/${project.id}`}>
+                                <Link to={`/projects/${project.id}/${project.project_slug}`}>
                                   View Details
                                 </Link>
                               </div>

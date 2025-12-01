@@ -15,34 +15,8 @@ const Whoweare = () => {
       once: true, // whether animation should happen only once
       easing: "ease-in-out",
     });
-  }, []);
+    return () => AOS.refreshHard();
 
-  useEffect(() => {
-    //
-    // --- LENIS SMOOTH SCROLL SETUP ---
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
-
-    // keep Lenis and ScrollTrigger in sync
-    lenis.on("scroll", ScrollTrigger.update);
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // normalize scroll for GSAP
-    ScrollTrigger.normalizeScroll(true);
-
-    // Reset scroll triggers on resize
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-    //
   }, []);
   useEffect(() => {
     // Wait for fonts to load before animation
@@ -62,7 +36,7 @@ const Whoweare = () => {
           duration: 1,
           ease: "sine.out",
           stagger: 0.08,
-          delay: i * 0.3,
+          delay: i * 0.5,
           scrollTrigger: {
             trigger: el,
             start: "top 85%",
@@ -70,13 +44,20 @@ const Whoweare = () => {
         });
       });
     });
+    // 👇 New fade-out animation after 10 sec
+  gsap.to(".remove", {
+    opacity: 0,
+    duration: 1,
+    delay: 5,
+    ease: "power2.out"
+  });
   }, []);
   return (
     <div>
       <div>
         <div
-          className="object-fit-cover position-relative"
-          style={{ height: "550px", width: "100vw" }}
+          className=" position-relative"
+          style={{ height: "100%", width: "100vw" }}
         >
           <video
             className="object-fit-cover"
@@ -92,12 +73,12 @@ const Whoweare = () => {
           ></video>
         </div>
         <div className=" whoweare position-absolute top-50 start-50 translate-middle text-white text-center">
-          <h1 className="fw-bold split2 ">WHO WE ARE</h1>
+          <h1 className="fw-bold split2 remove">WHO WE ARE</h1>
         </div>
       </div>
       {/* our story */}
       <div className="container py-5 belowVideo">
-        <p className="split">
+        <p className="split2">
           Jenika Ventures is not just a consulting firm—it’s a growth partner
           for clients and developers alike, operating across residential,
           commercial, luxury and mixed-use segments.With Abhishek Raj at the
@@ -113,12 +94,12 @@ const Whoweare = () => {
               src="/ourTeam/boss1.png"
               alt=""
               className="img-fluid object-fit-cover"
-              style={{ height: "100%" }}
+              style={{ height: "100%"}}
               data-aos="fade-right"
               data-aos-duration="4000"
             />
             <div className="overImg position-absolute moveXY">
-              <img src="/about-one-dots.png" alt="" />
+              <img src="/about-one-dots.png" alt="whoweare" />
             </div>
           </div>
           <div className="col-12 col-md-6 ourStory">

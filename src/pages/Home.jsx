@@ -9,7 +9,6 @@ import Whycarousel from "../components/Whycarousel";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "@studio-freight/lenis";
-import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjects } from "../redux/slices/propertySlice";
 
@@ -19,15 +18,14 @@ const Home = () => {
   const dispatch = useDispatch();
   // const [projects, setProjects] = useState([]);
   // const [loading, setLoading] = useState(true);
-  const { data: projects, loading, error } = useSelector(
-    (state) => state.projects
-  );
+  const { data: projects, error } = useSelector((state) => state.projects);
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
-    // setLoading(true);
-    dispatch(fetchProjects());
-  }, [dispatch]);
+    if (!projects || projects.length === 0) {
+      dispatch(fetchProjects());
+    }
+  }, [dispatch, projects, projects?.length]);
 
   // ✅ Optional GSAP setup (your scroll effects)
   useEffect(() => {
@@ -75,11 +73,7 @@ const Home = () => {
     };
   }, []);
 
-  if (loading)
-    return (
-        <Loader />
-    );
-    if (error) return <p>Error loading projects: {error}</p>;
+  if (error) return <p>Error loading projects: {error}</p>;
 
   return (
     <div>

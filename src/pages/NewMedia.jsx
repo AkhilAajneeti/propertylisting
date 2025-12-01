@@ -5,7 +5,6 @@ import "aos/dist/aos.css";
 import { FaSearch, FaArrowRight } from "react-icons/fa";
 import { PiClockClockwiseLight } from "react-icons/pi";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,71 +25,44 @@ const NewMedia = () => {
   useEffect(() => {
     dispatch(fetchNews());
   }, [dispatch]);
+
   useEffect(() => {
-    // --- LENIS SMOOTH SCROLL SETUP ---
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
+    const elements = document.querySelectorAll(".text-animate");
+
+    document.fonts.ready.then(() => {
+      elements.forEach((el) => {
+        const split = new SplitText(el, { types: "words" });
+
+        gsap.from(split.words, {
+          opacity: 0,
+          y: 30,
+          stagger: 0.05,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%" },
+        });
+      });
     });
 
-    // keep Lenis and ScrollTrigger in sync
-    lenis.on("scroll", ScrollTrigger.update);
-
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // normalize scroll for GSAP
-    ScrollTrigger.normalizeScroll(true);
-
-    // Reset scroll triggers on resize
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
-
-    // --- TEXT ANIMATION ---
-    gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
-      gsap.fromTo(
-        line,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: i * 0.1, // slight stagger
-          scrollTrigger: {
-            trigger: line,
-            start: "top 85%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    });
-
-    // Cleanup
     return () => {
-      window.removeEventListener("resize", handleResize);
       ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
     };
   }, []);
 
   // Filter Function
   useEffect(() => {
-    let filtered = News;
+    let filtered = [...News];
 
     if (category !== "All") {
-      filtered = filtered.filter((i) => i.newscategory === category);
+      filtered = filtered.filter((i) => i?.newscategory === category);
     }
 
     if (year !== "All") {
-      filtered = filtered.filter(
-        (i) => new Date(i.date).getFullYear().toString() === year
-      );
+      filtered = filtered.filter((i) => {
+        const itemYear = i?.date
+          ? new Date(i.date).getFullYear().toString()
+          : "";
+        return itemYear === year;
+      });
     }
 
     setFilteredNews(filtered);
@@ -103,13 +75,12 @@ const NewMedia = () => {
   };
   if (loading) return <Loader />;
   if (error) return <p className="text-danger">{error}</p>;
-  if (!News || News.length === 0)
-  return <p className="text-center mt-5">No News Available</p>;
+ if (!News?.length) return <p className="text-center mt-5">No News Available</p>;
   return (
     <div>
       <div>
         <div
-          className="object-fit-cover position-relative"
+          className=" position-relative"
           style={{ height: "550px", width: "100vw" }}
         >
           {News.length > 0 && News[0].video ? (
@@ -144,16 +115,15 @@ const NewMedia = () => {
           )}
         </div>
 
-        <div className="position-absolute top-50 start-50 translate-middle text-white text-center">
+        <div className="position-absolute top-50 start-50 translate-middle text-white text-center w-100">
           <div
             className="text-center pt-5 mt-5 mt-lg-0"
             style={{ fontFamily: "font1" }}
           >
             <div
-              className="text-uppercase text-light"
-              style={{ fontSize: "30px" }}
+              className="text-uppercase text-light text-animate fs-30"
             >
-              {News?.[0]?.title ?? "In The News"}
+              {News[0]?.title || "News & Media"}
             </div>
           </div>
         </div>

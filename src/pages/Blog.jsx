@@ -140,7 +140,7 @@ const Blog = () => {
               <ul className="de-post-type-1">
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/02.jpg" alt="" className="img-fluid" />
+                    <img src="/02.jpg" alt="BlogCards" className="img-fluid" />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -153,7 +153,7 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/01.jpg" alt="" className="img-fluid" />
+                    <img src="/01.jpg" alt="BlogCards" className="img-fluid" />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -168,7 +168,7 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/02.jpg" alt="" className="img-fluid" />
+                    <img src="/02.jpg" alt="BlogCards" className="img-fluid" />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -183,7 +183,7 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/01.jpg" alt="" className="img-fluid" />
+                    <img src="/01.jpg" alt="BlogCards" className="img-fluid" />
                   </div>
                   <div className="d-content">
                     <a href="#">

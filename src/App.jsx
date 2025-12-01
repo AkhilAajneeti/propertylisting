@@ -19,8 +19,34 @@ import Thankyou from "./pages/Thankyou";
 import JobDescription from "./pages/JobDescription";
 import NewsDetailPage from "./pages/NewsDetailPage";
 import SearchedProject from "./pages/SearchedProject";
-
+import { useEffect } from "react";
+import Lenis from "@studio-freight/lenis";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap";
+gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
+  useEffect(() => {
+    const lenis = new Lenis({ smooth: true, lerp: 0.08 });
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    ScrollTrigger.normalizeScroll(true);
+
+    const resize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", resize);
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      lenis.destroy();
+    };
+  }, []);
   return (
     <>
       <Navbar />
@@ -41,7 +67,7 @@ function App() {
         <Route path="/career" element={<Career />} />
         <Route path="/aboutus/awards" element={<Awards />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/projects/:id" element={<ProjectDetailPage />} />
+        <Route path="/projects/:id/:slug" element={<ProjectDetailPage />} />
         <Route path="/thankyou" element={<Thankyou />} />
         <Route path="/job/:id" element={<JobDescription />} />
         <Route path="/search-projects" element={<SearchedProject />} />

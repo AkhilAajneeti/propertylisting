@@ -185,7 +185,7 @@ export default function Footer() {
         </div>
         <div className=" pt-3 text-center small text-light">
           Developed By{" "}
-          <a href="https://aajneeti.social/">Aajneeti Connect Ltd.</a>
+          <a href="https://aajneeti.social/" target="_blank">Aajneeti Connect Ltd.</a>
         </div>
       </div>
 

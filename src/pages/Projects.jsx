@@ -22,7 +22,7 @@ const Projects = () => {
     error,
   } = useSelector((state) => state.projects);
   // ---------- state ----------
-  
+
   const [filteredProjects, setFilteredProjects] = useState([]); // shown projects
 
   // filters state (controlled)
@@ -49,11 +49,10 @@ const Projects = () => {
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
-    if (projects.length === 0) {
+    if (!projects || projects.length === 0) {
       dispatch(fetchProjects());
     }
-  }, [dispatch, projects.length]);
-
+  }, [dispatch, projects, projects?.length]);
 
   // ---------- apply filters ----------
   useEffect(() => {
@@ -99,101 +98,32 @@ const Projects = () => {
     setFilteredProjects(result);
   }, [projects, propertyType, filters]);
 
-  // ---------- animations (Lenis + GSAP + SplitType) ----------
-  useEffect(() => {
-    // Lenis smooth scroll
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // GSAP small reveals (works with elements present)
-    gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
-      gsap.fromTo(
-        line,
-        { y: 50, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: line,
-            start: "top 85%",
-          },
-        }
-      );
-    });
-
-    gsap.utils.toArray(".text-drop__img-box").forEach((img) => {
-      gsap.fromTo(
-        img,
-        { scale: 1.2, opacity: 0 },
-        {
-          scale: 1,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: img,
-            start: "top 80%",
-          },
-        }
-      );
-    });
-
-    gsap.utils.toArray(".has-prlx").forEach((el) => {
-      gsap.to(el, {
-        yPercent: 0,
-        ease: "none",
-        scrollTrigger: {
-          trigger: el,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
-    });
-
-    // cleanup
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
-    };
-  }, []); // run once
-
   // split text animation (when fonts ready)
   useEffect(() => {
+    // cleanup previous SplitText instances
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+    gsap.set(".split2", { clearProps: "all" });
+
     document.fonts.ready.then(() => {
-      gsap.set(".split2", { opacity: 1 });
       const elements = document.querySelectorAll(".split2");
-      elements.forEach((el, i) => {
-        const split = new SplitType(el, { types: "words", tagName: "span" });
+
+      elements.forEach((el) => {
+        const split = new SplitType(el, { types: "words" });
+
         gsap.from(split.words, {
           opacity: 0,
           y: 50,
           duration: 1,
           ease: "sine.out",
           stagger: 0.15,
-          delay: i * 0.2,
           scrollTrigger: {
             trigger: el,
-            start: "top 85%",
+            start: "top 90%",
           },
         });
       });
     });
-  }, []);
+  }, [propertyType]); // 🔥 Re-run animation when dropdown link clicked
 
   // ---------- helper: unique lists for selects ----------
   const uniqueCities = [
@@ -303,8 +233,8 @@ const Projects = () => {
         )}
 
         <div className="banner-content position-absolute top-50 start-50 translate-middle text-white text-center">
-          <h1 className="split2">{propertyType || "Our"} Projects</h1>
-          <p className="text-drop__line split2">
+          <h1 className="">{propertyType || "Our"} Projects</h1>
+          <p className="text-drop__line split2 text-center">
             {/* {activeBanner.content || "Browse through our diverse portfolio"} */}
             {"Browse through our diverse portfolio"}
           </p>
@@ -391,7 +321,7 @@ const Projects = () => {
                 <div className="cards-3 section-gray text-drop__img-box">
                   <div className="card card-blog">
                     <div className="card-image news-box-items">
-                      <Link to={`/projects/${project.id}`}>
+                      <Link to={`/projects/${project.id}/${project.project_slug}`}>
                         <div className="news-image">
                           <img
                             src={project.Bann1 || project.Proj_Logo}
@@ -417,7 +347,7 @@ const Projects = () => {
                         </h6>
 
                         <Link
-                          to={`/projects/${project.id}`}
+                          to={`/projects/${project.id}/${project.project_slug}`}
                           style={{ textDecoration: "none" }}
                         >
                           <p className="card-description fs-4">
@@ -428,7 +358,7 @@ const Projects = () => {
                         <p className="fw-bold">{project.Price}</p>
 
                         <div className="pt-3">
-                          <Link to={`/projects/${project.id}`}>
+                          <Link to={`/projects/${project.id}/${project.project_slug}`}>
                             View Details
                           </Link>
                         </div>
