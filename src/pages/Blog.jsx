@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { PiClockClockwiseLight } from "react-icons/pi";
+
 import { SlCalender } from "react-icons/sl";
-import { Link } from "react-router-dom";
+import PostCard from "../components/PostCard";
 import Loader from "../components/Loader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+import { SplitText } from "gsap/SplitText";    
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../redux/slices/blogSlice";
 gsap.registerPlugin(ScrollTrigger, SplitText);
@@ -19,22 +19,9 @@ const Blog = () => {
     if (!blogs || blogs.length === 0) {
       dispatch(fetchBlogs());
     }
-  }, [dispatch,blogs]);
+  }, [dispatch]);
 
   useEffect(() => {
-    gsap.from(".blog-list .blog-card", {
-      opacity: 1,
-      y: 0,
-      stagger: 0.2, // delay between cards
-      duration: 1,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: ".blog-list",
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    });
-    //
     // --- TEXT ANIMATION ---
     gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
       gsap.fromTo(
@@ -78,7 +65,7 @@ const Blog = () => {
     });
 
     return () => ctx.revert(); // cleanup on unmount
-  }, []);
+  }, [blogs]);
   if (loading) return <Loader />;
   if (error) return <p className="text-danger text-center">{error}</p>;
   return (
@@ -94,7 +81,7 @@ const Blog = () => {
               <div className="blog-list row g-4">
                 {blogs.map((blog) => (
                   <div className="col-lg-6 col-md-6 blog-card" key={blog.id}>
-                    <div className="card shadow-sm border-0">
+                    {/* <div className="card shadow-sm border-0">
                       <div className="card-img-wrapper rounded-2 overflow-hidden">
                         <img
                           src={blog.image}
@@ -125,7 +112,8 @@ const Blog = () => {
                           <SlCalender /> {blog.date}
                         </span>
                       </div>
-                    </div>
+                    </div> */}
+                    <PostCard data={blog}/>
                   </div>
                 ))}
               </div>
@@ -140,7 +128,7 @@ const Blog = () => {
               <ul className="de-post-type-1">
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/02.jpg" alt="BlogCards" className="img-fluid" />
+                    <img src="/new3.png" alt="BlogCards" className="img-fluid" loading="lazy"/>
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -153,7 +141,7 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/01.jpg" alt="BlogCards" className="img-fluid" />
+                    <img src="/new4.png" alt="BlogCards" className="img-fluid" loading="lazy"/>
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -168,7 +156,7 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/02.jpg" alt="BlogCards" className="img-fluid" />
+                    <img src="/public/new5.png" alt="BlogCards" className="img-fluid" loading="lazy" />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -183,7 +171,7 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/01.jpg" alt="BlogCards" className="img-fluid" />
+                    <img src="/new6.png" alt="BlogCards" className="img-fluid" loading="lazy"/>
                   </div>
                   <div className="d-content">
                     <a href="#">

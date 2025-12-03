@@ -32,52 +32,173 @@ const Portfolio = () => {
           className="mySwiper-2 py-3 portfolio"
         >
           <SwiperSlide>
-            <img src="/builder/Gaur.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/Gaur.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/M3M.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/M3M.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/l&t.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/l&t.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/elan.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/elan.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/tata.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/tata.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
             <img
               src="/builder/godrejLogo.png"
               alt=""
               className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
             />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/ATS-1.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/ATS-1.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/Bhutani-1.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/Bhutani-1.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/lodha.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/lodha.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/DLF.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/DLF.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/prestige.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/prestige.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/Adity.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/Adity.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/max.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/max.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
           <SwiperSlide>
-            <img src="/builder/sobha.png" alt="" className="img-fluid" />
+            <img
+              src="/builder/sobha.png"
+              alt=""
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
           </SwiperSlide>
-          
         </Swiper>
       </div>
     </section>

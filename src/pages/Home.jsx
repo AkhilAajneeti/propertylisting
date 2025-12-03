@@ -8,7 +8,6 @@ import Portfolio from "../components/Portfolio";
 import Whycarousel from "../components/Whycarousel";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjects } from "../redux/slices/propertySlice";
 
@@ -25,30 +24,16 @@ const Home = () => {
     if (!projects || projects.length === 0) {
       dispatch(fetchProjects());
     }
-  }, [dispatch, projects, projects?.length]);
+  }, [dispatch]);
 
   // ✅ Optional GSAP setup (your scroll effects)
   useEffect(() => {
-    const lenis = new Lenis({
-      smooth: true,
-      lerp: 0.08,
-      direction: "vertical",
-      smoothTouch: true,
-    });
+    if (!projects?.length) return; // ensure data loaded before trigger
 
-    lenis.on("scroll", ScrollTrigger.update);
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-    ScrollTrigger.normalizeScroll(true);
-
-    const handleResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", handleResize);
+    const triggers = [];
 
     gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
-      gsap.fromTo(
+      const trigger = gsap.fromTo(
         line,
         { y: 50, opacity: 0 },
         {
@@ -64,14 +49,14 @@ const Home = () => {
           },
         }
       );
+
+      triggers.push(trigger);
     });
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-      lenis.destroy();
+      triggers.forEach((t) => t.kill());
     };
-  }, []);
+  }, [projects]);
 
   if (error) return <p>Error loading projects: {error}</p>;
 

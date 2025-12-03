@@ -6,11 +6,12 @@ import { FaLocationDot } from "react-icons/fa6";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "@studio-freight/lenis";
+
 import SplitType from "split-type";
 import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjects } from "../redux/slices/propertySlice";
+import ProjectCard from "../components/ProjectCard";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,13 +40,6 @@ const Projects = () => {
   const params = new URLSearchParams(location.search);
   const propertyType = params.get("propertytype"); // e.g. "Commercial"
   const urlCity = params.get("city") || "";
-
-  // initialize city filter from url if provided
-  useEffect(() => {
-    if (urlCity) {
-      setFilters((s) => ({ ...s, city: urlCity }));
-    }
-  }, [urlCity]);
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
@@ -98,33 +92,12 @@ const Projects = () => {
     setFilteredProjects(result);
   }, [projects, propertyType, filters]);
 
-  // split text animation (when fonts ready)
+  // initialize city filter from url if provided
   useEffect(() => {
-    // cleanup previous SplitText instances
-    ScrollTrigger.getAll().forEach((t) => t.kill());
-    gsap.set(".split2", { clearProps: "all" });
-
-    document.fonts.ready.then(() => {
-      const elements = document.querySelectorAll(".split2");
-
-      elements.forEach((el) => {
-        const split = new SplitType(el, { types: "words" });
-
-        gsap.from(split.words, {
-          opacity: 0,
-          y: 50,
-          duration: 1,
-          ease: "sine.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 90%",
-          },
-        });
-      });
-    });
-  }, [propertyType]); // 🔥 Re-run animation when dropdown link clicked
-
+    if (urlCity) {
+      setFilters((s) => ({ ...s, city: urlCity }));
+    }
+  }, [urlCity]);
   // ---------- helper: unique lists for selects ----------
   const uniqueCities = [
     ...new Set(projects.map((p) => p.City).filter(Boolean)),
@@ -161,49 +134,78 @@ const Projects = () => {
     ) || null;
 
   const activeBanner = {
-    bannerImage: activeBannerProject?.Bann1 || "/banner-9.png",
+    bannerImage: activeBannerProject?.Bann1 || "/banner-9.jpeg",
     bannerVideo: activeBannerProject?.bannerVideo || "",
     category: activeBannerProject?.category || "Our",
     content: activeBannerProject?.Highlights || "",
   };
 
-  const handleSearch = () => {
-    let result = [...projects];
+  // const handleSearch = () => {
+  //   let result = [...projects];
 
-    if (propertyType) {
-      const lower = propertyType.toLowerCase();
-      result = result.filter(
-        (p) =>
-          (p.category && p.category.toLowerCase().includes(lower)) ||
-          (p.subcategory && p.subcategory.toLowerCase().includes(lower))
-      );
-    }
+  //   if (propertyType) {
+  //     const lower = propertyType.toLowerCase();
+  //     result = result.filter(
+  //       (p) =>
+  //         (p.category && p.category.toLowerCase().includes(lower)) ||
+  //         (p.subcategory && p.subcategory.toLowerCase().includes(lower))
+  //     );
+  //   }
 
-    if (filters.city) {
-      result = result.filter(
-        (p) => (p.City || "").toLowerCase() === filters.city.toLowerCase()
-      );
-    }
+  //   if (filters.city) {
+  //     result = result.filter(
+  //       (p) => (p.City || "").toLowerCase() === filters.city.toLowerCase()
+  //     );
+  //   }
 
-    if (filters.location) {
-      result = result.filter(
-        (p) =>
-          (p.Project_Location || "").toLowerCase() ===
-          filters.location.toLowerCase()
-      );
-    }
+  //   if (filters.location) {
+  //     result = result.filter(
+  //       (p) =>
+  //         (p.Project_Location || "").toLowerCase() ===
+  //         filters.location.toLowerCase()
+  //     );
+  //   }
 
-    if (filters.configuration) {
-      const cfg = filters.configuration.toLowerCase();
-      result = result.filter((p) =>
-        Array.isArray(p.Configuration)
-          ? p.Configuration.some((c) => (c || "").toLowerCase() === cfg)
-          : false
-      );
-    }
+  //   if (filters.configuration) {
+  //     const cfg = filters.configuration.toLowerCase();
+  //     result = result.filter((p) =>
+  //       Array.isArray(p.Configuration)
+  //         ? p.Configuration.some((c) => (c || "").toLowerCase() === cfg)
+  //         : false
+  //     );
+  //   }
 
-    setFilteredProjects(result);
-  };
+  //   setFilteredProjects(result);
+  // };
+
+  // split text animation (when fonts ready)
+  useEffect(() => {
+    if (!filteredProjects.length) return;
+
+    ScrollTrigger.getAll().forEach((t) => t.kill());
+    gsap.set(".split2", { clearProps: "all" });
+
+    document.fonts.ready.then(() => {
+      const elements = document.querySelectorAll(".split2");
+
+      elements.forEach((el) => {
+        const split = new SplitType(el, { types: "words" });
+
+        gsap.from(split.words, {
+          opacity: 0,
+          y: 40,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: el,
+            start: "top 90%",
+            toggleActions: "play none none none",
+          },
+        });
+      });
+    });
+  }, [filteredProjects]);
 
   // ---------- loading fallback ----------
   if (loading) return <Loader />;
@@ -228,6 +230,7 @@ const Projects = () => {
             src={activeBanner.bannerImage}
             alt={`${activeBanner.category} Banner`}
             className="w-100"
+            loading="lazy"
             style={{ height: "70vh", objectFit: "cover" }}
           />
         )}
@@ -301,9 +304,9 @@ const Projects = () => {
           </div>
 
           <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-            <button className="search-btn" onClick={handleSearch}>
+            {/* <button className="search-btn" onClick={handleSearch}>
               Search &nbsp; <CiSearch />
-            </button>
+            </button> */}
 
             <button className="search-btn" onClick={handleResetFilters}>
               Reset
@@ -318,54 +321,7 @@ const Projects = () => {
           {filteredProjects.length > 0 ? (
             filteredProjects.map((project) => (
               <div className="col-sm-4" key={project.id}>
-                <div className="cards-3 section-gray text-drop__img-box">
-                  <div className="card card-blog">
-                    <div className="card-image news-box-items">
-                      <Link to={`/projects/${project.id}/${project.project_slug}`}>
-                        <div className="news-image">
-                          <img
-                            src={project.Bann1 || project.Proj_Logo}
-                            alt={project.Title}
-                            style={{
-                              height: "264px",
-                              width: "100%",
-                              objectFit: "cover",
-                            }}
-                          />
-                        </div>
-                      </Link>
-                      <div className="ripple-cont"></div>
-                    </div>
-
-                    <div className="table p-3">
-                      <div className="ele-1">
-                        <h6 className="category text-info">
-                          {project.City}{" "}
-                          {project.Project_Location
-                            ? `| ${project.Project_Location}`
-                            : ""}
-                        </h6>
-
-                        <Link
-                          to={`/projects/${project.id}/${project.project_slug}`}
-                          style={{ textDecoration: "none" }}
-                        >
-                          <p className="card-description fs-4">
-                            {project.Title}
-                          </p>
-                        </Link>
-
-                        <p className="fw-bold">{project.Price}</p>
-
-                        <div className="pt-3">
-                          <Link to={`/projects/${project.id}/${project.project_slug}`}>
-                            View Details
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ProjectCard project={project} />
               </div>
             ))
           ) : (

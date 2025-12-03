@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const FloorPlan = ({ plans = [], images = [] }) => {
+const FloorPlanComponent =({ plans = [], images = [] }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const defaultImage = "/floor-plan-img.png";
@@ -18,7 +18,8 @@ const FloorPlan = ({ plans = [], images = [] }) => {
         <div className="floorplan-image">
           <img
             src={images[activeIndex] || defaultImage}
-            alt="floor plan"
+            alt="floor plan" loading="lazy"
+            decoding="async"
             style={{ width: "100%", borderRadius: "10px" }}
           />
         </div>
@@ -79,5 +80,5 @@ const FloorPlan = ({ plans = [], images = [] }) => {
     </div>
   );
 };
-
+const FloorPlan = React.memo(FloorPlanComponent);
 export default FloorPlan;

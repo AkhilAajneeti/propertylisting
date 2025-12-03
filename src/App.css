@@ -2389,7 +2389,8 @@ p {
 }
 
 /* .overview */
-.overview p,#Highlight p {
+.overview p,
+#Highlight p {
   text-align: justify;
   color: #565656;
   font-size: 20px;
@@ -2566,6 +2567,7 @@ p {
 .cards-3 .ele-1 a:hover {
   color: #9d0000;
 }
+
 
 .formcol h1 {
   font-size: 35px;
@@ -2761,8 +2763,9 @@ p {
 .panel {
   flex: 0 0 100vw;
   height: 100vh;
-  background-size: cover;
-  background-position: center;
+  background-size: contain !important;
+  background-repeat: no-repeat;
+  background-position: center center;
   position: relative;
   display: flex;
   align-items: center;
@@ -2771,6 +2774,33 @@ p {
   color: white;
   box-sizing: border-box;
 }
+
+/* Horizontal Scroll Panels Image Fix on Mobile */
+
+/* For desktop, keep your old behavior */
+@media (min-width: 768px) {
+   .panel {
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-color: #000; /* fallback color matching awards theme */
+  }
+}
+/* Mobile Height Fix */
+@media (max-width: 768px) {
+  .panel {
+    height: 80vh !important;
+  }
+
+  .scroll-sections {
+    height: 80vh !important;
+  }
+  .scroll-sections .overlay{
+    background: none !important;
+  }
+
+}
+
 
 .overlay {
   position: absolute;
@@ -2841,17 +2871,19 @@ p {
   object-fit: cover;
 }
 
-.fs-30{
+.fs-30 {
   font-size: 30px;
 }
+
 @media (max-width:720px) {
   .projectBanner video {
     height: auto;
     object-fit: cover;
   }
-.fs-30{
-  font-size: 20px!important;
-}
+
+  .fs-30 {
+    font-size: 20px !important;
+  }
 }
 
 .overlay {
@@ -3016,6 +3048,7 @@ p {
     padding: 12px 0;
   }
 }
+
 .detail-navbar {
   background: #ffffff;
   transition: all 0.3s ease;
@@ -3037,8 +3070,11 @@ p {
   position: fixed;
   top: 0;
   width: 100%;
-  box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
-  z-index: 9999;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  z-index: 999;
+  transition: all .3s ease-in-out;
 }
 
 .active-nav-link {
@@ -3110,9 +3146,12 @@ p {
 }
 
 .projectLogo {
-  height: 60px;          /* Fixed height for correct visibility */
-  width: auto;           /* Let width adjust naturally */
-  max-width: 240px;      /* Support wide logos */
+  height: 60px;
+  /* Fixed height for correct visibility */
+  width: auto;
+  /* Let width adjust naturally */
+  max-width: 240px;
+  /* Support wide logos */
   object-fit: contain;
   object-position: left center;
   padding: 0 8px;
@@ -3195,18 +3234,13 @@ p {
   z-index: 99;
 }
 
-/* .projectBanner p{
-  width: 90%;
-  background:linear-gradient(100deg, #f5ebac 50.49%, #b49249 100%)!important;
-}
-/* .projectBanner:before {
-    position: absolute;
-    content: '';
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background: linear-gradient(0, transparent, #ffffffba, #fffffff7, #fffffff7, #ffffffba, transparent);
-    z-index: -1;
-} */
 
+.card-description{
+  color: black;
+}
+.card-price{
+  color: #000;
+}
+.table a{
+  color: rgb(76, 76, 76);
+}

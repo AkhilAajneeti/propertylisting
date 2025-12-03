@@ -4,9 +4,25 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchTeam } from "../redux/slices/teamSlice";
 gsap.registerPlugin(ScrollTrigger);
-
+import Loader from "../components/Loader";
 const OurTeam = () => {
+  const dispatch = useDispatch();
+  const { members, loading } = useSelector((state) => state.team);
+
+  useEffect(() => {
+    dispatch(fetchTeam());
+  }, [dispatch]);
+
+  const leadershipTeam = members.filter(
+    (m) => m.category === "Leadership Team"
+  );
+  const managementTeam = members.filter(
+    (m) => m.category === "Management Team"
+  );
+
   useEffect(() => {
     // --- TEXT ANIMATION ---
     gsap.utils.toArray(".text-drop__line").forEach((line, i) => {
@@ -63,9 +79,7 @@ const OurTeam = () => {
 
     // Cleanup
     return () => {
-
       ScrollTrigger.getAll().forEach((t) => t.kill());
-
     };
   }, []);
   useEffect(() => {
@@ -96,13 +110,14 @@ const OurTeam = () => {
     });
   }, []);
 
-   useEffect(() => {
-      AOS.init({
-        duration: 1200, // default duration
-        once: true, // whether animation should happen only once
-        easing: "ease-in-out",
-      });
-    }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 1200, // default duration
+      once: true, // whether animation should happen only once
+      easing: "ease-in-out",
+    });
+  }, []);
+  if (loading) return <Loader />;
   return (
     <div>
       <div className="OurTeambanner has-prlx">
@@ -120,6 +135,7 @@ const OurTeam = () => {
             <img
               src="/ourTeam/boss1.png"
               alt="teamImg"
+              loading="lazy"
               className="img-fluid text-drop__img-box"
               style={{ borderRadius: "10px" }}
             />
@@ -133,6 +149,7 @@ const OurTeam = () => {
                 <img
                   src="/linkedin2.png"
                   alt="teamImg"
+                  loading="lazy"
                   className="links text-drop__line"
                 />
               </a>
@@ -163,6 +180,7 @@ const OurTeam = () => {
                 <img
                   src="/linkedin2.png"
                   alt="teamImg"
+                  loading="lazy"
                   className="links text-drop__line"
                 />
               </a>
@@ -187,6 +205,7 @@ const OurTeam = () => {
             <img
               src="/ourTeam/boss2.png"
               alt="teamImg"
+              loading="lazy"
               className="img-fluid text-drop__img-box"
               style={{ borderRadius: "10px" }}
             />
@@ -195,85 +214,51 @@ const OurTeam = () => {
       </div>
 
       {/* leadership Team */}
-      <div className="leadershipTeam container py-md-5">
+      <div className="leadershipTeam container pb-md-1 pt-md-4">
         <div className="row gy-4">
           <div className="col-12">
-            <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"  data-aos="fade-down">
+            <h2
+              className="text-drop__line fs-1 fw-bold text-center ourFounder"
+              data-aos="fade-down"
+            >
               Management Team
             </h2>
           </div>
-          <div className="col-12 col-md-4">
-            <div className="shine-animate-item p-4" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img
-                  src="/ourTeam/Director1.png"
-                  alt="teamImg"
-                  className="img-fluid"
-                />
-                <a href="">
+          {managementTeam.map((member) => (
+            <div className="col-12 col-md-3" key={member.id}>
+              <div className="shine-animate-item" data-aos="fade-up">
+                <div className="shine-animate position-relative">
                   <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "28px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
+                    src={member.image}
+                    alt={member.name}
+                    className="img-fluid"
+                    loading="lazy"
                   />
-                </a>
+                  {member.linkedin_profile && (
+                    <a
+                      href={member.linkedin_profile}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/linkedin2.png"
+                        alt="linkedin"
+                        style={{
+                          position: "absolute",
+                          right: "10px",
+                          bottom: "10px",
+                          width: "35px",
+                          height: "35px",
+                        }}
+                      />
+                    </a>
+                  )}
+                </div>
+                <h6 className="text-center mt-2">{member.name}</h6>
+                <p className="text-center text-muted">{member.designation}</p>
               </div>
             </div>
-          </div>
-          <div className="col-12 col-md-4">
-            <div className="shine-animate-item  p-4" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img
-                  src="/ourTeam/Director2.png"
-                  alt="teamImg"
-                  className="img-fluid"
-                />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "28px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-4">
-            <div className="shine-animate-item p-4" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img
-                  src="/ourTeam/Director3.png"
-                  alt="teamImg"
-                  className="img-fluid"
-                />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "28px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
 
@@ -281,258 +266,49 @@ const OurTeam = () => {
       <div className="managementTeam container py-5">
         <div className="row gy-5">
           <div className="col-12">
-            <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"data-aos="fade-up">
+            <h2
+              className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"
+              data-aos="fade-up"
+            >
               Leadership Team
             </h2>
           </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/yogesh.png" alt="teamImg" className="img-fluid" />
-                <a href="">
+
+          {leadershipTeam.map((member) => (
+            <div className="col-12 col-md-4" key={member.id}>
+              <div className="shine-animate-item p-4" data-aos="fade-up">
+                <div className="shine-animate position-relative">
                   <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
+                    src={member.image}
+                    alt={member.name}
+                    className="img-fluid"
+                    loading="lazy"
                   />
-                </a>
+                  {member.linkedin_profile && (
+                    <a
+                      href={member.linkedin_profile}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/linkedin2.png"
+                        alt="linkedin"
+                        style={{
+                          position: "absolute",
+                          right: "28px",
+                          bottom: "10px",
+                          width: "35px",
+                          height: "35px",
+                        }}
+                      />
+                    </a>
+                  )}
+                </div>
+                <h5 className="text-center mt-3">{member.name}</h5>
+                <p className="text-center text-muted">{member.designation}</p>
               </div>
             </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img
-                  src="/ourTeam/satishbatra.png"
-                  alt="teamImg"
-                  className="img-fluid"
-                />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/ashutosh.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item" data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/Taufique.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img
-                  src="/ourTeam/shailendra.png"
-                  alt="teamImg"
-                  className="img-fluid"
-                />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/chandra.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/akshay.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/sandeep.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/abbas.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/manish.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/mohak.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-          <div className="col-12 col-md-3">
-            <div className="shine-animate-item"data-aos="fade-up">
-              <div className="shine-animate position-relative">
-                <img src="/ourTeam/sudhesh.png" alt="teamImg" className="img-fluid" />
-                <a href="">
-                  <img
-                    src="/linkedin2.png"
-                    alt="teamImg"
-                    style={{
-                      position: "absolute",
-                      right: "10px",
-                      bottom: "10px",
-                      width: "35px",
-                      height: "35px",
-                    }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
 
         {/* lead Capture */}

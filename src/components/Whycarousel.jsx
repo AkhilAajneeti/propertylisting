@@ -32,42 +32,57 @@ const Whycarousel = () => {
           <SwiperSlide>
             <div className="WHySection text-center">
               {/* img */}
-              <img src="/content1.png" alt="" width={"100px"} height={"100px"} />
+              <img
+                src="/content1.png"
+                alt="Trusted Real Estate Advisors"
+                width={"100px"}
+                height={"100px"}
+                loading="lazy"
+                decoding="async"
+              />
               {/* para */}
-              <h5 >Why Trust Jenika Venture</h5>
+              <h5>Why Trust Jenika Venture</h5>
               {/* content */}
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Deserunt facere reiciendis dignissimos illo iure nobis ab minus
-                vero eveniet at!
+               Jenika Ventures features almost every top developer brands on PAN India with a broad spectrum of residential and commercial projects covering all budget categories.These words truly express the mission of Jenika Ventures.
               </p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="WHySection text-center">
               {/* img */}
-              <img src="/content2.png" alt="" width={"100px"} height={"100px"}/>
+              <img
+                src="/content2.png"
+                alt="Trusted Real Estate Advisors"
+                width={"100px"}
+                height={"100px"}
+                loading="lazy"
+                decoding="async"
+              />
               {/* para */}
               <h5>Customer Oriented</h5>
               {/* content  */}
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Deserunt facere reiciendis dignissimos illo iure nobis ab minus
-                vero eveniet at!
+               Jenika Ventures aspire to spread happiness by turning dreams of owning a sweet home into a real masterpiece of one’s choice with a rigid standard of ultimate Quality, Craftsmanship and Creativity from our exclusive portfolio of various projects.
               </p>
             </div>
           </SwiperSlide>
           <SwiperSlide>
             <div className="WHySection text-center">
               {/* img */}
-              <img src="/content3.png" alt="" width={"100px"} height={"100px"}/>
+              <img
+                src="/content3.png"
+                alt="Trusted Real Estate Advisors"
+                width={"100px"}
+                height={"100px"}
+                loading="lazy"
+                decoding="async"
+              />
               {/* para */}
               <h5>Tech Ideal</h5>
               {/* content */}
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Deserunt facere reiciendis dignissimos illo iure nobis ab minus
-                vero eveniet at!
+                Committed to people, committed to future. We are a young team with enormous love & passion for Real Estate Consulting who dares to think BIG and is not afraid to be different globally. These words truly express the mission of Jenika Ventures.
               </p>
             </div>
           </SwiperSlide>

@@ -18,12 +18,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import { toast } from "react-toastify";
 import { submitContactForm } from "../api/contactApi";
-import { useNavigate } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 const Contact = () => {
   // const [isActive, setIsActive] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const navigate = useNavigate();
   // 🔥 Optimized GSAP Animation Setup
   useEffect(() => {
     document.fonts.ready.then(() => {
@@ -76,10 +74,6 @@ const Contact = () => {
         mobile: "",
         message: "",
       });
-
-      setTimeout(() => {
-        navigate("/thankyou");
-      }, 1000);
     } catch (err) {
       console.error("Contact Form Error:", err);
       toast.error("Something went wrong ❌");

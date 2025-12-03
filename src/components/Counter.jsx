@@ -1,34 +1,57 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 
-// Single number counter
-const NumberCounter = ({ end, duration }) => {
+const NumberCounter = memo(({ end, duration }) => {
   const [count, setCount] = useState(0);
+  const started = useRef(false);
+  const elementRef = useRef(null);
+
+  const animateCount = () => {
+    const startTime = performance.now();
+
+    const update = (currentTime) => {
+      const progress = Math.min(
+        (currentTime - startTime) / (duration * 1000),
+        1
+      );
+      const value = Math.floor(progress * end);
+      setCount(value);
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    };
+
+    requestAnimationFrame(update);
+  };
 
   useEffect(() => {
-    let start = 0;
-    const increment = end / (duration * 60); // assuming 60 fps
-    const counter = setInterval(() => {
-      start += increment;
-      if (start >= end) {
-        start = end;
-        clearInterval(counter);
-      }
-      setCount(Math.ceil(start));
-    }, 1000 / 60);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started.current) {
+          started.current = true;
+          animateCount();
+        }
+      },
+      { threshold: 0.4 } // start when 40% visible
+    );
 
-    return () => clearInterval(counter); // cleanup
-  }, [end, duration]);
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
 
-  return <span>{count}</span>;
-};
+    return () => observer.disconnect();
+  }, []);
 
-// Counter section
+  return <span ref={elementRef}>{count}</span>;
+});
+
 const CounterSection = () => {
   return (
     <div
       className="container-fluid counter"
       style={{
-       backgroundImage: "linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('/backbanner.png')",
+        backgroundImage:
+          "linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0.5)), url('/backbanner.jpeg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
         width: "100%",
@@ -38,28 +61,29 @@ const CounterSection = () => {
     >
       <div className="row text-center gy-2 g-md-0">
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={72418} duration={6} /> Cr.<br />
-          <span className="color-brown" >Worth property sold</span>
+          <NumberCounter end={72418} duration={2} /> Cr.
+          <br />
+          <span className="color-brown">Worth property sold</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={150000} duration={6} /> +<br />
-          <span className="color-brown" >Happy Customer</span>
+          <NumberCounter end={150000} duration={2} /> +<br />
+          <span className="color-brown">Happy Customer</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={100} duration={6} /> +<br />
-         <span className="color-brown" >Happy Customer</span>
+          <NumberCounter end={100} duration={2} /> +<br />
+          <span className="color-brown">Happy Customer</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={700} duration={6} /> +<br />
-          <span className="color-brown" >Projects</span>
+          <NumberCounter end={700} duration={2} /> +<br />
+          <span className="color-brown">Projects</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={30} duration={6} /> +<br />
-         <span className="color-brown" > Offices in India</span>
+          <NumberCounter end={30} duration={2} /> +<br />
+          <span className="color-brown">Offices in India</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={3} duration={6} /> +<br />
-          <span className="color-brown" >Offices Worldwide</span>
+          <NumberCounter end={3} duration={2} /> +<br />
+          <span className="color-brown">Offices Worldwide</span>
         </div>
       </div>
     </div>

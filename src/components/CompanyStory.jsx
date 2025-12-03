@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import "@fancyapps/ui/dist/fancybox/fancybox.css";
-import { Fancybox } from "@fancyapps/ui";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchGallery } from "../redux/slices/gallerySlice";
 import Loader from "../components/Loader";
@@ -20,8 +20,6 @@ const CompanyStory = () => {
 
   useEffect(() => {
     dispatch(fetchGallery());
-    Fancybox.bind("[data-fancybox='gallery']", {});
-    return () => Fancybox.destroy();
   }, [dispatch]);
 
   if (loading) return <Loader />;
@@ -34,38 +32,42 @@ const CompanyStory = () => {
 
       <div className="container">
         <div className="d-flex flex-column align-items-center justify-content-center">
-          <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            autoplay={{ delay: 4000, disableOnInteraction: false }}
-            loop
-            modules={[Autoplay]}
-            breakpoints={{
-              0: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            className="mySwiper-2 py-3"
-          >
-            {gallery.map((item) => (
-              <SwiperSlide key={item.id}>
-                <div className="card shadow-sm rounded-5">
-                  <a data-fancybox="gallery" href={item.image}>
-                    <img
-                      src={item.image}
-                      alt={item.caption}
-                      style={{
-                        borderRadius: "10px",
-                        height: "400px",
-                        width: "100%",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </a>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+          <PhotoProvider>
+            <Swiper
+              slidesPerView={3}
+              spaceBetween={30}
+              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              loop
+              modules={[Autoplay]}
+              breakpoints={{
+                0: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              className="mySwiper-2 py-3"
+            >
+              {gallery.map((item) => (
+                <SwiperSlide key={item.id}>
+                  <div className="card shadow-sm rounded-5">
+                    <PhotoView src={item.image}>
+                      <img
+                        src={item.image}
+                        alt={item.caption}
+                        loading="lazy"
+                        decoding="async"
+                        style={{
+                          borderRadius: "10px",
+                          height: "400px",
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </PhotoView>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </PhotoProvider>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ const DetailPageNavbar = ({ project }) => {
   const sections = [
     "Overview",
     "Highlight",
-    "Ameneties",
+    "Amenities",
     "Floorplan",
     "Location",
     "Developer",
@@ -56,7 +56,7 @@ const DetailPageNavbar = ({ project }) => {
           src={project.Proj_Logo}
           alt={project.Proj_Logo}
           className="projectLogo"
-          style={{ mixBlendMode: project.transparent ? "normal" : "multiply" }}
+          style={{mixBlendMode: "normal"}}
         />
         <Navbar.Toggle
           aria-controls="detail-nav"

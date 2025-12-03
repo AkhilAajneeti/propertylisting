@@ -12,7 +12,8 @@ const sections = [
     id: "2021",
     title: "Technology",
     text: "OVA recognizes the exceptional potential of the technology sector, where each breakthrough opens up promising investment opportunities.",
-    image: "/awards/8745tuhgrjrkf.jpg",
+    // image: "/awards/8745tuhgrjrkf.jpg",
+    image: "/public/awards/NEW.png",
   },
   {
     id: "2022",
@@ -143,15 +144,11 @@ export default function ScrollSections() {
     const targetY = Math.round(start + progress * scrollDistance);
 
     // Smooth scroll via Lenis or fallback to GSAP
-    if (lenisRef.current && typeof lenisRef.current.scrollTo === "function") {
-      lenisRef.current.scrollTo(targetY, { duration: 1.2 });
-    } else {
-      gsap.to(window, {
-        scrollTo: { y: targetY },
-        duration: 1.2,
-        ease: "power2.inOut",
-      });
-    }
+    lenisRef.current.scrollTo(targetY, {
+      offset: 0,
+      duration: 1.2,
+      easing: (t) => 1 - Math.pow(1 - t, 3),
+    });
   };
 
   return (
@@ -176,19 +173,14 @@ export default function ScrollSections() {
         {sections.map((sec) => (
           <section
             key={sec.id}
-            className="panel"
+            className="panel award-img"
             style={{
               backgroundImage: `url(${sec.image})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-            }}
-          >
-            <div className="overlay"></div>
-            <div className="content">
-              {/* Optional text if needed */}
-              {/* <h2 className="panel-title">{sec.title}</h2>
-              <p className="panel-text">{sec.text}</p> */}
-            </div>
+            }} >
+            {/* <div className="overlay"></div> */}
+           
           </section>
         ))}
       </div>

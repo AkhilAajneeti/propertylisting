@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNews } from "../redux/slices/newsSlice";
 import Loader from "../components/Loader";
+import NewsCard from "../components/NewsCard";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 const NewMedia = () => {
@@ -79,10 +80,7 @@ const NewMedia = () => {
   return (
     <div>
       <div>
-        <div
-          className=" position-relative"
-          style={{ height: "550px", width: "100vw" }}
-        >
+        <div className=" position-relative" style={{ height: "550px", width: "100vw" }} >
           {News.length > 0 && News[0].video ? (
             <video
               className="object-fit-cover"
@@ -142,7 +140,8 @@ const NewMedia = () => {
           <img
             src="/channelpartner.png" // Replace with your image path
             alt="Ayushi"
-            className="rounded"
+            className="rounded"loading="lazy"
+    decoding="async"
             style={{ width: "80px", height: "80px", objectFit: "cover" }}
           />
 
@@ -164,7 +163,7 @@ const NewMedia = () => {
       {/* filter section */}
       <div className="container py-3">
         {/* Top Row */}
-        <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
+        <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center mb-3 text-center">
           {/* Left Section */}
           <div className="d-flex align-items-center">
             <h2 className="fw-bold text-dark mb-0 me-3">Filters</h2>
@@ -178,20 +177,12 @@ const NewMedia = () => {
           </div>
 
           {/* Right Section */}
-          <div className="d-flex flex-wrap align-items-center mt-3 mt-md-0">
+          <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center py-3 text-center">
             {/* Search Icon */}
-            <div className="px-3">
-              <FaSearch
-                style={{
-                  color: "#a136aa",
-                  fontSize: "20px",
-                  cursor: "pointer",
-                }}
-              />
-            </div>
+            
 
             {/* Category Dropdown */}
-            <div className="px-3 border-start border-2 border-light-subtle">
+            <div className="px-3 py-2 border-start border-2 border-light-subtle">
               <span className="me-2 text-dark fw-semibold">Category</span>
               <select
                 className="form-select form-select-sm d-inline-block"
@@ -208,7 +199,7 @@ const NewMedia = () => {
               </select>
             </div>
 
-            <div className="px-3 border-start border-2 border-light-subtle">
+            <div className="px-3 py-2 border-start border-2 border-light-subtle">
               <span className="me-2 text-dark fw-semibold">Year</span>
               <select
                 className="form-select form-select-sm d-inline-block"
@@ -240,7 +231,7 @@ const NewMedia = () => {
           <div className="row g-4">
             {filteredNews.map((news) => (
               <div className="col-lg-4 col-md-6 blog-card" key={news.id}>
-                <div className="card shadow-sm border-0">
+                {/* <div className="card shadow-sm border-0">
                   <div className="card-img-wrapper rounded-2 overflow-hidden">
                     <img
                       src={news.image}
@@ -272,7 +263,8 @@ const NewMedia = () => {
                       </a>
                     </span>
                   </div>
-                </div>
+                </div> */}
+                <NewsCard data={news}/>
               </div>
             ))}
           </div>

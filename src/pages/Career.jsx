@@ -2,10 +2,10 @@ import { React, useEffect } from "react";
 import JobSection from "../components/JobSection";
 import EmployeeTestimonial from "../components/EmployeeTestimonial";
 import CompanyStory from "../components/CompanyStory";
-import gsap from "gsap";
 import SplitType from "split-type";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -39,14 +39,15 @@ const Career = () => {
   return (
     <div style={{ overflowX: "hidden" }}>
       {/* Hero Banner */}
-      <div className="CareerBanner"></div>
+      <div className="CareerBanner" role="img" aria-label="Career Banner"></div>
 
       {/* Section 2 */}
       <div className="py-5">
         <div className="Careercontent">
           <div className="row gy-5 align-items-center">
             <div className="col-12 col-sm-6">
-              <img src="/campass.png" alt="Career" className="img-fluid" />
+              <img src="/campass.png" alt="Career at Jenika Ventures" className="img-fluid" loading="lazy"
+                decoding="async"/>
             </div>
             <div className="col-12 col-sm-6">
               <p>

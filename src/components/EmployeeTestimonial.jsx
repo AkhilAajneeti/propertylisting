@@ -18,6 +18,11 @@ const EmployeeTestimonial = () => {
 
   useEffect(() => {
     dispatch(fetchCareerTestimonials());
+
+    return () => {
+      const autoplay = document.querySelector(".mySwiper-3")?.swiper?.autoplay;
+      if (autoplay) autoplay.stop(); // cleanup to avoid memory leaks
+    };
   }, [dispatch]);
 
   return (

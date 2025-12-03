@@ -57,7 +57,7 @@ const NewsDetailPage = () => {
                   <FaRegUser /> By {news.author}
                 </span>
                 <span>
-                  <SlCalender /> {new Date(news.date).toLocaleDateString("en-US")}
+                  <SlCalender /> {news.date ? new Date(news.date).toLocaleDateString("en-US") : "Date N/A"}
                 </span>
                 <span>
                   <FaRegNewspaper /> {news.newscategory}
@@ -84,9 +84,9 @@ const NewsDetailPage = () => {
               {/* Share */}
               <div className="share-box mt-5 d-flex align-items-center gap-3">
                 <h5 className="fw-bold">Share:</h5>
-                <a className="share-btn"><FaFacebookF /></a>
-                <a className="share-btn"><FaLinkedinIn /></a>
-                <a className="share-btn"><FaTwitter /></a>
+                <a className="share-btn" href="#"><FaFacebookF /></a>
+                <a className="share-btn" href="#"><FaLinkedinIn /></a>
+                <a className="share-btn" href="#"><FaTwitter /></a>
               </div>
             </div>
           </div>

@@ -7,8 +7,6 @@ import { FaSearch, FaMapMarkerAlt } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/effect-fade";
-
-import "../index.css"; // your custom styles
 import gsap from "gsap";
 import SplitType from "split-type";
 import { useNavigate } from "react-router-dom";
@@ -36,14 +34,10 @@ export default function Slider() {
           ease: "sine.out",
           stagger: 0.08,
           delay: i * 0.3,
-          scrollTrigger: {
-            trigger: el,
-            start: "top 85%",
-          },
         });
       });
     });
-  });
+  }, []);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
@@ -76,42 +70,63 @@ export default function Slider() {
           {/* Slide 1 */}
           <SwiperSlide>
             <img
-              src="/banner-6.png"
-              alt="Banner 1"
+              src="/banner-6.jpeg"
+              alt="Luxury Properties Delhi NCR"
               className="slide-img d-none d-sm-block"
+              width="1920"
+              height="600"
+              loading="eager"
+              decoding="async"
             />
             <img
               src="/mobBig-1.jpeg"
-              alt="Banner 1"
+              alt="Luxury Properties Delhi NCR"
               className="slide-img d-sm-none"
+             width="390" height="700"
+              loading="eager"
+              decoding="async"
             />
           </SwiperSlide>
 
           {/* Slide 2 */}
           <SwiperSlide>
             <img
-              src="/banner-8.png"
-              alt="Banner 2"
+              src="/banner-7.jpeg"
+              alt="Top Commercial Property in NCR"
               className="slide-img d-none d-sm-block"
+              width="1920"
+              height="600"
+              loading="lazy"
+              decoding="async"
             />
             <img
               src="/mobBig-2.jpeg"
-              alt="Banner 2"
+              alt="Top Commercial Property in NCR"
               className="slide-img d-sm-none"
+              width="390" height="700"
+              loading="lazy"
+              decoding="async"
             />
           </SwiperSlide>
 
           {/* Slide 3 */}
           <SwiperSlide>
             <img
-              src="/banner-9.png"
-              alt="Banner 3"
+              src="/banner-9.jpeg"
+              alt="Invest in Premium Real Estate"
               className="slide-img d-none d-sm-block"
+              width="1920"
+              height="600"
+              loading="lazy"
+              decoding="async"
             />
             <img
               src="/mobBig-1.jpeg"
-              alt="Banner 3"
+              alt="Invest in Premium Real Estate"
               className="slide-img d-sm-none"
+              width="390" height="700"
+              loading="lazy"
+              decoding="async"
             />
           </SwiperSlide>
         </Swiper>

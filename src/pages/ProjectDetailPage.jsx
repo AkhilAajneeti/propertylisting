@@ -285,7 +285,7 @@ const ProjectDetailPage = () => {
             </div>
 
             {/* FEATURES & AMENITIES */}
-            <div className="ameneties" id="Ameneties">
+            <div className="ameneties" id="Amenities">
               <h2 className="ameneties-title split2">Features & Amenities</h2>
 
               <div className="ul-ameneties">

@@ -5,7 +5,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
-const ProjectSlider = ({ images = [] }) => {
+const ProjectSlider = React.memo(({ images = [] }) => {
+  const validImages = images.filter(Boolean);
   const [thumbsSwiper, setThumbsSwiper] = React.useState(null);
 
   return (
@@ -14,45 +15,57 @@ const ProjectSlider = ({ images = [] }) => {
       <Swiper
         modules={[Thumbs, Autoplay]}
         spaceBetween={10}
-        loop={true}
+        loop={validImages.length > 1}
         autoplay={{ delay: 3000 }}
         thumbs={{ swiper: thumbsSwiper }}
         className="main-slider"
       >
-        {images.map((img, index) => (
+        {validImages.map((img, index) => (
           <SwiperSlide key={index}>
-            <img src={img} alt={`Project ${index + 1}`} />
+            <img
+              src={img}
+              alt={`Project ${index + 1}`}
+              loading="lazy"
+              decoding="async"
+            />
           </SwiperSlide>
         ))}
       </Swiper>
 
       {/* Thumbnail Slider */}
-      <Swiper
-        modules={[Thumbs, Autoplay]}
-        onSwiper={setThumbsSwiper}
-        spaceBetween={24}
-        slidesPerView={4}
-        loop={true}
-        freeMode={true}
-        watchSlidesProgress={true}
-        breakpoints={{
-          0: { slidesPerView: 2, spaceBetween: 15 },
-          480: { slidesPerView: 3, spaceBetween: 15 },
-          768: { slidesPerView: 4, spaceBetween: 15 },
-          992: { spaceBetween: 16 },
-          1200: { spaceBetween: 18 },
-          1600: { spaceBetween: 24 },
-        }}
-        className="thumb-slider"
-      >
-        {images.map((img, index) => (
-          <SwiperSlide key={index}>
-            <img src={img} alt={`Thumb ${index + 1}`} />
-          </SwiperSlide>
-        ))}
-      </Swiper>
+      {validImages.length > 1 && (
+        <Swiper
+          modules={[Thumbs, Autoplay]}
+          onSwiper={setThumbsSwiper}
+          spaceBetween={24}
+          slidesPerView={4}
+          loop={true}
+          freeMode={true}
+          watchSlidesProgress={true}
+          breakpoints={{
+            0: { slidesPerView: 2, spaceBetween: 15 },
+            480: { slidesPerView: 3, spaceBetween: 15 },
+            768: { slidesPerView: 4, spaceBetween: 15 },
+            992: { spaceBetween: 16 },
+            1200: { spaceBetween: 18 },
+            1600: { spaceBetween: 24 },
+          }}
+          className="thumb-slider"
+        >
+          {validImages.map((img, index) => (
+            <SwiperSlide key={index}>
+              <img
+                src={img}
+                alt={`Thumb ${index + 1}`}
+                loading="lazy"
+                decoding="async"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
-};
+});
 
 export default ProjectSlider;
