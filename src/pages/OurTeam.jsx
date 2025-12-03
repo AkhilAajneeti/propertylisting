@@ -254,7 +254,7 @@ const OurTeam = () => {
                     </a>
                   )}
                 </div>
-                <h6 className="text-center mt-2">{member.name}</h6>
+                <h6 className="text-center  mt-2">{member.name}</h6>
                 <p className="text-center text-muted">{member.designation}</p>
               </div>
             </div>
