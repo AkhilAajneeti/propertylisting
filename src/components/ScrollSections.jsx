@@ -13,7 +13,7 @@ const sections = [
     title: "Technology",
     text: "OVA recognizes the exceptional potential of the technology sector, where each breakthrough opens up promising investment opportunities.",
     // image: "/awards/8745tuhgrjrkf.jpg",
-    image: "/public/awards/NEW.png",
+    image: "/awards/NEW.png",
   },
   {
     id: "2022",

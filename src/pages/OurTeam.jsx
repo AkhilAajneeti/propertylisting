@@ -215,7 +215,7 @@ const OurTeam = () => {
 
       {/* leadership Team */}
       <div className="leadershipTeam container pb-md-1 pt-md-4">
-        <div className="row gy-4">
+        <div className="row gy-4 justify-content-center">
           <div className="col-12">
             <h2
               className="text-drop__line fs-1 fw-bold text-center ourFounder"
@@ -225,7 +225,7 @@ const OurTeam = () => {
             </h2>
           </div>
           {managementTeam.map((member) => (
-            <div className="col-12 col-md-3" key={member.id}>
+            <div className="col-12 col-md-4" key={member.id}>
               <div className="shine-animate-item" data-aos="fade-up">
                 <div className="shine-animate position-relative">
                   <img
@@ -264,7 +264,7 @@ const OurTeam = () => {
 
       {/* Management Team */}
       <div className="managementTeam container py-5">
-        <div className="row gy-5">
+        <div className="row gy-5 justify-content-center">
           <div className="col-12">
             <h2
               className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"
@@ -275,7 +275,7 @@ const OurTeam = () => {
           </div>
 
           {leadershipTeam.map((member) => (
-            <div className="col-12 col-md-4" key={member.id}>
+            <div className="col-12 col-md-3" key={member.id}>
               <div className="shine-animate-item p-4" data-aos="fade-up">
                 <div className="shine-animate position-relative">
                   <img
