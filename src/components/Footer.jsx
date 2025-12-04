@@ -5,6 +5,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import { FaThreads } from "react-icons/fa6";
 import ScrollToTop from "./ScrollToTop";
 import { Link } from "react-router-dom";
 
@@ -22,20 +23,38 @@ export default function Footer() {
 
             {/* Social Links */}
             <div className="d-flex gap-3 my-3">
-              <a href="#" className="text-light">
+              <a
+                href="https://www.facebook.com/jenikaventures"
+                className="text-light"
+              >
                 <FaFacebookF />
               </a>
-              <a href="#" className="text-light">
+              <a href="https://x.com/JenikaVentures" className="text-light">
                 <FaTwitter />
               </a>
-              <a href="#" className="text-light">
+              <a
+                href="https://www.linkedin.com/company/71280221/admin/dashboard/"
+                className="text-light"
+              >
                 <FaLinkedinIn />
               </a>
-              <a href="#" className="text-light">
+              <a
+                href="https://www.instagram.com/jenikaventures/"
+                className="text-light"
+              >
                 <FaInstagram />
               </a>
-              <a href="#" className="text-light">
+              <a
+                href="https://www.youtube.com/@jenikaventures"
+                className="text-light"
+              >
                 <FaYoutube />
+              </a>
+              <a
+                href="https://www.threads.com/@jenikaventures"
+                className="text-light"
+              >
+                <FaThreads />
               </a>
             </div>
 
@@ -84,22 +103,34 @@ export default function Footer() {
             <h6 className="fw-bold">Projects</h6>
             <ul className="list-unstyled">
               <li>
-                <Link to="/projects?propertytype=Residential" className="link link--metis">
+                <Link
+                  to="/projects?propertytype=Residential"
+                  className="link link--metis"
+                >
                   Residential
                 </Link>
               </li>
               <li>
-                <Link to="/projects?propertytype=CommerciaLink" className="link link--metis">
+                <Link
+                  to="/projects?propertytype=CommerciaLink"
+                  className="link link--metis"
+                >
                   Commercial
                 </Link>
               </li>
               <li>
-                <Link to="/projects?propertytype=Studio" className="link link--metis">
+                <Link
+                  to="/projects?propertytype=Studio"
+                  className="link link--metis"
+                >
                   Studio Appartments
                 </Link>
               </li>
               <li>
-                <Link to="/projects?propertytype=Plots" className="link link--metis">
+                <Link
+                  to="/projects?propertytype=Plots"
+                  className="link link--metis"
+                >
                   Plots
                 </Link>
               </li>
@@ -185,7 +216,9 @@ export default function Footer() {
         </div>
         <div className=" pt-3 text-center small text-light">
           Developed By{" "}
-          <a href="https://aajneeti.social/" target="_blank">Aajneeti Connect Ltd.</a>
+          <a href="https://aajneeti.social/" target="_blank">
+            Aajneeti Connect Ltd.
+          </a>
         </div>
       </div>
 

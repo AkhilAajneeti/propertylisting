@@ -78,7 +78,7 @@ const Awards = () => {
       <div className="AwardsBanner">
         <h1 className="split2">Awards And Recognition</h1>
       </div>
-      <div className="awardcontent text-center w-100 py-3 d-flex align-items-center justify-content-center ">
+      <div className="awardcontent text-center w-100 pt-3 d-flex align-items-center justify-content-center ">
         <span className="py-5 text-center split2">A</span>
         <span className="py-5 text-center split2">w</span>
         <span className="py-5 text-center split2">a</span>

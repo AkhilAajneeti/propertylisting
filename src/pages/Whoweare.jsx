@@ -60,19 +60,14 @@ const Whoweare = () => {
           style={{ height: "100%", width: "100vw" }}
         >
           <video
-            className="object-fit-cover"
-            style={{
-              height: "550px",
-              width: "100vw",
-              filter: "brightness(0.6)",
-            }}
+            className="object-fit-cover videoSize"
             autoPlay
             loop
             muted
             src="/video.mp4"
           ></video>
         </div>
-        <div className=" whoweare position-absolute top-50 start-50 translate-middle text-white text-center">
+        <div className=" whoweare position-absolute start-50 translate-middle text-white text-center" style={{top:"40%"}}>
           <h1 className="fw-bold split2 remove">WHO WE ARE</h1>
         </div>
       </div>

@@ -134,7 +134,7 @@ const OurTeam = () => {
           <div className="col-12 col-sm-6">
             <img
               src="/ourTeam/boss1.png"
-              alt="teamImg"
+              alt="Team Img"
               loading="lazy"
               className="img-fluid text-drop__img-box"
               style={{ borderRadius: "10px" }}
@@ -145,7 +145,7 @@ const OurTeam = () => {
               <p className="text-start text-drop__line fw-bold fs-4">
                 Abhishek Raj
               </p>
-              <a href="">
+              <a href="https://www.linkedin.com/in/abhishek-raj-42490b21/">
                 <img
                   src="/linkedin2.png"
                   alt="teamImg"
@@ -176,7 +176,7 @@ const OurTeam = () => {
           <div className="col-12 col-sm-6 d-flex flex-column justify-content-center p-2 order-sm-1 order-2">
             <div className="maintext">
               <p className="text-drop__line fw-bold fs-4">Priyanka Marwha</p>
-              <a href="">
+              <a href=" https://www.linkedin.com/in/priyanka-marwha-61290948/">
                 <img
                   src="/linkedin2.png"
                   alt="teamImg"
@@ -215,7 +215,7 @@ const OurTeam = () => {
 
       {/* leadership Team */}
       <div className="leadershipTeam container pb-md-1 pt-md-4">
-        <div className="row gy-4 justify-content-center">
+        <div className="row gy-sm-4 justify-content-center">
           <div className="col-12">
             <h2
               className="text-drop__line fs-1 fw-bold text-center ourFounder"
@@ -227,12 +227,12 @@ const OurTeam = () => {
           {managementTeam.map((member) => (
             <div className="col-12 col-md-4" key={member.id}>
               <div className="shine-animate-item" data-aos="fade-up">
-                <div className="shine-animate position-relative">
+                <div className="shine-animate position-relative d-flex justify-content-center">
                   <img
                     src={member.image}
                     alt={member.name}
                     className="img-fluid"
-                    loading="lazy"
+                    loading="lazy" style={{height:"500px"}}
                   />
                   {member.linkedin_profile && (
                     <a
@@ -254,8 +254,8 @@ const OurTeam = () => {
                     </a>
                   )}
                 </div>
-                <h6 className="text-center  mt-2">{member.name}</h6>
-                <p className="text-center text-muted">{member.designation}</p>
+                {/* <h6 className="text-center  mt-2">{member.name}</h6>
+                <p className="text-center text-muted">{member.designation}</p> */}
               </div>
             </div>
           ))}
@@ -264,7 +264,7 @@ const OurTeam = () => {
 
       {/* Management Team */}
       <div className="managementTeam container py-5">
-        <div className="row gy-5 justify-content-center">
+        <div className="row gy-sm-5 justify-content-center">
           <div className="col-12">
             <h2
               className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"
@@ -304,8 +304,8 @@ const OurTeam = () => {
                     </a>
                   )}
                 </div>
-                <h5 className="text-center mt-3">{member.name}</h5>
-                <p className="text-center text-muted">{member.designation}</p>
+                {/* <h5 className="text-center mt-3">{member.name}</h5>
+                <p className="text-center text-muted">{member.designation}</p> */}
               </div>
             </div>
           ))}

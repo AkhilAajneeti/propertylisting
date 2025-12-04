@@ -37,6 +37,10 @@ html {
   }
 }
 
+.offcanvas {
+  z-index: 99999;
+}
+
 /* === Flower Gallery Swiper === */
 .flower-swiper-container {
   height: 100%;
@@ -1091,18 +1095,6 @@ html {
   justify-content: center;
 }
 
-.OurTeambanner {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('/ourTeam/Team-2.jpg');
-  width: 100%;
-  height: 90vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
-}
-
 .ClientTestimonial {
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('/public/clientBanner.jpg');
   width: 100%;
@@ -1288,10 +1280,10 @@ html {
   }
 
   .AwardsBanner {
-    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/awardMobileBanner.png');
+    /* background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/awardMobileBanner.png'); */
     width: 100%;
-    height: 70vh;
-    background-position: center;
+    height: 35vh;
+    background-position: left;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;
@@ -1301,16 +1293,30 @@ html {
     color: white;
   }
 
-  .CareerBanner,
-  .ContactBanner,
-  .ClientTestimonial {
-    height: 35vh;
-  }
+
 
   .Careercontent p {
     text-align: center !important;
   }
+
+  .CareerBanner,
+  .ContactBanner,
+  .ClientTestimonial,
+  .OurTeambanner,
+  .videoSize {
+    height: 35vh;
+  }
+
 }
+
+.videoSize {
+
+  height: 550px;
+  width: 100vw;
+  filter: brightness(0.6);
+  object-fit: cover;
+}
+
 
 .awardcontent span {
   font-size: 50px;
@@ -2779,13 +2785,15 @@ p {
 
 /* For desktop, keep your old behavior */
 @media (min-width: 768px) {
-   .panel {
+  .panel {
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;
-    background-color: #000; /* fallback color matching awards theme */
+    background-color: #000;
+    /* fallback color matching awards theme */
   }
 }
+
 /* Mobile Height Fix */
 @media (max-width: 768px) {
   .panel {
@@ -2795,7 +2803,8 @@ p {
   .scroll-sections {
     height: 80vh !important;
   }
-  .scroll-sections .overlay{
+
+  .scroll-sections .overlay {
     background: none !important;
   }
 
@@ -3235,12 +3244,14 @@ p {
 }
 
 
-.card-description{
+.card-description {
   color: black;
 }
-.card-price{
+
+.card-price {
   color: #000;
 }
-.table a{
+
+.table a {
   color: rgb(76, 76, 76);
 }
