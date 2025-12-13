@@ -1741,6 +1741,16 @@ svg path {
   border: none;
   z-index: 9;
 }
+.presence .card a {
+  width: fit-content;
+  padding: 7px 18px;
+  border-radius: 22px;
+  border: none;
+  z-index: 9;
+  background-color: white;
+  text-decoration: none;
+  color: #000;
+}
 
 .map iframe {
   width: 100%;
@@ -3253,4 +3263,9 @@ p {
 
 .table a {
   color: rgb(76, 76, 76);
+}
+
+
+.contactCard .card{
+min-height:302px;
 }

@@ -14,7 +14,11 @@ import { IoIosMail } from "react-icons/io";
 import { PiBuildingOfficeFill } from "react-icons/pi";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import "swiper/css/navigation";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import SplitType from "split-type";
 import { toast } from "react-toastify";
 import { submitContactForm } from "../api/contactApi";
@@ -252,12 +256,12 @@ const Contact = () => {
         </div>
       </div>
 
-      <div className="presence pb-5">
+      <div className="presence pb-5 contactCard">
         <div className="container">
-          <div className="presenceContent d-flex justify-content-between align-items-center py-1">
+          <div className="presenceContent d-flex justify-content-between align-items-center py-1 flex-column flex-sm-row">
             <div className="left">
-              <h1 className="text-drop__line ">Our Presence</h1>
-              <p className="text-drop__line">
+              <h1 className="text-drop__line  text-center text-sm-start">Our Presence</h1>
+              <p className="text-drop__line text-center text-sm-start">
                 Let’s Connect and Build Your Dream Home Together
               </p>
             </div>
@@ -269,8 +273,39 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="row gy-2">
-            <div className="col-12 col-sm-4">
+
+          {/*  */}
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            modules={[Pagination, Autoplay, Navigation, EffectFade]}
+            loop={true}
+            pagination={{
+              el: ".custom-pagination",
+              clickable: true,
+              renderBullet: (index, className) => {
+                return `<span class="${className}"></span>`;
+              },
+            }}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1, // 👈 mobile (default)
+              },
+              768: {
+                slidesPerView: 2, // 👈 tablets
+              },
+              1024: {
+                slidesPerView: 3, // 👈 desktop
+              },
+            }}
+            className="mySwiper-2 py-3"
+          >
+            <SwiperSlide>
               <div className="card shine precard ">
                 <div className="logo m-auto">
                   <img
@@ -280,24 +315,26 @@ const Contact = () => {
                     className="ms-4"
                   />
                 </div>
-                <h4 className="text-center">Banglore</h4>
+                <h4 className="text-center">Noida</h4>
                 <ul>
                   <li>
-                    <FaLocationDot /> H210 36/5 Hustlehub Tech Park, Sector 2,
-                    HSR Layout, Bengaluru, Karnataka 560102
+                    <FaLocationDot /> 203-205, 2nd Floor, Tower-1, Assotech
+                    Business Cresterra, Sector 135, Noida, Uttar Pradesh 201304
                   </li>
                   <li>
-                    <IoIosCall /> 6390509090
+                    <IoIosCall /> +91 99995 70772
                   </li>
                   <li>
                     <IoIosMail /> info@jenikaventures.com
                   </li>
                 </ul>
-                <button>Direction</button>
+                {/* <button>Direction</button> */}
+                <a href="https://maps.app.goo.gl/HuANsCQeA4UbNRzg6" target="_blank">Direction</a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
-            </div>
-            <div className="col-12 col-sm-4">
+            </SwiperSlide>
+
+            <SwiperSlide>
               <div className="card shine precard ">
                 <div className="logo m-auto">
                   <img
@@ -307,24 +344,26 @@ const Contact = () => {
                     className="ms-4"
                   />
                 </div>
-                <h4 className="text-center">Banglore</h4>
+                <h4 className="text-center">Gurgaon</h4>
                 <ul>
                   <li>
-                    <FaLocationDot /> H210 36/5 Hustlehub Tech Park, Sector 2,
-                    HSR Layout, Bengaluru, Karnataka 560102
+                    <FaLocationDot /> 5th floor, Suncity Success Tower, Unit
+                    no.508, Sector 65, Gurugram, Haryana 122101
                   </li>
                   <li>
-                    <IoIosCall /> 6390509090
+                    <IoIosCall /> +91 98736 38389
                   </li>
                   <li>
                     <IoIosMail /> info@jenikaventures.com
                   </li>
                 </ul>
-                <button>Direction</button>
+                {/* <button>Direction</button> */}
+                  <a href="https://maps.app.goo.gl/1fhgbb8uZXyDNw218" target="_blank">Direction</a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
-            </div>
-            <div className="col-12 col-sm-4">
+            </SwiperSlide>
+
+            <SwiperSlide>
               <div className="card shine precard ">
                 <div className="logo m-auto">
                   <img
@@ -334,24 +373,55 @@ const Contact = () => {
                     className="ms-4"
                   />
                 </div>
-                <h4 className="text-center">Banglore </h4>
+                <h4 className="text-center">Kolkata </h4>
                 <ul>
                   <li>
-                    <FaLocationDot /> H210 36/5 Hustlehub Tech Park, Sector 2,
-                    HSR Layout, Bengaluru, Karnataka 560102
+                    <FaLocationDot /> 5th Floor, PS ABACUS, Unit No. 511, PLOT
+                    NO- 11E/23, near CC2, Newtown, Kolkata, West Bengal 700156
                   </li>
                   <li>
-                    <IoIosCall /> 6390509090
+                    <IoIosCall /> +91 98362 58140
                   </li>
                   <li>
                     <IoIosMail /> info@jenikaventures.com
                   </li>
                 </ul>
-                <button>Direction</button>
+                {/* <button>Direction</button> */}
+                  <a href="https://maps.app.goo.gl/WDuXaAADaqBzmp2v7" target="_blank">Direction</a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
-            </div>
-          </div>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <div className="card shine precard ">
+                <div className="logo m-auto">
+                  <img
+                    src="/Group-2.png"
+                    alt="Anarock"
+                    height="50"
+                    className="ms-4"
+                  />
+                </div>
+                <h4 className="text-center">Bengaluru </h4>
+                <ul>
+                  <li>
+                    <FaLocationDot />
+                    H210 36/5 Hustlehub Tech Park, Sector 2, HSR Layout,
+                    Bengaluru, Karnataka 560102
+                  </li>
+                  <li>
+                    <IoIosCall /> +91 90083 50584
+                  </li>
+                  <li>
+                    <IoIosMail /> info@jenikaventures.com
+                  </li>
+                </ul>
+                {/* <button>Direction</button> */}
+                  <a href="https://maps.app.goo.gl/BTDXuw9WeA2GWQgKA" target="_blank">Direction</a>
+                <img src="/globe.png" alt="" className="overflowImg" />
+              </div>
+            </SwiperSlide>
+          </Swiper>
         </div>
       </div>
       <div className="map">
