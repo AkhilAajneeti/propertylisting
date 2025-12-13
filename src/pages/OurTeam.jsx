@@ -245,7 +245,7 @@ const OurTeam = () => {
                         alt="linkedin"
                         style={{
                           position: "absolute",
-                          right: "10px",
+                          right: "42px",
                           bottom: "10px",
                           width: "35px",
                           height: "35px",
@@ -295,7 +295,7 @@ const OurTeam = () => {
                         alt="linkedin"
                         style={{
                           position: "absolute",
-                          right: "28px",
+                          right: "24px",
                           bottom: "10px",
                           width: "35px",
                           height: "35px",
