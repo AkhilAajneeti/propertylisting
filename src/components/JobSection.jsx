@@ -100,8 +100,8 @@ const JobSection = () => {
               <div className="job-info">
                 <h4 className="job-title">{job.title}</h4>
                 <p className="job-meta">
-                  <span>◆ Rs. {job.salary}</span>
-                  <span>{job.location}</span>
+                  <span>◆ Rs. {job.salary}</span><br />
+                  <span>◆ {job.location}</span>
                 </p>
               </div>
               <Link className="apply-btn" to={`/job/${job.id}`}>

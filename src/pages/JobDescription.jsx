@@ -103,60 +103,62 @@ const JobDescription = () => {
             </h4>
           </div>
 
-          <div className="col-sm-6">
-            <h4 className="fw-bold mb-4">Apply Now</h4>
+          <div className="col-sm-6 d-flex justify-content-center">
+            <div className="ContactForm">
+              <h4 className="fw-bold mb-4">Apply Now</h4>
 
-            <form className="row g-3" onSubmit={handleSubmit}>
-              <div className="col-md-12">
-                <label className="form-label">Full Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
+              <form className="row g-3" onSubmit={handleSubmit}>
+                <div className="col-md-12">
+                  <label className="form-label">Full Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
 
-              <div className="col-md-12">
-                <label className="form-label">Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
+                <div className="col-md-12">
+                  <label className="form-label">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="form-control"
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
 
-              <div className="col-md-12">
-                <label className="form-label">Phone Number</label>
-                <input
-                  type="text"
-                  name="mobile"
-                  className="form-control"
-                  required
-                  onChange={handleChange}
-                />
-              </div>
+                <div className="col-md-12">
+                  <label className="form-label">Phone Number</label>
+                  <input
+                    type="text"
+                    name="mobile"
+                    className="form-control"
+                    required
+                    onChange={handleChange}
+                  />
+                </div>
 
-              <div className="col-md-12">
-                <label className="form-label">Upload Resume</label>
-                <input
-                  type="file"
-                  className="form-control"
-                  accept=".pdf,.doc,.docx"
-                  required
-                  onChange={handleFileChange}
-                />
-              </div>
+                <div className="col-md-12">
+                  <label className="form-label">Upload Resume</label>
+                  <input
+                    type="file"
+                    className="form-control"
+                    accept=".pdf,.doc,.docx"
+                    required
+                    onChange={handleFileChange}
+                  />
+                </div>
 
-              <div className="col-12">
-                <button className="applyBTN" type="submit">
-                  Apply Now <FaTelegramPlane />
-                </button>
-              </div>
-            </form>
+                <div className="col-12">
+                  <button className="applyBTN" type="submit">
+                    Apply Now <FaTelegramPlane />
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>

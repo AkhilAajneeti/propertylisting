@@ -69,7 +69,7 @@ const Home = () => {
       <RealEstateTabs projects={projects || []} />
 
       <Portfolio />
-      <Testimonial />
+      <Testimonial  bgColor="linear-gradient(1200deg, #f5e7ad 1.99%, #f5ebac 0.49%, #b49249 100%)"/>
 
       <Whycarousel />
     </div>
