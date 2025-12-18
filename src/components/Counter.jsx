@@ -71,7 +71,7 @@ const CounterSection = () => {
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
           <NumberCounter end={100} duration={2} /> +<br />
-          <span className="color-brown">Happy Customer</span>
+          <span className="color-brown">Developers</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
           <NumberCounter end={700} duration={2} /> +<br />
