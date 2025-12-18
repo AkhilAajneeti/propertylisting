@@ -183,11 +183,11 @@ export default function Footer() {
               </li>
               <li>
                 <Link to="/contact" className="link link--metis">
-                  CONTACT US
+                  Contact us
                 </Link>
               </li>
               <li>
-                <Link href="/privacypolicy" className="link link--metis">
+                <Link to="/privacypolicy" className="link link--metis">
                   Privacy Policy
                 </Link>
               </li>

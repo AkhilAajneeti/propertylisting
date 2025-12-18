@@ -1539,7 +1539,7 @@ html {
 
 .swiper-button-next,
 .swiper-button-prev {
-  background: #e94b35;
+  background: #c80a17;
   color: #fff;
   font-size: 10px !important;
   padding: 15px;
@@ -1574,7 +1574,7 @@ html {
 }
 
 .custom-pagination .swiper-pagination-bullet-active {
-  background: #e94b35;
+  background: #ab020e;
   width: 35px;
 
 }
@@ -3268,4 +3268,21 @@ p {
 
 .contactCard .card{
 min-height:302px;
+}
+
+.privacy li {
+   list-style-type: disc!important;
+}
+
+.color-mehroon{
+  color: #c80a17;
+}
+.privacyContact{
+  font-weight: 500;
+}
+.privacyContact a{
+  color:#c80a17 ;
+}
+.privacyContact a:hover{
+  color:#ab020e ;
 }

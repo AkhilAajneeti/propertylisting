@@ -23,6 +23,7 @@ import { useEffect } from "react";
 import Lenis from "@studio-freight/lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
   useEffect(() => {
@@ -71,6 +72,7 @@ function App() {
         <Route path="/thankyou" element={<Thankyou />} />
         <Route path="/job/:id" element={<JobDescription />} />
         <Route path="/search-projects" element={<SearchedProject />} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
       </Routes>
       <Footer />
     </>
