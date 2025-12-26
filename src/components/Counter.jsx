@@ -59,30 +59,26 @@ const CounterSection = () => {
         color: "white",
       }}
     >
-      <div className="row text-center gy-2 g-md-0">
+      <div className="row text-center gy-2 g-md-0 align-content-center justify-content-center">
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={72418} duration={2} /> Cr.
+          <NumberCounter end={1000} duration={2} /> +
           <br />
-          <span className="color-brown">Worth property sold</span>
+          <span className="color-brown">Happy Familys </span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={150000} duration={2} /> +<br />
-          <span className="color-brown">Happy Customer</span>
+          <NumberCounter end={1000} duration={2} /> Cr +<br />
+          <span className="color-brown">Turnover sold property</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={100} duration={2} /> +<br />
-          <span className="color-brown">Developers</span>
-        </div>
-        <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={700} duration={2} /> +<br />
+          <NumberCounter end={250} duration={2} /> +<br />
           <span className="color-brown">Projects</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={30} duration={2} /> +<br />
+          <NumberCounter end={6} duration={2} /> +<br />
           <span className="color-brown">Offices in India</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={3} duration={2} /> +<br />
+          <NumberCounter end={1} duration={2} /> +<br />
           <span className="color-brown">Offices Worldwide</span>
         </div>
       </div>

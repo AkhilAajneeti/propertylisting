@@ -16,7 +16,7 @@ const TestimonialCard = React.memo(({ item }) => (
     <div className="d-flex justify-content-between align-items-center mt-4">
       <div className="d-flex align-items-center">
         <img
-          src={item.image || "/client-1.png"}
+          src={item.image || "/user.png"}
           alt={item.name}
           width="70"
           height="70"

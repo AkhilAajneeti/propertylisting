@@ -34,7 +34,127 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/Gaur.png"
-              alt=""
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+            <SwiperSlide>
+            <img
+              src="/builder/experion-developers.jpeg"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+            <SwiperSlide>
+            <img
+              src="/builder/smartworld-blue-logo.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/county-group.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/Eldeco.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/Omaxe.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/ace-group-original.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/signature.jpeg"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/EMAAR_WORD_MARK_EN-1.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+          <SwiperSlide>
+            <img
+              src="/builder/centralpark.png"
+              alt="developere_Logo"
+              className="img-fluid"
+              loading="lazy"
+              width="424"
+              height="217"
+              decoding="async"
+              style={{ objectFit: "contain" }}
+            />
+          </SwiperSlide>
+           <SwiperSlide>
+            <img
+              src="/builder/shapoolji.jpg"
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -46,7 +166,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/M3M.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -58,7 +178,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/l&t.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -70,7 +190,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/elan.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -82,7 +202,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/tata.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -94,7 +214,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/godrejLogo.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -106,7 +226,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/ATS-1.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -118,7 +238,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/Bhutani-1.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -130,7 +250,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/lodha.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -142,7 +262,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/DLF.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -154,7 +274,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/prestige.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -166,7 +286,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/Adity.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -178,7 +298,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/max.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"
@@ -190,7 +310,7 @@ const Portfolio = () => {
           <SwiperSlide>
             <img
               src="/builder/sobha.png"
-              alt=""
+              alt="developere_Logo"
               className="img-fluid"
               loading="lazy"
               width="424"

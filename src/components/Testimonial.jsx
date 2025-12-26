@@ -33,7 +33,10 @@ const Testimonial = ({ bgColor }) => {
   }, []);
   if (loading) return <Loader />;
   return (
-    <section className="googleReview py-0 py-md-4" style={{ background: bgColor }}>
+    <section
+      className="googleReview py-0 py-md-4"
+      style={{ background: bgColor }}
+    >
       {/*  */}
       <div className="container py-5">
         <div className="row">
@@ -64,37 +67,30 @@ const Testimonial = ({ bgColor }) => {
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                <img
-                  className="rounded-circle"
-                  width="50"
-                  height="50"
-                  src="/client-1.png"
-                  alt="clientImg"
-                />
-                <img
-                  className="rounded-circle"
-                  style={{ border: "2px solid #fff", marginLeft: "-15px" }}
-                  width="50"
-                  height="50"
-                  src="/client-2.png"
-                  alt="clientImg"
-                />
-                <img
-                  className="rounded-circle"
-                  style={{ border: "2px solid #fff", marginLeft: "-15px" }}
-                  width="50"
-                  height="50"
-                  src="/client-3.png"
-                  alt="clientImg"
-                />
-                <p className="ciclecards">10K</p>
+                {testimonials.slice(0, 3).map((item, index) => (
+                  <img
+                    key={item.id}
+                    className="rounded-circle"
+                    width="50"
+                    height="50"
+                    src={item.image}
+                    alt={item.name || "/user.png"}
+                    style={{
+                      border: "2px solid #fff",
+                      marginLeft: index === 0 ? "0px" : "-15px",
+                    }}
+                  />
+                ))}
+
+                
+                <p className="ciclecards">200+</p>
               </div>
               <p
                 className="fw-medium"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                More Than <span className="text-gradient fs-5">25K</span>{" "}
+                More Than <span className="text-gradient fs-5">500+</span>{" "}
                 Clients Reviews
               </p>
             </div>
