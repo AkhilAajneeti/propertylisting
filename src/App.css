@@ -1163,7 +1163,7 @@ color:#c62828;
   color: white;
 }
 .PrivacyBanner .content{
-  padding:160px ;
+  padding:150px 100px;
 }
 @media (max-width:780px){
   .PrivacyBanner .content{

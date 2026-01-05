@@ -191,6 +191,11 @@ export default function Footer() {
                   Privacy Policy
                 </Link>
               </li>
+              <li>
+                <Link to="/terms-and-conditions" className="link link--metis">
+                  Terms And Conditions
+                </Link>
+              </li>
             </ul>
             <h6 className="fw-bold">Insights</h6>
             <ul className="list-unstyled">
