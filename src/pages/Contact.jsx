@@ -153,8 +153,13 @@ const Contact = () => {
                       required
                     ></textarea>
                   </div>
-                  <p className="text-center text-light">I authorize jenika ventures to send notifications via SMS, RCS, Call</p>
-
+                  <div className=" col-12 d-flex align-items-baseline justify-content-center gap-2">
+                    <input type="checkbox" checked className="w-auto " />
+                    <p className="text-light">
+                      I authorize jenika ventures to send notifications via SMS,
+                      RCS, Call
+                    </p>
+                  </div>
                   <div className="col-12 text-center">
                     <button
                       type="submit"
@@ -261,7 +266,9 @@ const Contact = () => {
         <div className="container">
           <div className="presenceContent d-flex justify-content-between align-items-center py-1 flex-column flex-sm-row">
             <div className="left">
-              <h1 className="text-drop__line  text-center text-sm-start">Our Presence</h1>
+              <h1 className="text-drop__line  text-center text-sm-start">
+                Our Presence
+              </h1>
               <p className="text-drop__line text-center text-sm-start">
                 Let’s Connect and Build Your Dream Home Together
               </p>
@@ -330,7 +337,12 @@ const Contact = () => {
                   </li>
                 </ul>
                 {/* <button>Direction</button> */}
-                <a href="https://maps.app.goo.gl/HuANsCQeA4UbNRzg6" target="_blank">Direction</a>
+                <a
+                  href="https://maps.app.goo.gl/HuANsCQeA4UbNRzg6"
+                  target="_blank"
+                >
+                  Direction
+                </a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </SwiperSlide>
@@ -359,7 +371,12 @@ const Contact = () => {
                   </li>
                 </ul>
                 {/* <button>Direction</button> */}
-                  <a href="https://maps.app.goo.gl/1fhgbb8uZXyDNw218" target="_blank">Direction</a>
+                <a
+                  href="https://maps.app.goo.gl/1fhgbb8uZXyDNw218"
+                  target="_blank"
+                >
+                  Direction
+                </a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </SwiperSlide>
@@ -388,7 +405,12 @@ const Contact = () => {
                   </li>
                 </ul>
                 {/* <button>Direction</button> */}
-                  <a href="https://maps.app.goo.gl/WDuXaAADaqBzmp2v7" target="_blank">Direction</a>
+                <a
+                  href="https://maps.app.goo.gl/WDuXaAADaqBzmp2v7"
+                  target="_blank"
+                >
+                  Direction
+                </a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </SwiperSlide>
@@ -418,7 +440,12 @@ const Contact = () => {
                   </li>
                 </ul>
                 {/* <button>Direction</button> */}
-                  <a href="https://maps.app.goo.gl/BTDXuw9WeA2GWQgKA" target="_blank">Direction</a>
+                <a
+                  href="https://maps.app.goo.gl/BTDXuw9WeA2GWQgKA"
+                  target="_blank"
+                >
+                  Direction
+                </a>
                 <img src="/globe.png" alt="" className="overflowImg" />
               </div>
             </SwiperSlide>
