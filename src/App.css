@@ -613,6 +613,10 @@ html {
   transition: width 0.3s ease;
   opacity: 0;
 }
+.offcanvas .nav-link::after{
+color:#c62828;
+}
+
 
 .navbar-nav .nav-link:hover::after {
   width: 100%;

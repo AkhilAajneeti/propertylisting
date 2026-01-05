@@ -102,7 +102,7 @@ const Contact = () => {
               team is always here to help you
             </p>
           </div>
-          <div className="row py-5">
+          <div className="row pt-5 pb-3 gy-4">
             <div className="col-12 col-sm-6 formcol">
               <h1>
                 Send us a <span className="brown">message</span>
@@ -153,6 +153,7 @@ const Contact = () => {
                       required
                     ></textarea>
                   </div>
+                  <p className="text-center text-light">I authorize jenika ventures to send notifications via SMS, RCS, Call</p>
 
                   <div className="col-12 text-center">
                     <button
