@@ -206,7 +206,7 @@ const Contact = () => {
                       </div>
                       <div className="content">
                         <h5>Phone Number :</h5>
-                        <p>Office: 6390509090</p>
+                        <p>Office: 9999570772</p>
                       </div>
                     </div>
                   </li>
