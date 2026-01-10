@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { BiPhoneCall } from "react-icons/bi";
 import {
   Navbar,
   Nav,
@@ -35,7 +36,10 @@ function CustomNavbar() {
                 id="aboutus-dropdown"
                 show={hoveredDropdown === "about"}
                 onMouseEnter={() => setHoveredDropdown("about")}
-               onMouseLeave={() => setTimeout(() => setHoveredDropdown(null), 150)}>
+                onMouseLeave={() =>
+                  setTimeout(() => setHoveredDropdown(null), 150)
+                }
+              >
                 <NavDropdown.Item
                   as={NavLink}
                   to="/whoweare"
@@ -129,6 +133,12 @@ function CustomNavbar() {
               </Nav.Link>
               <Nav.Link as={NavLink} to="/contact">
                 CONTACT US
+              </Nav.Link>
+            </Nav>
+            <Nav>
+              <Nav.Link href="tel:9999570772" className="call-btn2">
+                <img src="public/phone-call.png" alt="phone Button" />
+                9999570772
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
