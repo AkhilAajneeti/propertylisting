@@ -137,7 +137,7 @@ function CustomNavbar() {
             </Nav>
             <Nav>
               <Nav.Link href="tel:9999570772" className="call-btn2">
-                <img src="public/phone-call.png" alt="phone Button" />
+                <img src="/phone-call.png" alt="phone Button" />
                 9999570772
               </Nav.Link>
             </Nav>
