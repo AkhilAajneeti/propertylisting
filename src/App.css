@@ -993,7 +993,8 @@ html {
 /*  */
 .card {
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 5px;
+  margin: 2px;
 }
 
 .card-img-wrapper {
@@ -1597,10 +1598,11 @@ html {
   justify-content: center;
   gap: 8px;
 }
-@media(max-width:780px){
+
+@media(max-width:780px) {
   .custom-pagination {
-  gap: 0px!important;
-}
+    gap: 0px !important;
+  }
 }
 
 .custom-pagination .swiper-pagination-bullet {
@@ -2194,7 +2196,7 @@ p {
 }
 
 .projectBtn a {
-  color: #ffffff;
+  color: #fff !important;
   text-decoration: none;
   display: inline-block;
 }
@@ -3324,10 +3326,12 @@ p {
 
 .card-price {
   color: #000;
+  font-size: 20px !important;
 }
+
 .card-config {
-     font-size: 24px;
-    color: black;
+  font-size: 20px;
+  color: black;
 }
 
 .table a {
@@ -3360,8 +3364,9 @@ p {
 }
 
 /*  */
-.project_param{
-height: 30px!important;
-    width: 30px !important;
-    padding: 0px;
+.card-price .project_param,
+.card-config .project_param {
+  height: 25px !important;
+  width: 25px !important;
+  padding: 2px;
 }

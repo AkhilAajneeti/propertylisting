@@ -5,7 +5,7 @@ import { SlCalender } from "react-icons/sl";
 
 const PostCard = React.memo(({ data }) => {
   return (
-    <div className="card shadow-sm border-0">
+    <div className="card border-0">
       <div className="card-img-wrapper rounded-2 overflow-hidden">
         <img
           src={data.image}
@@ -25,7 +25,8 @@ const PostCard = React.memo(({ data }) => {
         </div>
 
         <Link to={`/blog/${data.id}/${data.blogslug}`} className="text-dark">
-          <h5 className="card-title fw-bold">{data.title}</h5>
+          <h5 className="card-title
+           fw-bold">{data.title}</h5>
         </Link>
 
         <p className="card-text text-muted">
