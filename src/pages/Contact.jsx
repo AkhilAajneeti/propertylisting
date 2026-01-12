@@ -105,7 +105,7 @@ const Contact = () => {
           <div className="row pt-5 pb-3 gy-4">
             <div className="col-12 col-sm-6 formcol">
               <h1>
-                Send us a <span className="brown">message</span>
+                Send Us a <span className="brown">Message</span>
               </h1>
               <p className="text-white">We’ll Contact You Within 24 Hours</p>
               <form className="pt-4" onSubmit={handleSubmit}>
@@ -136,7 +136,7 @@ const Contact = () => {
                     <input
                       type="tel"
                       name="mobile"
-                      placeholder="Your phone number"
+                      placeholder="Your Phone Number"
                       value={form.mobile}
                       onChange={handleChange}
                       required
@@ -156,8 +156,7 @@ const Contact = () => {
                   <div className=" col-12 d-flex align-items-baseline justify-content-center gap-2">
                     <input type="checkbox" checked className="w-auto " />
                     <p className="text-light">
-                      I authorize jenika ventures to send notifications via SMS,
-                      RCS, Call
+                     I authorize Jenika Ventures to send notifications via SMS, RCS, and calls.
                     </p>
                   </div>
                   <div className="col-12 text-center">

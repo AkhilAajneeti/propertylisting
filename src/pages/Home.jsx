@@ -15,8 +15,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
   const dispatch = useDispatch();
-  // const [projects, setProjects] = useState([]);
-  // const [loading, setLoading] = useState(true);
   const { data: projects, error } = useSelector((state) => state.projects);
 
   // ✅ Fetch data once when component mounts

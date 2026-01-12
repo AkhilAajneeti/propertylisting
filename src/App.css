@@ -2301,7 +2301,7 @@ p {
 }
 
 .search-btn {
-  background: linear-gradient(68deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
+  background:linear-gradient(327deg, #c80a17 20%, #000000) 45%;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -2312,8 +2312,7 @@ p {
 }
 
 .search-btn:hover {
-  background: linear-gradient(68deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
-  ;
+  background: linear-gradient(327deg, #c80a17 20%, #000000) 45%;
 }
 
 /* ===========================
@@ -2543,6 +2542,7 @@ p {
 
 .tab-btn:hover {
   background: linear-gradient(327deg, #c80a17 20%, #000000) 45%;
+  transform: translateY(-3px);
 }
 
 .tab-content p {

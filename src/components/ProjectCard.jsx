@@ -23,8 +23,7 @@ const ProjectCard = React.memo(({ project }) => {
 
         <div className="table p-3 ele-1">
           <h6 className="category text-info">
-         
-            {(project.City || project.projectbrand || "—")} 
+            {project.City || project.projectbrand || "—"}
             {project.Project_Location ? ` | ${project.Project_Location}` : ""}
           </h6>
 
@@ -34,12 +33,18 @@ const ProjectCard = React.memo(({ project }) => {
           >
             <h4 className="card-description fs-4">{project.Title}</h4>
             <p className="card-price fs-4">{project.Price}</p>
+            <p className="card-price fs-4">{project.Configuration}</p>
           </Link>
 
           <div className="pt-4">
-            <Link to={`/projects/${project.id}/${project.project_slug}`}>
-              View Details
-            </Link>
+            <div class="tg-button-wrap">
+              <Link
+                to={`/projects/${project.id}/${project.project_slug}`}
+                class="btn border-white"
+              >
+                View Details
+              </Link>
+            </div>
           </div>
         </div>
       </div>

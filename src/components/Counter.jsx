@@ -63,11 +63,11 @@ const CounterSection = () => {
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
           <NumberCounter end={1000} duration={2} /> +
           <br />
-          <span className="color-brown">Happy Familys </span>
+          <span className="color-brown">Happy Families </span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={1} duration={1} />.5 million <br />
-          <span className="color-brown">Area sold</span>
+          <NumberCounter end={1} duration={1} />.5 Million <br />
+          <span className="color-brown">Area Sold</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
           <NumberCounter end={250} duration={2} /> +<br />
