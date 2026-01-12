@@ -133,9 +133,9 @@ const Testimonial = ({ bgColor }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="swiper-controls d-flex justify-content-center align-items-center mt-3">
+            <div className="swiper-controls d-flex justify-content-center align-items-sm-center mt-3">
               <div className="swiper-button-prev"></div>
-              <div className="custom-pagination mx-3"></div>
+              <div className="custom-pagination mx-sm-3"></div>
               <div className="swiper-button-next"></div>
             </div>
           </div>

@@ -613,8 +613,9 @@ html {
   transition: width 0.3s ease;
   opacity: 0;
 }
-.offcanvas .nav-link::after{
-color:#c62828;
+
+.offcanvas .nav-link::after {
+  color: #c62828;
 }
 
 
@@ -622,6 +623,7 @@ color:#c62828;
   width: 100%;
   opacity: 1;
 }
+
 .navbar-nav .nav-link.call-btn2:hover::after {
   width: 100%;
   opacity: 0;
@@ -1153,12 +1155,13 @@ color:#c62828;
   flex-direction: column;
   color: white;
 }
+
 .PrivacyBanner {
   background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(65, 56, 56, 0)), url('/contact2.jpg');
   width: 100%;
   height: 100%;
   background-position: center;
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
@@ -1166,13 +1169,15 @@ color:#c62828;
   flex-direction: column;
   color: white;
 }
-.PrivacyBanner .content{
-  padding:150px 100px;
+
+.PrivacyBanner .content {
+  padding: 150px 100px;
 }
-@media (max-width:780px){
-  .PrivacyBanner .content{
-  padding:130px 0px;
-}
+
+@media (max-width:780px) {
+  .PrivacyBanner .content {
+    padding: 130px 0px;
+  }
 }
 
 .AwardsBanner {
@@ -1592,6 +1597,11 @@ color:#c62828;
   justify-content: center;
   gap: 8px;
 }
+@media(max-width:780px){
+  .custom-pagination {
+  gap: 0px!important;
+}
+}
 
 .custom-pagination .swiper-pagination-bullet {
   width: 30px;
@@ -1770,6 +1780,7 @@ svg path {
   border: none;
   z-index: 9;
 }
+
 .presence .card a {
   width: fit-content;
   padding: 7px 18px;
@@ -2174,6 +2185,31 @@ p {
   font-size: 30px;
 }
 
+.projectBtn {
+  background: linear-gradient(129deg, #c80a17 35%, #000000 80%);
+  padding: 8px 20px;
+  border-radius: 25px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.projectBtn a {
+  color: #ffffff;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.projectBtn:hover {
+  background: linear-gradient(129deg, #0e0d0d 35%, #000000 80%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.projectBtn:hover a {
+  color: #ffffff;
+}
+
+
 .employeeTestimonial {
   position: relative;
   background-image: url("/counter-one-shape1.png");
@@ -2301,7 +2337,7 @@ p {
 }
 
 .search-btn {
-  background:linear-gradient(327deg, #c80a17 20%, #000000) 45%;
+  background: linear-gradient(327deg, #c80a17 20%, #000000) 45%;
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -3289,29 +3325,43 @@ p {
 .card-price {
   color: #000;
 }
+.card-config {
+     font-size: 24px;
+    color: black;
+}
 
 .table a {
   color: rgb(76, 76, 76);
 }
 
 
-.contactCard .card{
-min-height:302px;
+.contactCard .card {
+  min-height: 302px;
 }
 
 .privacy li {
-   list-style-type: disc!important;
+  list-style-type: disc !important;
 }
 
-.color-mehroon{
+.color-mehroon {
   color: #c80a17;
 }
-.privacyContact{
+
+.privacyContact {
   font-weight: 500;
 }
-.privacyContact a{
-  color:#c80a17 ;
+
+.privacyContact a {
+  color: #c80a17;
 }
-.privacyContact a:hover{
-  color:#ab020e ;
+
+.privacyContact a:hover {
+  color: #ab020e;
+}
+
+/*  */
+.project_param{
+height: 30px!important;
+    width: 30px !important;
+    padding: 0px;
 }

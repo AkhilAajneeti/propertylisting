@@ -32,19 +32,22 @@ const ProjectCard = React.memo(({ project }) => {
             style={{ textDecoration: "none" }}
           >
             <h4 className="card-description fs-4">{project.Title}</h4>
-            <p className="card-price fs-4">{project.Price}</p>
-            <p className="card-price fs-4">{project.Configuration}</p>
+            <p className="card-price fs-4 mb-0">
+              {" "}
+              <img src="/rupee.png" alt="" className="project_param" />
+              {project.Price}
+            </p>
+            <p className="card-config">
+              <img src="/stack.png" alt="" className="project_param" />
+              {project.Configuration?.length
+                ? project.Configuration.join(", ")
+                : "Configuration not available"}
+            </p>
           </Link>
-
-          <div className="pt-4">
-            <div class="tg-button-wrap">
-              <Link
-                to={`/projects/${project.id}/${project.project_slug}`}
-                class="btn border-white"
-              >
-                View Details
-              </Link>
-            </div>
+          <div className="projectBtn">
+            <Link to={`/projects/${project.id}/${project.project_slug}`}>
+              View Details
+            </Link>
           </div>
         </div>
       </div>
