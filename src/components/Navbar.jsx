@@ -18,6 +18,7 @@ function CustomNavbar() {
 
   return (
     <>
+ 
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">
@@ -136,7 +137,7 @@ function CustomNavbar() {
               </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link href="tel:9999570772" className="call-btn2">
+              <Nav.Link href="tel:+919999570772" className="call-btn2">
                 <img src="/phone-call.png" alt="phone Button" />
                 9999570772
               </Nav.Link>
@@ -252,8 +253,15 @@ function CustomNavbar() {
               CONTACT US
             </Nav.Link>
           </Nav>
+           <Nav className="mobile_button ">
+              <Nav.Link href="tel:+919999570772" className="call-btn2">
+                <img src="/phone-call.png" alt="phone Button" />
+                9999570772
+              </Nav.Link>
+            </Nav>
         </Offcanvas.Body>
       </Offcanvas>
+   
     </>
   );
 }

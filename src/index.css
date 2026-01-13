@@ -1129,24 +1129,27 @@ span img {
 }
 
 /* call button */
+
+.offcanvas .mobile_button {
+  display: inline-block !important;
+}
+
+.offcanvas .mobile_button .call-btn2,
 .call-btn2 {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 8px 14px;
   border-radius: 6px;
-  background: linear-gradient(
-    135deg,
-    #b49249 0%,
-    #f6ea9d 49.49%,
-    #b49249 100%
-  );
-  color: #ffffff !important;
+  background: linear-gradient(327deg, #c80a17 20%, #000000) 45%;
+  color: white !important;
   font-weight: 600;
+  -webkit-text-fill-color: #ffffff !important;
   font-size: 18px;
   border: none;
   transition: transform 0.3s ease-in-out, box-shadow 0.25s ease-in-out;
 }
+
 
 /* Hover effect */
 .call-btn2:hover {
@@ -1167,4 +1170,3 @@ span img {
 .call-btn2:focus {
   text-decoration: none;
 }
-
