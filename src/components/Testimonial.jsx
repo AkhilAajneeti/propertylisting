@@ -33,10 +33,9 @@ const Testimonial = ({ bgColor }) => {
   }, []);
   if (loading) return <Loader />;
   return (
-    <section
-      className="googleReview py-0 py-md-4"
-      style={{ background: bgColor }}
-    >
+    <section className="googleReview py-0 py-md-4"
+      style={{ background: bgColor }}>
+     
       {/*  */}
       <div className="container py-5">
         <div className="row">
@@ -82,7 +81,6 @@ const Testimonial = ({ bgColor }) => {
                   />
                 ))}
 
-                
                 <p className="ciclecards">200+</p>
               </div>
               <p
@@ -133,7 +131,7 @@ const Testimonial = ({ bgColor }) => {
                 </SwiperSlide>
               ))}
             </Swiper>
-            <div className="swiper-controls d-flex justify-content-center align-items-sm-center mt-3">
+            <div className="swiper-controls d-flex justify-content-center align-items-sm-center mt-3 gap-0">
               <div className="swiper-button-prev"></div>
               <div className="custom-pagination mx-sm-3"></div>
               <div className="swiper-button-next"></div>

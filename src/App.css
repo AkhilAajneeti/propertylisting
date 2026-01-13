@@ -204,10 +204,13 @@ html {
   background-color: #be973e !important;
 }
 
+@media (max-width:560px) {
 
-/* .googleReview {
-  background: linear-gradient(1200deg, #f5e7ad 1.99%, #f5ebac 0.49%, #b49249 100%);
-} */
+  .googleReview .testimonial .swiper-button-prev,
+  .googleReview.testimonial .swiper-button-next {
+    width: 60px !important;
+  }
+}
 
 /*  */
 .WHySection {
@@ -952,7 +955,7 @@ html {
   position: absolute;
   /* make sure it’s positioned */
   top: -30px;
-  right: 0;
+  right: 4px;
   overflow: hidden;
   filter: opacity(0.2);
   transform: translateY(20px) scale(1);
