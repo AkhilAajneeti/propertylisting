@@ -54,12 +54,10 @@ const Testimonial = ({ bgColor }) => {
                 data-aos="fade-up"
                 data-aos-duration="1500"
               >
-                Hear From Happy Homeowners
+                Hear From Our Verified Clients
               </h2>
               <p data-aos="fade-up" data-aos-duration="1800">
-                Discover what our satisfied homeowners have to say about their
-                journey . Real stories, real experiences and real trust - built
-                one home at a time.
+                Read the testimonials of our real clients with real outcomes. We have built our business by earning the trust of our clients one by one.
               </p>
               <div
                 className="imageContainer d-flex align-items-center pb-3"
@@ -81,15 +79,15 @@ const Testimonial = ({ bgColor }) => {
                   />
                 ))}
 
-                <p className="ciclecards">200+</p>
+                <p className="ciclecards">500+</p>
               </div>
               <p
                 className="fw-medium"
                 data-aos="fade-up"
                 data-aos-duration="2000"
               >
-                More Than <span className="text-gradient fs-5">500+</span>{" "}
-                Clients Reviews
+                <span className="text-gradient fs-5">500+</span>{" "}
+                Client Reviews
               </p>
             </div>
           </div>

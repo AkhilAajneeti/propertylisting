@@ -82,7 +82,8 @@ export default function Slider() {
               src="/mobBig-1.jpeg"
               alt="Luxury Properties Delhi NCR"
               className="slide-img d-sm-none"
-             width="390" height="700"
+              width="390"
+              height="700"
               loading="eager"
               decoding="async"
             />
@@ -103,7 +104,8 @@ export default function Slider() {
               src="/mobBig-2.jpeg"
               alt="Top Commercial Property in NCR"
               className="slide-img d-sm-none"
-              width="390" height="700"
+              width="390"
+              height="700"
               loading="lazy"
               decoding="async"
             />
@@ -124,7 +126,8 @@ export default function Slider() {
               src="/mobBig-1.jpeg"
               alt="Invest in Premium Real Estate"
               className="slide-img d-sm-none"
-              width="390" height="700"
+              width="390"
+              height="700"
               loading="lazy"
               decoding="async"
             />
@@ -133,10 +136,12 @@ export default function Slider() {
 
         {/* 🔍 Search Section Overlay (Fixed over all slides) */}
         <div className="search-overlay">
-          <h2 className="split2">Discover Most Suitable Property</h2>
+          <h2 className="split2">
+            Luxury Residential & Commercial Properties in Delhi NCR
+          </h2>
           <p className="text-center">
-            Building credibility, increasing customer loyalty, and creating
-            empowerment.
+            Get Trusted Real Estate Advisory Services for Both Investors and
+            End-Users.
           </p>
           <div className="">
             {/* Tabs */}

@@ -6,7 +6,7 @@ const Whycarousel = () => {
     <section className=" py-3">
       <div className="container my-3">
         <h2 className="fw-bold pt-0 pt-md-3 text-center mainFont">
-          Why Only Jenika Ventures
+          Why Only Jenika Ventures?
         </h2>
         {/* <p className="text-center">When You Succeed, We Succeed!</p> */}
         <Swiper
@@ -41,10 +41,14 @@ const Whycarousel = () => {
                 decoding="async"
               />
               {/* para */}
-              <h5>Why Trust Jenika Venture</h5>
+              <h5>We Show You Best Projects</h5>
               {/* content */}
-              <p>
-               Jenika Ventures features almost every top developer brands on PAN India with a broad spectrum of residential and commercial projects covering all budget categories.These words truly express the mission of Jenika Ventures.
+              <p className="text-center">
+                We do not push what’s available. We understand your goals and
+                showcase projects with fair pricing, on-ground demand,
+                construction quality, exit feasibility, and more. We understand
+                real estate market dynamics and only present you with options
+                that make most sense for you.{" "}
               </p>
             </div>
           </SwiperSlide>
@@ -60,10 +64,14 @@ const Whycarousel = () => {
                 decoding="async"
               />
               {/* para */}
-              <h5>Customer Oriented</h5>
+              <h5>We Serve As Your Guide</h5>
               {/* content  */}
-              <p>
-               Jenika Ventures aspire to spread happiness by turning dreams of owning a sweet home into a real masterpiece of one’s choice with a rigid standard of ultimate Quality, Craftsmanship and Creativity from our exclusive portfolio of various projects.
+              <p className="text-center">
+                Each buyer is unique - and we are not ‘sellers’ or ‘brokers’. We
+                are your real estate advisors. We understand your purpose and
+                recommend you properties according to what you want - living
+                near your office, rental potential, capital appreciation, luxury
+                lifestyle, or more.
               </p>
             </div>
           </SwiperSlide>
@@ -79,10 +87,14 @@ const Whycarousel = () => {
                 decoding="async"
               />
               {/* para */}
-              <h5>Tech Ideal</h5>
+              <h5>Support Beyond Site Visits</h5>
               {/* content */}
-              <p>
-                Committed to people, committed to future. We are a young team with enormous love & passion for Real Estate Consulting who dares to think BIG and is not afraid to be different globally. These words truly express the mission of Jenika Ventures.
+              <p className="text-center">
+                We are not merely here to help you shortlist your property. We
+                help you with negotiations, making sure your paperwork is clear,
+                possession coordination and all the guidance you need after
+                purchasing the property. At Jenika Ventures, we offer you
+                end-to-end support.
               </p>
             </div>
           </SwiperSlide>

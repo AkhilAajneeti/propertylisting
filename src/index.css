@@ -52,7 +52,7 @@
 }
 
 .search-overlay h2 {
-  font-size: 55px;
+  font-size: 48px;
   font-weight: 700;
   font-family: "Montserrat", sans-serif;
   color: #ffffff;
@@ -67,7 +67,7 @@
 
 @media(max-width:780px) {
   .search-overlay h2 {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .search-overlay p {
@@ -1101,7 +1101,7 @@ span img {
 /*  */
 .scroll-to-top {
   position: fixed;
-  bottom: 50px;
+  bottom: 8px;
   right: 20px;
   background: linear-gradient(108deg, #f5ebac 15.49%, #b49249 100%);
   color: #fff;

@@ -89,7 +89,7 @@ export default function RealEstateTabs({ projects }) {
               aria-label="basic tabs example"
             >
               <Tab label="Hot Deals" {...a11yProps(0)} />
-              <Tab label="Blog" {...a11yProps(1)} />
+              <Tab label="Blogs" {...a11yProps(1)} />
               <Tab label="Media" {...a11yProps(2)} />
             </Tabs>
           </Box>

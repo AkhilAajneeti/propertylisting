@@ -13,6 +13,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@fancyapps/ui": "^6.1.6",
+    "@google/generative-ai": "^0.24.1",
     "@gsap/react": "^2.1.2",
     "@mui/material": "^7.3.2",
     "@reduxjs/toolkit": "^2.10.1",

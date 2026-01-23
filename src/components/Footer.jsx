@@ -5,11 +5,14 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import { useState } from "react";
 import { FaThreads } from "react-icons/fa6";
 import ScrollToTop from "./ScrollToTop";
 import { Link } from "react-router-dom";
-
+import Chatbot from "./chatbot/Chatbot";
+import SparkleIcon from "./chatbot/SparkleIcon";
 export default function Footer() {
+  const [open, setOpen] = useState(false);
   return (
     <footer className="mainfooter py-5" style={{ zIndex: "99!important" }}>
       <div className="container">
@@ -226,7 +229,13 @@ export default function Footer() {
           </a>
         </div>
       </div>
+      {/* Floating Button */}
+      <div className="chatbot-fab" onClick={() => setOpen(true)}>
+        <SparkleIcon/>
+      </div>
 
+      {/* Chatbot */}
+      <Chatbot isOpen={open} onClose={() => setOpen(false)} />
       <ScrollToTop />
     </footer>
   );

@@ -6,7 +6,7 @@ const Portfolio = () => {
     <section className="pb-4 pb-md-5">
       <div className="container my-2 ">
         <h2 className="fw-bold pt-5 text-center mainFont">Our Developers</h2>
-        <p className="text-center">When You Succeed, We Succeed!</p>
+        <p className="text-center">We only partner with top-tier developers who are fully compliant, have a commendable history of delivering projects on time, and offer value to our clients (both buyers and investors).</p>
         <Swiper
           modules={[Autoplay, EffectFade]}
           slidesPerView={6}

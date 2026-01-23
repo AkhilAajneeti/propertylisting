@@ -66,7 +66,7 @@ const CounterSection = () => {
           <span className="color-brown">Happy Families </span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={1} duration={1} />.5 Million <br />
+          <NumberCounter end={1} duration={1} />.5 Million Sq. Ft.<br />
           <span className="color-brown">Area Sold</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
@@ -78,8 +78,9 @@ const CounterSection = () => {
           <span className="color-brown">Offices in India</span>
         </div>
         <div className="col-lg-2 col-sm-4 col-6 mainFont-2">
-          <NumberCounter end={1} duration={2} /> +<br />
-          <span className="color-brown">Offices Worldwide</span>
+          <span className="color-brown">Presence in </span>
+          <NumberCounter end={2} duration={1} /> +<br />
+          <span className="color-brown"> Countries</span>
         </div>
       </div>
     </div>

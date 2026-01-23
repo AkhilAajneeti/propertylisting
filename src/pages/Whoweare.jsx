@@ -16,7 +16,6 @@ const Whoweare = () => {
       easing: "ease-in-out",
     });
     return () => AOS.refreshHard();
-
   }, []);
   useEffect(() => {
     // Wait for fonts to load before animation
@@ -45,12 +44,12 @@ const Whoweare = () => {
       });
     });
     // 👇 New fade-out animation after 10 sec
-  gsap.to(".remove", {
-    opacity: 0,
-    duration: 1,
-    delay: 5,
-    ease: "power2.out"
-  });
+    gsap.to(".remove", {
+      opacity: 0,
+      duration: 1,
+      delay: 5,
+      ease: "power2.out",
+    });
   }, []);
   return (
     <div>
@@ -67,29 +66,34 @@ const Whoweare = () => {
             src="/video.mp4"
           ></video>
         </div>
-        <div className=" whoweare position-absolute start-50 translate-middle text-white text-center" style={{top:"40%"}}>
+        <div
+          className=" whoweare position-absolute start-50 translate-middle text-white text-center"
+          style={{ top: "40%" }}
+        >
           <h1 className="fw-bold split2 remove">WHO WE ARE</h1>
         </div>
       </div>
       {/* our story */}
       <div className="container py-5 belowVideo">
-        <p className="split2">
-          Jenika Ventures is not just a consulting firm—it’s a growth partner
-          for clients and developers alike, operating across residential,
-          commercial, luxury and mixed-use segments.With Abhishek Raj at the
-          helm, our journey continues to be defined by bold goals,
-          customer-centricity and an unshakable commitment to shaping the future
-          of Indian real estate.{" "}
+        <p className="split2 textjustify">
+          At Jenika Ventures, we are not just any real estate consulting firm.
+          We are your growth partners. When you are a developer, a channel
+          partner, a broker, a buyer, or an investor, we offer you the most
+          tailored real estate services across residential, commercial and
+          mixed-use segments. Abhishek Raj, our founder, has a unique vision of
+          offering specialised services for different segments, including niche
+          ones like luxury properties and NRI real estate advisory
+          services.{" "}
         </p>
       </div>
       <div className="container ourStorySection">
         <div className="row">
-          <div className="col-12 col-md-6 ourStory position-relative">
+          <div className="col-12 col-md-6 ourStory position-relative overflow-hidden">
             <img
               src="/ourTeam/boss1.png"
               alt=""
               className="img-fluid object-fit-cover"
-              style={{ height: "100%"}}
+              style={{ height: "100%" }}
               data-aos="fade-right"
               data-aos-duration="4000"
             />
@@ -106,32 +110,34 @@ const Whoweare = () => {
               Our Story
             </h1>
             <p>
-              Founded in 2020, Jenika Ventures was born out of a vision to bring
-              trust, transparency and innovation into India’s real estate
-              consulting space.
+              Founded in 2020 and fully operational since 2021, Jenika Ventures
+              has one purpose - to establish trust, transparency, and innovation
+              in India’s real estate consulting space. We want to simplify the
+              experience of buying and selling real estate for our clients - and
+              we do it by offering them the right information, honest guidance
+              and future-ready solutions.
             </p>
             <p>
-              What started as a bold idea turned into an operational reality in
-              2021, and within just a few years, we have grown into one of
-              India’s fastest-emerging real estate consulting firms. The driving
-              force behind this growth has been Mr. Abhishek Raj, CEO of Jenika
-              Ventures. With a forward-looking vision and a customer-first
-              philosophy, he has steered the company from a promising start-up
-              to a trusted national consultancy. His belief that real estate
-              consulting should go beyond transactions to deliver solutions,
-              partnerships and long-term value has been the foundation of our
-              culture. Under his leadership, Jenika Ventures forged strong
-              alliances with India’s leading developers like DLF, Tata, Godrej
-              and Lodha achieving ₹100 crore in sales in our very first year. By
-              combining strategic insights with digital-first solutions,
-              Abhishek Raj has played a pivotal role in driving our rapid
-              expansion into key markets including Delhi-NCR, Mumbai, Pune,
-              Bengaluru, Hyderabad and Goa. Today, Jenika Ventures is not just a
-              consulting firm—it’s a growth partner for clients and developers
-              alike, operating across residential, commercial, luxury and
-              mixed-use segments. With Abhishek Raj at the helm, our journey
-              continues to be defined by bold goals, customer-centricity and an
-              unshakable commitment to shaping the future of Indian real estate.
+              Mr. Abhishek Raj, CEO of Jenika Ventures, has always focused on
+              building trusted partnerships and offering long-term value to the
+              clients. His customer-first approach and smart solutions gave our
+              company ₹100 crore in sales right in the first year.
+            </p>
+            <p>
+              Under his leadership, we have developed strong partnerships with
+              industry leaders like Godrej, DLF, Tata and Lodha - giving our
+              clients access to the best residential and commercial
+              opportunities across India. Due to strategic insights our experts
+              offer, we have successfully expanded our digital footprints to key
+              real estate markets all over India, including Delhi-NCR, Mumbai,
+              Bengaluru, Pune, Hyderabad, and Goa.
+            </p>
+            <p>
+              Today, Jenika Ventures operates across all property
+              segments—residential, commercial, mixed-use developments, and
+              luxury markets—while upholding the same promises of trust that
+              makes you feel safe, transparency you can verify, and innovation
+              you can benefit from.
             </p>
           </div>
         </div>
@@ -150,8 +156,10 @@ const Whoweare = () => {
             className="split"
             style={{ color: "white", fontSize: "25px", fontWeight: "500" }}
           >
-            Transforming real estateby combining expertise, innovation,and
-            technology to create smarter solutions for tomorrow.
+            At Jenika Ventures, our mission is to transform real estate
+            consulting by offering smart solutions that combine market
+            expertise, transparency and technology, and long-term value to our
+            clients.
           </p>
           <div className="row g-0">
             <div
@@ -172,7 +180,7 @@ const Whoweare = () => {
                     <a href="service-details.html">Global Reach</a>
                   </h3>
                   <p className="colorWhite">
-                    Trusted presence across 19+ cities in India & Global Markets
+                    Trusted presence across 19+ cities in India and Dubai, UAE
                   </p>
                 </div>
               </div>
@@ -195,7 +203,7 @@ const Whoweare = () => {
                     <a href="service-details.html">Expert Team</a>
                   </h3>
                   <p className="colorWhite">
-                    Driven by 2,200+ Professionals of Excellence
+                    A strong team of 2,200 experienced professionals
                   </p>
                 </div>
               </div>
@@ -215,11 +223,10 @@ const Whoweare = () => {
                 {/* Content Section */}
                 <div className="content">
                   <h3>
-                    <a href="service-details.html">Innovation First</a>
+                    <a href="service-details.html">Innovative Solutions</a>
                   </h3>
                   <p className="colorWhite">
-                    Pioneering real estate solutions through creativity &
-                    technology
+                    Creative and smart real estate advisory system
                   </p>
                 </div>
               </div>
@@ -239,10 +246,10 @@ const Whoweare = () => {
                 {/* Content Section */}
                 <div className="content">
                   <h3>
-                    <a href="service-details.html">Developers Relationship</a>
+                    <a href="service-details.html">Developer Partnerships</a>
                   </h3>
                   <p className="colorWhite">
-                    Partnering with top 350+ developers to deliver world-class
+                    Partnership with 350+ developers to deliver world-class
                     projects
                   </p>
                 </div>

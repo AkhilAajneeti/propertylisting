@@ -40,9 +40,9 @@ export default function App() {
   return (
     <>
       <section className="container pb-5">
-        <h1 className="split text-center">Our milestones</h1>
+        <h1 className="split text-center">Our Milestones</h1>
         <p className="split text-center">
-          Celebrating the journey that shaped us
+          Every year, Jenika Ventures has made achievements we are proud of.
         </p>
         <Swiper
           slidesPerView={2} // show 2 slides
@@ -67,7 +67,8 @@ export default function App() {
             <div className="yearItems redgradient text-white p-4 position-relative">
               <h4>2021 -</h4>
               <p className="split">
-               Partnered with Grade A+ developers like DLF, Tata, Godrej, and Lodha Group. Achieved ₹100 crore sales in our very first year.
+                Achieved ₹100+ crores in sales. Partnered with Grade A+
+                developers like Godrej, Tata, DLF and Lodha.
               </p>
               <div className="overImg position-absolute">
                 <img src="/counter-one-shape1.png" alt="" />
@@ -78,7 +79,8 @@ export default function App() {
             <div className="yearItems bg-brown-2 text-white p-4">
               <h4>2022 -</h4>
               <p className="split">
-                Spread wings across Delhi-NCR, Mumbai and Pune. Recognized as Outstanding Real Estate Company of the Year 2022.
+                Breakthrough Delhi-NCR, Mumbai and Pune real estate markets.
+                Recognized as Outstanding Real Estate Company of the Year 2022.
               </p>
               <div className="overImg position-absolute">
                 <img src="/counter-one-shape1.png" alt="" />
@@ -89,7 +91,9 @@ export default function App() {
             <div className="yearItems greengradient-2 text-white p-4">
               <h4>2023 -</h4>
               <p className="split">
-                Deepened collaboration with Lodha Group. Diversified into commercial & mixed-use projects. Surpassed ₹300 crore with 80% YoY growth.
+                Deepened collaboration with the Lodha Group. Diversified into
+                commercial and mixed-use projects. Surpassed ₹300+ crores in
+                sales with 80% YoY Growth.
               </p>
               <div className="overImg position-absolute">
                 <img src="/counter-one-shape1.png" alt="" />
@@ -100,7 +104,8 @@ export default function App() {
             <div className="yearItems yellowgradient-2 text-white p-4">
               <h4>2024 -</h4>
               <p className="split">
-              Expanded into Goa, Bengaluru & Hyderabad. Hit ₹750 crore in sales with 150% YoY growth, moving closer to becoming a top-tier consultancy nationwide.
+                Expanded into Goa, Bengaluru & Hyderabad real estate markets.
+                Hit ₹750 crores in sales with 150% YoY Growth.
               </p>
               <div className="overImg position-absolute">
                 <img src="/counter-one-shape1.png" alt="" />
@@ -111,7 +116,8 @@ export default function App() {
             <div className="yearItems redgradient-2 text-white p-4">
               <h4>2025 -</h4>
               <p className="split">
-               Now chasing our boldest target—₹2,000 crore in sales with 2x growth in a single year. Backed by client trust, strategic alliances and our relentless pursuit of excellence.
+                Achieved the target of ₹2000 crores in sales making us a
+                top-tier real estate consultancy in India.{" "}
               </p>
               <div className="overImg position-absolute">
                 <img src="/counter-one-shape1.png" alt="" />
