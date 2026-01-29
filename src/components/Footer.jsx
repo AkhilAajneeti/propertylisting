@@ -11,6 +11,7 @@ import ScrollToTop from "./ScrollToTop";
 import { Link } from "react-router-dom";
 import Chatbot from "./chatbot/Chatbot";
 import SparkleIcon from "./chatbot/SparkleIcon";
+import CallandWhatsapp from "./contactIcon/CallandWhatsapp";
 export default function Footer() {
   const [open, setOpen] = useState(false);
   return (
@@ -236,6 +237,7 @@ export default function Footer() {
 
       {/* Chatbot */}
       <Chatbot isOpen={open} onClose={() => setOpen(false)} />
+        <CallandWhatsapp/>
       <ScrollToTop />
     </footer>
   );

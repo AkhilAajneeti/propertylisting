@@ -1101,8 +1101,8 @@ span img {
 /*  */
 .scroll-to-top {
   position: fixed;
-  bottom: 8px;
-  right: 20px;
+  bottom: 20px;
+  right: 23px;
   background: linear-gradient(108deg, #f5ebac 15.49%, #b49249 100%);
   color: #fff;
   border: none;

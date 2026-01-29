@@ -3373,7 +3373,8 @@ p {
   width: 25px !important;
   padding: 2px;
 }
-.textjustify{
+
+.textjustify {
   text-align: justify;
 }
 
@@ -3381,7 +3382,7 @@ p {
 /* Floating Button */
 .chatbot-fab {
   position: fixed;
-  bottom: 60px;
+  bottom: 75px;
   right: 20px;
   width: 56px;
   height: 56px;
@@ -3395,6 +3396,11 @@ p {
   color: #fff;
   box-shadow: 0 10px 30px rgba(0, 0, 0, .2);
   z-index: 999;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.chatbot-fab:hover{
+  transform: scale(1.08);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
 }
 
 /* Chatbox */
@@ -3539,4 +3545,44 @@ p {
 
 .chatbot-header button:hover {
   transform: scale(1.05);
+}
+
+/*  */
+.floating-buttons {
+  position: fixed;
+  right: 20px;
+  bottom: 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 99;
+}
+
+.floating-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 24px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.floating-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.3);
+}
+
+/* WhatsApp */
+.floating-btn.whatsapp {
+  background-color: #25d366;
+}
+
+/* Call */
+.floating-btn.call {
+  background-color: #0b5ed7;
 }
