@@ -16,22 +16,6 @@ export default function Chatbot({ isOpen, onClose }) {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, typing]);
 
-  // const sendMessage = () => {
-  //   if (!input.trim()) return;
-
-  //   setMessages(m => [...m, { from: "user", text: input }]);
-  //   setInput("");
-  //   setTyping(true);
-
-  //   // Fake bot response (UI demo)
-  //   setTimeout(() => {
-  //     setTyping(false);
-  //     setMessages(m => [
-  //       ...m,
-  //       { from: "bot", text: "This is a sample AI response." }
-  //     ]);
-  //   }, 1500);
-  // };
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -51,7 +35,7 @@ export default function Chatbot({ isOpen, onClose }) {
       {/* Header */}
       <div className="chatbot-header">
         <div className="title">
-          <SparkleIcon /> AI Assist
+          <SparkleIcon /> Jenika Ventures
         </div>
         <button onClick={onClose}>✕</button>
       </div>
