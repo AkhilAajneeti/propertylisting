@@ -5,7 +5,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FaThreads } from "react-icons/fa6";
 import ScrollToTop from "./ScrollToTop";
 import { Link } from "react-router-dom";
@@ -14,6 +14,36 @@ import SparkleIcon from "./chatbot/SparkleIcon";
 import CallandWhatsapp from "./contactIcon/CallandWhatsapp";
 export default function Footer() {
   const [open, setOpen] = useState(false);
+  const [showHint, setShowHint] = useState(true);
+  const [vibrate, setVibrate] = useState(false);
+  const hintTimerRef = useRef(null);
+  const restartHintTimer = () => {
+    if (hintTimerRef.current) {
+      clearTimeout(hintTimerRef.current);
+    }
+
+    hintTimerRef.current = setTimeout(() => {
+      if (!open) {
+        setShowHint((prev) => (prev ? prev : true));
+
+        setVibrate(true);
+        setTimeout(() => setVibrate(false), 800);
+      }
+    }, 4000);
+  };
+
+  useEffect(() => {
+    if (!open) {
+      restartHintTimer();
+    }
+
+    return () => {
+      if (hintTimerRef.current) {
+        clearTimeout(hintTimerRef.current);
+      }
+    };
+  }, [open]);
+
   return (
     <footer className="mainfooter py-5" style={{ zIndex: "99!important" }}>
       <div className="container">
@@ -231,13 +261,39 @@ export default function Footer() {
         </div>
       </div>
       {/* Floating Button */}
-      <div className="chatbot-fab" onClick={() => setOpen(true)}>
-        <SparkleIcon/>
+      <div
+        className={`chatbot-fab ${vibrate ? "vibrate" : ""}`}
+        onClick={() => {
+          setOpen(true);
+          setShowHint(false);
+        }}
+      >
+        <SparkleIcon />
       </div>
+
+      {/* Hint Box */}
+      {showHint && !open && (
+        <div className={`chatbot-hint ${vibrate ? "vibrate" : ""}`}>
+          <span className="hint-text">
+            Welcome to <b>Jenika Ventures</b>
+            <br />
+            How can I assist you today?
+          </span>
+          <button
+            className="hint-close"
+            onClick={() => {
+              setShowHint(false);
+              restartHintTimer();
+            }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
 
       {/* Chatbot */}
       <Chatbot isOpen={open} onClose={() => setOpen(false)} />
-        <CallandWhatsapp/>
+      <CallandWhatsapp />
       <ScrollToTop />
     </footer>
   );
