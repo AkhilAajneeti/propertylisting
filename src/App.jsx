@@ -25,6 +25,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsCondition from "./pages/TermsCondition";
+import IpoAdvisory from "./pages/IpoAdvisory";
 gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
   useEffect(() => {
@@ -59,6 +60,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id/:slug" element={<BlogDetailPage />} />
         <Route path="/our-team" element={<OurTeam />} />
+        <Route path="/our-team/ipo-advisory" element={<IpoAdvisory />} />
         <Route path="/client-testimonial" element={<ClientTestimonials />} />
         <Route path="/insight/news&media" element={<NewMedia />} />
         <Route
@@ -73,8 +75,8 @@ function App() {
         <Route path="/thankyou" element={<Thankyou />} />
         <Route path="/job/:id" element={<JobDescription />} />
         <Route path="/search-projects" element={<SearchedProject />} />
-        <Route path="/privacypolicy" element={<PrivacyPolicy/>} />
-        <Route path="/terms-and-conditions" element={<TermsCondition/>} />
+        <Route path="/privacypolicy" element={<PrivacyPolicy />} />
+        <Route path="/terms-and-conditions" element={<TermsCondition />} />
       </Routes>
       <Footer />
     </>

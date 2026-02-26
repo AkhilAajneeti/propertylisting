@@ -750,7 +750,7 @@ span img {
 /*  */
 
 
-.sidebar-menu {
+/* .sidebar-menu {
   position: fixed;
   top: 0;
   right: -280px;
@@ -761,7 +761,7 @@ span img {
   padding: 20px;
   transition: right 0.3s ease-in-out;
   z-index: 1050;
-}
+} */
 
 .sidebar-menu.open {
   right: 0;
@@ -891,11 +891,10 @@ span img {
 
 
 /* Mobile Sidebar */
-.sidebar-menu {
+/* .sidebar-menu {
   position: fixed;
   top: 0;
   right: -300px;
-  /* start hidden */
   width: 260px;
   height: 100vh;
   background: #fff;
@@ -904,8 +903,7 @@ span img {
   transition: right 0.4s ease;
   z-index: 1050;
   overflow-y: auto;
-  /* scroll if content is longer */
-}
+} */
 
 /* Open sidebar */
 .sidebar-menu.open {
@@ -1131,7 +1129,7 @@ span img {
 /* call button */
 
 .offcanvas .mobile_button {
-  display: inline-block !important;
+  /* display: inline-block !important; */
 }
 
 .offcanvas .mobile_button .call-btn2,
@@ -1170,3 +1168,211 @@ span img {
 .call-btn2:focus {
   text-decoration: none;
 }
+
+/* new for mobile where our tems is updated */
+/* Mobile submenu wrapper */
+/* Remove heavy dropdown look inside Offcanvas */
+.offcanvas .dropdown-menu {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0;
+}
+
+/* ABOUT US items spacing */
+.offcanvas .dropdown-item {
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* OUR TEAM clickable row */
+.mobile-submenu-title {
+  padding: 12px 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  animation: fadeInUp 0.5s forwards;
+  font-family: Inter, serif;
+  font-size: 20px;
+  font-weight: 600;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(155deg, rgb(22, 29, 22) 40%, rgb(255 61 62) 100%) text;
+}
+
+/* Arrow clean look */
+.mobile-submenu-title span {
+  font-size: 10px;
+  transition: transform 0.2s ease;
+}
+
+.rotate {
+  transform: rotate(180deg);
+}
+
+/* Submenu items */
+.mobile-submenu-items {
+  padding-left: 25px;
+}
+
+.mobile-submenu-link {
+  display: block;
+  padding: 8px 0;
+  color: #555;
+  text-decoration: none;
+  cursor: pointer;
+  animation: fadeInUp 0.5s forwards;
+  font-family: Inter, serif;
+  font-size: 20px;
+  font-weight: 600;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(155deg, rgb(22, 29, 22) 40%, rgb(255 61 62) 100%) text;
+}
+
+.mobile-submenu-link:hover {
+  color: #000;
+}
+
+/* udated css for mobile */
+/* ==============================
+   MOBILE OFFCANVAS ACCORDION FIX
+=================================*/
+@media (max-width: 991px) {
+
+  /* remove dropdown absolute behavior */
+  .offcanvas .dropdown-menu {
+    position: static !important;
+    transform: none !important;
+    left: 0 !important;
+  }
+
+  /* accordion wrapper */
+  .mobile-accordion-item {
+    width: 100%;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* title */
+  .mobile-accordion-title {
+    padding: 16px 0;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Inter, serif;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  /* arrow animation */
+  .mobile-accordion-title span {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  /* hidden content */
+  .mobile-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: max-height 0.4s ease;
+  }
+
+  /* open state */
+  .mobile-accordion-content.open {
+    max-height: 500px;
+  }
+
+  /* links inside */
+  .mobile-accordion-content a {
+    padding: 10px 0;
+    font-size: 18px;
+    text-decoration: none;
+  }
+
+}
+
+/* Nested accordion */
+.nested-accordion {
+  width: 100%;
+}
+
+/* Nested title */
+.nested-accordion-title {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Nested content */
+.nested-accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  padding-left: 15px;
+}
+
+.nested-accordion-content.open {
+  max-height: 200px;
+}
+
+@media (max-width: 991px) {
+
+  /* Main accordion titles */
+  .mobile-accordion-title {
+    font-family: Inter, serif;
+    font-size: 20px;
+    font-weight: 600;
+color: #1d0103;
+  }
+
+  /* Nested OUR TEAM title */
+  .nested-accordion-title {
+    font-size: 18px;
+    font-weight: 600;
+
+    /* background: linear-gradient(155deg,
+        rgb(22, 29, 22) 40%,
+        rgb(255, 61, 62) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+  }
+
+  /* Submenu links */
+  .mobile-accordion-content a,
+  .nested-accordion-content a {
+    font-size: 18px;
+    font-weight: 600;
+
+    background: linear-gradient(155deg,
+        rgb(22, 29, 22) 40%,
+        rgb(255, 61, 62) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+.right-arrow{
+  color: #220104;
+}
+.accordion-arrow {
+  transition: transform 0.3s ease;
+}
+
+.accordion-arrow.rotate {
+  transform: rotate(180deg);
+}
+
+.mobMenu {
+  padding: 16px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+

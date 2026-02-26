@@ -17,10 +17,13 @@ const OurTeam = () => {
   }, [dispatch]);
 
   const leadershipTeam = members.filter(
-    (m) => m.category === "Leadership Team"
+    (m) => m.category === "Leadership Team",
   );
   const managementTeam = members.filter(
-    (m) => m.category === "Management Team"
+    (m) => m.category === "Management Team",
+  );
+  const nationwideleadershipTeam = members.filter(
+    (m) => m.category === "Nationwide Leadership Team",
   );
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const OurTeam = () => {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -59,7 +62,7 @@ const OurTeam = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -213,7 +216,7 @@ const OurTeam = () => {
         </div>
       </div>
 
-      {/* leadership Team */}
+      {/* leadership Team rough */}
       <div className="leadershipTeam container pb-md-1 pt-md-4">
         <div className="row gy-4 justify-content-center">
           <div className="col-12">
@@ -226,13 +229,17 @@ const OurTeam = () => {
           </div>
           {managementTeam.map((member) => (
             <div className="col-12 col-md-4" key={member.id}>
-              <div className="shine-animate-item" data-aos="fade-up">
-                <div className="shine-animate position-relative d-flex justify-content-center">
+              <div
+                className="shine-animate-item text-center"
+                data-aos="fade-up"
+              >
+                <div className="shine-animate position-relative d-inline-block overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
                     className="img-fluid"
-                    loading="lazy" style={{height:"500px"}}
+                    loading="lazy"
+                    style={{ height: "500px" }}
                   />
                   {member.linkedin_profile && (
                     <a
@@ -243,9 +250,9 @@ const OurTeam = () => {
                       <img
                         src="/linkedin2.png"
                         alt="linkedin"
+                        className="socialIcon"
                         style={{
                           position: "absolute",
-                          right: "42px",
                           bottom: "10px",
                           width: "35px",
                           height: "35px",
@@ -253,16 +260,27 @@ const OurTeam = () => {
                       />
                     </a>
                   )}
+                  <div className="card-overlay"></div>
+                  {/* Content - Bottom Left */}
+                  <div
+                    className="content"
+                    style={{
+                      position: "absolute",
+                      bottom: "20px",
+                    }}
+                  >
+                    <h5 className="text-light mb-0">{member.name}</h5>
+                    <p className="text-light mb-0 ">{member.designation}</p>
+                    <p className="text-light mb-0">{member.sub_designation}</p>
+                  </div>
                 </div>
-                {/* <h6 className="text-center  mt-2">{member.name}</h6>
-                <p className="text-center text-muted">{member.designation}</p> */}
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Management Team */}
+      {/* leadershipt Team */}
       <div className="managementTeam container py-5">
         <div className="row gy-sm-5 justify-content-center">
           <div className="col-12">
@@ -270,7 +288,7 @@ const OurTeam = () => {
               className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder"
               data-aos="fade-up"
             >
-              Leadership Team
+              Core Leadership Team
             </h2>
           </div>
 
@@ -293,25 +311,99 @@ const OurTeam = () => {
                       <img
                         src="/linkedin2.png"
                         alt="linkedin"
+                        className="socialIcon"
                         style={{
                           position: "absolute",
-                          right: "24px",
-                          bottom: "10px",
+                          bottom: "12px",
                           width: "35px",
                           height: "35px",
                         }}
                       />
                     </a>
                   )}
+                  <div className="card-overlay"></div>
+                  {/* Content - Bottom Left */}
+                  <div
+                    className="content"
+                    style={{
+                      position: "absolute",
+                      bottom: "20px",
+                    }}
+                  >
+                    <h5 className="text-light mb-0">{member.name}</h5>
+                    <p className="text-light mb-0">{member.designation}</p>
+                    <p className="text-light mb-0">{member.sub_designation}</p>
+                  </div>
                 </div>
-                {/* <h5 className="text-center mt-3">{member.name}</h5>
-                <p className="text-center text-muted">{member.designation}</p> */}
               </div>
             </div>
           ))}
         </div>
 
         {/* lead Capture */}
+      </div>
+
+      {/* Our Nationwide Leadership Team */}
+      <div className="managementTeam container pb-5">
+        <div className="row gy-sm-5 justify-content-center">
+          <div className="col-12">
+            <h2
+              className="text-drop__line fs-1 fw-bold text-center pt-4 ourFounder"
+              data-aos="fade-up"
+            >
+              Our Nationwide Leadership Team
+            </h2>
+          </div>
+
+          {nationwideleadershipTeam.map((member) => (
+            <div className="col-12 col-md-3">
+              <div className="shine-animate-item p-2" data-aos="fade-up">
+                <h2 className="text-center ourFounder pb-2">{member.city}</h2>
+                <div className="shine-animate position-relative">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="img-fluid"
+                    loading="lazy"
+                  />
+                  {member.linkedin_profile && (
+                    <a
+                      href={member.linkedin_profile}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src="/linkedin2.png"
+                        alt="linkedin"
+                        className="socialIcon"
+                        style={{
+                          position: "absolute",
+                          bottom: "12px",
+                          width: "35px",
+                          height: "35px",
+                        }}
+                      />
+                    </a>
+                  )}
+
+                  <div className="card-overlay"></div>
+                  {/* Content - Bottom Left */}
+                  <div
+                    className="content"
+                    style={{
+                      position: "absolute",
+                      bottom: "20px",
+                    }}
+                  >
+                    <h5 className="text-light mb-0">{member.name}</h5>
+                    <p className="text-light mb-0">{member.designation}</p>
+                    <p className="text-light mb-0">{member.sub_designation}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/*  */}
@@ -321,9 +413,9 @@ const OurTeam = () => {
         }}
       >
         <div className="container">
-          <div class="footer__cta-wrap py-5 ">
+          <div class="footer__cta-wrap py-5">
             <h2 class="footer__cta-wrap-title">
-              <p class="link-btn text-white text-drop__line">
+              <p class="link-btn text-white text-center text-drop__line py-2 mb-0">
                 Meet the Leaders Behind Our Vision
                 <i class="icon-arrow-top-left"></i>
               </p>
