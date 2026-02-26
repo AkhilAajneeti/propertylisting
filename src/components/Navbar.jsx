@@ -198,28 +198,34 @@ function CustomNavbar() {
 
                 {/* OUR TEAM NESTED */}
                 <div className="nested-accordion">
-                  <div
+                  <NavLink
+                    to="/our-team"
                     className="nested-accordion-title"
-                    onClick={() =>
-                      setActiveSubMenu(activeSubMenu === "team" ? null : "team")
-                    }
+                    onClick={() => {
+                      setActiveSubMenu(
+                        activeSubMenu === "team" ? null : "team",
+                      );
+                      handleClose(); // if you want menu to close
+                    }}
                   >
-                    OUR TEAM
+                    <span>OUR TEAM</span>
+
                     <span
-                      className={activeSubMenu === "team" ? "rotate" : ""}
+                      className={`accordion-arrow ${
+                        activeSubMenu === "team" ? "rotate-arrow" : ""
+                      }`}
                     >
                       ▼
                     </span>
-                  </div>
+                  </NavLink>
 
                   <div
                     className={`nested-accordion-content ${
                       activeSubMenu === "team" ? "open" : ""
                     }`}
                   >
-                    {/* <NavLink to="/our-team/ipo-advisory" onClick={handleClose}></NavLink> */}
-                    <NavLink to="/" onClick={handleClose}>
-                    <FiChevronRight className="right-arrow" />  IPO Advisory
+                    <NavLink to="/our-team/ipo-advisory" onClick={handleClose}>
+                      <FiChevronRight className="right-arrow" /> IPO Advisory
                     </NavLink>
                   </div>
                 </div>

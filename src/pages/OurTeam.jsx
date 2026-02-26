@@ -284,7 +284,6 @@ const OurTeam = () => {
               </div>
             </div>
           ))}
-
         </div>
       </div>
 
@@ -300,7 +299,7 @@ const OurTeam = () => {
             </h2>
           </div>
 
-          {[...leadershipTeam].reverse().map((member) => (
+          {leadershipTeam.map((member) => (
             <div className="col-12 col-md-3" key={member.id}>
               <div
                 className="team-card shine-animate-item p-3 text-center"
@@ -372,7 +371,7 @@ const OurTeam = () => {
             </h2>
           </div>
 
-          {[...nationwideleadershipTeam].reverse().map((member) => (
+          {nationwideleadershipTeam.map((member) => (
             <div className="col-12 col-md-3">
               <div
                 className="team-card shine-animate-item p-3 text-center"
