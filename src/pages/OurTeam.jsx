@@ -230,49 +230,54 @@ const OurTeam = () => {
           {managementTeam.map((member) => (
             <div className="col-12 col-md-4" key={member.id}>
               <div
-                className="shine-animate-item text-center"
+                className="team-card shine-animate-item p-3 text-center"
                 data-aos="fade-up"
               >
-                <div className="shine-animate position-relative d-inline-block overflow-hidden">
+                {/* Image Section */}
+                <div className="shine-animate position-relative overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="img-fluid"
+                    className="img-fluid w-100 team-image"
                     loading="lazy"
-                    style={{ height: "500px" }}
                   />
+
+                  {/* Gradient Overlay */}
+                  <div className="card-overlay"></div>
+
+                  {/* Name Overlay ONLY */}
+                  <div className="content">
+                    <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
+                  </div>
+                </div>
+
+                {/* Bottom Section */}
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                  <div className="text-start">
+                    <p className="mb-0 fw-semibold">{member.designation}</p>
+
+                    {member.sub_designation && (
+                      <p className="mb-0 text-muted">
+                        {member.sub_designation}
+                      </p>
+                    )}
+                  </div>
+
                   {member.linkedin_profile && (
                     <a
                       href={member.linkedin_profile}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="linkedin-icon"
                     >
                       <img
                         src="/linkedin2.png"
-                        alt="linkedin"
-                        className="socialIcon"
-                        style={{
-                          position: "absolute",
-                          bottom: "10px",
-                          width: "35px",
-                          height: "35px",
-                        }}
+                        alt={`${member.name} LinkedIn`}
+                        width="32"
+                        height="32"
                       />
                     </a>
                   )}
-                  <div className="card-overlay"></div>
-                  {/* Content - Bottom Left */}
-                  <div
-                    className="content"
-                    style={{
-                      position: "absolute",
-                      bottom: "20px",
-                    }}
-                  >
-                    <h5 className="text-light mb-0">{member.name}</h5>
-                    <p className="text-light mb-0 ">{member.designation}</p>
-                    <p className="text-light mb-0">{member.sub_designation}</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -294,46 +299,55 @@ const OurTeam = () => {
 
           {[...leadershipTeam].reverse().map((member) => (
             <div className="col-12 col-md-3" key={member.id}>
-              <div className="shine-animate-item p-4" data-aos="fade-up">
-                <div className="shine-animate position-relative">
+              <div
+                className="team-card shine-animate-item p-3 text-center"
+                data-aos="fade-up"
+              >
+                {/* Image Section */}
+                <div className="shine-animate position-relative overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="img-fluid"
+                    className="img-fluid w-100"
                     loading="lazy"
                   />
+
+                  {/* Gradient Overlay */}
+                  <div className="card-overlay"></div>
+
+                  {/* Name Overlay ONLY */}
+                  <div className="content">
+                    <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
+                  </div>
+                </div>
+
+                {/* Bottom Content (Outside Image) */}
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                  <div className="text-start">
+                    <p className="mb-0 fw-semibold">{member.designation}</p>
+
+                    {member.sub_designation && (
+                      <p className="mb-0 text-muted">
+                        {member.sub_designation}
+                      </p>
+                    )}
+                  </div>
+
                   {member.linkedin_profile && (
                     <a
                       href={member.linkedin_profile}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="linkedin-icon"
                     >
                       <img
                         src="/linkedin2.png"
-                        alt="linkedin"
-                        className="socialIcon"
-                        style={{
-                          position: "absolute",
-                          bottom: "12px",
-                          width: "35px",
-                          height: "35px",
-                        }}
+                        alt={`${member.name} LinkedIn`}
+                        width="32"
+                        height="32"
                       />
                     </a>
                   )}
-                  <div className="card-overlay"></div>
-                  {/* Content - Bottom Left */}
-                  <div
-                    className="content"
-                    style={{
-                      position: "absolute",
-                      bottom: "20px",
-                    }}
-                  >
-                    <h5 className="text-light mb-0">{member.name}</h5>
-                    <p className="text-light mb-0">{member.designation}</p>
-                    <p className="text-light mb-0">{member.sub_designation}</p>
-                  </div>
                 </div>
               </div>
             </div>
@@ -357,48 +371,58 @@ const OurTeam = () => {
 
           {nationwideleadershipTeam.map((member) => (
             <div className="col-12 col-md-3">
-              <div className="shine-animate-item p-2" data-aos="fade-up">
-                <h2 className="text-center ourFounder pb-2">{member.city}</h2>
-                <div className="shine-animate position-relative">
+              <div
+                className="team-card shine-animate-item p-3 text-center"
+                data-aos="fade-up"
+              >
+                {/* City */}
+                <h5 className="city-title mb-3">{member.city}</h5>
+
+                {/* Image Section */}
+                <div className="shine-animate position-relative overflow-hidden">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="img-fluid"
+                    className="img-fluid w-100"
                     loading="lazy"
                   />
+
+                  {/* Gradient Overlay */}
+                  <div className="card-overlay"></div>
+
+                  {/* Name Overlay ONLY */}
+                  <div className="content">
+                    <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
+                  </div>
+                </div>
+
+                {/* Bottom Content (Same as Old Layout) */}
+                <div className="d-flex justify-content-between align-items-center mt-3">
+                  <div className="text-start">
+                    <p className="mb-0 fw-semibold">{member.designation}</p>
+
+                    {member.sub_designation && (
+                      <p className="mb-0 text-muted">
+                        {member.sub_designation}
+                      </p>
+                    )}
+                  </div>
+
                   {member.linkedin_profile && (
                     <a
                       href={member.linkedin_profile}
                       target="_blank"
                       rel="noopener noreferrer"
+                      className="linkedin-icon"
                     >
                       <img
                         src="/linkedin2.png"
-                        alt="linkedin"
-                        className="socialIcon"
-                        style={{
-                          position: "absolute",
-                          bottom: "12px",
-                          width: "35px",
-                          height: "35px",
-                        }}
+                        alt={`${member.name} LinkedIn`}
+                        width="32"
+                        height="32"
                       />
                     </a>
                   )}
-
-                  <div className="card-overlay"></div>
-                  {/* Content - Bottom Left */}
-                  <div
-                    className="content"
-                    style={{
-                      position: "absolute",
-                      bottom: "20px",
-                    }}
-                  >
-                    <h5 className="text-light mb-0">{member.name}</h5>
-                    <p className="text-light mb-0">{member.designation}</p>
-                    <p className="text-light mb-0">{member.sub_designation}</p>
-                  </div>
                 </div>
               </div>
             </div>

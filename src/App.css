@@ -1402,7 +1402,7 @@ html {
 }
 
 .shine-animate-item:hover .shine-animate {
-  box-shadow: rgba(149, 157, 165, 0.3) 0px 12px 30px;
+  /* box-shadow: rgba(149, 157, 165, 0.3) 0px 12px 30px; */
 }
 
 .footer__cta-wrap {
@@ -3774,3 +3774,41 @@ p {
 }
 
 
+.team-card {
+  background: #fff;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+}
+
+.city-title {
+  font-weight: 600;
+  color: #8b0000;
+}
+
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.content {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+
+.linkedin-icon img {
+  transition: transform 0.3s ease;
+}
+
+.linkedin-icon:hover img {
+  transform: scale(1.1);
+}
