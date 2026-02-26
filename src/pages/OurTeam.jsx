@@ -238,7 +238,7 @@ const OurTeam = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="img-fluid w-100 team-image"
+                    className="img-size team-image"
                     loading="lazy"
                   />
 
@@ -254,10 +254,12 @@ const OurTeam = () => {
                 {/* Bottom Section */}
                 <div className="d-flex justify-content-between align-items-center mt-3">
                   <div className="text-start">
-                    <p className="mb-0 fw-semibold">{member.designation}</p>
+                    <p className="mb-0 fw-semibold designation">
+                      {member.designation}
+                    </p>
 
                     {member.sub_designation && (
-                      <p className="mb-0 text-muted">
+                      <p className="mb-0 text-muted subdest">
                         {member.sub_designation}
                       </p>
                     )}
@@ -282,6 +284,7 @@ const OurTeam = () => {
               </div>
             </div>
           ))}
+
         </div>
       </div>
 
@@ -369,7 +372,7 @@ const OurTeam = () => {
             </h2>
           </div>
 
-          {nationwideleadershipTeam.map((member) => (
+          {[...nationwideleadershipTeam].reverse().map((member) => (
             <div className="col-12 col-md-3">
               <div
                 className="team-card shine-animate-item p-3 text-center"

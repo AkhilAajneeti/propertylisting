@@ -2978,7 +2978,9 @@ p {
   z-index: 2;
   max-width: 600px;
 }
-
+.content h5{
+  font-size: 25px;
+}
 .panel-title {
   font-size: 4rem;
   margin-bottom: 1.5rem;
@@ -3811,4 +3813,16 @@ p {
 
 .linkedin-icon:hover img {
   transform: scale(1.1);
+}
+
+.img-size{
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+}
+.designation{
+  font-size: 22px;
+}
+.subdest{
+  font-size: 18px;
 }
