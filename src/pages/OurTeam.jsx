@@ -246,7 +246,7 @@ const OurTeam = () => {
                   <div className="card-overlay"></div>
 
                   {/* Name Overlay ONLY */}
-                  <div className="content">
+                  <div className="content-2">
                     <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
                   </div>
                 </div>
@@ -318,7 +318,7 @@ const OurTeam = () => {
                   <div className="card-overlay"></div>
 
                   {/* Name Overlay ONLY */}
-                  <div className="content">
+                  <div className="content-2">
                     <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
                   </div>
                 </div>
@@ -393,7 +393,7 @@ const OurTeam = () => {
                   <div className="card-overlay"></div>
 
                   {/* Name Overlay ONLY */}
-                  <div className="content">
+                  <div className="content-2">
                     <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
                   </div>
                 </div>
