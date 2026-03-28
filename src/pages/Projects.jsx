@@ -247,7 +247,7 @@ const Projects = () => {
       {/* Filter Bar */}
       <div className="container">
         <div className="filter-bar">
-          <h2 className="filter-title text-gradient2">Filter By</h2>
+          <h3 className="filter-title text-gradient2">Filter By</h3>
 
           <div className="filter-controls">
             {/* City */}

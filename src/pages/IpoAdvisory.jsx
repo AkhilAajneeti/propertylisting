@@ -84,6 +84,8 @@ const IpoAdvisory = () => {
             </div>
           </div>
 
+          
+
           <div class="advisor-card advisor-card--reversed">
             <div class="advisor-card__body order-1 order-sm-0">
               <p class="advisor-card__tag">CFO Advisory</p>

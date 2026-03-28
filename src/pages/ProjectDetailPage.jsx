@@ -14,6 +14,7 @@ import ContactBtn from "../components/ContactBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjectById } from "../redux/slices/propertySlice";
 import { submitProjectEnquiry } from "../api/projectFormApi";
+import Brochure from "../components/brochure";
 const ProjectDetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -86,7 +87,7 @@ const ProjectDetailPage = () => {
           ease: "power3.out",
           delay: i * 0.1,
           scrollTrigger: { trigger: line, start: "top 85%" },
-        }
+        },
       );
     });
 
@@ -100,7 +101,7 @@ const ProjectDetailPage = () => {
           duration: 1.2,
           ease: "power2.out",
           scrollTrigger: { trigger: img, start: "top 80%" },
-        }
+        },
       );
     });
 
@@ -155,7 +156,7 @@ const ProjectDetailPage = () => {
           start: "bottom top+=10",
           toggleActions: "play reverse play reverse",
         },
-      }
+      },
     );
   }, []);
 
@@ -189,7 +190,12 @@ const ProjectDetailPage = () => {
   if (loading) return <Loader />;
   if (error) return <p className="text-danger text-center">{error}</p>;
   if (!project) return null;
-
+  const locationPoints = project?.Location_Content?.split(/\r?\n/) // split on new lines
+    .map((item) => item.trim())
+    .filter(Boolean); // remove empty lines
+  const highlightPoints = project?.Highlights?.split(/\r?\n|,/) // newline OR comma dono handle
+    .map((item) => item.trim())
+    .filter(Boolean);
   return (
     <>
       {/* ================== BANNER ================== */}
@@ -227,8 +233,11 @@ const ProjectDetailPage = () => {
       {/* ================== MAIN CONTENT ================== */}
       <div className="container py-5 projectDetail">
         <div className="row">
-          <div className="col-12">
-            <h1 className="projectText">{project.title}</h1>
+          <div className="col-12 pb-2">
+            <h1 className="projectText">{project.Title}</h1>
+            <h5 className="text-drop__line split2 text-center">
+              {project.Project_Location}
+            </h5>
           </div>
           <div className="col-sm-8">
             {/* SLIDER */}
@@ -254,34 +263,40 @@ const ProjectDetailPage = () => {
             <div className="discibe pb-5" id="Highlight">
               <h2 className="ameneties-title split2">Highlights</h2>
 
-              <p className="mt-3">{project.Highlights}</p>
+              <ul className="highlightList">
+                {highlightPoints?.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
 
               <div className="ul-ameneties mt-4">
                 <span className="features d-flex gap-3">
                   <span className="txt">
                     <div className="key">Property Type</div>
-                    <div className="value">{project.project_type}</div>
+                    <div className="value hilights-Value">
+                      {project.project_type}
+                    </div>
                   </span>
                 </span>
 
                 <span className="features d-flex gap-3">
                   <span className="txt">
                     <div className="key">Price</div>
-                    <div className="value">{project.Price}</div>
+                    <div className="value hilights-Value">{project.Price}</div>
                   </span>
                 </span>
 
                 <span className="features d-flex gap-3">
                   <span className="txt">
                     <div className="key">Size</div>
-                    <div className="value">{project.Size}</div>
+                    <div className="value hilights-Value">{project.Size}</div>
                   </span>
                 </span>
 
                 <span className="features d-flex gap-3">
                   <span className="txt">
                     <div className="key">RERA No.</div>
-                    <div className="value">{project.RERA_No || "N/A"}</div>
+                    <div className="value hilights-Value">{project.RERA_No || "N/A"}</div>
                   </span>
                 </span>
               </div>
@@ -311,6 +326,9 @@ const ProjectDetailPage = () => {
             <div id="Floorplan">
               <FloorPlan plans={project.floor_plans} />
             </div>
+
+            {/* brochure */}
+            <Brochure project={project} />
           </div>
           {/* ================== CONTACT FORM ================== */}
           <div className="col-sm-4 contactform">
@@ -437,11 +455,12 @@ const ProjectDetailPage = () => {
                 <h2 className="mainFont">
                   Location <span className="text-gradient2">Advantage.</span>
                 </h2>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: project.Location_Content?.replace(/,/g, "<br/>"),
-                  }}
-                ></p>
+
+                <ul className="locationList">
+                  {locationPoints?.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
