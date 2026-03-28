@@ -57,7 +57,7 @@ const Brochure = ({ project, onOpen }) => {
         }}
       />
 
-      <div style={{ display: "flex", alignItems: "flex-start", gap: "18px" }}>
+      <div className="brochurecss" >
         {/* Icon */}
         <div
           style={{

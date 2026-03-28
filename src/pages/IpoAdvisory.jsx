@@ -84,8 +84,6 @@ const IpoAdvisory = () => {
             </div>
           </div>
 
-          
-
           <div className="advisor-card advisor-card--reversed">
             <div className="advisor-card__body order-1 order-sm-0">
               <p className="advisor-card__tag">CFO Advisory</p>
@@ -126,7 +124,6 @@ const IpoAdvisory = () => {
             </div>
           </div>
         </section>
-        
       </div>
     </>
   );

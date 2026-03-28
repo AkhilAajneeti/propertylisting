@@ -245,11 +245,8 @@ const ProjectDetailPage = () => {
                 ...(project.gallery_images?.map((img) => img.image) || []),
               ]}
             />
-
-            
-
             {/* HIGHLIGHTS */}
-            <div className="discibe pb-5" id="Highlight">
+            <div className="discibe py-5" id="Highlight">
               <h2 className="ameneties-title split2">Highlights</h2>
 
               <ul className="highlightList">
@@ -508,7 +505,7 @@ const ProjectDetailPage = () => {
       <ContactBtn project={project} />
       {showPopup && (
         <div className="popupOverlay">
-          <div className="popupBox">
+          <div className="popupBox contactform">
             {/* Close Button */}
             <button className="closeBtn" onClick={() => setShowPopup(false)}>
               ✖
@@ -521,60 +518,61 @@ const ProjectDetailPage = () => {
               </span>
               <br /> Fill details to continue
             </p>
+            <div className="formcol formRadius">
+              <form className="pt-3" onSubmit={(e) => handleSubmit(e, true)}>
+                <div className="row gy-3">
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      value={form.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-            <form className="pt-3" onSubmit={(e) => handleSubmit(e, true)}>
-              <div className="row gy-3">
-                <div className="col-12">
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+                  <div className="col-12">
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Your Email Address"
+                      value={form.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="col-12">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email Address"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+                  <div className="col-12">
+                    <input
+                      type="tel"
+                      name="mobile"
+                      placeholder="Your phone number"
+                      value={form.mobile}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="col-12">
-                  <input
-                    type="tel"
-                    name="mobile"
-                    placeholder="Your phone number"
-                    value={form.mobile}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      name="city"
+                      placeholder="Your City"
+                      value={form.city}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
 
-                <div className="col-12">
-                  <input
-                    type="text"
-                    name="city"
-                    placeholder="Your City"
-                    value={form.city}
-                    onChange={handleChange}
-                    required
-                  />
+                  <div className="col-12 text-center">
+                    <button type="submit" className="animated-btn">
+                      Submit & Download <FaTelegramPlane />
+                    </button>
+                  </div>
                 </div>
-
-                <div className="col-12 text-center">
-                  <button type="submit" className="animated-btn">
-                    Submit & Download <FaTelegramPlane />
-                  </button>
-                </div>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
       )}
