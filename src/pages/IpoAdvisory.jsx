@@ -38,30 +38,30 @@ const IpoAdvisory = () => {
       </div>
 
       <div className="container">
-        <section class="advisors">
-          <div class="advisors__header">
-            <p class="advisors__eyebrow">Our Advisory Team</p>
+        <section className="advisors">
+          <div className="advisors__header">
+            <p className="advisors__eyebrow">Our Advisory Team</p>
           </div>
 
-          <div class="advisor-card">
-            <div class="advisor-card__img">
+          <div className="advisor-card">
+            <div className="advisor-card__img">
               <img
                 src="/ourTeam/Suresh-Mansharamani.png"
                 alt="Suresh Mansharamani"
                 loading="lazy"
               />
             </div>
-            <div class="advisor-card__body">
-              <p class="advisor-card__tag">Strategic Initiative</p>
-              <h2 class="advisor-card__title">
+            <div className="advisor-card__body">
+              <p className="advisor-card__tag">Strategic Initiative</p>
+              <h2 className="advisor-card__title">
                 A Strategic Initiative
                 <br />
                 by Jenika Ventures
               </h2>
-              <p class="advisor-card__subtitle">
+              <p className="advisor-card__subtitle">
                 Guided by Suresh Mansharamani
               </p>
-              <p class="advisor-card__text">
+              <p className="advisor-card__text">
                 Jenika Ventures brings a focused and structured approach to SME
                 IPO advisory, combining market expertise with real
                 entrepreneurial success. This vertical is strengthened by the
@@ -86,18 +86,18 @@ const IpoAdvisory = () => {
 
           
 
-          <div class="advisor-card advisor-card--reversed">
-            <div class="advisor-card__body order-1 order-sm-0">
-              <p class="advisor-card__tag">CFO Advisory</p>
-              <h2 class="advisor-card__title">
+          <div className="advisor-card advisor-card--reversed">
+            <div className="advisor-card__body order-1 order-sm-0">
+              <p className="advisor-card__tag">CFO Advisory</p>
+              <h2 className="advisor-card__title">
                 Chief Financial Officer
                 <br />
                 (CFO) Advisory
               </h2>
-              <p class="advisor-card__subtitle">
+              <p className="advisor-card__subtitle">
                 Financial Strategy, Structure &amp; Governance
               </p>
-              <p class="advisor-card__text">
+              <p className="advisor-card__text">
                 A strong financial foundation is essential for businesses aiming
                 to scale, attract investment, and prepare for capital market
                 opportunities. At Jenika Ventures, the CFO advisory function is
@@ -117,7 +117,7 @@ const IpoAdvisory = () => {
                 opportunities.
               </p>
             </div>
-            <div class="advisor-card__img order-0 order-sm-1">
+            <div className="advisor-card__img order-0 order-sm-1">
               <img
                 src="/ourTeam/Structure-Governance.png"
                 alt="Tanuj Keswani"

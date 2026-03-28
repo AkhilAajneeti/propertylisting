@@ -14,7 +14,7 @@ import ContactBtn from "../components/ContactBtn";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjectById } from "../redux/slices/propertySlice";
 import { submitProjectEnquiry } from "../api/projectFormApi";
-import Brochure from "../components/brochure";
+import Brochure from "../components/Brochure";
 const ProjectDetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -296,7 +296,9 @@ const ProjectDetailPage = () => {
                 <span className="features d-flex gap-3">
                   <span className="txt">
                     <div className="key">RERA No.</div>
-                    <div className="value hilights-Value">{project.RERA_No || "N/A"}</div>
+                    <div className="value hilights-Value">
+                      {project.RERA_No || "N/A"}
+                    </div>
                   </span>
                 </span>
               </div>
