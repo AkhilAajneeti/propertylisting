@@ -134,7 +134,7 @@ const OurTeam = () => {
         </h2>
 
         <div className="row align-items-center gy-5">
-          <div className="col-12 col-sm-6">
+          <div className="col-12 col-sm-6 ">
             <img
               src="/ourTeam/boss1.png"
               alt="Team Img"
@@ -228,7 +228,7 @@ const OurTeam = () => {
             </h2>
           </div>
           {managementTeam.map((member) => (
-            <div className="col-12 col-md-4" key={member.id}>
+            <div className="col-12 col-lg-3 col-md-4 col-sm-6" key={member.id}>
               <div
                 className="team-card shine-animate-item p-3 text-center"
                 data-aos="fade-up"
@@ -300,7 +300,7 @@ const OurTeam = () => {
           </div>
 
           {leadershipTeam.map((member) => (
-            <div className="col-12 col-md-3" key={member.id}>
+            <div className="col-12 col-lg-3 col-md-4 col-sm-6" key={member.id}>
               <div
                 className="team-card shine-animate-item p-3 text-center"
                 data-aos="fade-up"
@@ -372,7 +372,7 @@ const OurTeam = () => {
           </div>
 
           {nationwideleadershipTeam.map((member) => (
-            <div className="col-12 col-md-3">
+            <div className="col-12 col-lg-3 col-md-4 col-sm-6">
               <div
                 className="team-card shine-animate-item p-3 text-center"
                 data-aos="fade-up"
@@ -393,7 +393,7 @@ const OurTeam = () => {
                   <div className="card-overlay"></div>
 
                   {/* Name Overlay ONLY */}
-                  <div className="content-2">
+                  <div className="content-2 text-start ms-2">
                     <h5 className="text-white mb-0 fw-bold">{member.name}</h5>
                   </div>
                 </div>

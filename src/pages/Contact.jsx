@@ -63,8 +63,45 @@ const Contact = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    if (!form.name.trim()) {
+      toast.error("Name is required");
+      return false;
+    }
+
+    if (!form.email.trim()) {
+      toast.error("Email is required");
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Invalid email format");
+      return false;
+    }
+
+    if (!form.mobile.trim()) {
+      toast.error("Mobile number is required");
+      return false;
+    }
+
+    const phoneRegex = /^[6-9]\d{9}$/; // Indian number
+    if (!phoneRegex.test(form.mobile)) {
+      toast.error("Enter valid 10-digit mobile number");
+      return false;
+    }
+
+    if (!form.message.trim()) {
+      toast.error("Message cannot be empty");
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
     setIsSubmitting(true);
 
     try {
@@ -80,7 +117,20 @@ const Contact = () => {
       });
     } catch (err) {
       console.error("Contact Form Error:", err);
-      toast.error("Something went wrong ❌");
+
+      // 🔥 Axios error handling (most cases)
+      if (err.response) {
+        // Server responded with error
+        const message =
+          err.response.data?.message || "Server error, please try again";
+        toast.error(message);
+      } else if (err.request) {
+        // Request sent but no response
+        toast.error("Server not responding. Please try later");
+      } else {
+        // Something else
+        toast.error("Unexpected error occurred ❌");
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -139,6 +189,9 @@ const Contact = () => {
                       placeholder="Your Phone Number"
                       value={form.mobile}
                       onChange={handleChange}
+                      pattern="^\d{10}$"
+                      maxlength="10"
+                      inputmode="numeric"
                       required
                     />
                   </div>
@@ -156,7 +209,8 @@ const Contact = () => {
                   <div className=" col-12 d-flex align-items-baseline justify-content-center gap-2">
                     <input type="checkbox" checked className="w-auto " />
                     <p className="text-light">
-                     I authorize Jenika Ventures to send notifications via SMS, RCS, and calls.
+                      I authorize Jenika Ventures to send notifications via SMS,
+                      RCS, and calls.
                     </p>
                   </div>
                   <div className="col-12 text-center">
@@ -239,19 +293,19 @@ const Contact = () => {
                 <h2>Follow Us</h2>
                 {/* Social Links */}
                 <div className="d-flex gap-3 my-3">
-                  <a href="#" className="text-light">
+                  <a href="https://www.facebook.com/jenikaventures" className="text-light">
                     <FaFacebookF className="brown" />
                   </a>
-                  <a href="#" className="text-light">
+                  <a href="https://x.com/JenikaVentures" className="text-light">
                     <FaTwitter className="brown" />
                   </a>
-                  <a href="#" className="text-light">
+                  <a href="https://www.linkedin.com/company/71280221/admin/dashboard/" className="text-light">
                     <FaLinkedinIn className="brown" />
                   </a>
-                  <a href="#" className="text-light">
+                  <a href="https://www.instagram.com/jenikaventures/" className="text-light">
                     <FaInstagram className="brown" />
                   </a>
-                  <a href="#" className="text-light">
+                  <a href="https://www.youtube.com/@jenikaventures" className="text-light">
                     <FaYoutube className="brown" />
                   </a>
                 </div>

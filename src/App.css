@@ -1200,6 +1200,25 @@ html {
   overflow: hidden;
 }
 
+.IPOBanner {
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/Downloads/ipo.jpeg');
+  width: 100%;
+  height: 70vh;
+  background-position: 50% 20%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.utilities {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
 .AwardsBanner::after {
   content: "";
   position: absolute;
@@ -1210,7 +1229,7 @@ html {
   /* adjust as needed */
   background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.783));
   pointer-events: none;
-  z-index: 99999;
+  z-index: 999;
 }
 
 .CareerBanner p,
@@ -1342,6 +1361,15 @@ html {
   .OurTeambanner,
   .videoSize {
     height: 35vh;
+  }
+
+  .IPOBanner {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(65, 56, 56, 0)), url('/Downloads/ipo.jpeg');
+    width: 100%;
+    height: 32vh;
+    background-position: 50% 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 
 }
@@ -2978,9 +3006,11 @@ p {
   z-index: 2;
   max-width: 600px;
 }
-.content h5{
+
+.content h5 {
   font-size: 25px;
 }
+
 .panel-title {
   font-size: 4rem;
   margin-bottom: 1.5rem;
@@ -3047,6 +3077,10 @@ p {
     object-fit: cover;
   }
 
+  .projectBanner {
+    height: 32vh !important;
+  }
+
   .fs-30 {
     font-size: 20px !important;
   }
@@ -3067,6 +3101,26 @@ p {
   z-index: 99;
 }
 
+/* changes */
+.banner-content h1 {
+  font-size: 75px;
+  font-weight: bold;
+  background: linear-gradient(to top, #bea059, #bc9e5859);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: sans-serif;
+}
+
+@media(max-width:580px) {
+  .banner-content h1 {
+    font-size: 42px;
+    font-weight: bold;
+    background: linear-gradient(to top, #bea059, #bc9e5859);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: sans-serif;
+  }
+}
 
 /* From Uiverse.io by mobinkakei */
 .wrapper-2 {
@@ -3257,17 +3311,32 @@ p {
 .contact-floating-btn {
   position: fixed;
   right: 20px;
-  bottom: 120px;
+  bottom: 140px;
   display: flex;
   flex-direction: column;
   gap: 12px;
   z-index: 9999;
 }
 
-.contact-floating-btn a {
+.contact-floating-btn a:nth-child(1) {
   width: 48px;
   height: 48px;
-  background: #c80a17;
+  background: #4CAF50;
+  /* main theme color */
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-floating-btn a:nth-child(2) {
+  width: 48px;
+  height: 48px;
+  background: #3f51b5;
   /* main theme color */
   color: #fff;
   border-radius: 50%;
@@ -3400,6 +3469,14 @@ p {
   z-index: 99;
 }
 
+.projectDetail .projectText {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #b8952a;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
 
 .card-description {
   color: black;
@@ -3632,7 +3709,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  z-index: 99;
+  z-index: 999;
 }
 
 .floating-btn {
@@ -3802,9 +3879,18 @@ p {
 }
 
 .content-2 {
+  width: 100%;
   position: absolute;
   bottom: 15px;
-  left: 15px;
+  /* left: 10px; */
+  z-index: 99;
+  /* text-align: start; */
+}
+
+@media (max-width:1024px) {
+  .content-2 h5 {
+    font-size: 15px;
+  }
 }
 
 .linkedin-icon img {
@@ -3815,14 +3901,311 @@ p {
   transform: scale(1.1);
 }
 
-.img-size{
+.img-size {
   width: 100%;
   height: 500px;
   object-fit: cover;
 }
-.designation{
+
+.designation {
   font-size: 22px;
 }
-.subdest{
+
+.subdest {
   font-size: 18px;
+}
+
+/* extra */
+.bg-img1 {
+  background-image: url('/public/ourTeam/slider-shape-2.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* remove work */
+
+/* ── Section wrapper ── */
+
+.advisors {
+  background: #faf7f2;
+  font-family: 'DM Sans', sans-serif;
+  color: #2e2b24;
+  -webkit-font-smoothing: antialiased;
+  margin: 0 auto;
+  padding: 40px 0px;
+}
+
+/* ─── Header ─── */
+.advisors__header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+
+.advisors__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 18px;
+}
+
+.advisors__eyebrow::before,
+.advisors__eyebrow::after {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: #e8c96a;
+  opacity: 0.6;
+}
+
+.advisors__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 600;
+  color: #0c0a07;
+  line-height: 1.15;
+}
+
+.advisors__title em {
+  font-style: italic;
+  color: #e8c96a;
+}
+
+/* ─── Cards ─── */
+.advisor-card {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid #ede6d8;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.06);
+  margin-bottom: 48px;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+  position: relative;
+  animation: fadeUp 0.7s ease both;
+}
+
+.advisor-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.advisor-card:nth-child(3) {
+  animation-delay: 0.25s;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.advisor-card:hover {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.11);
+  transform: translateY(-3px);
+}
+
+/* ── Gold corner accent ── */
+.advisor-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 52px 52px 0;
+  border-color: transparent #e8c96a transparent transparent;
+  opacity: 0.45;
+  transition: opacity 0.3s;
+}
+
+.advisor-card:hover::after {
+  opacity: 0.75;
+}
+
+/* ── Image panel ── */
+.advisor-card__img {
+  position: relative;
+  overflow: hidden;
+  background: #14110c;
+}
+
+.advisor-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  filter: grayscale(18%) contrast(1.04);
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.advisor-card:hover .advisor-card__img img {
+  transform: scale(1.04);
+  filter: grayscale(0%) contrast(1.02);
+}
+
+/* Gradient overlay on image */
+.advisor-card__img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg,
+      rgba(10, 8, 5, 0.15) 0%,
+      transparent 60%), linear-gradient(to top,
+      rgba(10, 8, 5, 0.55) 0%,
+      transparent 45%);
+  pointer-events: none;
+}
+
+/* Left gold bar */
+.advisor-card__img::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #e8c96a, #8a6520);
+  z-index: 3;
+}
+
+/* Name on image bottom */
+.advisor-card__img-name {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 4;
+  color: #fff;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Body ── */
+.advisor-card__body {
+  padding: 48px 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+
+/* Subtle noise texture on body */
+.advisor-card__body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.advisor-card__tag {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.advisor-card__tag::before {
+  content: '';
+  display: inline-block;
+  width: 18px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.advisor-card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0c0a07;
+  margin-bottom: 8px;
+}
+
+.advisor-card__subtitle {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+}
+
+/* Decorative divider */
+
+.advisor-card__text {
+  font-size: 0.895rem;
+  line-height: 1.82;
+  color: #3a362e;
+  text-align: justify;
+  font-weight: 300;
+}
+
+/* ── Reversed card: image on right ── */
+.advisor-card--reversed {
+  grid-template-columns: 1fr 380px;
+}
+
+.advisor-card--reversed .advisor-card__img::before {
+  left: auto;
+  right: 0;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 860px) {
+  .advisor-card {
+    grid-template-columns: 1fr;
+  }
+
+  .advisor-card__img {
+    height: 320px;
+  }
+
+  .advisor-card__img::before {
+    width: 100%;
+    height: 3px;
+    right: 0;
+    bottom: auto;
+  }
+
+  .advisor-card__body {
+    padding: 36px 28px;
+  }
+
+  .advisor-card__title {
+    font-size: 1.45rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+
+  .advisor-card__body {
+    padding: 28px 20px;
+  }
 }

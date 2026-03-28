@@ -205,9 +205,9 @@ const ProjectDetailPage = () => {
           justifyContent: "center",
         }}
       >
-        <div className="banner-content position-absolute top-50 start-50 translate-middle text-center text-white">
-          <h1 className="split2">{project.Title}</h1>
-          <h5 className="text-drop__line split2 text-center">
+        <div className="banner-content position-absolute top-50 start-50 translate-middle text-center">
+          <h1 className="split2">{project.category}</h1>
+          {/* <h5 className="text-drop__line split2 text-center">
             {project.Project_Location}, {project.City}
           </h5>
           <p className="text-drop__line split2 text-center">
@@ -215,7 +215,7 @@ const ProjectDetailPage = () => {
           </p>
           <p className="text-drop__line split2 text-center">
             Starting Price : {project.Price}
-          </p>
+          </p> */}
         </div>
         <div className="overlay"></div>
       </div>
@@ -227,6 +227,9 @@ const ProjectDetailPage = () => {
       {/* ================== MAIN CONTENT ================== */}
       <div className="container py-5 projectDetail">
         <div className="row">
+          <div className="col-12">
+            <h1 className="projectText">{project.title}</h1>
+          </div>
           <div className="col-sm-8">
             {/* SLIDER */}
             <ProjectSlider

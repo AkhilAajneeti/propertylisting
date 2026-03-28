@@ -68,7 +68,7 @@ function CustomNavbar() {
                   </NavDropdown.Item>
 
                   <div className="submenu-dropdown">
-                    <NavDropdown.Item as={NavLink} to="/">
+                    <NavDropdown.Item as={NavLink} to="/our-team/ipo-advisory">
                       IPO Advisory
                     </NavDropdown.Item>
                   </div>

@@ -5,6 +5,7 @@ import {
   FaInstagram,
   FaYoutube,
 } from "react-icons/fa";
+import { useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { FaThreads } from "react-icons/fa6";
 import ScrollToTop from "./ScrollToTop";
@@ -31,7 +32,9 @@ export default function Footer() {
       }
     }, 4000);
   };
-
+  // hide buttons for projects
+  const location = useLocation();
+  const hideButton = location.pathname.startsWith("/projects");
   useEffect(() => {
     if (!open) {
       restartHintTimer();
@@ -293,7 +296,8 @@ export default function Footer() {
 
       {/* Chatbot */}
       <Chatbot isOpen={open} onClose={() => setOpen(false)} />
-      <CallandWhatsapp />
+      {!hideButton && <CallandWhatsapp />}
+
       <ScrollToTop />
     </footer>
   );
