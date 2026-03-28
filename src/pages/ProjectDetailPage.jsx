@@ -16,6 +16,7 @@ import { fetchProjectById } from "../redux/slices/propertySlice";
 import { submitProjectEnquiry } from "../api/projectFormApi";
 import Brochure from "../components/Brochure";
 const ProjectDetailPage = () => {
+  const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -171,13 +172,17 @@ const ProjectDetailPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e, isPopup = false) => {
+    if (e) e.preventDefault();
 
     try {
       await submitProjectEnquiry(id, form);
 
       toast.success("Thank you! Redirecting...");
+      // ✅ popup close if popup form
+      if (isPopup) {
+        setShowPopup(false);
+      }
       setTimeout(() => {
         navigate("/thankyou");
       }, 1000); // small delay for toast visibility
@@ -213,15 +218,6 @@ const ProjectDetailPage = () => {
       >
         <div className="banner-content position-absolute top-50 start-50 translate-middle text-center">
           <h1 className="split2">{project.category}</h1>
-          {/* <h5 className="text-drop__line split2 text-center">
-            {project.Project_Location}, {project.City}
-          </h5>
-          <p className="text-drop__line split2 text-center">
-            {project.Configuration} Estates
-          </p>
-          <p className="text-drop__line split2 text-center">
-            Starting Price : {project.Price}
-          </p> */}
         </div>
         <div className="overlay"></div>
       </div>
@@ -235,7 +231,7 @@ const ProjectDetailPage = () => {
         <div className="row">
           <div className="col-12 pb-2">
             <h1 className="projectText">{project.Title}</h1>
-            <h5 className="text-drop__line split2 text-center">
+            <h5 className="text-drop__line split2 text-start">
               {project.Project_Location}
             </h5>
           </div>
@@ -250,14 +246,7 @@ const ProjectDetailPage = () => {
               ]}
             />
 
-            {/* OVERVIEW */}
-            <div className="overview py-5" id="Overview">
-              <h2 className="split2">OVERVIEW</h2>
-              <div
-                className="overview-text"
-                dangerouslySetInnerHTML={{ __html: project.About_Content }}
-              ></div>
-            </div>
+            
 
             {/* HIGHLIGHTS */}
             <div className="discibe pb-5" id="Highlight">
@@ -304,6 +293,15 @@ const ProjectDetailPage = () => {
               </div>
             </div>
 
+            {/* OVERVIEW */}
+            <div className="overview py-5" id="Overview">
+              <h2 className="split2">Project Information</h2>
+              <div
+                className="overview-text twoLineClamp"
+                dangerouslySetInnerHTML={{ __html: project.About_Content }}
+              ></div>
+            </div>
+
             {/* FEATURES & AMENITIES */}
             <div className="ameneties" id="Amenities">
               <h2 className="ameneties-title split2">Features & Amenities</h2>
@@ -330,7 +328,7 @@ const ProjectDetailPage = () => {
             </div>
 
             {/* brochure */}
-            <Brochure project={project} />
+            <Brochure project={project} onOpen={() => setShowPopup(true)} />
           </div>
           {/* ================== CONTACT FORM ================== */}
           <div className="col-sm-4 contactform">
@@ -455,7 +453,7 @@ const ProjectDetailPage = () => {
             <div className="col-sm-6  d-flex align-content-center flex-column">
               <div className="locationContent">
                 <h2 className="mainFont">
-                  Location <span className="text-gradient2">Advantage.</span>
+                  Location <span className="text-gradient2">Advantage</span>
                 </h2>
 
                 <ul className="locationList">
@@ -475,17 +473,111 @@ const ProjectDetailPage = () => {
           <div className="row">
             <div className="col-sm-6 d-flex justify-content-center align-content-center flex-column">
               <h2 className="mainFont">
-                About <span className="text-gradient2">Developer.</span>
+                <span className="text-gradient2">OVERVIEW</span>
               </h2>
-              <p>{project.Abt_builder}</p>
+              <div
+                className="overview-text"
+                dangerouslySetInnerHTML={{ __html: project.About_Content }}
+              ></div>
             </div>
+
+            <div className="col-sm-6">
+              <img src={project.Bann1} alt="Jenikaimg" className="img-fluid" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* developer content */}
+      <div className="developerContent py-5" id="Developer">
+        <div className="container">
+          <div className="row">
             <div className="col-sm-6">
               <img src="/contact2.jpg" alt="Jenikaimg" className="img-fluid" />
+            </div>
+
+            <div className="col-sm-6 d-flex justify-content-center align-content-center flex-column">
+              <h2 className="mainFont">
+                About <span className="text-gradient2">Developer</span>
+              </h2>
+              <p>{project.Abt_builder}</p>
             </div>
           </div>
         </div>
       </div>
       <ContactBtn project={project} />
+      {showPopup && (
+        <div className="popupOverlay">
+          <div className="popupBox">
+            {/* Close Button */}
+            <button className="closeBtn" onClick={() => setShowPopup(false)}>
+              ✖
+            </button>
+
+            {/* SAME FORM (reuse) */}
+            <p className="formtagline text-center">
+              <span className="text-gradient2 fs-4 fw-bold">
+                Download Brochure
+              </span>
+              <br /> Fill details to continue
+            </p>
+
+            <form className="pt-3" onSubmit={(e) => handleSubmit(e, true)}>
+              <div className="row gy-3">
+                <div className="col-12">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="col-12">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Your Email Address"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="col-12">
+                  <input
+                    type="tel"
+                    name="mobile"
+                    placeholder="Your phone number"
+                    value={form.mobile}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="col-12">
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="Your City"
+                    value={form.city}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="col-12 text-center">
+                  <button type="submit" className="animated-btn">
+                    Submit & Download <FaTelegramPlane />
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 };

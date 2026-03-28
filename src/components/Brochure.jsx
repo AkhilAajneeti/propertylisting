@@ -12,14 +12,24 @@ const C = {
   border: "#ede6d8",
 };
 
-const Brochure = ({ project }) => {
+const Brochure = ({ project, onOpen }) => {
   const [hovBtn, setHovBtn] = useState(false);
 
   const projectTitle = project?.Title || "Project Title";
-  const description =
-    project?.About_Content.split(".")[0] + "." ||
-    "Explore this premium project with world-class amenities and RERA-approved compliance.";
-  const brochure = project?.Brochure || "#";
+  const cleanText = (html) => {
+    if (!html) return "";
+    const temp = document.createElement("div");
+    temp.innerHTML = html;
+    return temp.textContent || "";
+  };
+
+  const rawText = cleanText(project?.About_Content);
+
+  const description = rawText
+    ? rawText.split(".")[0].trim() + "."
+    : "Explore this premium project with world-class amenities and RERA-approved compliance.";
+
+  // const brochure = project?.Brochure || "#";
 
   return (
     <div
@@ -112,7 +122,7 @@ const Brochure = ({ project }) => {
           {/* Title */}
           <div
             style={{
-              fontSize: "17px",
+              fontSize: "22px",
               fontWeight: "700",
               color: C.ink,
               letterSpacing: "0.1px",
@@ -126,11 +136,11 @@ const Brochure = ({ project }) => {
           {/* Description */}
           <div
             style={{
-              fontSize: "13px",
+              fontSize: "16px",
               color: C.muted,
               lineHeight: 1.7,
               marginBottom: "18px",
-              maxWidth: "520px",
+              maxWidth: "100%",
               fontFamily: "Arial, sans-serif",
             }}
           >
@@ -138,9 +148,8 @@ const Brochure = ({ project }) => {
           </div>
 
           {/* Download Button */}
-          <a
-            href={brochure}
-            download
+          <button
+            onClick={onOpen}
             onMouseEnter={() => setHovBtn(true)}
             onMouseLeave={() => setHovBtn(false)}
             style={{
@@ -176,7 +185,7 @@ const Brochure = ({ project }) => {
               />
             </svg>
             Download Brochure
-          </a>
+          </button>
         </div>
       </div>
     </div>

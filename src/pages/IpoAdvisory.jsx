@@ -126,6 +126,7 @@ const IpoAdvisory = () => {
             </div>
           </div>
         </section>
+        
       </div>
     </>
   );
