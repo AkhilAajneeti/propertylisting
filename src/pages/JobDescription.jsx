@@ -4,10 +4,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { IoBriefcase, IoLocationSharp } from "react-icons/io5";
 import { FaUserTie } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
-import { getJobById, submitJobApplication } from "../api/jobApi";
+import { getJobBySlug, submitJobApplication } from "../api/jobApi";
 import SEO from "../components/seo/SEO";
 const JobDescription = () => {
-  const { id } = useParams();
+  const { job_slug } = useParams();
   const navigate = useNavigate();
 
   const [job, setJob] = useState(null);
@@ -20,12 +20,12 @@ const JobDescription = () => {
 
   // Fetch job detail by ID
   useEffect(() => {
-    getJobById(id)
+    getJobBySlug(job_slug)
       .then((data) => {
         setJob(data);
       })
       .catch((err) => console.log("Error fetching jobs:", err));
-  }, [id]);
+  }, [job_slug]);
 
   // Handle text fields
   const handleChange = (e) => {
@@ -46,7 +46,7 @@ const JobDescription = () => {
     sendData.append("name", formData.name);
     sendData.append("email", formData.email);
     sendData.append("mobile", formData.mobile);
-    sendData.append("job_posting", id);
+    sendData.append("job_posting", job_slug);
     sendData.append("job_title", job.title);
     sendData.append("resume", formData.resume);
 

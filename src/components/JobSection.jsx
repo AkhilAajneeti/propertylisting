@@ -104,7 +104,7 @@ const JobSection = () => {
                   <span>◆ {job.location}</span>
                 </p>
               </div>
-              <Link className="apply-btn" to={`/job/${job.id}`}>
+              <Link className="apply-btn" to={`/job/${job.job_slug}`}>
                 Apply Now
               </Link>
             </div>

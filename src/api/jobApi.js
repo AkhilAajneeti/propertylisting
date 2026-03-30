@@ -10,6 +10,10 @@ export const getJobById = async (id) => {
   const response = await api.get(`/job-postings/${id}/`);
   return response.data;
 };
+export const getJobBySlug = async (job_slug) => {
+  const response = await api.get(`/job-postings/${job_slug}/`);
+  return response.data;
+};
 
 //submit job application
 export const submitJobApplication = async (formData) => {

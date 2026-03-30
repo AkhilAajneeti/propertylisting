@@ -73,7 +73,7 @@ function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:project_slug" element={<ProjectDetailPage />} />
         <Route path="/thankyou" element={<Thankyou />} />
-        <Route path="/job/:id" element={<JobDescription />} />
+        <Route path="/job/:job_slug" element={<JobDescription />} />
         <Route path="/search-projects" element={<SearchedProject />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsCondition />} />
