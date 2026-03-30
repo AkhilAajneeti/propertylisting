@@ -12,15 +12,18 @@ import { SlCalender } from "react-icons/sl";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchNewsById } from "../redux/slices/newsSlice";
+import SEO from "../components/seo/SEO";
 const NewsDetailPage = () => {
   const { id } = useParams();
- const dispatch = useDispatch();
-  const { currentNews: news, loading, error } = useSelector(
-    (state) => state.news
-  );
+  const dispatch = useDispatch();
+  const {
+    currentNews: news,
+    loading,
+    error,
+  } = useSelector((state) => state.news);
 
- useEffect(() => {
-    dispatch(fetchNewsById({id}));
+  useEffect(() => {
+    dispatch(fetchNewsById({ id }));
   }, [id, dispatch]);
 
   if (loading) return <Loader />;
@@ -29,6 +32,10 @@ const NewsDetailPage = () => {
 
   return (
     <div>
+      <SEO
+        title={`${news.title} | Jenika Ventures Insights`}
+        description={`Read ${news.title}. Discover expert tips on choosing the best residential property including budget planning, location selection, and investment insights in Delhi NCR.`}
+      />
       {/* Banner */}
       <div
         className="blog-detailBanner position-relative d-flex align-items-center justify-content-center"
@@ -57,7 +64,10 @@ const NewsDetailPage = () => {
                   <FaRegUser /> By {news.author}
                 </span>
                 <span>
-                  <SlCalender /> {news.date ? new Date(news.date).toLocaleDateString("en-US") : "Date N/A"}
+                  <SlCalender />{" "}
+                  {news.date
+                    ? new Date(news.date).toLocaleDateString("en-US")
+                    : "Date N/A"}
                 </span>
                 <span>
                   <FaRegNewspaper /> {news.newscategory}
@@ -84,9 +94,15 @@ const NewsDetailPage = () => {
               {/* Share */}
               <div className="share-box mt-5 d-flex align-items-center gap-3">
                 <h5 className="fw-bold">Share:</h5>
-                <a className="share-btn" href="#"><FaFacebookF /></a>
-                <a className="share-btn" href="#"><FaLinkedinIn /></a>
-                <a className="share-btn" href="#"><FaTwitter /></a>
+                <a className="share-btn" href="#">
+                  <FaFacebookF />
+                </a>
+                <a className="share-btn" href="#">
+                  <FaLinkedinIn />
+                </a>
+                <a className="share-btn" href="#">
+                  <FaTwitter />
+                </a>
               </div>
             </div>
           </div>

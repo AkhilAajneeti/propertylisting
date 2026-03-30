@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import { fetchSearchProjects } from "../redux/slices/propertySlice";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SEO from "../components/seo/SEO";
 const SearchedProject = () => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ const SearchedProject = () => {
   const query = new URLSearchParams(location.search).get("q");
 
   const { searchResults, loading, error } = useSelector(
-    (state) => state.projects
+    (state) => state.projects,
   );
   useEffect(() => {
     AOS.init({
@@ -35,6 +36,10 @@ const SearchedProject = () => {
 
   return (
     <>
+      <SEO
+        title={`Search Results for "${query}" | Jenika Ventures`}
+        description={`Showing property results for "${query}". Explore residential and commercial projects in Delhi NCR.`}
+      />
       <div className="BlogBanner">
         <h1 className=" " data-aos="fade-up">
           Searched Projects

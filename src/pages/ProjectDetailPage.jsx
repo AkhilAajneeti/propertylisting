@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProjectById } from "../redux/slices/propertySlice";
 import { submitProjectEnquiry } from "../api/projectFormApi";
 import Brochure from "../components/Brochure";
+import BrochurePopup from "../components/brochureModel/BrochurePopup";
+import SEO from "../components/seo/SEO";
 const ProjectDetailPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
@@ -201,8 +203,39 @@ const ProjectDetailPage = () => {
   const highlightPoints = project?.Highlights?.split(/\r?\n|,/) // newline OR comma dono handle
     .map((item) => item.trim())
     .filter(Boolean);
+
+  const styles = `
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+  .ls {  padding: 45px 24px; font-family: 'DM Sans', sans-serif; }
+  .ls-inner { width: 100%; margin: 14px auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .ls-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 5px; text-transform: uppercase; color: #b89a50; margin-bottom: 12px; }
+  .ls-heading { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 400; color: #fff; line-height: 1.25; }
+  .ls-heading em { font-style: italic; color: #c9a84c; }
+  .ls-rule { width: 70px; height: 1px; background: #c9a84c; margin: auto; opacity: .6; }
+
+  .map-shell { position: relative; border-radius: 10px; overflow: hidden; }
+  .map-shell::before { content: ''; position: absolute; inset: 0; border: 1px solid rgba(201,168,76,.2); z-index: 2; pointer-events: none; border-radius: 2px; }
+  .map-shell iframe { width: 100%; height: 380px; display: block; filter: saturate(.6) brightness(.8) contrast(1.05); }
+  .map-tag { position: absolute; bottom: 14px; left: 14px; z-index: 3; display: flex; align-items: center; gap: 8px; background: rgba(11,11,22,.88); border: 1px solid rgba(201,168,76,.25); padding: 8px 14px; border-radius: 2px; }
+  .map-dot { width: 7px; height: 7px; border-radius: 50%; background: #c9a84c; box-shadow: 0 0 6px #c9a84c; animation: blink 2s ease-in-out infinite; }
+  @keyframes blink { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+  .map-tag-txt { font-size: 10px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: #d4b870; }
+
+  .loc-cards { display: flex; flex-direction: column; gap: 10px; }
+  .loc-card { display: flex; align-items: center; background: #f5f0e6; border-radius: 4px; overflow: hidden; cursor: default; transition: transform .25s, box-shadow .25s; }
+  .loc-card:hover { transform: translateX(4px); box-shadow: -3px 0 0 #c9a84c; }
+  .loc-num {margin: 6px;height: 55px;border-radius: 8px; background: #111; color: #fff; font-size: 13px; font-weight: 500; letter-spacing: 1px; min-width: 52px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .loc-label { padding: 10px; font-size: 14px; font-weight: 400; color: #1a1a2e; flex: 1; }
+
+  @media(max-width:640px){ .ls-inner { grid-template-columns: 1fr; } }
+`;
   return (
     <>
+      <SEO
+        title={`${project.Title} | ${project.Project_Location} - Price, Floor Plan & Details`}
+        description={`${project.Title} located in ${project.Project_Location}. Explore ${project.project_type} with price starting from ${project.Price}. Get floor plans, amenities, and complete project details.`}
+      />
       {/* ================== BANNER ================== */}
       <div
         className="ProjectBanner position-relative"
@@ -321,7 +354,10 @@ const ProjectDetailPage = () => {
 
             {/* FLOOR PLANS */}
             <div id="Floorplan">
-              <FloorPlan plans={project.floor_plans} />
+              <FloorPlan
+                plans={project.floor_plans}
+                setShowPopup={setShowPopup}
+              />
             </div>
 
             {/* brochure */}
@@ -368,6 +404,7 @@ const ProjectDetailPage = () => {
                       placeholder="Your phone number"
                       value={form.mobile}
                       onChange={handleChange}
+                      pattern="^\d{10}$" inputmode="numeric" maxlength="10"
                       required
                     />
                   </div>
@@ -423,49 +460,67 @@ const ProjectDetailPage = () => {
         </div>
       </div>
 
-      {/* location advantage */}
-      {/* LOCATION */}
-      <div className="projectLocation">
+      <style>{styles}</style>
+      <div className="parentCard" style={{ background: "rgb(0 0 0)" }}>
         <div className="container">
-          <div className="row">
-            <div className="col-sm-6">
-              <div className="location " id="Location">
-                <div className="locationMap text-drop__img-box mt-3">
+          <section className="ls" id="Location">
+            <div className="text-center">
+              <p className="ls-eyebrow text-center">Location Advantage</p>
+              <div className="ls-rule" />
+              <h2 className="ls-heading">
+                The Only Place You'll Find <em>Outside</em>
+                <br />
+                The Home
+              </h2>
+            </div>
+
+            <div className="ls-inner">
+              {/* MAP */}
+              <div>
+                <div className="map-shell">
                   <iframe
                     src={
                       project.Map_Link ||
                       "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3505.980683027153!2d77.38062529999999!3d28.510228899999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce900468ba7fd%3A0x84d67f24f2380e07!2sTOWER%20B-163%2C%2016TH%20FLOOR%20ATS%20BOUQUET!5e0!3m2!1sen!2sin!4v1763974927344!5m2!1sen!2sin"
                     }
-                    width="600"
-                    height="450"
-                    style={{ border: 0 }}
                     loading="lazy"
                     allowFullScreen
                     referrerPolicy="no-referrer-when-downgrade"
                     title="Project Location"
-                  ></iframe>
+                    style={{ border: 0, width: "100%", height: "450px" }}
+                  />
+                </div>
+              </div>
+
+              {/* LOCATION CARDS */}
+              <div>
+                <div className="loc-cards">
+                  {locationPoints?.length > 0 ? (
+                    locationPoints.map((item, index) => (
+                      <div className="loc-card" key={index}>
+                        <div className="loc-num">
+                          {String(index + 1).padStart(2, "0")}
+                        </div>
+                        <div className="loc-label">{item}</div>
+                      </div>
+                    ))
+                  ) : (
+                    <div className="loc-card">
+                      <div className="loc-num">01</div>
+                      <div className="loc-label">
+                        No location advantages available
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <div className="col-sm-6  d-flex align-content-center flex-column">
-              <div className="locationContent">
-                <h2 className="mainFont">
-                  Location <span className="text-gradient2">Advantage</span>
-                </h2>
-
-                <ul className="locationList">
-                  {locationPoints?.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
+          </section>
         </div>
       </div>
 
       {/* developer content */}
-      <div className="developerContent py-5" id="Developer">
+      <div className="aboutContent py-5" id="Developer">
         <div className="container">
           <div className="row">
             <div className="col-sm-6 d-flex justify-content-center align-content-center flex-column">
@@ -503,78 +558,12 @@ const ProjectDetailPage = () => {
         </div>
       </div>
       <ContactBtn project={project} />
+
       {showPopup && (
-        <div className="popupOverlay">
-          <div className="popupBox contactform">
-            {/* Close Button */}
-            <button className="closeBtn" onClick={() => setShowPopup(false)}>
-              ✖
-            </button>
-
-            {/* SAME FORM (reuse) */}
-            <p className="formtagline text-center">
-              <span className="text-gradient2 fs-4 fw-bold">
-                Download Brochure
-              </span>
-              <br /> Fill details to continue
-            </p>
-            <div className="formcol formRadius">
-              <form className="pt-3" onSubmit={(e) => handleSubmit(e, true)}>
-                <div className="row gy-3">
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      name="name"
-                      placeholder="Your Name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="col-12">
-                    <input
-                      type="email"
-                      name="email"
-                      placeholder="Your Email Address"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="col-12">
-                    <input
-                      type="tel"
-                      name="mobile"
-                      placeholder="Your phone number"
-                      value={form.mobile}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      name="city"
-                      placeholder="Your City"
-                      value={form.city}
-                      onChange={handleChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="col-12 text-center">
-                    <button type="submit" className="animated-btn">
-                      Submit & Download <FaTelegramPlane />
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+        <BrochurePopup
+          onClose={() => setShowPopup(false)}
+          onSubmit={(data) => submitProjectEnquiry(id, data)}
+        />
       )}
     </>
   );

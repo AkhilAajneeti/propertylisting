@@ -12,6 +12,7 @@ import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjects } from "../redux/slices/propertySlice";
 import ProjectCard from "../components/ProjectCard";
+import SEO from "../components/seo/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -58,14 +59,14 @@ const Projects = () => {
       result = result.filter(
         (p) =>
           (p.category && p.category.toLowerCase().includes(lower)) ||
-          (p.subcategory && p.subcategory.toLowerCase().includes(lower))
+          (p.subcategory && p.subcategory.toLowerCase().includes(lower)),
       );
     }
 
     // Filter by city
     if (filters.city) {
       result = result.filter(
-        (p) => (p.City || "").toLowerCase() === filters.city.toLowerCase()
+        (p) => (p.City || "").toLowerCase() === filters.city.toLowerCase(),
       );
     }
 
@@ -75,7 +76,7 @@ const Projects = () => {
       result = result.filter(
         (p) =>
           (p.Project_Location || "").toLowerCase().includes(loc) ||
-          (p.City || "").toLowerCase().includes(loc)
+          (p.City || "").toLowerCase().includes(loc),
       );
     }
 
@@ -85,7 +86,7 @@ const Projects = () => {
       result = result.filter((p) =>
         Array.isArray(p.Configuration)
           ? p.Configuration.some((c) => (c || "").toLowerCase() === cfg)
-          : false
+          : false,
       );
     }
 
@@ -130,7 +131,7 @@ const Projects = () => {
         (propertyType &&
           (p.subcategory || "")
             .toLowerCase()
-            .includes(propertyType.toLowerCase()))
+            .includes(propertyType.toLowerCase())),
     ) || null;
 
   const activeBanner = {
@@ -214,6 +215,10 @@ const Projects = () => {
 
   return (
     <div>
+      <SEO
+        title="Projects in Delhi NCR | Luxury & Commercial Properties - Jenika Ventures"
+        description="Explore top real estate projects in Delhi NCR including luxury apartments, commercial spaces, office units, and retail shops in Noida, Gurgaon, and Greater Noida. Invest in RERA-approved properties with high returns."
+      />
       {/* Banner */}
       <div className="projectBanner position-relative">
         {activeBanner.bannerVideo ? (

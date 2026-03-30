@@ -29,7 +29,7 @@ const Brochure = ({ project, onOpen }) => {
     ? rawText.split(".")[0].trim() + "."
     : "Explore this premium project with world-class amenities and RERA-approved compliance.";
 
-  // const brochure = project?.Brochure || "#";
+
 
   return (
     <div
@@ -142,6 +142,7 @@ const Brochure = ({ project, onOpen }) => {
               marginBottom: "18px",
               maxWidth: "100%",
               fontFamily: "Arial, sans-serif",
+              textAlign:"justify",
             }}
           >
             {description}

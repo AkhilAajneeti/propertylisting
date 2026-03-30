@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchTeam } from "../redux/slices/teamSlice";
 gsap.registerPlugin(ScrollTrigger);
 import Loader from "../components/Loader";
+import SEO from "../components/seo/SEO";
 const OurTeam = () => {
   const dispatch = useDispatch();
   const { members, loading } = useSelector((state) => state.team);
@@ -123,6 +124,10 @@ const OurTeam = () => {
   if (loading) return <Loader />;
   return (
     <div>
+      <SEO
+        title="Our Team | Jenika Ventures - Real Estate Experts in Delhi NCR"
+        description="Meet the expert team at Jenika Ventures. Our experienced real estate professionals help you find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR."
+      />
       <div className="OurTeambanner has-prlx">
         {/* <h2 className=" fw-bold split2  ">Our Team</h2> */}
       </div>

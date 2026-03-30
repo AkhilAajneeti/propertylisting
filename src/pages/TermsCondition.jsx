@@ -1,8 +1,13 @@
 import React from "react";
+import SEO from "../components/seo/SEO";
 
 const TermsCondition = () => {
   return (
     <div style={{ overflowX: "hidden" }}>
+      <SEO
+        title="Terms & Conditions | Jenika Ventures"
+        description="Read the terms and conditions of Jenika Ventures to understand the rules, guidelines, and policies for using our website and real estate services."
+      />
       {/* Hero Banner */}
       <div className="PrivacyBanner" role="img" aria-label="Career Banner">
         <div className="content ">
@@ -67,7 +72,8 @@ const TermsCondition = () => {
                 Actual specifications may vary due to developer changes,
                 approvals, or regulatory requirements.
               </li>
-              <li>Nothing on this website constitutes an offer, allotment, or
+              <li>
+                Nothing on this website constitutes an offer, allotment, or
                 commitment.
               </li>
             </ul>

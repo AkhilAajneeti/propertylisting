@@ -3,6 +3,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
 import ScrollSections from "../components/ScrollSections";
+import SEO from "../components/seo/SEO";
 gsap.registerPlugin(ScrollTrigger);
 const Awards = () => {
   useEffect(() => {
@@ -22,7 +23,7 @@ const Awards = () => {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -41,7 +42,7 @@ const Awards = () => {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
   }, []);
@@ -75,6 +76,10 @@ const Awards = () => {
 
   return (
     <div>
+      <SEO
+        title="Awards & Achievements | Jenika Ventures - Real Estate Excellence in Delhi NCR"
+        description="Explore the awards and achievements of Jenika Ventures. Recognized for excellence in real estate, innovation, and customer satisfaction across Delhi NCR."
+      />
       <div className="AwardsBanner">
         <h1 className="split2">Awards And Recognition</h1>
       </div>

@@ -5,6 +5,7 @@ import { IoBriefcase, IoLocationSharp } from "react-icons/io5";
 import { FaUserTie } from "react-icons/fa6";
 import { FaTelegramPlane } from "react-icons/fa";
 import { getJobById, submitJobApplication } from "../api/jobApi";
+import SEO from "../components/seo/SEO";
 const JobDescription = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -63,6 +64,12 @@ const JobDescription = () => {
 
   return (
     <div>
+      {job && (
+        <SEO
+          title={`${job.title} Job in ${job.location} | Apply Now - Jenika Ventures`}
+          description={`Looking for ${job.title} jobs in ${job.location}? Apply at Jenika Ventures. Check job description, skills required, salary, and career growth opportunities.`}
+        />
+      )}
       <ToastContainer />
 
       {/* Banner */}

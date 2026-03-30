@@ -10,6 +10,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProjects } from "../redux/slices/propertySlice";
+import SEO from "../components/seo/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,7 +46,7 @@ const Home = () => {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       triggers.push(trigger);
@@ -60,6 +61,10 @@ const Home = () => {
 
   return (
     <div>
+      <SEO
+        title="Jenika Ventures | Buy Luxury & Commercial Property in Delhi NCR"
+        description="Explore luxury apartments, commercial properties, office spaces, and retail shops in Noida, Gurgaon, and Delhi NCR. Invest in RERA-approved projects with high returns."
+      />
       <Slider />
       <Counter />
 
@@ -67,7 +72,7 @@ const Home = () => {
       <RealEstateTabs projects={projects || []} />
 
       <Portfolio />
-      <Testimonial  bgColor="linear-gradient(1200deg, #f5e7ad 1.99%, #f5ebac 0.49%, #b49249 100%)"/>
+      <Testimonial bgColor="linear-gradient(1200deg, #f5e7ad 1.99%, #f5ebac 0.49%, #b49249 100%)" />
 
       <Whycarousel />
     </div>

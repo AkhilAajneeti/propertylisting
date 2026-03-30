@@ -7,6 +7,7 @@ import "aos/dist/aos.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Testimonial from "../components/Testimonial";
+import SEO from "../components/seo/SEO";
 
 gsap.registerPlugin(ScrollTrigger);
 const ClientTestimonials = () => {
@@ -27,7 +28,7 @@ const ClientTestimonials = () => {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -43,6 +44,10 @@ const ClientTestimonials = () => {
 
   return (
     <div>
+      <SEO
+        title="Client Testimonials | Jenika Ventures - Trusted Real Estate Company in Delhi NCR"
+        description="Read real client testimonials of Jenika Ventures. Discover how we have helped customers find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR with trust and transparency."
+      />
       <div className="ClientTestimonial"></div>
 
       {/* ClientTestimonials */}

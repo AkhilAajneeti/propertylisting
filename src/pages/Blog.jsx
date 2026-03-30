@@ -5,14 +5,19 @@ import PostCard from "../components/PostCard";
 import Loader from "../components/Loader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";    
+import { SplitText } from "gsap/SplitText";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../redux/slices/blogSlice";
+import SEO from "../components/seo/SEO";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Blog = () => {
   const dispatch = useDispatch();
-  const { data: blogs=[], loading, error } = useSelector((state) => state.blogs);
+  const {
+    data: blogs = [],
+    loading,
+    error,
+  } = useSelector((state) => state.blogs);
 
   // Fetch blogs
   useEffect(() => {
@@ -38,7 +43,7 @@ const Blog = () => {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
     //
@@ -70,6 +75,10 @@ const Blog = () => {
   if (error) return <p className="text-danger text-center">{error}</p>;
   return (
     <div>
+      <SEO
+        title="Real Estate Blog | Property Investment Tips & Insights - Jenika Ventures"
+        description="Explore expert blogs on real estate, property investment tips, market trends, and buying guides. Stay updated with the latest insights on residential and commercial properties in Delhi NCR."
+      />
       <div className="BlogBanner">
         <h1 className="text-drop__line ">Blogs</h1>
       </div>
@@ -113,7 +122,7 @@ const Blog = () => {
                         </span>
                       </div>
                     </div> */}
-                    <PostCard data={blog}/>
+                    <PostCard data={blog} />
                   </div>
                 ))}
               </div>
@@ -128,7 +137,12 @@ const Blog = () => {
               <ul className="de-post-type-1">
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/new3.png" alt="BlogCards" className="img-fluid" loading="lazy"/>
+                    <img
+                      src="/new3.png"
+                      alt="BlogCards"
+                      className="img-fluid"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -141,7 +155,12 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/new4.png" alt="BlogCards" className="img-fluid" loading="lazy"/>
+                    <img
+                      src="/new4.png"
+                      alt="BlogCards"
+                      className="img-fluid"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -156,7 +175,12 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/public/new5.png" alt="BlogCards" className="img-fluid" loading="lazy" />
+                    <img
+                      src="/public/new5.png"
+                      alt="BlogCards"
+                      className="img-fluid"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="d-content">
                     <a href="#">
@@ -171,7 +195,12 @@ const Blog = () => {
                 </li>
                 <li className="d-flex blog-card">
                   <div className="d-image">
-                    <img src="/new6.png" alt="BlogCards" className="img-fluid" loading="lazy"/>
+                    <img
+                      src="/new6.png"
+                      alt="BlogCards"
+                      className="img-fluid"
+                      loading="lazy"
+                    />
                   </div>
                   <div className="d-content">
                     <a href="#">

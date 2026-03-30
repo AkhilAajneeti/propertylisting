@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
+import SEO from "../components/seo/SEO";
 const IpoAdvisory = () => {
   useEffect(() => {
     // Wait for fonts to load before animation
@@ -33,6 +34,10 @@ const IpoAdvisory = () => {
 
   return (
     <>
+      <SEO
+        title="IPO Advisory Services | Jenika Ventures - Investment Experts in Delhi NCR"
+        description="Get expert IPO advisory services with Jenika Ventures. Our experienced team provides strategic guidance on investment opportunities, IPO analysis, and wealth growth across Delhi NCR."
+      />
       <div className="utilities IPOBanner">
         {/* <h1 className="split2">IPO ADVISORY</h1> */}
       </div>

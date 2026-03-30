@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogById } from "../redux/slices/blogSlice";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import SEO from "../components/seo/SEO";
 const BlogDetailPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -29,17 +30,22 @@ const BlogDetailPage = () => {
       document.title = blog.title + " — Blog";
     }
   }, [blog]);
-useEffect(() => {
-      AOS.init({
-        duration: 1200, // default duration
-        once: true, // whether animation should happen only once
-        easing: "ease-in-out",
-      });
-    }, []);
+  useEffect(() => {
+    AOS.init({
+      duration: 1200, // default duration
+      once: true, // whether animation should happen only once
+      easing: "ease-in-out",
+    });
+  }, []);
   if (loading || !blog) return <Loader />;
 
   return (
     <div>
+      <SEO
+        title={`${blog.title} | Real Estate Blog`}
+        description={`Read ${blog.title}. Get expert insights on real estate, property investment, and buying decisions in Delhi NCR.`}
+      />
+
       {/* Banner */}
       <div
         className="blog-detailBanner position-relative d-flex align-items-center justify-content-center"
@@ -53,8 +59,12 @@ useEffect(() => {
         <div className="overlay"></div>
 
         <div className="banner-content text-center text-white position-relative container">
-          <h1 className="display-5 fw-bold" data-aos="fade-up">{blog.title}</h1>
-          <p className="fs-5 text-light text-center" data-aos="fade-up">{blog.blogcategory}</p>
+          <h1 className="display-5 fw-bold" data-aos="fade-up">
+            {blog.title}
+          </h1>
+          <p className="fs-5 text-light text-center" data-aos="fade-up">
+            {blog.blogcategory}
+          </p>
         </div>
       </div>
 
@@ -62,7 +72,6 @@ useEffect(() => {
       <div className="container py-5">
         <div className="row justify-content-center">
           <div className="col-lg-10">
-
             {/* Meta */}
             <div className="d-flex gap-4 text-muted small mb-4">
               <span>
@@ -103,7 +112,6 @@ useEffect(() => {
                 <FaTwitter />
               </a>
             </div>
-
           </div>
         </div>
       </div>

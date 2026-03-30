@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchNews } from "../redux/slices/newsSlice";
 import Loader from "../components/Loader";
 import NewsCard from "../components/NewsCard";
+import SEO from "../components/seo/SEO";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 const NewMedia = () => {
@@ -76,11 +77,19 @@ const NewMedia = () => {
   };
   if (loading) return <Loader />;
   if (error) return <p className="text-danger">{error}</p>;
- if (!News?.length) return <p className="text-center mt-5">No News Available</p>;
+  if (!News?.length)
+    return <p className="text-center mt-5">No News Available</p>;
   return (
     <div>
+      <SEO
+        title="News & Media | Jenika Ventures - Latest Real Estate Updates in Delhi NCR"
+        description="Explore the latest news, media coverage, and updates from Jenika Ventures. Stay informed about real estate trends, events, and investment insights across Delhi NCR and India."
+      />
       <div>
-        <div className=" position-relative" style={{ height: "550px", width: "100vw" }} >
+        <div
+          className=" position-relative"
+          style={{ height: "550px", width: "100vw" }}
+        >
           {News.length > 0 && News[0].video ? (
             <video
               className="object-fit-cover"
@@ -118,9 +127,7 @@ const NewMedia = () => {
             className="text-center pt-5 mt-5 mt-lg-0"
             style={{ fontFamily: "font1" }}
           >
-            <div
-              className="text-uppercase text-light text-animate fs-30"
-            >
+            <div className="text-uppercase text-light text-animate fs-30">
               {News[0]?.title || "News & Media"}
             </div>
           </div>
@@ -140,8 +147,9 @@ const NewMedia = () => {
           <img
             src="/channelpartner.png" // Replace with your image path
             alt="Ayushi"
-            className="rounded"loading="lazy"
-    decoding="async"
+            className="rounded"
+            loading="lazy"
+            decoding="async"
             style={{ width: "80px", height: "80px", objectFit: "cover" }}
           />
 
@@ -179,7 +187,6 @@ const NewMedia = () => {
           {/* Right Section */}
           <div className="d-flex flex-column flex-md-row justify-content-center justify-content-md-between align-items-center py-3 text-center">
             {/* Search Icon */}
-            
 
             {/* Category Dropdown */}
             <div className="px-3 py-2 border-start border-2 border-light-subtle">
@@ -194,7 +201,7 @@ const NewMedia = () => {
                 {Array.from(new Set(News.map((item) => item.newscategory))).map(
                   (cat) => (
                     <option key={cat}>{cat}</option>
-                  )
+                  ),
                 )}
               </select>
             </div>
@@ -209,7 +216,9 @@ const NewMedia = () => {
               >
                 <option>All</option>
                 {Array.from(
-                  new Set(News.map((item) => new Date(item.date).getFullYear()))
+                  new Set(
+                    News.map((item) => new Date(item.date).getFullYear()),
+                  ),
                 ).map((y) => (
                   <option key={y}>{y}</option>
                 ))}
@@ -264,7 +273,7 @@ const NewMedia = () => {
                     </span>
                   </div>
                 </div> */}
-                <NewsCard data={news}/>
+                <NewsCard data={news} />
               </div>
             ))}
           </div>

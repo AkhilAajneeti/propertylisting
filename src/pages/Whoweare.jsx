@@ -8,6 +8,7 @@ import Lenis from "@studio-freight/lenis";
 gsap.registerPlugin(ScrollTrigger);
 
 import PathsTimeline from "../components/PathsTimeline";
+import SEO from "../components/seo/SEO";
 const Whoweare = () => {
   useEffect(() => {
     AOS.init({
@@ -53,6 +54,10 @@ const Whoweare = () => {
   }, []);
   return (
     <div>
+      <SEO
+        title="About Jenika Ventures | Trusted Real Estate Company in Delhi NCR"
+        description="Learn about Jenika Ventures, a trusted real estate company in Delhi NCR offering luxury apartments, commercial properties, and investment opportunities in Noida, Gurgaon, and Ghaziabad."
+      />
       <div>
         <div
           className=" position-relative"

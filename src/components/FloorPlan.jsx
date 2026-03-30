@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 
-const FloorPlanComponent =({ plans = [], images = [] }) => {
+const FloorPlanComponent = ({ plans = [], images = [] ,setShowPopup}) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
   const defaultImage = "/floor-plan-img.png";
 
   const handleTabClick = (index) => {
@@ -15,13 +14,15 @@ const FloorPlanComponent =({ plans = [], images = [] }) => {
 
       <div className="floorplan-content">
         {/* LEFT IMAGE */}
-        <div className="floorplan-image">
+        <div className="floorplan-image ">
           <img
             src={images[activeIndex] || defaultImage}
-            alt="floor plan" loading="lazy"
+            alt="floor plan"
+            loading="lazy"
             decoding="async"
             style={{ width: "100%", borderRadius: "10px" }}
           />
+          <button onClick={()=>setShowPopup(true)}>View Plan</button>
         </div>
 
         {/* RIGHT TABS */}

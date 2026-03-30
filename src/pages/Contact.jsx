@@ -22,6 +22,7 @@ import { Pagination, Autoplay, Navigation, EffectFade } from "swiper/modules";
 import SplitType from "split-type";
 import { toast } from "react-toastify";
 import { submitContactForm } from "../api/contactApi";
+import SEO from "../components/seo/SEO";
 gsap.registerPlugin(ScrollTrigger);
 const Contact = () => {
   // const [isActive, setIsActive] = useState(false);
@@ -138,6 +139,10 @@ const Contact = () => {
 
   return (
     <div>
+      <SEO
+        title="Contact Jenika Ventures | Get in Touch for Property in Delhi NCR"
+        description="Contact Jenika Ventures for buying residential and commercial properties in Delhi NCR. Get expert guidance on real estate investment, project details, and site visits."
+      />
       <div className="ContactBanner">
         <h1 className="text-animate">Contact Us</h1>
       </div>
@@ -293,19 +298,31 @@ const Contact = () => {
                 <h2>Follow Us</h2>
                 {/* Social Links */}
                 <div className="d-flex gap-3 my-3">
-                  <a href="https://www.facebook.com/jenikaventures" className="text-light">
+                  <a
+                    href="https://www.facebook.com/jenikaventures"
+                    className="text-light"
+                  >
                     <FaFacebookF className="brown" />
                   </a>
                   <a href="https://x.com/JenikaVentures" className="text-light">
                     <FaTwitter className="brown" />
                   </a>
-                  <a href="https://www.linkedin.com/company/71280221/admin/dashboard/" className="text-light">
+                  <a
+                    href="https://www.linkedin.com/company/71280221/admin/dashboard/"
+                    className="text-light"
+                  >
                     <FaLinkedinIn className="brown" />
                   </a>
-                  <a href="https://www.instagram.com/jenikaventures/" className="text-light">
+                  <a
+                    href="https://www.instagram.com/jenikaventures/"
+                    className="text-light"
+                  >
                     <FaInstagram className="brown" />
                   </a>
-                  <a href="https://www.youtube.com/@jenikaventures" className="text-light">
+                  <a
+                    href="https://www.youtube.com/@jenikaventures"
+                    className="text-light"
+                  >
                     <FaYoutube className="brown" />
                   </a>
                 </div>

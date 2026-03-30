@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import gsap from "gsap";
 import Confetti from "react-confetti";
 import { Link } from "react-router-dom";
+import SEO from "../components/seo/SEO";
 
 const Thankyou = () => {
   useEffect(() => {
@@ -38,85 +39,93 @@ const Thankyou = () => {
   }, []);
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        backgroundColor: "linear-gradi#ffffffent(327deg, #c80a17 20%, #000000)40%",
+    <>
+      <SEO
+        title="Thank You | Jenika Ventures"
+        description="Thank you for contacting Jenika Ventures. Our team will get in touch with you shortly."
+      />
 
-         backgroundPosition:"center",
-         backgroundSize:"cover",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
-        padding: "0 20px",
-        position: "relative",
-      }}
-    >
-      {/* CONFETTI STARTS IMMEDIATELY */}
-      <Confetti numberOfPieces={350} recycle={false} />
+      <div
+        style={{
+          height: "100vh",
+          backgroundColor:
+            "linear-gradi#ffffffent(327deg, #c80a17 20%, #000000)40%",
 
-      <div className="thankyou">
-        <h1
-          className="text-center"
-          style={{
-            fontSize: "52px",
-            fontWeight: 800,
-            background: "linear-gradient(90deg,#2563eb,#7c3aed)",
-            WebkitBackgroundClip: "text",
-            color: "black",
-          }}
-        >
-          🎉 Thank You!
-        </h1>
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          textAlign: "center",
+          padding: "0 20px",
+          position: "relative",
+        }}
+      >
+        {/* CONFETTI STARTS IMMEDIATELY */}
+        <Confetti numberOfPieces={350} recycle={false} />
 
-        <p
-          className="text-center"
-          style={{
-            fontSize: "20px",
-            marginTop: "12px",
-            color: "#000000ff",
-          }}
-        >
-          Your enquiry has been submitted successfully.
-        </p>
+        <div className="thankyou">
+          <h1
+            className="text-center"
+            style={{
+              fontSize: "52px",
+              fontWeight: 800,
+              background: "linear-gradient(90deg,#2563eb,#7c3aed)",
+              WebkitBackgroundClip: "text",
+              color: "black",
+            }}
+          >
+            🎉 Thank You!
+          </h1>
 
-        <p
-          className="text-center"
-          style={{
-            fontSize: "18px",
-            marginTop: "6px",
-            color: "#000000ff",
-          }}
-        >
-          Our team will contact you shortly.
-        </p>
+          <p
+            className="text-center"
+            style={{
+              fontSize: "20px",
+              marginTop: "12px",
+              color: "#000000ff",
+            }}
+          >
+            Your enquiry has been submitted successfully.
+          </p>
 
-        <div style={{ marginTop: "32px" }}>
-          
-          <Link to="/projects">
-            <button
-              className=""
-              style={{
-                background: "linear-gradient(108deg, #f5ebac 15.49%, #b49249 100%)",
-                padding: "14px 28px",
-                borderRadius: "10px",
-                border: "none",
-                color: "#fff",
-                fontSize: "18px",
-                cursor: "pointer",
-              }}
-            >
-              View More Projects
-            </button>
-          </Link>
+          <p
+            className="text-center"
+            style={{
+              fontSize: "18px",
+              marginTop: "6px",
+              color: "#000000ff",
+            }}
+          >
+            Our team will contact you shortly.
+          </p>
+
+          <div style={{ marginTop: "32px" }}>
+            <Link to="/projects">
+              <button
+                className=""
+                style={{
+                  background:
+                    "linear-gradient(108deg, #f5ebac 15.49%, #b49249 100%)",
+                  padding: "14px 28px",
+                  borderRadius: "10px",
+                  border: "none",
+                  color: "#fff",
+                  fontSize: "18px",
+                  cursor: "pointer",
+                }}
+              >
+                View More Projects
+              </button>
+            </Link>
+          </div>
+        </div>
+
+        <div className="thankyouBg">
+          <img src="/public/bg-full-1.png" alt="thankyouIng" />
         </div>
       </div>
-
-      <div className="thankyouBg">
-        <img src="/public/bg-full-1.png" alt="thankyouIng"/>
-      </div>
-    </div>
+    </>
   );
 };
 
