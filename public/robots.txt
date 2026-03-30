@@ -1,4 +1,28 @@
 User-agent: *
-Disallow: 
+Allow: /
+
+Allow: /projects
+Allow: /whoweare
+Allow: /contact
+Allow: /career
+Allow: /insight/
+Allow: /privacypolicy
+
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /admin/
 Disallow: /cgi-bin/
-Sitemap: https://jenikaventures.com/
+
+Disallow: /*?propertytype=
+Disallow: /*?search=
+Disallow: /*?filter=
+Disallow: /*?sort=
+
+Disallow: /thank-you/
+Disallow: /thank-you-page/
+
+Allow: /wp-content/uploads/
+Allow: /wp-content/themes/
+Allow: /wp-content/plugins/
+
+Sitemap: https://jenikaventures.com/sitemap.xml

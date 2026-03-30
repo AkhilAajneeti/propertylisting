@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getBlogs } from "../../api/blogApi";
+import { getBlogBySLug, getBlogs } from "../../api/blogApi";
 import { getBlogById } from "../../api/blogApi";
 
 export const fetchBlogs = createAsyncThunk("blogs/fetchBlogs", async () => {
@@ -11,6 +11,13 @@ export const fetchBlogById = createAsyncThunk(
   "blogs/fetchBlogById",
   async (id) => {
     const res = await getBlogById(id);
+    return res;
+  }
+);
+export const fetchBlogBySlug = createAsyncThunk(
+  "blogs/fetchBlogBySlug",
+  async (blogslug) => {
+    const res = await getBlogBySLug(blogslug);
     return res;
   }
 );
@@ -44,7 +51,7 @@ const blogSlice = createSlice({
         state.error = action.error.message;
       })
 
-       // Fetch single blog for detail page
+      //  Fetch single blog for detail page
       .addCase(fetchBlogById.pending, (state) => {
         state.loading = true;
         state.blogDetail = null; // Clear previous blog
@@ -54,6 +61,18 @@ const blogSlice = createSlice({
         state.blogDetail = action.payload;
       })
       .addCase(fetchBlogById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchBlogBySlug.pending, (state) => {
+        state.loading = true;
+        state.blogDetail = null; // Clear previous blog
+      })
+      .addCase(fetchBlogBySlug.fulfilled, (state, action) => {
+        state.loading = false;
+        state.blogDetail = action.payload;
+      })
+      .addCase(fetchBlogBySlug.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

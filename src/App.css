@@ -4362,7 +4362,7 @@ p {
 
 /* 🔥 Hover effects */
 .floorplan-image:hover img {
-  transform: scale(1..7);
+  transform: scale(1.04);
   filter: blur(2px);
 }
 

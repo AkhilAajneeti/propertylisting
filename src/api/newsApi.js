@@ -10,3 +10,7 @@ export const getNewsById = async (id) => {
   const response = await api.get(`/news/${id}/`);
   return response.data;
 };
+export const getNewsBySlug = async (newsslug) => {
+  const response = await api.get(`/news/${newsslug}/`);
+  return response.data;
+};

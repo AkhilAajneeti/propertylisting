@@ -11,10 +11,10 @@ import {
 import { SlCalender } from "react-icons/sl";
 import { FaRegNewspaper } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchNewsById } from "../redux/slices/newsSlice";
+import {  fetchNewsBySlug } from "../redux/slices/newsSlice";
 import SEO from "../components/seo/SEO";
 const NewsDetailPage = () => {
-  const { id } = useParams();
+  const { newsslug } = useParams();
   const dispatch = useDispatch();
   const {
     currentNews: news,
@@ -23,8 +23,8 @@ const NewsDetailPage = () => {
   } = useSelector((state) => state.news);
 
   useEffect(() => {
-    dispatch(fetchNewsById({ id }));
-  }, [id, dispatch]);
+    dispatch(fetchNewsBySlug({ newsslug }));
+  }, [newsslug, dispatch]);
 
   if (loading) return <Loader />;
   if (error) return <p className="text-danger text-center">{error}</p>;

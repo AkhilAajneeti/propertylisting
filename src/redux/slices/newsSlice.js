@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getNews, getNewsById } from "../../api/newsApi";
+import { getNews, getNewsById, getNewsBySlug } from "../../api/newsApi";
 
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
@@ -13,6 +13,13 @@ export const fetchNewsById = createAsyncThunk(
   "news/fetchNewsById",
   async ({ id }) => {
     const response = await getNewsById(id);
+    return response;
+  }
+);
+export const fetchNewsBySlug = createAsyncThunk(
+  "news/fetchNewsBySlug",
+  async ({ newsslug }) => {
+    const response = await getNewsBySlug(newsslug);
     return response;
   }
 );
@@ -51,6 +58,17 @@ const newsSlice = createSlice({
         state.currentNews = action.payload;
       })
       .addCase(fetchNewsById.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchNewsBySlug.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchNewsBySlug.fulfilled, (state, action) => {
+        state.loading = false;
+        state.currentNews = action.payload;
+      })
+      .addCase(fetchNewsBySlug.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

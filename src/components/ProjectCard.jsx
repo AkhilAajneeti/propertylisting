@@ -6,7 +6,7 @@ const ProjectCard = React.memo(({ project }) => {
     <div className="cards-3 section-gray">
       <div className="card card-blog">
         <div className="card-image news-box-items">
-          <Link to={`/projects/${project.id}/${project.project_slug}`}>
+          <Link to={`/projects/${project.project_slug}`}>
             <div className="news-image">
               <img
                 src={project.Bann1 || project.Proj_Logo}
@@ -28,7 +28,7 @@ const ProjectCard = React.memo(({ project }) => {
           </h6>
 
           <Link
-            to={`/projects/${project.id}/${project.project_slug}`}
+            to={`/projects/${project.project_slug}`}
             style={{ textDecoration: "none" }}
           >
             <h4 className="card-description fs-4">{project.Title}</h4>
@@ -45,7 +45,7 @@ const ProjectCard = React.memo(({ project }) => {
             </p>
           </Link>
           <div className="projectBtn">
-            <Link to={`/projects/${project.id}/${project.project_slug}`}>
+            <Link to={`/projects/${project.project_slug}`}>
               View Details
             </Link>
           </div>

@@ -144,14 +144,14 @@ const NewMedia = () => {
         {/* Right Section */}
         <div className="d-flex align-items-center gap-3">
           {/* Image */}
-          <img
+          {/* <img
             src="/channelpartner.png" // Replace with your image path
             alt="Ayushi"
             className="rounded"
             loading="lazy"
             decoding="async"
             style={{ width: "80px", height: "80px", objectFit: "cover" }}
-          />
+          /> */}
 
           {/* Text */}
           <div className="d-flex flex-column">

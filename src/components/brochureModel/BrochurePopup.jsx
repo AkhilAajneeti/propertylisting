@@ -65,7 +65,9 @@ const BrochurePopup = ({ onClose, onSubmit }) => {
                   placeholder="Your phone number"
                   value={form.mobile}
                   onChange={handleChange}
-                  pattern="^\d{10}$" inputmode="numeric" maxlength="10"
+                  pattern="^\d{10}$"
+                  inputMode="numeric" // ✅ camelCase
+                  maxLength={10}
                   required
                 />
               </div>
@@ -80,7 +82,35 @@ const BrochurePopup = ({ onClose, onSubmit }) => {
                   required
                 />
               </div>
-
+              <div className="col-12">
+                <label
+                  style={{
+                    display: "flex",
+                    alignItems: "start",
+                    gap: "6px",
+                  }}
+                >
+                  <input
+                    type="checkbox"
+                    name="terms"
+                    required
+                    checked
+                    style={{ marginTop: "4px", width: "auto" }}
+                  />
+                  <p
+                    style={{
+                      fontSize: "10px",
+                      color: "#ffffffff",
+                      margin: 0,
+                      lineHeight: "14px",
+                    }}
+                  >
+                    I authorize company representatives to Call, SMS, Email or
+                    WhatsApp me about its products and offers. This consent
+                    overrides any registration for DNC/NDNC.
+                  </p>
+                </label>
+              </div>
               <div className="col-12 text-center">
                 <button
                   type="submit"

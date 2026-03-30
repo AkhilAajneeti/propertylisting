@@ -11,3 +11,7 @@ export const getProjectsById = async (id) => {
   const response = await api.get(`/projects/${id}/`);
   return response.data;
 };
+export const getProjectsBySlug = async (project_slug) => {
+  const response = await api.get(`/projects/${project_slug}/`);
+  return response.data;
+};

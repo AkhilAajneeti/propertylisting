@@ -135,82 +135,29 @@ const Blog = () => {
             <div className="widget widget-post sticky-top">
               <h4 className="text-drop__line">Recent Posts</h4>
               <ul className="de-post-type-1">
-                <li className="d-flex blog-card">
-                  <div className="d-image">
-                    <img
-                      src="/new3.png"
-                      alt="BlogCards"
-                      className="img-fluid"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="d-content">
-                    <a href="#">
-                      <h5>Exploring the Rise of Unique and Lifestyle Hotels</h5>
-                    </a>
-                    <div className="d-date">
-                      <SlCalender /> January 15, 2023
+                {blogs.slice(0, 4).map((blog) => (
+                  <li className="d-flex blog-card" key={blog.id}>
+                    <div className="d-image">
+                      <img
+                        src={blog.image || blog.Blog_Thumbnail}
+                        alt={blog.title}
+                        className="img-fluid"
+                        loading="lazy"
+                        style={{ height: "80%" }}
+                      />
                     </div>
-                  </div>
-                </li>
-                <li className="d-flex blog-card">
-                  <div className="d-image">
-                    <img
-                      src="/new4.png"
-                      alt="BlogCards"
-                      className="img-fluid"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="d-content">
-                    <a href="#">
-                      <h5>
-                        Hotels are Adapting to Modern Traveler Preferences
-                      </h5>
-                    </a>
-                    <div className="d-date">
-                      <SlCalender /> January 15, 2023
+
+                    <div className="d-content">
+                      <a href={`/blog/${blog.blogslug}`}>
+                        <h5>{blog.title}</h5>
+                      </a>
+
+                      <div className="d-date">
+                        <SlCalender /> {blog.date || blog.created_at}
+                      </div>
                     </div>
-                  </div>
-                </li>
-                <li className="d-flex blog-card">
-                  <div className="d-image">
-                    <img
-                      src="/public/new5.png"
-                      alt="BlogCards"
-                      className="img-fluid"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="d-content">
-                    <a href="#">
-                      <h5>
-                        Innovative Marketing Strategies for Boutique Hotels
-                      </h5>
-                    </a>
-                    <div className="d-date">
-                      <SlCalender /> January 15, 2023
-                    </div>
-                  </div>
-                </li>
-                <li className="d-flex blog-card">
-                  <div className="d-image">
-                    <img
-                      src="/new6.png"
-                      alt="BlogCards"
-                      className="img-fluid"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="d-content">
-                    <a href="#">
-                      <h5>Transforming Common Spaces in Modern Hotels</h5>
-                    </a>
-                    <div className="d-date">
-                      <SlCalender /> January 15, 2023
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

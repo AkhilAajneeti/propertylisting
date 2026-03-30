@@ -12,7 +12,7 @@ import Loader from "../components/Loader";
 import { toast } from "react-toastify";
 import ContactBtn from "../components/ContactBtn";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProjectById } from "../redux/slices/propertySlice";
+import { fetchProjectBySlug } from "../redux/slices/propertySlice";
 import { submitProjectEnquiry } from "../api/projectFormApi";
 import Brochure from "../components/Brochure";
 import BrochurePopup from "../components/brochureModel/BrochurePopup";
@@ -20,7 +20,7 @@ import SEO from "../components/seo/SEO";
 const ProjectDetailPage = () => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
-  const { id } = useParams();
+  const { project_slug } = useParams();
   const dispatch = useDispatch();
   const {
     currentProject: project,
@@ -30,8 +30,8 @@ const ProjectDetailPage = () => {
   // Fetch project
   // Fetch project using Redux
   useEffect(() => {
-    dispatch(fetchProjectById({ id }));
-  }, [id, dispatch]);
+    dispatch(fetchProjectBySlug({ project_slug }));
+  }, [project_slug, dispatch]);
 
   //pixel code
   useEffect(() => {
@@ -174,11 +174,12 @@ const ProjectDetailPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e, isPopup = false) => {
+  const handleSubmit = async (e, isPopup = false, popupData = null) => {
     if (e) e.preventDefault();
-
+    const finalData = popupData || form;
+    console.log(project.id);
     try {
-      await submitProjectEnquiry(id, form);
+      await submitProjectEnquiry(project.project_slug, finalData);
 
       toast.success("Thank you! Redirecting...");
       // ✅ popup close if popup form
@@ -404,7 +405,9 @@ const ProjectDetailPage = () => {
                       placeholder="Your phone number"
                       value={form.mobile}
                       onChange={handleChange}
-                      pattern="^\d{10}$" inputmode="numeric" maxlength="10"
+                      pattern="^\d{10}$"
+                      inputMode="numeric" // ✅ camelCase
+                      maxLength={10}
                       required
                     />
                   </div>
@@ -431,6 +434,7 @@ const ProjectDetailPage = () => {
                         type="checkbox"
                         name="terms"
                         required
+                        checked
                         style={{ marginTop: "4px", width: "auto" }}
                       />
                       <p
@@ -562,7 +566,7 @@ const ProjectDetailPage = () => {
       {showPopup && (
         <BrochurePopup
           onClose={() => setShowPopup(false)}
-          onSubmit={(data) => submitProjectEnquiry(id, data)}
+          onSubmit={(data) => handleSubmit(null, true, data)}
         />
       )}
     </>

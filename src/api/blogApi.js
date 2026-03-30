@@ -10,3 +10,7 @@ export const getBlogById = async (id) => {
   const response = await api.get(`/blogs/${id}/`);
   return response.data;
 };
+export const getBlogBySLug = async (blogslug) => {
+  const response = await api.get(`/blogs/${blogslug}/`);
+  return response.data;
+};

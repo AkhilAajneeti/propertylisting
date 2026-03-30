@@ -23,7 +23,7 @@ const NewsCard = React.memo(({ data }) => {
           {data.newscategory} • By {data.author}
         </div>
 
-        <Link to={`/insight/news&media/${data.id}/${data.newsslug}`} className="text-dark">
+        <Link to={`/insight/news&media/${data.newsslug}`} className="text-dark">
           <h5 className="card-title fw-bold">{data.title}</h5>
         </Link>
 

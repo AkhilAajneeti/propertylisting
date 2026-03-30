@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getProjects, getProjectsById } from "../../api/projectApi";
+import { getProjects, getProjectsById, getProjectsBySlug } from "../../api/projectApi";
 import { getSearhedProjects } from "../../api/searchApi";
 
 // Async Thunk for API call
@@ -18,6 +18,13 @@ export const fetchProjectById = createAsyncThunk(
     return res;
   }
 );
+export const fetchProjectBySlug = createAsyncThunk(
+  "projects/fetchProjectBySlug",
+  async ({ project_slug }) => {
+    const res = await getProjectsBySlug(project_slug);
+    return res;
+  }
+);
 export const fetchSearchProjects = createAsyncThunk(
   "projects/fetchSearchProjects",
   async (query) => {
@@ -31,7 +38,7 @@ const propertySlice = createSlice({
   initialState: {
     data: [],
     currentProject: null,
-     searchResults: [],
+    searchResults: [],
     loading: false,
     error: null,
   },
@@ -53,14 +60,25 @@ const propertySlice = createSlice({
         state.error = action.error.message;
       })
       // Single Project
-      .addCase(fetchProjectById.pending, (state) => {
+      // .addCase(fetchProjectById.pending, (state) => {
+      //   state.loading = true;
+      // })
+      // .addCase(fetchProjectById.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.currentProject = action.payload;
+      // })
+      // .addCase(fetchProjectById.rejected, (state, action) => {
+      //   state.loading = false;
+      //   state.error = action.error.message;
+      // })
+      .addCase(fetchProjectBySlug.pending, (state) => {
         state.loading = true;
       })
-      .addCase(fetchProjectById.fulfilled, (state, action) => {
+      .addCase(fetchProjectBySlug.fulfilled, (state, action) => {
         state.loading = false;
         state.currentProject = action.payload;
       })
-      .addCase(fetchProjectById.rejected, (state, action) => {
+      .addCase(fetchProjectBySlug.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })

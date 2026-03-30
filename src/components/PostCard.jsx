@@ -24,7 +24,7 @@ const PostCard = React.memo(({ data }) => {
           {data.blogcategory} • By {data.author}
         </div>
 
-        <Link to={`/blog/${data.id}/${data.blogslug}`} className="text-dark">
+        <Link to={`/blog/${data.blogslug}`} className="text-dark">
           <h5 className="card-title
            fw-bold">{data.title}</h5>
         </Link>

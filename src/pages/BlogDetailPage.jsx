@@ -10,20 +10,20 @@ import { SlCalender } from "react-icons/sl";
 import { FaRegNewspaper } from "react-icons/fa6";
 import Loader from "../components/Loader";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchBlogById } from "../redux/slices/blogSlice";
+import { fetchBlogBySlug } from "../redux/slices/blogSlice";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SEO from "../components/seo/SEO";
 const BlogDetailPage = () => {
-  const { id } = useParams();
+  const { blogslug } = useParams();
   const dispatch = useDispatch();
 
   const { blogDetail: blog, loading } = useSelector((state) => state.blogs);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchBlogById(id));
-  }, [id, dispatch]);
+    dispatch(fetchBlogBySlug(blogslug));
+  }, [blogslug, dispatch]);
 
   useEffect(() => {
     if (blog?.title) {
