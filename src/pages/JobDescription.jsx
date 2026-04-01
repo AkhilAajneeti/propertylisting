@@ -43,11 +43,11 @@ const JobDescription = () => {
     e.preventDefault();
 
     const sendData = new FormData();
+    sendData.append("job_posting", job.id);
+    sendData.append("job_title", job.title);
     sendData.append("name", formData.name);
     sendData.append("email", formData.email);
     sendData.append("mobile", formData.mobile);
-    sendData.append("job_posting", job_slug);
-    sendData.append("job_title", job.title);
     sendData.append("resume", formData.resume);
 
     try {
@@ -99,15 +99,37 @@ const JobDescription = () => {
       <div className="container py-5">
         <div className="row mb-4">
           <div className="col-sm-6">
-            <h4 className="fw-bold text-gradient">Job Description</h4>
-            <div dangerouslySetInnerHTML={{ __html: job.description }} />
+            {/* Show content only if ANY field exists */}
+            {job.description || job.requirements || job.salary ? (
+              <>
+                {job.description && (
+                  <>
+                    <h4 className="fw-bold text-gradient">Job Description</h4>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: job.description }}
+                    />
+                  </>
+                )}
 
-            <h4 className="fw-bold mt-4">Required Skills</h4>
-            <div dangerouslySetInnerHTML={{ __html: job.requirements }} />
+                {job.requirements && (
+                  <>
+                    <h4 className="fw-bold mt-4">Required Skills</h4>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: job.requirements }}
+                    />
+                  </>
+                )}
 
-            <h4 className="fw-bold mt-4">
-              Salary: <span className="salary">{job.salary}</span>
-            </h4>
+                {job.salary && (
+                  <h4 className="fw-bold mt-4">
+                    Salary: <span className="salary">{job.salary}</span>
+                  </h4>
+                )}
+              </>
+            ) : (
+              // 👉 fallback if EVERYTHING missing
+              <p className="text-muted">Details will be updated soon.</p>
+            )}
           </div>
 
           <div className="col-sm-6 d-flex justify-content-center">

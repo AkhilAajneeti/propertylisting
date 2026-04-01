@@ -122,7 +122,7 @@ const Thankyou = () => {
         </div>
 
         <div className="thankyouBg">
-          <img src="/public/bg-full-1.png" alt="thankyouIng" />
+          <img src="/bg-full-1.png" alt="thankyouIng" />
         </div>
       </div>
     </>

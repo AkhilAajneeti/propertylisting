@@ -17,7 +17,7 @@ export const getJobBySlug = async (job_slug) => {
 
 //submit job application
 export const submitJobApplication = async (formData) => {
-  return await api.post("/job-applications/", formData, {
+  return await api.post(`/job-applications/`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
 };
