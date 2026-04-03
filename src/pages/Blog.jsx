@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { SlCalender } from "react-icons/sl";
 import PostCard from "../components/PostCard";
@@ -24,7 +24,18 @@ const Blog = () => {
     if (!blogs || blogs.length === 0) {
       dispatch(fetchBlogs());
     }
-  }, [dispatch]);
+  }, [dispatch, blogs]);
+  useEffect(() => {
+    setFilteredBlogs(blogs);
+  }, [blogs]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 6;
+
+  const indexOfLast = currentPage * blogsPerPage;
+  const indexOfFirst = indexOfLast - blogsPerPage;
+
+  const currentBlogs = filteredBlogs.slice(indexOfFirst, indexOfLast);
 
   useEffect(() => {
     // --- TEXT ANIMATION ---
@@ -88,44 +99,72 @@ const Blog = () => {
           <div className="col-lg-8">
             <div className="mb-2 mt-4">
               <div className="blog-list row g-4">
-                {blogs.map((blog) => (
-                  <div className="col-lg-6 col-md-6 blog-card" key={blog.id}>
-                    {/* <div className="card shadow-sm border-0">
-                      <div className="card-img-wrapper rounded-2 overflow-hidden">
-                        <img
-                          src={blog.image}
-                          className="card-img-top"
-                          alt={blog.title}
-                        />
+                <div className="blog-list row g-4">
+                  {currentBlogs.length > 0 ? (
+                    currentBlogs.map((blog) => (
+                      <div
+                        className="col-lg-6 col-md-6 blog-card"
+                        key={blog.id}
+                      >
+                        <PostCard data={blog} />
                       </div>
-                      <div className="card-body">
-                        <div className="text-uppercase small text-muted fw-semibold mb-2">
-                          {blog.blogcategory} | Author – {blog.author}
-                        </div>
-
-                        <Link to={`/blog/${blog.id}/${blog.blogslug}`}>
-                          <h5 className="card-title fw-bold">{blog.title}</h5>
-                        </Link>
-
-                        <p className="card-text text-muted">
-                          {blog.content.replace(/<[^>]+>/g, "").slice(0, 120)}
-                          ...
-                        </p>
-                      </div>
-
-                      <div className="card-footer bg-white border-0 d-flex justify-content-between text-muted small">
-                        <span>
-                          <PiClockClockwiseLight /> 5 min read
-                        </span>
-                        <span>
-                          <SlCalender /> {blog.date}
-                        </span>
-                      </div>
-                    </div> */}
-                    <PostCard data={blog} />
-                  </div>
-                ))}
+                    ))
+                  ) : (
+                    <p className="text-center mt-5 w-100">
+                      {blogs.length === 0
+                        ? "No blogs available at the moment."
+                        : "No blogs found."}
+                    </p>
+                  )}
+                </div>
               </div>
+              {/* pagination */}
+              {filteredBlogs.length > blogsPerPage ? (
+                <div className="pagination justify-content-center pt-5 gap-2">
+                  <button
+                    disabled={currentPage === 1}
+                    className={`next-btn ${
+                      currentPage === 1 ? "disabled" : "active-nav-btn"
+                    }`}
+                    onClick={() => setCurrentPage((p) => p - 1)}
+                  >
+                    Prev
+                  </button>
+
+                  {Array.from(
+                    { length: Math.ceil(filteredBlogs.length / blogsPerPage) },
+                    (_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentPage(i + 1)}
+                        className={`numberbutton ${
+                          currentPage === i + 1 ? "active-page" : ""
+                        }`}
+                      >
+                        {i + 1}
+                      </button>
+                    ),
+                  )}
+
+                  <button
+                    disabled={
+                      currentPage ===
+                      Math.ceil(filteredBlogs.length / blogsPerPage)
+                    }
+                    className={`next-btn ${
+                      currentPage ===
+                      Math.ceil(filteredBlogs.length / blogsPerPage)
+                        ? "disabled"
+                        : "active-nav-btn"
+                    }`}
+                    onClick={() => setCurrentPage((p) => p + 1)}
+                  >
+                    Next
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
             <div className="spacer-single"></div>
           </div>

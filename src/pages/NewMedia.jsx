@@ -23,6 +23,11 @@ const NewMedia = () => {
   const [category, setCategory] = useState("All");
   const [year, setYear] = useState("All");
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const newsPerPage = 6;
+  const indexOfLast = currentPage * newsPerPage;
+  const indexOfFirst = indexOfLast - newsPerPage;
+  const currentNews = filteredNews.slice(indexOfFirst, indexOfLast);
   // Fetch News
   useEffect(() => {
     dispatch(fetchNews());
@@ -55,7 +60,9 @@ const NewMedia = () => {
     let filtered = [...News];
 
     if (category !== "All") {
-      filtered = filtered.filter((i) => i?.newscategory === category);
+      filtered = filtered.filter((i) =>
+        (i?.newscategory || "").toLowerCase().includes(category.toLowerCase()),
+      );
     }
 
     if (year !== "All") {
@@ -68,6 +75,7 @@ const NewMedia = () => {
     }
 
     setFilteredNews(filtered);
+    setCurrentPage(1);
   }, [category, year, News]);
 
   const handleClear = () => {
@@ -77,8 +85,7 @@ const NewMedia = () => {
   };
   if (loading) return <Loader />;
   if (error) return <p className="text-danger">{error}</p>;
-  if (!News?.length)
-    return <p className="text-center mt-5">No News Available</p>;
+
   return (
     <div>
       <SEO
@@ -127,9 +134,7 @@ const NewMedia = () => {
             className="text-center pt-5 mt-5 mt-lg-0"
             style={{ fontFamily: "font1" }}
           >
-            <div className="text-uppercase text-light text-animate fs-30">
-              {News[0]?.title || "News & Media"}
-            </div>
+            <h1 className="fs-10">News & Media</h1>
           </div>
         </div>
       </div>
@@ -143,16 +148,6 @@ const NewMedia = () => {
 
         {/* Right Section */}
         <div className="d-flex align-items-center gap-3">
-          {/* Image */}
-          {/* <img
-            src="/channelpartner.png" // Replace with your image path
-            alt="Ayushi"
-            className="rounded"
-            loading="lazy"
-            decoding="async"
-            style={{ width: "80px", height: "80px", objectFit: "cover" }}
-          /> */}
-
           {/* Text */}
           <div className="d-flex flex-column">
             <span className="fw-semibold text-dark">Ayushi</span>
@@ -238,46 +233,66 @@ const NewMedia = () => {
 
         <div className="my-5">
           <div className="row g-4">
-            {filteredNews.map((news) => (
-              <div className="col-lg-4 col-md-6 blog-card" key={news.id}>
-                {/* <div className="card shadow-sm border-0">
-                  <div className="card-img-wrapper rounded-2 overflow-hidden">
-                    <img
-                      src={news.image}
-                      className="card-img-top"
-                      alt={news.title}
-                    />
-                  </div>
-                  <div className="card-body">
-                    <div className="text-uppercase small text-muted fw-semibold mb-2">
-                      Author – {news.author}
-                    </div>
-                    <Link
-                      to={`/insight/news&media/${news.id}/${news.newsslug}`}
-                    >
-                      <h5 className="card-title fw-bold">{news.title}</h5>
-                    </Link>
-                    <p className="card-text text-muted">
-                      {news.content.replace(/<[^>]+>/g, "").slice(0, 120)}
-                      ...
-                    </p>
-                  </div>
-                  <div className="card-footer bg-white border-0 d-flex justify-content-between text-muted small">
-                    <span>
-                      <PiClockClockwiseLight /> {news.readTime}
-                    </span>
-                    <span>
-                      <a href="" className="NewsLink">
-                        {news.date} <FaArrowRight />
-                      </a>
-                    </span>
-                  </div>
-                </div> */}
-                <NewsCard data={news} />
-              </div>
-            ))}
+            {currentNews.length > 0 ? (
+              currentNews.map((news) => (
+                <div className="col-lg-4 col-md-6 blog-card" key={news.id}>
+                  <NewsCard data={news} />
+                </div>
+              ))
+            ) : (
+              <p className="text-center mt-5 w-100">
+                {News.length === 0
+                  ? "No news available at the moment."
+                  : "No news found for selected filters. Try adjusting filters."}
+              </p>
+            )}
           </div>
         </div>
+        {/* pagination */}
+        {filteredNews.length > newsPerPage ? (
+          <div className="pagination justify-content-center pt-5 gap-2">
+            <button
+              disabled={currentPage === 1}
+              className={`next-btn ${
+                currentPage === 1 ? "disabled" : "active-nav-btn"
+              }`}
+              onClick={() => setCurrentPage((p) => p - 1)}
+            >
+              Prev
+            </button>
+
+            {Array.from(
+              { length: Math.ceil(filteredNews.length / newsPerPage) },
+              (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`numberbutton ${
+                    currentPage === i + 1 ? "active-page" : ""
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ),
+            )}
+
+            <button
+              disabled={
+                currentPage === Math.ceil(filteredNews.length / newsPerPage)
+              }
+              className={`next-btn ${
+                currentPage === Math.ceil(filteredNews.length / newsPerPage)
+                  ? "disabled"
+                  : "active-nav-btn"
+              }`}
+              onClick={() => setCurrentPage((p) => p + 1)}
+            >
+              Next
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {/* bottom section */}
 

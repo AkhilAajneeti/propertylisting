@@ -10,12 +10,17 @@ import "swiper/css/effect-fade";
 import gsap from "gsap";
 import SplitType from "split-type";
 import { useNavigate } from "react-router-dom";
+import getProjectsByCategory from "../api/projectApi";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects } from "../redux/slices/propertySlice";
 
 export default function Slider() {
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
-  const [location, setLocation] = useState("");
+  // const [location, setLocation] = useState("");
   const [activeTab, setActiveTab] = useState("Residential");
+  const [categories, setCategories] = useState([]);
+  const [filters, setFilters] = useState({ location: "" });
   useEffect(() => {
     document.fonts.ready.then(() => {
       gsap.set(".split2", { opacity: 1 });
@@ -38,18 +43,51 @@ export default function Slider() {
       });
     });
   }, []);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await getProjectsByCategory();
+        setCategories(data.results || data || []);
+      } catch (err) {
+        console.log("Error fetching categories:", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+  const dispatch = useDispatch();
+  const { data: projects} = useSelector((state) => state.projects);
+  // ✅ Fetch data once when component mounts
+  useEffect(() => {
+    if (!projects || projects.length === 0) {
+      dispatch(fetchProjects());
+    }
+  }, [dispatch, projects, projects?.length]);
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
 
-    // 👇 Navigate to a page based on tab
-    if (tab === "Residential") navigate("/projects?propertytype=Residential");
-    else if (tab === "Commercial")
-      navigate("/projects?propertytype=Commercial");
-    else if (tab === "Plots") navigate("/projects?propertytype=Plots");
+    const selectedCategory = categories.find((cat) =>
+      cat.name.toLowerCase().includes(tab.toLowerCase()),
+    );
+
+    if (selectedCategory) {
+      navigate(`/projects?category=${selectedCategory.slug}`);
+    } else {
+      console.warn("Category not found yet");
+    }
   };
+  const uniqueLocation = [
+    ...new Set(projects.map((p) => p.Project_Location).filter(Boolean)),
+  ];
+  // ---------- handlers ----------
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    setFilters((s) => ({ ...s, [name]: value }));
+  };
+
   const handleSearch = () => {
-    let query = searchText || location;
+    let query = searchText || filters.location;
     if (!query) return;
 
     navigate(`/search-projects?q=${encodeURIComponent(query)}`);
@@ -164,13 +202,18 @@ export default function Slider() {
                   className="icon"
                   style={{ color: "rgb(205 181 112)" }}
                 />
-                <select onChange={(e) => setLocation(e.target.value)}>
-                  <option value="">Select Location</option>
-                  <option value="Gurugram">Gurugram</option>
-                  <option value="Noida">Noida</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Bengaluru">Bengaluru</option>
-                  <option value="Mumbai">Mumbai</option>
+                <select
+                  name="location"
+                  value={filters.location}
+                  onChange={handleFilterChange}
+                  disabled={!uniqueLocation.length}
+                >
+                  <option value="">Location</option>
+                  {(uniqueLocation || []).map((location) => (
+                    <option key={location} value={location}>
+                      {location}
+                    </option>
+                  ))}
                 </select>
               </div>
 

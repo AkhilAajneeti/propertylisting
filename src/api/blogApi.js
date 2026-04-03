@@ -1,8 +1,21 @@
 import api from "./axiosConfig";
 
 export const getBlogs = async () => {
-  const response = await api.get("/blogs/");
-  return response.data.results || [];
+  let allBlogs = [];
+  let url = "/blogs/";
+
+  while (url) {
+    const response = await api.get(url);
+
+    const data = response.data;
+    const results = data.results || data || [];
+
+    allBlogs = [...allBlogs, ...results];
+
+    url = data.next || null;
+  }
+
+  return allBlogs;
 };
 
 

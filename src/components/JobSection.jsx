@@ -8,7 +8,11 @@ import { getJobs } from "../api/jobApi";
 const JobSection = () => {
   const [jobs, setJobs] = useState([]);
   const [filteredJobs, setFilteredJobs] = useState([]);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const jobsPerPage = 6;
+  const indexOfLast = currentPage * jobsPerPage;
+  const indexOfFirst = indexOfLast - jobsPerPage;
+  const currentJobs = filteredJobs.slice(indexOfFirst, indexOfLast);
   const [filters, setFilters] = useState({
     location: "All Locations",
     jobType: "All Job Types",
@@ -36,15 +40,19 @@ const JobSection = () => {
     const result = jobs.filter((job) => {
       const matchLocation =
         filters.location === "All Locations" ||
-        job.location === filters.location;
+        (job.location || "")
+          .toLowerCase()
+          .includes(filters.location.toLowerCase());
 
       const matchType =
-        filters.jobType === "All Job Types" || job.type === filters.jobType;
+        filters.jobType === "All Job Types" ||
+        (job.type || "").toLowerCase().includes(filters.jobType.toLowerCase());
 
       return matchLocation && matchType;
     });
 
     setFilteredJobs(result);
+    setCurrentPage(1);
   }, [filters, jobs]);
 
   return (
@@ -95,7 +103,7 @@ const JobSection = () => {
 
       <div className="job-list">
         {filteredJobs.length > 0 ? (
-          filteredJobs.map((job, i) => (
+          currentJobs.map((job, i) => (
             <div key={i} className="job-item">
               <div className="job-info">
                 <h4 className="job-title">{job.title}</h4>
@@ -113,9 +121,56 @@ const JobSection = () => {
             </div>
           ))
         ) : (
-          <p className="no-results">No jobs found for the selected filters.</p>
+          <p className="no-results text-center pt-5">
+            No job openings available at the moment. <br /> Please check back
+            later for new opportunities.
+          </p>
         )}
       </div>
+
+      {/* pagination */}
+      {filteredJobs.length > jobsPerPage && (
+        <div className="pagination justify-content-center pt-5 gap-2">
+          <button
+            disabled={currentPage === 1}
+            className={`next-btn ${
+              currentPage === 1 ? "disabled" : "active-nav-btn"
+            }`}
+            onClick={() => setCurrentPage((p) => p - 1)}
+          >
+            Prev
+          </button>
+
+          {Array.from(
+            { length: Math.ceil(filteredJobs.length / jobsPerPage) },
+            (_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`numberbutton ${
+                  currentPage === i + 1 ? "active-page" : ""
+                }`}
+              >
+                {i + 1}
+              </button>
+            ),
+          )}
+
+          <button
+            disabled={
+              currentPage === Math.ceil(filteredJobs.length / jobsPerPage)
+            }
+            className={`next-btn ${
+              currentPage === Math.ceil(filteredJobs.length / jobsPerPage)
+                ? "disabled"
+                : "active-nav-btn"
+            }`}
+            onClick={() => setCurrentPage((p) => p + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
     </section>
   );
 };

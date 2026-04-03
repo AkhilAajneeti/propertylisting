@@ -1,10 +1,22 @@
 import api from "./axiosConfig";
 
 export const getNews = async () => {
-  const response = await api.get("/news");
-  return response.data.results || response.data || [];
-};  
+  let allNews = [];
+  let url = "/news";
 
+  while (url) {
+    const response = await api.get(url);
+
+    const data = response.data;
+    const results = data.results || data || [];
+
+    allNews = [...allNews, ...results];
+
+    url = data.next || null;
+  }
+
+  return allNews;
+};
 
 export const getNewsById = async (id) => {
   const response = await api.get(`/news/${id}/`);

@@ -3108,7 +3108,7 @@ p {
 
 /* changes */
 .banner-content h1 {
-  font-size: 75px;
+  font-size: 72px;
   font-weight: bold;
   background: linear-gradient(to top, #ffffff, #ffffff);
   -webkit-background-clip: text;
@@ -3118,7 +3118,7 @@ p {
 
 @media(max-width:580px) {
   .banner-content h1 {
-    font-size: 42px;
+    font-size: 38px;
     font-weight: bold;
     background: linear-gradient(to top, #ffffff, #ffffff);
     -webkit-background-clip: text;
@@ -3240,6 +3240,7 @@ p {
   background-size: auto;
   background-position: center;
 }
+
 .aboutContent {
   background-image: url('/aboutContent.png');
   background-size: auto;
@@ -4350,7 +4351,7 @@ p {
   opacity: 1;
 
   padding: 12px 22px;
- background: linear-gradient(90deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
+  background: linear-gradient(90deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
   backdrop-filter: blur(6px);
   color: #fff;
   border-radius: 8px;
@@ -4373,4 +4374,55 @@ p {
 .floorplan-image:hover button {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
+}
+
+.next-btn {
+  content: ">";
+  background: linear-gradient(68deg,
+      #be973e 3.99%,
+      #f5ebac 85.49%,
+      #b49249);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+}
+
+.next-btn.disabled {
+  background: #ccc;
+  cursor: not-allowed;
+
+}
+
+.numberbutton {
+  background: linear-gradient(68deg,
+      #be973e 3.99%,
+      #f5ebac 89.49%,
+      #b49249);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+}
+
+.active-page {
+  background: linear-gradient(68deg,
+      #be973e 3.99%,
+      #f5ebac 86.49%,
+      #b49249);
+  color: #fff;
+  transform: scale(1.06);
+  box-shadow: #f8efb8 0px 7px 29px 0px;
+}
+
+.active-nav-btn {
+  background: linear-gradient(68deg,
+      #be973e 3.99%,
+      #f5ebac 90.49%,
+      #b49249);
+  color: #fff;
 }

@@ -23,16 +23,22 @@ const Projects = () => {
     loading,
     error,
   } = useSelector((state) => state.projects);
-  // ---------- state ----------
-const formatCategoryName = (slug) => {
-  if (!slug) return "Our";
 
-  return slug
-    .replace(/-/g, " ") // only replace dash
-    .replace(/\b\w/g, (c) => c.toUpperCase()); // capitalize
-};
+  // ---------- state ----------
+  const formatCategoryName = (slug) => {
+    if (!slug) return "Our";
+
+    return slug
+      .replace(/-/g, " ") // only replace dash
+      .replace(/\b\w/g, (c) => c.toUpperCase()); // capitalize
+  };
   const [filteredProjects, setFilteredProjects] = useState([]); // shown projects
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectPerPage = 9;
+  const indexOfLast = currentPage * projectPerPage;
+  const indexOfFirst = indexOfLast - projectPerPage;
+  const currentNews = filteredProjects.slice(indexOfFirst, indexOfLast);
   // filters state (controlled)
   const [filters, setFilters] = useState({
     city: "",
@@ -95,6 +101,7 @@ const formatCategoryName = (slug) => {
     }
 
     setFilteredProjects(result);
+    setCurrentPage(1);
   }, [projects, category, filters]);
 
   // initialize city filter from url if provided
@@ -138,44 +145,6 @@ const formatCategoryName = (slug) => {
     category: activeBannerProject?.category || "Our",
     content: activeBannerProject?.Highlights || "",
   };
-
-  // const handleSearch = () => {
-  //   let result = [...projects];
-
-  //   if (propertyType) {
-  //     const lower = propertyType.toLowerCase();
-  //     result = result.filter(
-  //       (p) =>
-  //         (p.category && p.category.toLowerCase().includes(lower)) ||
-  //         (p.subcategory && p.subcategory.toLowerCase().includes(lower))
-  //     );
-  //   }
-
-  //   if (filters.city) {
-  //     result = result.filter(
-  //       (p) => (p.City || "").toLowerCase() === filters.city.toLowerCase()
-  //     );
-  //   }
-
-  //   if (filters.location) {
-  //     result = result.filter(
-  //       (p) =>
-  //         (p.Project_Location || "").toLowerCase() ===
-  //         filters.location.toLowerCase()
-  //     );
-  //   }
-
-  //   if (filters.configuration) {
-  //     const cfg = filters.configuration.toLowerCase();
-  //     result = result.filter((p) =>
-  //       Array.isArray(p.Configuration)
-  //         ? p.Configuration.some((c) => (c || "").toLowerCase() === cfg)
-  //         : false
-  //     );
-  //   }
-
-  //   setFilteredProjects(result);
-  // };
 
   // split text animation (when fonts ready)
   useEffect(() => {
@@ -320,8 +289,8 @@ const formatCategoryName = (slug) => {
       {/* Projects Grid */}
       <div className="container py-5">
         <div className="row gy-5">
-          {filteredProjects.length > 0 ? (
-            filteredProjects.map((project) => (
+          {currentNews.length > 0 ? (
+            currentNews.map((project) => (
               <div className="col-sm-4" key={project.id}>
                 <ProjectCard project={project} />
               </div>
@@ -330,6 +299,51 @@ const formatCategoryName = (slug) => {
             <p className="text-center">No projects found</p>
           )}
         </div>
+        {/* pagination */}
+        {filteredProjects.length > projectPerPage && (
+          <div className="pagination justify-content-center pt-5 gap-2">
+            <button
+              disabled={currentPage === 1}
+              className={`next-btn ${
+                currentPage === 1 ? "disabled" : "active-nav-btn"
+              }`}
+              onClick={() => setCurrentPage((p) => p - 1)}
+            >
+              Prev
+            </button>
+
+            {Array.from(
+              { length: Math.ceil(filteredProjects.length / projectPerPage) },
+              (_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`numberbutton ${
+                    currentPage === i + 1 ? "active-page" : ""
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ),
+            )}
+
+            <button
+              disabled={
+                currentPage ===
+                Math.ceil(filteredProjects.length / projectPerPage)
+              }
+              className={`next-btn ${
+                currentPage ===
+                Math.ceil(filteredProjects.length / projectPerPage)
+                  ? "disabled"
+                  : "active-nav-btn"
+              }`}
+              onClick={() => setCurrentPage((p) => p + 1)}
+            >
+              Next
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

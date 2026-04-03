@@ -1,18 +1,28 @@
 import api from "./axiosConfig";
 
 export const getTeamMembers = async () => {
-  // const response = await api.get("/team-members/");
-  // return response.data.results || [];
   let allResults = [];
-  let nextUrl = "/team-members/";
+  let url = "/team-members/";
 
-  while (nextUrl) {
-    const response = await api.get(nextUrl);
-    allResults = [...allResults, ...response.data.results];
-    nextUrl = response.data.next
-      ? response.data.next.replace("https://jenikaventures.com/api", "")
-      : null;
+  try {
+    while (url) {
+      const response = await api.get(url);
+      const data = response.data;
+
+      // handle both paginated & non-paginated
+      const results = Array.isArray(data)
+        ? data
+        : data?.results || [];
+
+      allResults = [...allResults, ...results];
+
+      // move to next page
+      url = data?.next || null;
+    }
+
+    return allResults;
+  } catch (error) {
+    console.error("Error fetching team members:", error);
+    return allResults;
   }
-
-  return allResults;
 };

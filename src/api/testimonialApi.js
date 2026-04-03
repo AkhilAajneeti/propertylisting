@@ -1,6 +1,19 @@
 import api from "./axiosConfig";
 
 export const getTestimonials = async () => {
-  const response = await api.get("/testimonials/");
-  return response.data.results || []; // list only
+  let allTestimonials = [];
+  let url = "/testimonials/";
+
+  while (url) {
+    const response = await api.get(url);
+
+    const data = response.data;
+    const results = data.results || data || [];
+
+    allTestimonials = [...allTestimonials, ...results];
+
+    url = data.next || null;
+  }
+
+  return allTestimonials;
 };
