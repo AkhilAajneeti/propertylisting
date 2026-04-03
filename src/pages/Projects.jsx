@@ -24,7 +24,13 @@ const Projects = () => {
     error,
   } = useSelector((state) => state.projects);
   // ---------- state ----------
+const formatCategoryName = (slug) => {
+  if (!slug) return "Our";
 
+  return slug
+    .replace(/-/g, " ") // only replace dash
+    .replace(/\b\w/g, (c) => c.toUpperCase()); // capitalize
+};
   const [filteredProjects, setFilteredProjects] = useState([]); // shown projects
 
   // filters state (controlled)
@@ -39,7 +45,7 @@ const Projects = () => {
   // ---------- read query params ----------
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const propertyType = params.get("propertytype"); // e.g. "Commercial"
+  const category = params.get("category"); // e.g. "Commercial"
   const urlCity = params.get("city") || "";
 
   // ✅ Fetch data once when component mounts
@@ -54,13 +60,11 @@ const Projects = () => {
     let result = Array.isArray(projects) ? [...projects] : [];
 
     // Filter by propertyType (category/subcategory)
-    if (propertyType) {
-      const lower = propertyType.toLowerCase();
-      result = result.filter(
-        (p) =>
-          (p.category && p.category.toLowerCase().includes(lower)) ||
-          (p.subcategory && p.subcategory.toLowerCase().includes(lower)),
-      );
+    if (category) {
+      result = result.filter((p) => {
+        const slug = (p.category || "").toLowerCase().replace(/\s+/g, "-");
+        return slug === category;
+      });
     }
 
     // Filter by city
@@ -91,7 +95,7 @@ const Projects = () => {
     }
 
     setFilteredProjects(result);
-  }, [projects, propertyType, filters]);
+  }, [projects, category, filters]);
 
   // initialize city filter from url if provided
   useEffect(() => {
@@ -122,17 +126,11 @@ const Projects = () => {
 
   // ---------- banner logic ----------
   const activeBannerProject =
-    projects.find(
-      (p) =>
-        (propertyType &&
-          (p.category || "")
-            .toLowerCase()
-            .includes(propertyType.toLowerCase())) ||
-        (propertyType &&
-          (p.subcategory || "")
-            .toLowerCase()
-            .includes(propertyType.toLowerCase())),
-    ) || null;
+    projects.find((p) => {
+      const slug = (p.category || "").toLowerCase().replace(/\s+/g, "-");
+
+      return category && slug === category;
+    }) || null;
 
   const activeBanner = {
     bannerImage: activeBannerProject?.Bann1 || "/banner-9.jpeg",
@@ -241,9 +239,8 @@ const Projects = () => {
         )}
 
         <div className="banner-content position-absolute top-50 start-50 translate-middle text-white text-center">
-          <h1 className="">{propertyType || "Our"} Projects</h1>
+          <h1>{category ? formatCategoryName(category) : "Our Projects"} </h1>
           <p className="text-drop__line split2 text-center">
-            {/* {activeBanner.content || "Browse through our diverse portfolio"} */}
             {"Browse through our diverse portfolio"}
           </p>
         </div>

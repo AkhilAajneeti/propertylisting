@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -8,12 +8,14 @@ import {
 } from "react-bootstrap";
 import { Link, NavLink } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
+import getProjectsByCategory from "../api/projectApi";
 function CustomNavbar() {
   const [show, setShow] = useState(false);
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
   const [dropdownTimeout, setDropdownTimeout] = useState(null);
   const [activeMenu, setActiveMenu] = useState(null);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
+  const [categories, setCategories] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -32,6 +34,20 @@ function CustomNavbar() {
   const navLinkClass = ({ isActive }) =>
     isActive ? "nav-link active-nav" : "nav-link";
 
+  // fetch project category
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await getProjectsByCategory();
+        setCategories(res.results || []);
+      } catch (err) {
+        console.log("Error fetching categories:", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+  const sortedCategories = [...categories].sort((a, b) => a.id - b.id);
   return (
     <>
       <Navbar bg="light" expand="lg" className="py-3">
@@ -88,36 +104,18 @@ function CustomNavbar() {
                 onMouseEnter={() => handleMouseEnter("project")}
                 onMouseLeave={handleMouseLeave}
               >
-                <NavDropdown.Item
-                  as={NavLink}
-                  to={{
-                    pathname: "/projects",
-                    search: "?propertytype=Residential",
-                  }}
-                >
-                  Residential
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  to={{
-                    pathname: "/projects",
-                    search: "?propertytype=Commercial",
-                  }}
-                >
-                  Commercial
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  to={{ pathname: "/projects", search: "?propertytype=Studio" }}
-                >
-                  Studio Apartments
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  as={NavLink}
-                  to={{ pathname: "/projects", search: "?propertytype=Plots" }}
-                >
-                  Plots
-                </NavDropdown.Item>
+                {sortedCategories.map((cat) => (
+                  <NavDropdown.Item
+                    key={cat.id}
+                    as={NavLink}
+                    to={{
+                      pathname: "/projects",
+                      search: `?category=${cat.slug}`,
+                    }}
+                  >
+                    {cat.name}
+                  </NavDropdown.Item>
+                ))}
               </NavDropdown>
 
               {/* INSIGHTS */}
@@ -259,39 +257,22 @@ function CustomNavbar() {
                   activeMenu === "project" ? "open" : ""
                 }`}
               >
-                <NavLink
-                  to={{
-                    pathname: "/projects",
-                    search: "?propertytype=Residential",
-                  }}
-                  onClick={handleClose}
-                >
-                  Residential
-                </NavLink>
-
-                <NavLink
-                  to={{
-                    pathname: "/projects",
-                    search: "?propertytype=Commercial",
-                  }}
-                  onClick={handleClose}
-                >
-                  Commercial
-                </NavLink>
-
-                <NavLink
-                  to={{ pathname: "/projects", search: "?propertytype=Studio" }}
-                  onClick={handleClose}
-                >
-                  Studio Apartments
-                </NavLink>
-
-                <NavLink
-                  to={{ pathname: "/projects", search: "?propertytype=Plots" }}
-                  onClick={handleClose}
-                >
-                  Plots
-                </NavLink>
+                {sortedCategories.length === 0 ? (
+                  <p className="text-center">Loading...</p>
+                ) : (
+                  sortedCategories.map((cat) => (
+                    <NavLink
+                      key={cat.id}
+                      to={{
+                        pathname: "/projects",
+                        search: `?category=${cat.slug}`,
+                      }}
+                      onClick={handleClose}
+                    >
+                      {cat.name}
+                    </NavLink>
+                  ))
+                )}
               </div>
             </div>
 

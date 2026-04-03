@@ -2,10 +2,17 @@ import api from "./axiosConfig";
 
 
 export const getProjects = async () => {
-  const response = await api.get("/projects/");
-  return response.data.results || [];
-};
+  let allProjects = [];
+  let url = "/projects/";
 
+  while (url) {
+    const response = await api.get(url);
+    allProjects = [...allProjects, ...response.data.results];
+    url = response.data.next; // next page url
+  }
+
+  return allProjects;
+};
 
 export const getProjectsById = async (id) => {
   const response = await api.get(`/projects/${id}/`);
@@ -15,3 +22,9 @@ export const getProjectsBySlug = async (project_slug) => {
   const response = await api.get(`/projects/${project_slug}/`);
   return response.data;
 };
+const getProjectsByCategory = async () => {
+  const response = await api.get(`/property-categories/`);
+  return response.data;
+};
+
+export default getProjectsByCategory

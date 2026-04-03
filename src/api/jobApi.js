@@ -1,8 +1,21 @@
 import api from "./axiosConfig";
 
 export const getJobs = async () => {
-  const response = await api.get("/job-postings/");
-  return response.data.results || response.data || [];
+  let allJobs = [];
+  let url = "/job-postings/";
+
+  while (url) {
+    const response = await api.get(url);
+
+    const data = response.data;
+    const results = data.results || data || [];
+
+    allJobs = [...allJobs, ...results];
+
+    url = data.next || null; // go to next page
+  }
+
+  return allJobs;
 };
 
 // If you have Job Details Page later, already ready👇

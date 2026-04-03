@@ -6,6 +6,7 @@ import { fetchSearchProjects } from "../redux/slices/propertySlice";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import SEO from "../components/seo/SEO";
+import ProjectCard from "../components/ProjectCard";
 const SearchedProject = () => {
   const location = useLocation();
   const dispatch = useDispatch();
@@ -52,54 +53,9 @@ const SearchedProject = () => {
 
         <div className="row gy-5">
           {searchResults?.length > 0 ? (
-            searchResults.map((project, index) => (
+            searchResults.map((project) => (
               <div className="col-sm-4" key={project.id}>
-                <div
-                  className="cards-3 section-gray"
-                  data-aos="fade-up"
-                  data-aos-delay={index * 150}
-                >
-                  <div className="card card-blog">
-                    <div className="card-image news-box-items">
-                      <Link to={`/projects/${project.id}`}>
-                        <img
-                          src={project.Bann1 || project.Proj_Logo}
-                          alt={project.Title}
-                          style={{
-                            height: "264px",
-                            width: "100%",
-                            objectFit: "cover",
-                          }}
-                        />
-                      </Link>
-                    </div>
-
-                    <div className="table p-3">
-                      <h6 className="category text-info">
-                        {project.City}
-                        {project.Project_Location
-                          ? ` | ${project.Project_Location}`
-                          : ""}
-                      </h6>
-
-                      <Link
-                        to={`/projects/${project.id}`}
-                        className="text-dark text-decoration-none"
-                      >
-                        <p className="fs-4">{project.Title}</p>
-                      </Link>
-
-                      <p className="fw-bold">{project.Price}</p>
-
-                      <Link
-                        to={`/projects/${project.id}`}
-                        className="text-primary fw-semibold"
-                      >
-                        View Details →
-                      </Link>
-                    </div>
-                  </div>
-                </div>
+                <ProjectCard project={project} />
               </div>
             ))
           ) : (
