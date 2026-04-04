@@ -82,6 +82,12 @@ const Blog = () => {
 
     return () => ctx.revert(); // cleanup on unmount
   }, [blogs]);
+
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentPage]);
+
+
   if (loading) return <Loader />;
   if (error) return <p className="text-danger text-center">{error}</p>;
   return (

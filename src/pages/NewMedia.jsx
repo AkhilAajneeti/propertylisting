@@ -83,6 +83,10 @@ const NewMedia = () => {
     setYear("All");
     setFilteredNews(News);
   };
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentPage]);
+
   if (loading) return <Loader />;
   if (error) return <p className="text-danger">{error}</p>;
 

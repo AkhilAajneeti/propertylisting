@@ -54,6 +54,9 @@ const JobSection = () => {
     setFilteredJobs(result);
     setCurrentPage(1);
   }, [filters, jobs]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
 
   return (
     <section className="job-section">

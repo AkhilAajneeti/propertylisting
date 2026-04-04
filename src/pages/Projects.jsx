@@ -175,6 +175,10 @@ const Projects = () => {
     });
   }, [filteredProjects]);
 
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}, [currentPage]);
+
   // ---------- loading fallback ----------
   if (loading) return <Loader />;
 
