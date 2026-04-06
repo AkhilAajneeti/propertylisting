@@ -3247,10 +3247,6 @@ p {
   background-position: center;
 }
 
-.developerContent img {
-  border-radius: 12px;
-}
-
 .formtagline {
   color: white;
 }
@@ -4425,4 +4421,20 @@ p {
       #f5ebac 90.49%,
       #b49249);
   color: #fff;
+}
+
+.developerContent img {
+  height: 463px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (max-width:580px) {
+  .developerContent img {
+    height: 260px;
+    width: 100%;
+    object-fit: cover;
+  }
+
 }

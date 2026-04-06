@@ -549,11 +549,16 @@ const ProjectDetailPage = () => {
         <div className="container">
           <div className="row">
             <div className="col-sm-6">
-              <img src="/contact2.jpg" alt="Jenikaimg" className="img-fluid" />
+              <img
+                src={project.developer_img || "/contact2.jpg"}
+                alt="Jenikaimg"
+                className="img-fluid"
+                loading="lazy"
+              />
             </div>
 
             <div className="col-sm-6 d-flex justify-content-center align-content-center flex-column">
-              <h2 className="mainFont">
+              <h2 className="mainFont pt-2 pt-sm-0">
                 About <span className="text-gradient2">Developer</span>
               </h2>
               <p>{project.Abt_builder}</p>
