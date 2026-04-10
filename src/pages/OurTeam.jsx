@@ -125,8 +125,8 @@ const OurTeam = () => {
   return (
     <div>
       <SEO
-        title="Our Team | Jenika Ventures - Real Estate Experts in Delhi NCR"
-        description="Meet the expert team at Jenika Ventures. Our experienced real estate professionals help you find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR."
+        title="Our Team | Jenika Ventures Private Limited - Real Estate Experts in Delhi NCR"
+        description="Meet the expert team at Jenika Ventures Private Limited. Our experienced real estate professionals help you find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR."
       />
       <div className="OurTeambanner has-prlx">
         {/* <h2 className=" fw-bold split2  ">Our Team</h2> */}
@@ -164,7 +164,7 @@ const OurTeam = () => {
             </div>
             <p className="text-start text-drop__line text-muted">Co-Founder</p>
             <p className="text-drop__line" style={{ textAlign: "justify" }}>
-              Abhishek Raj is the CEO of Jenika Ventures, a real estate
+              Abhishek Raj is the CEO of Jenika Ventures Private Limited, a real estate
               consultancy he established in 2020 with a vision to bring trust,
               transparency and innovation to the Indian property market. With
               more than a decade of experience in the Delhi/NCR real estate
@@ -173,7 +173,7 @@ const OurTeam = () => {
               advocate by profession with a management degree from the United
               Kingdom, combines legal expertise with business acumen to deliver
               long-term value for clients, investors and developers. Under his
-              leadership, Jenika Ventures became operational in 2021 and quickly
+              leadership, Jenika Ventures Private Limited became operational in 2021 and quickly
               achieved ₹100 crore in first-year sales while forging partnerships
               with leading developers including Tata, DLF, Godrej and Elan.
               Beyond business, Abhishek is also an accomplished
@@ -195,7 +195,7 @@ const OurTeam = () => {
             </div>
             <p className="text-drop__line text-muted">Founder and MD</p>
             <p className="text-drop__line" style={{ textAlign: "justify" }}>
-              Priyanka Marwha is the Managing Director of Jenika Ventures. She
+              Priyanka Marwha is the Managing Director of Jenika Ventures Private Limited. She
               has played a pivotal role in shaping the company’s growth and
               success. With more than a decade of experience in the Delhi-NCR
               Real Estate Market, she brings a wealth of knowledge, innovation

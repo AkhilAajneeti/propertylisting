@@ -35,8 +35,8 @@ const IpoAdvisory = () => {
   return (
     <>
       <SEO
-        title="IPO Advisory Services | Jenika Ventures - Investment Experts in Delhi NCR"
-        description="Get expert IPO advisory services with Jenika Ventures. Our experienced team provides strategic guidance on investment opportunities, IPO analysis, and wealth growth across Delhi NCR."
+        title="IPO Advisory Services | Jenika Ventures Private Limited - Investment Experts in Delhi NCR"
+        description="Get expert IPO advisory services with Jenika Ventures Private Limited. Our experienced team provides strategic guidance on investment opportunities, IPO analysis, and wealth growth across Delhi NCR."
       />
       <div className="utilities IPOBanner">
         {/* <h1 className="split2">IPO ADVISORY</h1> */}
@@ -61,19 +61,19 @@ const IpoAdvisory = () => {
               <h2 className="advisor-card__title">
                 A Strategic Initiative
                 <br />
-                by Jenika Ventures
+                by Jenika Ventures Private Limited
               </h2>
               <p className="advisor-card__subtitle">
                 Guided by Suresh Mansharamani
               </p>
               <p className="advisor-card__text">
-                Jenika Ventures brings a focused and structured approach to SME
+                Jenika Ventures Private Limited brings a focused and structured approach to SME
                 IPO advisory, combining market expertise with real
                 entrepreneurial success. This vertical is strengthened by the
                 guidance of Suresh Mansharamani, who transformed his journey
                 from earning ₹300 per month to leading a company that achieved a
                 300x oversubscribed IPO in 1995, successfully listing on the
-                Bombay Stock Exchange. At Jenika Ventures, the objective is
+                Bombay Stock Exchange. At Jenika Ventures Private Limited, the objective is
                 clear — to prepare businesses not just for listing, but for
                 long-term performance in public markets. The advisory framework
                 emphasizes IPO readiness assessment, financial structuring,
@@ -81,7 +81,7 @@ const IpoAdvisory = () => {
                 confidence building. With practical IPO execution experience and
                 deep understanding of SME challenges, this collaboration ensures
                 that growing enterprises receive strategic clarity, disciplined
-                planning and a scalable roadmap. Jenika Ventures IPO Advisory is
+                planning and a scalable roadmap. Jenika Ventures Private Limited IPO Advisory is
                 built for ambitious businesses ready to move from private growth
                 to public credibility — with structure, strategy and sustainable
                 value creation at its core.
@@ -103,7 +103,7 @@ const IpoAdvisory = () => {
               <p className="advisor-card__text">
                 A strong financial foundation is essential for businesses aiming
                 to scale, attract investment, and prepare for capital market
-                opportunities. At Jenika Ventures, the CFO advisory function is
+                opportunities. At Jenika Ventures Private Limited, the CFO advisory function is
                 strengthened by the expertise of Tanuj Keswani, a Chartered
                 Accountant with over a decade of experience guiding SMEs toward
                 financial clarity and structured growth. Holding a Doctorate in
@@ -112,7 +112,7 @@ const IpoAdvisory = () => {
                 execution. His experience includes working with Fortune 50
                 companies during his tenure with a Big 4 consulting firm and
                 advising 500+ businesses through his professional ventures.
-                Through his role with Jenika Ventures, he helps businesses build
+                Through his role with Jenika Ventures Private Limited, he helps businesses build
                 scalable financial systems, strengthen governance practices and
                 prepare for fundraising and IPO readiness — ensuring companies
                 develop the financial discipline and strategic foundation

@@ -35,7 +35,7 @@ export default function Chatbot({ isOpen, onClose }) {
       {/* Header */}
       <div className="chatbot-header">
         <div className="title">
-          <SparkleIcon /> Jenika Ventures
+          <SparkleIcon /> Jenika Ventures Private Limited
         </div>
         <button onClick={onClose}>✕</button>
       </div>

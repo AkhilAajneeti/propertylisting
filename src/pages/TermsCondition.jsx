@@ -5,8 +5,8 @@ const TermsCondition = () => {
   return (
     <div style={{ overflowX: "hidden" }}>
       <SEO
-        title="Terms & Conditions | Jenika Ventures"
-        description="Read the terms and conditions of Jenika Ventures to understand the rules, guidelines, and policies for using our website and real estate services."
+        title="Terms & Conditions | Jenika Ventures Private Limited"
+        description="Read the terms and conditions of Jenika Ventures Private Limited to understand the rules, guidelines, and policies for using our website and real estate services."
       />
       {/* Hero Banner */}
       <div className="PrivacyBanner" role="img" aria-label="Career Banner">
@@ -18,7 +18,7 @@ const TermsCondition = () => {
         <div className="container">
           <div className="bg-white p-2 p-sm-5 rounded shadow">
             <h2 className="pb-1 text-center text-gradient">
-              Welcome to Jenika Ventures{" "}
+              Welcome to Jenika Ventures Private Limited{" "}
             </h2>
             <p className="text-center text-gradient">
               (“Company”, “we”, “our”, “us”).
@@ -54,7 +54,7 @@ const TermsCondition = () => {
             <h5 className="mt-3">3. Information Accuracy</h5>
             <p>
               While we make reasonable efforts to keep information accurate and
-              updated, Jenika Ventures does not warrant the accuracy,
+              updated, Jenika Ventures Private Limited does not warrant the accuracy,
               completeness, or reliability of property details, pricing,
               availability, or project timelines. All information is subject to
               change without notice.
@@ -116,7 +116,7 @@ const TermsCondition = () => {
             <p>
               All content on this website—including text, images, logos,
               graphics, videos, and design—is the intellectual property of
-              Jenika Ventures.
+              Jenika Ventures Private Limited.
             </p>
 
             <p>
@@ -127,7 +127,7 @@ const TermsCondition = () => {
             {/* --->Rights */}
             <h4 className="mt-4">9. Limitation of Liability</h4>
             <p>
-              Jenika Ventures shall not be liable for any direct, indirect,
+              Jenika Ventures Private Limited shall not be liable for any direct, indirect,
               incidental, or consequential damages arising from:
             </p>
             <ul className="privacy">

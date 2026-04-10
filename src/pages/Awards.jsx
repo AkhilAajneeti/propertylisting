@@ -77,8 +77,8 @@ const Awards = () => {
   return (
     <div>
       <SEO
-        title="Awards & Achievements | Jenika Ventures - Real Estate Excellence in Delhi NCR"
-        description="Explore the awards and achievements of Jenika Ventures. Recognized for excellence in real estate, innovation, and customer satisfaction across Delhi NCR."
+        title="Awards & Achievements | Jenika Ventures Private Limited - Real Estate Excellence in Delhi NCR"
+        description="Explore the awards and achievements of Jenika Ventures Private Limited. Recognized for excellence in real estate, innovation, and customer satisfaction across Delhi NCR."
       />
       <div className="AwardsBanner">
         <h1 className="split2">Awards And Recognition</h1>

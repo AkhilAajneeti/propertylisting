@@ -140,8 +140,8 @@ const Contact = () => {
   return (
     <div>
       <SEO
-        title="Contact Jenika Ventures | Get in Touch for Property in Delhi NCR"
-        description="Contact Jenika Ventures for buying residential and commercial properties in Delhi NCR. Get expert guidance on real estate investment, project details, and site visits."
+        title="Contact Jenika Ventures Private Limited | Get in Touch for Property in Delhi NCR"
+        description="Contact Jenika Ventures Private Limited for buying residential and commercial properties in Delhi NCR. Get expert guidance on real estate investment, project details, and site visits."
       />
       <div className="ContactBanner">
         <h1 className="text-animate">Contact Us</h1>
@@ -214,7 +214,7 @@ const Contact = () => {
                   <div className=" col-12 d-flex align-items-baseline justify-content-center gap-2">
                     <input type="checkbox" checked className="w-auto " />
                     <p className="text-light">
-                      I authorize Jenika Ventures to send notifications via SMS,
+                      I authorize Jenika Ventures Private Limited to send notifications via SMS,
                       RCS, and calls.
                     </p>
                   </div>
@@ -345,7 +345,7 @@ const Contact = () => {
             </div>
             <div className="right">
               <div class="tg-button-wrap">
-                <a class="btn border-white" href="about.html">
+                <a class="btn border-white" href="/contact">
                   Contact Now
                 </a>
               </div>

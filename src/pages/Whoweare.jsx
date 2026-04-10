@@ -55,8 +55,8 @@ const Whoweare = () => {
   return (
     <div>
       <SEO
-        title="About Jenika Ventures | Trusted Real Estate Company in Delhi NCR"
-        description="Learn about Jenika Ventures, a trusted real estate company in Delhi NCR offering luxury apartments, commercial properties, and investment opportunities in Noida, Gurgaon, and Ghaziabad."
+        title="About Jenika Ventures Private Limited | Trusted Real Estate Company in Delhi NCR"
+        description="Learn about Jenika Ventures Private Limited, a trusted real estate company in Delhi NCR offering luxury apartments, commercial properties, and investment opportunities in Noida, Gurgaon, and Ghaziabad."
       />
       <div>
         <div
@@ -81,7 +81,7 @@ const Whoweare = () => {
       {/* our story */}
       <div className="container py-5 belowVideo">
         <p className="split2 textjustify">
-          At Jenika Ventures, we are not just any real estate consulting firm.
+          At Jenika Ventures Private Limited, we are not just any real estate consulting firm.
           We are your growth partners. When you are a developer, a channel
           partner, a broker, a buyer, or an investor, we offer you the most
           tailored real estate services across residential, commercial and
@@ -115,7 +115,7 @@ const Whoweare = () => {
               Our Story
             </h1>
             <p>
-              Founded in 2020 and fully operational since 2021, Jenika Ventures
+              Founded in 2020 and fully operational since 2021, Jenika Ventures Private Limited
               has one purpose - to establish trust, transparency, and innovation
               in India’s real estate consulting space. We want to simplify the
               experience of buying and selling real estate for our clients - and
@@ -123,7 +123,7 @@ const Whoweare = () => {
               and future-ready solutions.
             </p>
             <p>
-              Mr. Abhishek Raj, CEO of Jenika Ventures, has always focused on
+              Mr. Abhishek Raj, CEO of Jenika Ventures Private Limited, has always focused on
               building trusted partnerships and offering long-term value to the
               clients. His customer-first approach and smart solutions gave our
               company ₹100 crore in sales right in the first year.
@@ -138,7 +138,7 @@ const Whoweare = () => {
               Bengaluru, Pune, Hyderabad, and Goa.
             </p>
             <p>
-              Today, Jenika Ventures operates across all property
+              Today, Jenika Ventures Private Limited operates across all property
               segments—residential, commercial, mixed-use developments, and
               luxury markets—while upholding the same promises of trust that
               makes you feel safe, transparency you can verify, and innovation
@@ -161,7 +161,7 @@ const Whoweare = () => {
             className="split"
             style={{ color: "white", fontSize: "25px", fontWeight: "500" }}
           >
-            At Jenika Ventures, our mission is to transform real estate
+            At Jenika Ventures Private Limited, our mission is to transform real estate
             consulting by offering smart solutions that combine market
             expertise, transparency and technology, and long-term value to our
             clients.

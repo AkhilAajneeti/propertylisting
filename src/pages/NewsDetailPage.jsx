@@ -33,7 +33,7 @@ const NewsDetailPage = () => {
   return (
     <div>
       <SEO
-        title={`${news.title} | Jenika Ventures Insights`}
+        title={`${news.title} | Jenika Ventures Private Limited Insights`}
         description={`Read ${news.title}. Discover expert tips on choosing the best residential property including budget planning, location selection, and investment insights in Delhi NCR.`}
       />
       {/* Banner */}

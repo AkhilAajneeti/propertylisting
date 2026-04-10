@@ -41,8 +41,8 @@ const Thankyou = () => {
   return (
     <>
       <SEO
-        title="Thank You | Jenika Ventures"
-        description="Thank you for contacting Jenika Ventures. Our team will get in touch with you shortly."
+        title="Thank You | Jenika Ventures Private Limited"
+        description="Thank you for contacting Jenika Ventures Private Limited. Our team will get in touch with you shortly."
       />
 
       <div

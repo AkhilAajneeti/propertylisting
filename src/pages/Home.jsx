@@ -62,7 +62,7 @@ const Home = () => {
   return (
     <div>
       <SEO
-        title="Jenika Ventures | Buy Luxury & Commercial Property in Delhi NCR"
+        title="Jenika Ventures Private Limited | Buy Luxury & Commercial Property in Delhi NCR"
         description="Explore luxury apartments, commercial properties, office spaces, and retail shops in Noida, Gurgaon, and Delhi NCR. Invest in RERA-approved projects with high returns."
       />
       <Slider />

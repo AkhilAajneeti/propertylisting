@@ -38,7 +38,7 @@ const SearchedProject = () => {
   return (
     <>
       <SEO
-        title={`Search Results for "${query}" | Jenika Ventures`}
+        title={`Search Results for "${query}" | Jenika Ventures Private Limited`}
         description={`Showing property results for "${query}". Explore residential and commercial projects in Delhi NCR.`}
       />
       <div className="BlogBanner">

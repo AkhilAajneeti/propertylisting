@@ -40,8 +40,8 @@ const Career = () => {
   return (
     <>
       <SEO
-        title="Careers at Jenika Ventures | Join Our Real Estate Team in Delhi NCR"
-        description="Explore career opportunities at Jenika Ventures. Join our growing real estate team in Delhi NCR and build a successful career in residential and commercial property sales and investment."
+        title="Careers at Jenika Ventures Private Limited | Join Our Real Estate Team in Delhi NCR"
+        description="Explore career opportunities at Jenika Ventures Private Limited. Join our growing real estate team in Delhi NCR and build a successful career in residential and commercial property sales and investment."
       />
       <div style={{ overflowX: "hidden" }}>
         {/* Hero Banner */}
@@ -58,7 +58,7 @@ const Career = () => {
               <div className="col-12 col-sm-6">
                 <img
                   src="/campass.png"
-                  alt="Career at Jenika Ventures"
+                  alt="Career at Jenika Ventures Private Limited"
                   className="img-fluid"
                   loading="lazy"
                   decoding="async"
@@ -66,7 +66,7 @@ const Career = () => {
               </div>
               <div className="col-12 col-sm-6">
                 <p>
-                  At Jenika Ventures, we know that great ideas come from great
+                  At Jenika Ventures Private Limited, we know that great ideas come from great
                   people.
                 </p>
                 <p>

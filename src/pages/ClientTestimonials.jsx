@@ -45,8 +45,8 @@ const ClientTestimonials = () => {
   return (
     <div>
       <SEO
-        title="Client Testimonials | Jenika Ventures - Trusted Real Estate Company in Delhi NCR"
-        description="Read real client testimonials of Jenika Ventures. Discover how we have helped customers find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR with trust and transparency."
+        title="Client Testimonials | Jenika Ventures Private Limited - Trusted Real Estate Company in Delhi NCR"
+        description="Read real client testimonials of Jenika Ventures Private Limited. Discover how we have helped customers find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR with trust and transparency."
       />
       <div className="ClientTestimonial"></div>
 

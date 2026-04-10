@@ -5,8 +5,8 @@ const PrivacyPolicy = () => {
   return (
     <>
       <SEO
-        title="Privacy Policy | Jenika Ventures"
-        description="Read the privacy policy of Jenika Ventures to understand how we collect, use, and protect your personal information when you use our website and services."
+        title="Privacy Policy | Jenika Ventures Private Limited"
+        description="Read the privacy policy of Jenika Ventures Private Limited to understand how we collect, use, and protect your personal information when you use our website and services."
       />
 
       <div style={{ overflowX: "hidden" }}>
@@ -42,7 +42,7 @@ const PrivacyPolicy = () => {
               {/* Intro */}
               <h4 className="text-gradient">Introduction: </h4>
               <p>
-                <strong className="fs-5">Jenika Ventures</strong> (“we”, “our”,
+                <strong className="fs-5">Jenika Ventures Private Limited</strong> (“we”, “our”,
                 “us”) respects your privacy and is committed to protecting the
                 personal information you share with us. This Privacy Policy
                 explains how we collect, use, disclose, and safeguard your
@@ -112,7 +112,7 @@ const PrivacyPolicy = () => {
               {/* Cookies */}
               <h4 className="mt-4">Data Security:</h4>
               <p>
-                Jenika Ventures follows reasonable administrative, technical,
+                Jenika Ventures Private Limited follows reasonable administrative, technical,
                 and physical security measures to protect your personal data
                 from unauthorized access, misuse, loss, or disclosure.
               </p>
@@ -164,7 +164,7 @@ const PrivacyPolicy = () => {
               {/* Rights */}
               <h4 className="mt-4">User Consent:</h4>
               <p>
-                By providing your personal information to Jenika Ventures
+                By providing your personal information to Jenika Ventures Private Limited
                 through our website, forms, phone calls, WhatsApp, emails, or
                 events, you consent to the collection and use of your
                 information as described in this Privacy Policy.
@@ -204,7 +204,7 @@ const PrivacyPolicy = () => {
 
               <h2>Updates to This Policy</h2>
               <p>
-                Jenika Ventures may update this Privacy Policy from time to
+                Jenika Ventures Private Limited may update this Privacy Policy from time to
                 time. Any changes will be posted on this page with an updated
                 effective date.
               </p>
@@ -219,7 +219,7 @@ const PrivacyPolicy = () => {
 
               <div className="border-start border-4 border-danger ps-4 privacyContact">
                 <p className="color-mehroon">
-                  <strong>Jenika Ventures</strong>
+                  <strong>Jenika Ventures Private Limited</strong>
                 </p>
                 <p>
                   Email:{" "}

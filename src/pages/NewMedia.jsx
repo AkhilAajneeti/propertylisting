@@ -93,8 +93,8 @@ const NewMedia = () => {
   return (
     <div>
       <SEO
-        title="News & Media | Jenika Ventures - Latest Real Estate Updates in Delhi NCR"
-        description="Explore the latest news, media coverage, and updates from Jenika Ventures. Stay informed about real estate trends, events, and investment insights across Delhi NCR and India."
+        title="News & Media | Jenika Ventures Private Limited - Latest Real Estate Updates in Delhi NCR"
+        description="Explore the latest news, media coverage, and updates from Jenika Ventures Private Limited. Stay informed about real estate trends, events, and investment insights across Delhi NCR and India."
       />
       <div>
         <div

@@ -95,18 +95,6 @@ export default function Footer() {
               </a>
             </div>
 
-            {/* Newsletter */}
-            {/* <p className="fw-semibold">
-              Stay updated with latest trends & reports.
-            </p>
-            <div className=" form input-group">
-              <input
-                type="email"
-                className="form-control border"
-                placeholder="Email address"
-              />
-              <button className="btn border-0">Subscribe</button>
-            </div> */}
           </div>
           {/* About Us */}
           <div className="col-lg-2 col-6 col-md-6 mb-4">
@@ -253,13 +241,19 @@ export default function Footer() {
 
         {/* Bottom Note */}
         <div className="border-top pt-3 mt-4 text-center small text-light">
-          We value diversity within Jenika Ventures and are committed to
+          We value diversity within Jenika Ventures Private Limited and are committed to
           offering equal opportunities in employment...
         </div>
-        <div className=" pt-3 text-center small text-light">
+        <div className="d-none pt-3 text-center small text-light">
           Developed By{" "}
           <a href="https://aajneeti.social/" target="_blank">
             Aajneeti Connect Ltd.
+          </a>
+        </div>
+        <div className=" pt-3 text-center small text-light">
+          © 2026 {" "}
+          <a href="https://jenikaventures.com/" target="_blank">
+            Jenika Ventures Private Limited
           </a>
         </div>
       </div>
@@ -278,7 +272,7 @@ export default function Footer() {
       {showHint && !open && (
         <div className={`chatbot-hint ${vibrate ? "vibrate" : ""}`}>
           <span className="hint-text">
-            Welcome to <b>Jenika Ventures</b>
+            Welcome to <b>Jenika Ventures Private Limited</b>
             <br />
             How can I assist you today?
           </span>

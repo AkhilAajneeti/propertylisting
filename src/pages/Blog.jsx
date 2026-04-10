@@ -93,7 +93,7 @@ const Blog = () => {
   return (
     <div>
       <SEO
-        title="Real Estate Blog | Property Investment Tips & Insights - Jenika Ventures"
+        title="Real Estate Blog | Property Investment Tips & Insights - Jenika Ventures Private Limited"
         description="Explore expert blogs on real estate, property investment tips, market trends, and buying guides. Stay updated with the latest insights on residential and commercial properties in Delhi NCR."
       />
       <div className="BlogBanner">
