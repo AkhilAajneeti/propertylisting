@@ -81,7 +81,7 @@ const Home = () => {
       <div className="container">
         <Link to="/client-registration" className="footerImg img-fluid">
           <img
-            src="/public/Doorstep Property Access.jpg.jpeg"
+            src="/Doorstep%20Property%20Access.jpg.jpeg"
             alt="Doorstep Property Access — Register with Jenika Ventures"
             style={{ height: "100%", width: "100%", borderRadius: "50px", padding: "10px 0px" }}
           />
