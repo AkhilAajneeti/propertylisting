@@ -48,6 +48,18 @@ const PAYMENT_MODE_OPTIONS = [
   { value: "credit_card", label: "Credit Card" },
 ];
 
+const MEETING_TIME_OPTIONS = [
+  "10:00 AM",
+  "11:00 AM",
+  "12:00 PM",
+  "01:00 PM",
+  "02:00 PM",
+  "03:00 PM",
+  "04:00 PM",
+  "05:00 PM",
+  "06:00 PM",
+];
+
 const INITIAL_FORM = {
   full_name: "",
   mobile_number: "",
@@ -823,14 +835,19 @@ const ClientRegistration = () => {
                             <label className="crf-label">
                               Meeting Time<span className="crf-req">*</span>
                             </label>
-                            <input
-                              type="text"
+                            <select
                               name="meeting_time"
-                              placeholder="11:00 AM"
                               value={form.meeting_time}
                               onChange={handleChange}
                               className={fieldClass("meeting_time")}
-                            />
+                            >
+                              <option value="">Select a time slot</option>
+                              {MEETING_TIME_OPTIONS.map((time) => (
+                                <option key={time} value={time}>
+                                  {time}
+                                </option>
+                              ))}
+                            </select>
                             {errors.meeting_time && (
                               <span className="crf-error">
                                 {errors.meeting_time}

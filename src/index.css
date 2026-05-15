@@ -1388,3 +1388,115 @@ span img {
   transform: translateY(-6px);
   box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.35);
 }
+
+/* concent in doorstep
+ */
+.dpa-tnc {
+  background: linear-gradient(180deg, #fdf6ee 0%, #ffffff 100%);
+  border: 1px solid #f0dcc0;
+  border-radius: 14px;
+  padding: 22px 26px;
+  box-shadow: 0 10px 30px -20px rgba(180, 146, 73, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+
+.dpa-tnc::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, #be973e, #f5ebac 55%, #b49249);
+}
+
+.dpa-tnc__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #f0dcc0;
+}
+
+
+.dpa-tnc__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #6a5836;
+}
+
+.dpa-tnc__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dpa-tnc__list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4f4332;
+  padding: 9px 0;
+  border-bottom: 1px dotted rgba(180, 146, 73, 0.25);
+}
+
+.dpa-tnc__list li:last-child {
+  border-bottom: none;
+}
+
+.dpa-tnc__num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #c80a17;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+  box-shadow: 0 4px 10px -3px rgba(200, 10, 23, 0.5);
+}
+
+.dpa-tnc__footer {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed #f0dcc0;
+  text-align: center;
+}
+
+.dpa-tnc__footer-main {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #be973e, #b49249);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dpa-tnc__footer-sub {
+  margin: 0;
+  font-size: 12px;
+  font-style: italic;
+  color: #8a7656;
+}
+
+@media (max-width: 575px) {
+  .dpa-tnc {
+    padding: 18px 18px;
+  }
+
+  .dpa-tnc__list li {
+    font-size: 12.5px;
+  }
+}

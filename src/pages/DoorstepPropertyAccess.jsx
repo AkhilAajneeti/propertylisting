@@ -23,10 +23,11 @@ gsap.registerPlugin(ScrollTrigger);
 const TODAY = new Date().toISOString().split("T")[0];
 
 const INTERESTED_OPTIONS = [
-  { value: "residential", label: "Residential" },
-  { value: "commercial", label: "Commercial" },
+  { value: "residential", label: "Residential Property" },
+  { value: "commercial", label: "Commercial Property" },
   { value: "plots_land", label: "Plots / Land" },
-  { value: "pre_leased", label: "Pre-Leased Property" }
+  { value: "pre_leased", label: "Pre-Leased Property" },
+  { value: "luxury", label: "Luxury Property" }
 ];
 
 const BUDGET_OPTIONS = [
@@ -503,7 +504,7 @@ const DoorstepPropertyAccess = () => {
                   <h2 className="text-gradient">
                     Client Registration &amp; Consultation Agreement
                   </h2>
-                  <p>We&rsquo;ll contact you within 24 hours to confirm.</p>
+                  <p className="text-center">We&rsquo;ll contact you within 24 hours to confirm.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} noValidate>
@@ -848,10 +849,7 @@ const DoorstepPropertyAccess = () => {
                       </div>
                     </div>
                     <p className="dpa-declaration-note">
-                      I hereby confirm that I have voluntarily opted for
-                      consultation services provided by Jenika Ventures. I
-                      understand the nature of services offered and agree to the
-                      terms mentioned above.
+                      I hereby confirm that I voluntarily request Jenika Ventures to schedule a home consultation under the “Real Estate Ki Home Deliver” campaign and agree to be contacted regarding my property requirements.
                     </p>
                     <div className="row gy-3">
                       <div className="col-12 col-md-6">
@@ -970,11 +968,43 @@ const DoorstepPropertyAccess = () => {
                       )}
                     </button>
                   </div>
-                  <div className="dpa-declaration-note mt-3">
-                    <p>
-                      Benefit Note:
-                      The registration amount will be aligned with enhanced value benefits at the time of final property booking. Jenika Ventures may provide value advantages up to 10x on the registered amount through exclusive pricing, partner offers, or additional benefits, subject to project-specific terms and prevailing market conditions.This registration amount is fully refundable as per applicable terms and conditions.T&C apply*
-                    </p>
+                  <div className="dpa-tnc mt-4">
+
+                    <div className="dpa-tnc__head">
+                      <p className="dpa-tnc__title">Terms &amp; Conditions</p>
+                    </div>
+
+                    <ul className="dpa-tnc__list">
+                      <li>
+                        <span className="dpa-tnc__num">1</span>
+                        <span>Slot availability is subject to confirmation by Jenika Ventures.</span>
+                      </li>
+                      <li>
+                        <span className="dpa-tnc__num">2</span>
+                        <span>Consultation timings may vary due to operational requirements.</span>
+                      </li>
+                      <li>
+                        <span className="dpa-tnc__num">3</span>
+                        <span>Jenika Ventures provides consultation and property assistance services only.</span>
+                      </li>
+                      <li>
+                        <span className="dpa-tnc__num">4</span>
+                        <span>Property availability and pricing are subject to developer policies.</span>
+                      </li>
+                      <li>
+                        <span className="dpa-tnc__num">5</span>
+                        <span>Client information will remain confidential and used only for consultation purposes.</span>
+                      </li>
+                    </ul>
+
+                    <div className="dpa-tnc__footer">
+                      <p className="dpa-tnc__footer-main">
+                        Thank You for Choosing Jenika Ventures
+                      </p>
+                      <p className="dpa-tnc__footer-sub">
+                        Bringing Real Estate to Your Doorstep
+                      </p>
+                    </div>
                   </div>
 
 
