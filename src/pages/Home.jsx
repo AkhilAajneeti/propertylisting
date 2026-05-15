@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 // import axios from "axios";
 import Slider from "../components/Slider";
 import RealEstateTabs from "../components/RealEstateTabs";
@@ -75,6 +76,17 @@ const Home = () => {
       <Testimonial bgColor="linear-gradient(1200deg, #f5e7ad 1.99%, #f5ebac 0.49%, #b49249 100%)" />
 
       <Whycarousel />
+
+
+      <div className="container">
+        <Link to="/client-registration" className="footerImg img-fluid">
+          <img
+            src="/public/Doorstep Property Access.jpg.jpeg"
+            alt="Doorstep Property Access — Register with Jenika Ventures"
+            style={{ height: "100%", width: "100%", borderRadius: "50px", padding: "10px 0px" }}
+          />
+        </Link>
+      </div>
     </div>
   );
 };

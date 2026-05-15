@@ -47,6 +47,7 @@ const TIME_SLOTS = [
   "04:00 PM",
   "05:00 PM",
   "06:00 PM",
+  "07:00 PM",
 ];
 
 const INITIAL_FORM = {
@@ -435,7 +436,7 @@ const DoorstepPropertyAccess = () => {
             <span className="dpa-intro__badge">
               Jenika Ventures · Real Estate Ki Home Delivery™
             </span>
-            <h1 className="text-gradient text-animate">
+            <h1 className="text-mahroon text-animate">
               Doorstep Property Access
             </h1>
             <p>
@@ -446,7 +447,7 @@ const DoorstepPropertyAccess = () => {
 
           <div className="row gx-4 gy-4 justify-content-center">
             {/* ---- Side info panel ---- */}
-            <div className="col-12 col-lg-4">
+            <div className="col-12 col-lg-4 order-1 order-sm-0">
               <div className="dpa-aside">
                 <h3>Why Book a Doorstep Visit?</h3>
                 <p className="dpa-aside__sub">
@@ -496,7 +497,7 @@ const DoorstepPropertyAccess = () => {
             </div>
 
             {/* ---- Form card ---- */}
-            <div className="col-12 col-lg-8">
+            <div className="col-12 col-lg-8 order-0 order-sm-1">
               <div className="dpa-card">
                 <div className="dpa-card__head">
                   <h2 className="text-gradient">
@@ -969,6 +970,14 @@ const DoorstepPropertyAccess = () => {
                       )}
                     </button>
                   </div>
+                  <div className="dpa-declaration-note mt-3">
+                    <p>
+                      Benefit Note:
+                      The registration amount will be aligned with enhanced value benefits at the time of final property booking. Jenika Ventures may provide value advantages up to 10x on the registered amount through exclusive pricing, partner offers, or additional benefits, subject to project-specific terms and prevailing market conditions.This registration amount is fully refundable as per applicable terms and conditions.T&C apply*
+                    </p>
+                  </div>
+
+
                 </form>
               </div>
             </div>

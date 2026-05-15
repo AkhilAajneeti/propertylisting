@@ -23,6 +23,7 @@ import SplitType from "split-type";
 import { toast } from "react-toastify";
 import { submitContactForm } from "../api/contactApi";
 import SEO from "../components/seo/SEO";
+import { Link } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 const Contact = () => {
   // const [isActive, setIsActive] = useState(false);
@@ -535,6 +536,7 @@ const Contact = () => {
           ></iframe>
         </div>
       </div>
+
     </div>
   );
 };

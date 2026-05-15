@@ -27,6 +27,8 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsCondition from "./pages/TermsCondition";
 import IpoAdvisory from "./pages/IpoAdvisory";
 import DoorstepPropertyAccess from "./pages/DoorstepPropertyAccess";
+import ClientRegistration from "./pages/ClientRegistration";
+import PaymentStatus from "./pages/PaymentStatus";
 gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
   useEffect(() => {
@@ -82,6 +84,8 @@ function App() {
           path="/doorstep-property-access"
           element={<DoorstepPropertyAccess />}
         />
+        <Route path="/client-registration" element={<ClientRegistration />} />
+        <Route path="/payment-status" element={<PaymentStatus />} />
       </Routes>
       <Footer />
     </>
