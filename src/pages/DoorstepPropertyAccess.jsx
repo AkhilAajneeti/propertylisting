@@ -171,10 +171,6 @@ const DoorstepPropertyAccess = () => {
       newErrors.investment_budget = "Please select a budget range";
     }
 
-    if (!form.preferred_location.trim()) {
-      newErrors.preferred_location = "Preferred investment location is required";
-    }
-
     if (
       form.associate_contact.trim() &&
       !phoneRegex.test(form.associate_contact)
