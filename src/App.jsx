@@ -26,6 +26,7 @@ import gsap from "gsap";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsCondition from "./pages/TermsCondition";
 import IpoAdvisory from "./pages/IpoAdvisory";
+import DoorstepPropertyAccess from "./pages/DoorstepPropertyAccess";
 gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
   useEffect(() => {
@@ -77,6 +78,10 @@ function App() {
         <Route path="/search-projects" element={<SearchedProject />} />
         <Route path="/privacypolicy" element={<PrivacyPolicy />} />
         <Route path="/terms-and-conditions" element={<TermsCondition />} />
+        <Route
+          path="/doorstep-property-access"
+          element={<DoorstepPropertyAccess />}
+        />
       </Routes>
       <Footer />
     </>

@@ -42,7 +42,7 @@ export default function App() {
       <section className="container pb-5">
         <h1 className="split text-center">Our Milestones</h1>
         <p className="split text-center">
-          Every year, Jenika Ventures has made achievements we are proud of.
+          Every year, Jenika Ventures Private Limited has made achievements we are proud of.
         </p>
         <Swiper
           slidesPerView={2} // show 2 slides
