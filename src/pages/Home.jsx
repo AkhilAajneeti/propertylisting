@@ -66,6 +66,12 @@ const Home = () => {
         title="Jenika Ventures Private Limited | Buy Luxury & Commercial Property in Delhi NCR"
         description="Explore luxury apartments, commercial properties, office spaces, and retail shops in Noida, Gurgaon, and Delhi NCR. Invest in RERA-approved projects with high returns."
       />
+      {/* ================== MARQUEE ================== */}
+      <div className="dpa-marquee">
+        <div className="dpa-marquee__track">
+          Real Estate ki Home Delivery — Call now to book your doorstep Access 6390509090
+        </div>
+      </div>
       <Slider />
       <Counter />
 

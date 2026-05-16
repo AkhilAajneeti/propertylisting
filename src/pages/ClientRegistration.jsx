@@ -662,7 +662,7 @@ const ClientRegistration = () => {
                   <>
                     <div className="crf-card__head">
                       <h2 className="text-gradient">
-                        Client Registration Form
+                        EOI Client Registration form
                       </h2>
                       <p className="text-center">
                         Fill the form below — payment to Yes Bank happens on

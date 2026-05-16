@@ -236,6 +236,8 @@ const DoorstepPropertyAccess = () => {
       <style>{`
         .dpa-page { font-family: "Montserrat", sans-serif; background: #f4f5f7; }
 
+        
+
         /* ---------- BANNER (image only, no overlay) ---------- */
         .dpa-banner { width: 100%; line-height: 0; background: #fff; }
         .dpa-banner img { width: 100%; height: auto; display: block; }
@@ -422,6 +424,8 @@ const DoorstepPropertyAccess = () => {
         }
       `}</style>
 
+     
+
       {/* ================== BANNER (image only) ================== */}
       <section className="dpa-banner">
         <img
@@ -484,15 +488,6 @@ const DoorstepPropertyAccess = () => {
                     <h6>Pan-India Reach</h6>
                     <p>Delhi NCR, Noida, Gurgaon, Pune, Goa &amp; more.</p>
                   </div>
-                </div>
-
-                <div className="dpa-aside__contact">
-                  <a href="tel:9999570772">
-                    <FaPhoneAlt /> +91 99995 70772
-                  </a>
-                  <span>
-                    <FaRegClock /> Mon–Sun | 10 AM – 7 PM
-                  </span>
                 </div>
               </div>
             </div>
