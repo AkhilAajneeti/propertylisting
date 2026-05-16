@@ -424,7 +424,7 @@ const DoorstepPropertyAccess = () => {
         }
       `}</style>
 
-     
+    
 
       {/* ================== BANNER (image only) ================== */}
       <section className="dpa-banner">

@@ -66,10 +66,33 @@ const Home = () => {
         title="Jenika Ventures Private Limited | Buy Luxury & Commercial Property in Delhi NCR"
         description="Explore luxury apartments, commercial properties, office spaces, and retail shops in Noida, Gurgaon, and Delhi NCR. Invest in RERA-approved projects with high returns."
       />
-      {/* ================== MARQUEE ================== */}
+       {/* ================== MARQUEE ================== */}
       <div className="dpa-marquee">
         <div className="dpa-marquee__track">
-          Real Estate ki Home Delivery — Call now to book your doorstep Access 6390509090
+          <div className="dpa-marquee__item">
+            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__sep">✦</span>
+            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__phone">📞 6390509090</span>
+          </div>
+          <div className="dpa-marquee__item" aria-hidden="true">
+            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__sep">✦</span>
+            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__phone">📞 6390509090</span>
+          </div>
+          <div className="dpa-marquee__item" aria-hidden="true">
+            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__sep">✦</span>
+            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__phone">📞 6390509090</span>
+          </div>
+          <div className="dpa-marquee__item" aria-hidden="true">
+            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__sep">✦</span>
+            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__phone">📞 6390509090</span>
+          </div>
         </div>
       </div>
       <Slider />

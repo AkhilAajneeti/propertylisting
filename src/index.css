@@ -1503,20 +1503,59 @@ span img {
 
 /* ---------- MARQUEE ---------- */
         .dpa-marquee {
-          background: linear-gradient(90deg, #c80a17, #000);
-          color: #f5ebac;
+          background: linear-gradient(90deg, #000 0%, #c80a17 50%, #000 100%);
           overflow: hidden;
-          padding: 10px 0;
-          font-weight: 600;
-          font-size: 15px;
-          letter-spacing: 0.5px;
+          padding: 12px 0;
+          border-top: 1px solid rgba(245,235,172,0.25);
+          border-bottom: 1px solid rgba(245,235,172,0.25);
+          box-shadow: inset 0 0 20px rgba(0,0,0,0.4);
         }
         .dpa-marquee__track {
-          display: inline-block;
+          display: flex;
+          width: max-content;
+          font-family: "Montserrat", sans-serif;
+          font-size: 16px;
+          font-weight: 700;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          animation: dpa-marquee-scroll 28s linear infinite;
+        }
+        .dpa-marquee__item {
+          display: inline-flex;
+          align-items: center;
+          flex-shrink: 0;
+          padding-right: 80px;
           white-space: nowrap;
-          animation: dpa-marquee-scroll 22s linear infinite;
+        }
+        .dpa-marquee__hl {
+          background: linear-gradient(90deg, #be973e, #f5ebac 55%, #b49249);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          font-style: italic;
+        }
+        .dpa-marquee__sep {
+          color: #f5ebac;
+          margin: 0 18px;
+          opacity: 0.7;
+        }
+        .dpa-marquee__cta {
+          color: #fff;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+          text-transform: none;
+        }
+        .dpa-marquee__phone {
+          color: #f5ebac;
+          font-weight: 800;
+          font-size: 17px;
+          letter-spacing: 1.5px;
+          padding: 2px 12px;
+          margin-left: 8px;
+          border: 1px dashed rgba(245,235,172,0.5);
+          border-radius: 6px;
         }
         @keyframes dpa-marquee-scroll {
-          0%   { transform: translateX(-100%); }
-          100% { transform: translateX(100vw); }
+          0%   { transform: translateX(-50%); }
+          100% { transform: translateX(0%); }
         }
