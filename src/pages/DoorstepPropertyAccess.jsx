@@ -515,7 +515,7 @@ const DoorstepPropertyAccess = () => {
         }
       `}</style>
 
-    
+
 
       {/* ================== BANNER (image only) ================== */}
       <section className="dpa-banner">
@@ -993,7 +993,7 @@ const DoorstepPropertyAccess = () => {
                       <div className="dpa-group__num">06</div>
                       <div className="dpa-group__title">
                         <strong>
-                          <FaUserTie /> For Office Use Only
+                          <FaUserTie /> Your Relationship Manager
                         </strong>
                         <span>Filled by the assisting associate</span>
                       </div>
@@ -1138,9 +1138,9 @@ const DoorstepPropertyAccess = () => {
                 <span className="dpa-modal__value">
                   {bookingConfirmation.date
                     ? new Date(bookingConfirmation.date).toLocaleDateString(
-                        "en-IN",
-                        { day: "2-digit", month: "short", year: "numeric" }
-                      )
+                      "en-IN",
+                      { day: "2-digit", month: "short", year: "numeric" }
+                    )
                     : "—"}
                 </span>
               </div>
