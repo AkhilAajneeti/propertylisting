@@ -77,6 +77,7 @@ const DoorstepPropertyAccess = () => {
   const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingConfirmation, setBookingConfirmation] = useState(null);
 
   // 🔥 Same GSAP text animation setup used across the site
   useEffect(() => {
@@ -202,6 +203,12 @@ const DoorstepPropertyAccess = () => {
       await submitDoorstepInquiry(form);
 
       toast.success("Consultation request submitted successfully 🎉");
+
+      setBookingConfirmation({
+        name: form.full_name,
+        date: form.preferred_date,
+        time: form.preferred_time,
+      });
 
       setForm({ ...INITIAL_FORM, declaration_date: TODAY });
       setErrors({});
@@ -409,6 +416,90 @@ const DoorstepPropertyAccess = () => {
         }
         .dpa-submit:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 18px 36px -10px rgba(180,146,73,0.95); }
         .dpa-submit:disabled { opacity: 0.65; cursor: not-allowed; }
+
+        /* ---------- THANK YOU MODAL ---------- */
+        .dpa-modal-overlay {
+          position: fixed; inset: 0;
+          background: rgba(20, 8, 10, 0.65);
+          backdrop-filter: blur(6px);
+          -webkit-backdrop-filter: blur(6px);
+          display: flex; align-items: center; justify-content: center;
+          z-index: 9999; padding: 20px;
+          animation: dpa-fade-in 0.3s ease;
+        }
+        @keyframes dpa-fade-in { from { opacity: 0; } to { opacity: 1; } }
+        .dpa-modal {
+          background: #fff;
+          border-radius: 22px;
+          width: 100%; max-width: 460px;
+          padding: 38px 32px 30px;
+          text-align: center;
+          box-shadow: 0 30px 70px -20px rgba(0,0,0,0.45);
+          position: relative;
+          animation: dpa-pop-in 0.45s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+          border: 1px solid #f1e3c5;
+        }
+        @keyframes dpa-pop-in {
+          0%   { transform: translateY(30px) scale(0.92); opacity: 0; }
+          100% { transform: translateY(0) scale(1); opacity: 1; }
+        }
+        .dpa-modal__close {
+          position: absolute; top: 12px; right: 14px;
+          width: 32px; height: 32px; border-radius: 50%;
+          border: none; background: #f4f5f7; color: #555;
+          font-size: 18px; cursor: pointer; line-height: 1;
+          transition: background 0.2s, color 0.2s;
+        }
+        .dpa-modal__close:hover { background: #c80a17; color: #fff; }
+        .dpa-modal__icon {
+          width: 78px; height: 78px; border-radius: 50%;
+          margin: 0 auto 18px;
+          background: linear-gradient(135deg, #1ea15c, #2bc26f);
+          display: flex; align-items: center; justify-content: center;
+          color: #fff; font-size: 38px; font-weight: 700;
+          box-shadow: 0 12px 28px -8px rgba(30,161,92,0.6);
+          animation: dpa-tick-pop 0.6s 0.15s backwards cubic-bezier(0.18, 0.89, 0.32, 1.28);
+        }
+        @keyframes dpa-tick-pop {
+          0%   { transform: scale(0); }
+          100% { transform: scale(1); }
+        }
+        .dpa-modal h3 {
+          font-size: 24px; font-weight: 700;
+          margin: 0 0 6px; color: #1f1f1f;
+        }
+        .dpa-modal__sub {
+          font-size: 14px; color: #8a8a8a; margin: 0 0 22px;
+        }
+        .dpa-modal__slot {
+          background: linear-gradient(180deg, #fdf6ee, #fff);
+          border: 1px dashed #d0aa6a;
+          border-radius: 14px;
+          padding: 16px 18px;
+          margin-bottom: 20px;
+          text-align: left;
+        }
+        .dpa-modal__row {
+          display: flex; justify-content: space-between; align-items: center;
+          font-size: 14px; padding: 6px 0;
+        }
+        .dpa-modal__row + .dpa-modal__row { border-top: 1px dashed #e8d6b3; }
+        .dpa-modal__label { color: #8a7449; font-weight: 600; }
+        .dpa-modal__value { color: #2b1a00; font-weight: 700; }
+        .dpa-modal__msg {
+          font-size: 13.5px; color: #555; line-height: 1.55;
+          margin: 0 0 22px;
+        }
+        .dpa-modal__btn {
+          display: inline-flex; align-items: center; justify-content: center;
+          gap: 8px;
+          padding: 12px 32px; border: none; border-radius: 100px;
+          background: linear-gradient(90deg, #be973e 3.99%, #f5ebac 55.49%, #b49249 100%);
+          color: #2b1a00; font-size: 15px; font-weight: 700; cursor: pointer;
+          box-shadow: 0 12px 26px -10px rgba(180,146,73,0.85);
+          transition: transform 0.2s ease;
+        }
+        .dpa-modal__btn:hover { transform: translateY(-2px); }
 
         /* ---------- RESPONSIVE ---------- */
         @media (max-width: 991px) {
@@ -1009,6 +1100,76 @@ const DoorstepPropertyAccess = () => {
           </div>
         </div>
       </section>
+
+      {/* ================== THANK YOU POPUP ================== */}
+      {bookingConfirmation && (
+        <div
+          className="dpa-modal-overlay"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="dpa-modal-title"
+          onClick={() => setBookingConfirmation(null)}
+        >
+          <div className="dpa-modal" onClick={(e) => e.stopPropagation()}>
+            <button
+              type="button"
+              className="dpa-modal__close"
+              aria-label="Close"
+              onClick={() => setBookingConfirmation(null)}
+            >
+              ×
+            </button>
+
+            <div className="dpa-modal__icon">✓</div>
+
+            <h3 id="dpa-modal-title">Your Slot is Booked ✅</h3>
+            <p className="dpa-modal__sub text-center">
+              {bookingConfirmation.name
+                ? `Thanks, ${bookingConfirmation.name}`
+                : "Thank you!"}{" "}
+              We&rsquo;ve received your request.
+            </p>
+
+            <div className="dpa-modal__slot">
+              <div className="dpa-modal__row">
+                <span className="dpa-modal__label">
+                  <FaRegCalendarAlt /> Date
+                </span>
+                <span className="dpa-modal__value">
+                  {bookingConfirmation.date
+                    ? new Date(bookingConfirmation.date).toLocaleDateString(
+                        "en-IN",
+                        { day: "2-digit", month: "short", year: "numeric" }
+                      )
+                    : "—"}
+                </span>
+              </div>
+              <div className="dpa-modal__row">
+                <span className="dpa-modal__label">
+                  <FaRegClock /> Time
+                </span>
+                <span className="dpa-modal__value">
+                  {bookingConfirmation.time || "—"}
+                </span>
+              </div>
+            </div>
+
+            <p className="dpa-modal__msg">
+              Our team will reach out within <strong>24 hours</strong> to
+              confirm your doorstep consultation. Sit back — Jenika Ventures is
+              bringing real estate to your doorstep.
+            </p>
+
+            <button
+              type="button"
+              className="dpa-modal__btn"
+              onClick={() => setBookingConfirmation(null)}
+            >
+              Done <FaCheckCircle />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

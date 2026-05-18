@@ -34,7 +34,10 @@ export default function Footer() {
   };
   // hide buttons for projects
   const location = useLocation();
-  const hideButton = location.pathname.startsWith("/projects");
+  const hideButton =
+    location.pathname.startsWith("/projects") ||
+    location.pathname === "/doorstep-property-access" ||
+    location.pathname === "/client-registration";
   useEffect(() => {
     if (!open) {
       restartHintTimer();
@@ -258,7 +261,7 @@ export default function Footer() {
         </div>
       </div>
       {/* Floating Button */}
-      <div
+      {/* <div
         className={`chatbot-fab ${vibrate ? "vibrate" : ""}`}
         onClick={() => {
           setOpen(true);
@@ -266,10 +269,10 @@ export default function Footer() {
         }}
       >
         <SparkleIcon />
-      </div>
+      </div> */}
 
       {/* Hint Box */}
-      {showHint && !open && (
+      {/* {showHint && !open && (
         <div className={`chatbot-hint ${vibrate ? "vibrate" : ""}`}>
           <span className="hint-text">
             Welcome to <b>Jenika Ventures Private Limited</b>
@@ -286,13 +289,56 @@ export default function Footer() {
             ✕
           </button>
         </div>
-      )}
+      )} */}
 
       {/* Chatbot */}
-      <Chatbot isOpen={open} onClose={() => setOpen(false)} />
-      {!hideButton && <CallandWhatsapp />}
+      {/* <Chatbot isOpen={open} onClose={() => setOpen(false)} />
+      {!hideButton && <CallandWhatsapp />} */}
 
-      <ScrollToTop />
+
+      {/* Hide chatbot + call/whatsapp on selected pages */}
+      {!hideButton && (
+        <>
+          {/* Floating Button */}
+          <div
+            className={`chatbot-fab ${vibrate ? "vibrate" : ""}`}
+            onClick={() => {
+              setOpen(true);
+              setShowHint(false);
+            }}
+          >
+            <SparkleIcon />
+          </div>
+
+          {/* Hint Box */}
+          {showHint && !open && (
+            <div className={`chatbot-hint ${vibrate ? "vibrate" : ""}`}>
+              <span className="hint-text">
+                Welcome to <b>Jenika Ventures Private Limited</b>
+                <br />
+                How can I assist you today?
+              </span>
+
+              <button
+                className="hint-close"
+                onClick={() => {
+                  setShowHint(false);
+                  restartHintTimer();
+                }}
+              >
+                ✕
+              </button>
+            </div>
+          )}
+
+          {/* Chatbot */}
+          <Chatbot isOpen={open} onClose={() => setOpen(false)} />
+
+          {/* Call + WhatsApp */}
+          <CallandWhatsapp />
+          <ScrollToTop />
+        </>
+      )}
     </footer>
   );
 }
