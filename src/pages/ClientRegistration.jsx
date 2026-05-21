@@ -67,9 +67,9 @@ const INITIAL_FORM = {
   residential_address: "",
   city: "",
   pincode: "",
-  meeting_date: "",
-  meeting_time: "",
-  investment_budget: "",
+  // meeting_date: "",
+  // meeting_time: "",
+  project_name: "",
   preferred_property_type: "",
   preferred_locations: "",
   registration_fee: "",
@@ -179,12 +179,12 @@ const ClientRegistration = () => {
       newErrors.pincode = "Pincode must be exactly 6 digits";
     }
 
-    if (!form.meeting_date) newErrors.meeting_date = "Meeting date is required";
-    if (!form.meeting_time)
-      newErrors.meeting_time = "Meeting time is required";
+    // if (!form.meeting_date) newErrors.meeting_date = "Meeting date is required";
+    // if (!form.meeting_time)
+    //   newErrors.meeting_time = "Meeting time is required";
 
-    if (!form.investment_budget.trim()) {
-      newErrors.investment_budget = "Investment budget is required";
+    if (!form.project_name.trim()) {
+      newErrors.project_name = "Project Name is required";
     }
 
     if (!form.preferred_property_type) {
@@ -713,7 +713,7 @@ const ClientRegistration = () => {
                               value={form.mobile_number}
                               onChange={handleChange}
                               inputMode="numeric"
-                              maxLength={12}
+                              maxLength={10}
                               className={fieldClass("mobile_number")}
                             />
                             {errors.mobile_number && (
@@ -801,7 +801,7 @@ const ClientRegistration = () => {
                       </div>
 
                       {/* 02: Consultation Scheduling */}
-                      <div className="crf-group">
+                      {/* <div className="crf-group">
                         <div className="crf-group__head">
                           <div className="crf-group__num">02</div>
                           <div className="crf-group__title">
@@ -816,7 +816,7 @@ const ClientRegistration = () => {
                             <label className="crf-label">
                               Meeting Date<span className="crf-req">*</span>
                             </label>
-                            <input
+                            <inputmeeting_date
                               type="date"
                               name="meeting_date"
                               min={TODAY}
@@ -855,15 +855,15 @@ const ClientRegistration = () => {
                             )}
                           </div>
                         </div>
-                      </div>
+                      </div> */}
 
-                      {/* 03: Investment Requirement */}
+                      {/* 02:Project Details */}
                       <div className="crf-group">
                         <div className="crf-group__head">
-                          <div className="crf-group__num">03</div>
+                          <div className="crf-group__num">02</div>
                           <div className="crf-group__title">
                             <strong>
-                              <FaChartLine /> Investment Requirement
+                              <FaChartLine /> Project Details
                             </strong>
                             <span>Help us match the right properties</span>
                           </div>
@@ -871,20 +871,20 @@ const ClientRegistration = () => {
                         <div className="row gy-3">
                           <div className="col-12 col-md-6">
                             <label className="crf-label">
-                              Investment Budget
+                              Project Name
                               <span className="crf-req">*</span>
                             </label>
                             <input
                               type="text"
-                              name="investment_budget"
-                              placeholder="₹1.5 Cr"
-                              value={form.investment_budget}
+                              name="project_name"
+                              placeholder="Project Name"
+                              value={form.project_name}
                               onChange={handleChange}
-                              className={fieldClass("investment_budget")}
+                              className={fieldClass("project_name")}
                             />
-                            {errors.investment_budget && (
+                            {errors.project_name && (
                               <span className="crf-error">
-                                {errors.investment_budget}
+                                {errors.project_name}
                               </span>
                             )}
                           </div>
@@ -914,7 +914,7 @@ const ClientRegistration = () => {
                             )}
                           </div>
 
-                          <div className="col-12">
+                          {/* <div className="col-12">
                             <label className="crf-label">
                               Preferred Location(s)
                               <span className="crf-req">*</span>
@@ -932,14 +932,14 @@ const ClientRegistration = () => {
                                 {errors.preferred_locations}
                               </span>
                             )}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
 
-                      {/* 04: Registration Fee + Payment */}
+                      {/* 03: Registration Fee + Payment */}
                       <div className="crf-group">
                         <div className="crf-group__head">
-                          <div className="crf-group__num">04</div>
+                          <div className="crf-group__num">03</div>
                           <div className="crf-group__title">
                             <strong>
                               <FaRupeeSign /> Registration Fee &amp; Payment
@@ -1022,7 +1022,9 @@ const ClientRegistration = () => {
 
                         <div style={{ marginTop: 22 }}>
                           <label className="crf-label">
-                            Payment Mode<span className="crf-req">*</span>
+                            Payment Mode<span className="crf-req">*</span> <span className="crf-optional">
+                                (No cash payment is accepted)
+                              </span> 
                           </label>
                           <div className="crf-pay-grid">
                             {PAYMENT_MODE_OPTIONS.map((opt) => {
@@ -1085,10 +1087,10 @@ const ClientRegistration = () => {
                         </div>
                       </div>
 
-                      {/* 05: Declaration */}
+                      {/* 04: Declaration */}
                       <div className="crf-group">
                         <div className="crf-group__head">
-                          <div className="crf-group__num">05</div>
+                          <div className="crf-group__num">04</div>
                           <div className="crf-group__title">
                             <strong>
                               <FaFileSignature /> Client Declaration
@@ -1239,7 +1241,7 @@ const ClientRegistration = () => {
                       </div>
                       <div className="crf-summary__row">
                         <dt>Investment Budget</dt>
-                        <dd>{form.investment_budget}</dd>
+                        <dd>{form.project_name}</dd>
                       </div>
                       <div className="crf-summary__row">
                         <dt>Registration Tier</dt>
