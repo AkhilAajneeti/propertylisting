@@ -191,9 +191,10 @@ const ClientRegistration = () => {
       newErrors.preferred_property_type = "Please select a property type";
     }
 
-    if (!form.preferred_locations.trim()) {
-      newErrors.preferred_locations = "Preferred locations are required";
-    }
+    // Preferred locations field is currently hidden — skip validation
+    // if (!form.preferred_locations.trim()) {
+    //   newErrors.preferred_locations = "Preferred locations are required";
+    // }
 
     if (!form.registration_fee) {
       newErrors.registration_fee = "Please select a registration fee tier";
