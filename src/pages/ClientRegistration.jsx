@@ -71,7 +71,7 @@ const INITIAL_FORM = {
   // meeting_time: "",
   project_name: "",
   preferred_property_type: "",
-  preferred_locations: "",
+  // preferred_locations: "",
   registration_fee: "",
   payment_mode: "",
   transaction_reference: "",
@@ -1226,22 +1226,22 @@ const ClientRegistration = () => {
                           {form.city} — {form.pincode}
                         </dd>
                       </div>
-                      <div className="crf-summary__row">
+                      {/* <div className="crf-summary__row">
                         <dt>Meeting</dt>
                         <dd>
                           {form.meeting_date} · {form.meeting_time}
                         </dd>
-                      </div>
+                      </div> */}
                       <div className="crf-summary__row">
                         <dt>Property Type</dt>
                         <dd>{propertyTypeLabel || "—"}</dd>
                       </div>
-                      <div className="crf-summary__row">
+                      {/* <div className="crf-summary__row">
                         <dt>Preferred Locations</dt>
                         <dd>{form.preferred_locations}</dd>
-                      </div>
+                      </div> */}
                       <div className="crf-summary__row">
-                        <dt>Investment Budget</dt>
+                        <dt>Project Name</dt>
                         <dd>{form.project_name}</dd>
                       </div>
                       <div className="crf-summary__row">

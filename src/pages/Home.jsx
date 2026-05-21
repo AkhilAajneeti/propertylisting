@@ -66,7 +66,7 @@ const Home = () => {
         title="Jenika Ventures Private Limited | Buy Luxury & Commercial Property in Delhi NCR"
         description="Explore luxury apartments, commercial properties, office spaces, and retail shops in Noida, Gurgaon, and Delhi NCR. Invest in RERA-approved projects with high returns."
       />
-       {/* ================== MARQUEE ================== */}
+      {/* ================== MARQUEE ================== */}
       <div className="dpa-marquee">
         <div className="dpa-marquee__track">
           <div className="dpa-marquee__item">
@@ -95,6 +95,15 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <div>
+        <Link to="/client-registration" className="footerImg img-fluid">
+          <img
+            src="/Doorstep%20Property%20Access.jpg.jpeg"
+            alt="Doorstep Property Access — Register with Jenika Ventures"
+            style={{ height: "100%", width: "100%" }}
+          />
+        </Link>
+      </div>
       <Slider />
       <Counter />
 
@@ -107,15 +116,7 @@ const Home = () => {
       <Whycarousel />
 
 
-      <div className="container">
-        <Link to="/client-registration" className="footerImg img-fluid">
-          <img
-            src="/Doorstep%20Property%20Access.jpg.jpeg"
-            alt="Doorstep Property Access — Register with Jenika Ventures"
-            style={{ height: "100%", width: "100%", borderRadius: "50px", padding: "10px 0px" }}
-          />
-        </Link>
-      </div>
+
     </div>
   );
 };

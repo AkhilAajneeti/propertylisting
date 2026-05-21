@@ -10,6 +10,7 @@ import {
   FaArrowLeft,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { jsPDF } from "jspdf";
 import SEO from "../components/seo/SEO";
 import { getClientRegistration } from "../api/clientRegistrationApi";
 
@@ -128,8 +129,97 @@ const PaymentStatus = () => {
   };
 
   const handleDownloadReceipt = () => {
-    // Placeholder until backend exposes a receipt endpoint
-    toast.info("Receipt download will be available shortly.");
+    if (!registration) {
+      toast.error("Receipt details are not ready yet.");
+      return;
+    }
+
+    const clientId = registration.client_id || `JV-${registration.id}`;
+    const completedAt = registration.payment_completed_at
+      ? new Date(registration.payment_completed_at).toLocaleString("en-IN")
+      : new Date().toLocaleString("en-IN");
+    const status =
+      registration.payment_status_display ||
+      registration.payment_status ||
+      "Success";
+
+    const rawAmount = registration.registration_fee_amount;
+    const amount =
+      rawAmount === null || rawAmount === undefined || rawAmount === ""
+        ? "-"
+        : `Rs. ${new Intl.NumberFormat("en-IN").format(Number(rawAmount))}`;
+
+    const rows = [
+      ["Client ID", clientId],
+      ["Amount Paid", amount],
+      ["Transaction ID", registration.gateway_transaction_id || "-"],
+      ...(orderIdFromUrl ? [["Order ID", orderIdFromUrl]] : []),
+      ["Completed At", completedAt],
+      ["Status", status],
+    ];
+
+    try {
+      const doc = new jsPDF({ unit: "pt", format: "a4" });
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const marginX = 48;
+
+      // Header band
+      doc.setFillColor(200, 10, 23);
+      doc.rect(0, 0, pageWidth, 124, "F");
+
+      doc.setTextColor(255, 255, 255);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(18);
+      doc.text("Jenika Ventures Private Limited", marginX, 52);
+
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(11);
+      doc.text("Client Registration - Payment Receipt", marginX, 72);
+
+      // Success badge
+      doc.setFillColor(230, 249, 238);
+      doc.roundedRect(marginX, 90, 152, 24, 12, 12, "F");
+      doc.setTextColor(30, 162, 74);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(10);
+      doc.text("PAYMENT SUCCESSFUL", marginX + 16, 105.5);
+
+      // Receipt rows
+      let y = 178;
+      rows.forEach(([label, value]) => {
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(11);
+        doc.setTextColor(138, 138, 138);
+        doc.text(String(label), marginX, y);
+
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(11.5);
+        doc.setTextColor(31, 31, 31);
+        doc.text(String(value), pageWidth - marginX, y, { align: "right" });
+
+        doc.setDrawColor(241, 241, 244);
+        doc.line(marginX, y + 13, pageWidth - marginX, y + 13);
+
+        y += 36;
+      });
+
+      // Footer
+      doc.setFont("helvetica", "normal");
+      doc.setFontSize(9);
+      doc.setTextColor(154, 154, 154);
+      doc.text(
+        `This is a system-generated receipt. Generated on ${new Date().toLocaleString(
+          "en-IN"
+        )}.`,
+        marginX,
+        y + 26
+      );
+
+      doc.save(`Receipt-${clientId}.pdf`);
+    } catch (err) {
+      console.error("Receipt generation error:", err);
+      toast.error("Could not generate the receipt. Please try again.");
+    }
   };
 
   return (

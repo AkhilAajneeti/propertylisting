@@ -175,7 +175,7 @@ export default function Slider() {
         {/* 🔍 Search Section Overlay (Fixed over all slides) */}
         <div className="search-overlay">
           <h2 className="split2">
-            Luxury Residential & Commercial Properties in Delhi NCR
+            Luxury Residential & Commercial Properties in  PAN India
           </h2>
           <p className="text-center">
             Get Trusted Real Estate Advisory Services for Both Investors and
