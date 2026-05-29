@@ -37,7 +37,8 @@ export default function Footer() {
   const hideButton =
     location.pathname.startsWith("/projects") ||
     location.pathname === "/doorstep-property-access" ||
-    location.pathname === "/client-registration";
+    location.pathname === "/client-registration"||
+    location.pathname === "/payment-status";
   useEffect(() => {
     if (!open) {
       restartHintTimer();

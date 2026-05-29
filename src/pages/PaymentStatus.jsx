@@ -8,6 +8,9 @@ import {
   FaRedoAlt,
   FaDownload,
   FaArrowLeft,
+  FaBuilding,
+  FaPhoneAlt,
+  FaEnvelope,
 } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { jsPDF } from "jspdf";
@@ -32,6 +35,31 @@ const formatINR = (amount) => {
     return `₹${amount}`;
   }
 };
+
+// Loads the brand logo and returns base64 (color + grayscale) for embedding in the PDF.
+const loadLogoForPdf = (url) =>
+  new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const render = (filter) => {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext("2d");
+        if (filter) ctx.filter = filter;
+        ctx.drawImage(img, 0, 0);
+        return canvas.toDataURL("image/png");
+      };
+      resolve({
+        color: render(null),
+        gray: render("grayscale(1)"),
+        width: img.naturalWidth,
+        height: img.naturalHeight,
+      });
+    };
+    img.onerror = reject;
+    img.src = url;
+  });
 
 const PaymentStatus = () => {
   const [searchParams] = useSearchParams();
@@ -128,7 +156,7 @@ const PaymentStatus = () => {
     fetchStatus(true);
   };
 
-  const handleDownloadReceipt = () => {
+  const handleDownloadReceipt = async () => {
     if (!registration) {
       toast.error("Receipt details are not ready yet.");
       return;
@@ -161,31 +189,61 @@ const PaymentStatus = () => {
     try {
       const doc = new jsPDF({ unit: "pt", format: "a4" });
       const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
       const marginX = 48;
 
-      // Header band
-      doc.setFillColor(200, 10, 23);
-      doc.rect(0, 0, pageWidth, 124, "F");
+      // Brand logo (top-right) + faint centered watermark — letterhead style
+      let logo = null;
+      try {
+        logo = await loadLogoForPdf("/JV-Logo.png");
+      } catch {
+        logo = null;
+      }
+      if (logo) {
+        const logoW = 132;
+        const logoH = (logoW * logo.height) / logo.width;
+        doc.addImage(
+          logo.color,
+          "PNG",
+          pageWidth - marginX - logoW,
+          40,
+          logoW,
+          logoH
+        );
 
-      doc.setTextColor(255, 255, 255);
+        try {
+          const wmW = pageWidth * 0.55;
+          const wmH = (wmW * logo.height) / logo.width;
+          doc.setGState(new doc.GState({ opacity: 0.06 }));
+          doc.addImage(
+            logo.gray,
+            "PNG",
+            (pageWidth - wmW) / 2,
+            (pageHeight - wmH) / 2 - 30,
+            wmW,
+            wmH
+          );
+          doc.setGState(new doc.GState({ opacity: 1 }));
+        } catch {
+          // watermark is optional — ignore if opacity isn't supported
+        }
+      }
+
+      // Title + success badge
+      doc.setTextColor(31, 31, 31);
       doc.setFont("helvetica", "bold");
-      doc.setFontSize(18);
-      doc.text("Jenika Ventures Private Limited", marginX, 52);
+      doc.setFontSize(22);
+      doc.text("Payment Receipt", marginX, 150);
 
-      doc.setFont("helvetica", "normal");
-      doc.setFontSize(11);
-      doc.text("Client Registration - Payment Receipt", marginX, 72);
-
-      // Success badge
       doc.setFillColor(230, 249, 238);
-      doc.roundedRect(marginX, 90, 152, 24, 12, 12, "F");
+      doc.roundedRect(marginX, 166, 152, 24, 12, 12, "F");
       doc.setTextColor(30, 162, 74);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(10);
-      doc.text("PAYMENT SUCCESSFUL", marginX + 16, 105.5);
+      doc.text("PAYMENT SUCCESSFUL", marginX + 16, 181.5);
 
       // Receipt rows
-      let y = 178;
+      let y = 244;
       rows.forEach(([label, value]) => {
         doc.setFont("helvetica", "normal");
         doc.setFontSize(11);
@@ -197,13 +255,12 @@ const PaymentStatus = () => {
         doc.setTextColor(31, 31, 31);
         doc.text(String(value), pageWidth - marginX, y, { align: "right" });
 
-        doc.setDrawColor(241, 241, 244);
+        doc.setDrawColor(238, 238, 240);
         doc.line(marginX, y + 13, pageWidth - marginX, y + 13);
 
         y += 36;
       });
 
-      // Footer
       doc.setFont("helvetica", "normal");
       doc.setFontSize(9);
       doc.setTextColor(154, 154, 154);
@@ -212,8 +269,43 @@ const PaymentStatus = () => {
           "en-IN"
         )}.`,
         marginX,
-        y + 26
+        y + 22
       );
+
+      // Red contact footer band — matches the letterhead
+      const footerH = 78;
+      const footerY = pageHeight - footerH;
+      doc.setFillColor(240, 214, 138);
+      doc.rect(0, footerY - 3, pageWidth, 3, "F");
+      doc.setFillColor(200, 10, 23);
+      doc.rect(0, footerY, pageWidth, footerH, "F");
+
+      doc.setDrawColor(240, 214, 138);
+      doc.setLineWidth(0.7);
+      doc.line(288, footerY + 16, 288, footerY + footerH - 16);
+      doc.line(415, footerY + 16, 415, footerY + footerH - 16);
+
+      // Column 1 — corporate office address
+      doc.setTextColor(240, 214, 138);
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(8.5);
+      doc.text("Corporate Office :-", 40, footerY + 22);
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(7.5);
+      const addrLines = doc.splitTextToSize(
+        "203-205, 2nd Floor, Tower-1, Assotech Business Cresterra, Sector 135, Noida, Uttar Pradesh 201304",
+        232
+      );
+      doc.text(addrLines, 40, footerY + 34);
+
+      // Column 2 — phone numbers
+      doc.setFontSize(9);
+      doc.text("+91-9999570772", 300, footerY + 33);
+      doc.text("+91-9953000867", 300, footerY + 47);
+
+      // Column 3 — email / website
+      doc.text("info@jenikaventures.com", 427, footerY + 33);
+      doc.text("www.jenikaventures.com", 427, footerY + 47);
 
       doc.save(`Receipt-${clientId}.pdf`);
     } catch (err) {
@@ -231,13 +323,56 @@ const PaymentStatus = () => {
 
       <style>{`
         .ps-page { font-family: "Montserrat", sans-serif; background: #f4f5f7; min-height: 100vh; }
-        .ps-wrap { padding: 80px 0 100px; }
-        .ps-card {
-          max-width: 640px; margin: 0 auto;
-          background: #fff; border-radius: 18px;
-          padding: 36px 32px;
-          border: 1px solid #ececf0;
-          box-shadow: 0 30px 70px -35px rgba(0,0,0,0.25);
+        .ps-wrap { padding: 60px 0 90px; }
+
+        /* Letterhead sheet */
+        .ps-sheet {
+          position: relative;
+          max-width: 820px; margin: 0 auto;
+          background: #fff; border-radius: 6px;
+          border: 1px solid #e6e6ec;
+          box-shadow: 0 30px 70px -35px rgba(0,0,0,0.3);
+          overflow: hidden;
+          display: flex; flex-direction: column;
+          min-height: 880px;
+        }
+        .ps-sheet__head {
+          display: flex; justify-content: flex-end;
+          padding: 30px 44px 0; position: relative; z-index: 2;
+        }
+        .ps-sheet__head img { width: 200px; height: auto; }
+        .ps-sheet__watermark {
+          position: absolute; top: 50%; left: 50%;
+          transform: translate(-50%, -50%);
+          width: 62%; max-width: 520px;
+          opacity: 0.06; filter: grayscale(1);
+          pointer-events: none; user-select: none; z-index: 0;
+        }
+        .ps-sheet__body {
+          position: relative; z-index: 1;
+          flex: 1; padding: 24px 56px 48px;
+          display: flex; flex-direction: column; justify-content: center;
+        }
+
+        /* Red contact footer */
+        .ps-sheet__footer {
+          position: relative; z-index: 2;
+          background: #c80a17; border-top: 3px solid #f0d68a;
+          display: grid; grid-template-columns: 1.5fr 1fr 1.3fr;
+        }
+        .ps-foot__col {
+          display: flex; align-items: center; gap: 11px;
+          padding: 16px 20px; color: #fff;
+          font-size: 11.5px; line-height: 1.45; font-weight: 600;
+        }
+        .ps-foot__col + .ps-foot__col { border-left: 1px solid rgba(245,235,172,0.45); }
+        .ps-foot__col strong { display: block; color: #f0d68a; font-weight: 700; font-size: 12px; margin-bottom: 3px; }
+        .ps-foot__col span { display: block; }
+        .ps-foot__col a { color: #fff; text-decoration: none; }
+        .ps-foot__icon {
+          width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%;
+          background: #f0d68a; color: #c80a17;
+          display: flex; align-items: center; justify-content: center; font-size: 14px;
         }
         .ps-icon {
           width: 84px; height: 84px; margin: 0 auto 18px;
@@ -303,11 +438,33 @@ const PaymentStatus = () => {
         .ps-meta {
           margin-top: 10px; font-size: 12px; color: #9a9a9a; text-align: center;
         }
+
+        @media (max-width: 768px) {
+          .ps-wrap { padding: 30px 0 50px; }
+          .ps-sheet { min-height: auto; border-radius: 6px; }
+          .ps-sheet__head { justify-content: center; padding: 24px 20px 0; }
+          .ps-sheet__head img { width: 160px; }
+          .ps-sheet__body { padding: 20px 22px 36px; }
+          .ps-sheet__watermark { width: 80%; }
+          .ps-sheet__footer { grid-template-columns: 1fr; }
+          .ps-foot__col + .ps-foot__col { border-left: none; border-top: 1px solid rgba(245,235,172,0.45); }
+        }
       `}</style>
 
       <section className="ps-wrap">
         <div className="container">
-          <div className="ps-card">
+          <div className="ps-sheet">
+            <div className="ps-sheet__head">
+              <img src="/JV-Logo.png" alt="Jenika Ventures" />
+            </div>
+            <img
+              className="ps-sheet__watermark"
+              src="/JV-Logo.png"
+              alt=""
+              aria-hidden="true"
+            />
+
+            <div className="ps-sheet__body">
             {phase === "missing" && (
               <>
                 <div className="ps-icon ps-icon--warn">
@@ -529,6 +686,48 @@ const PaymentStatus = () => {
                 </div>
               </>
             )}
+            </div>
+
+            <div className="ps-sheet__footer">
+              <div className="ps-foot__col">
+                <span className="ps-foot__icon">
+                  <FaBuilding />
+                </span>
+                <div>
+                  <strong>Corporate Office :-</strong>
+                  <span>
+                    203-205, 2nd Floor, Tower-1, Assotech Business Cresterra,
+                    Sector 135, Noida, Uttar Pradesh 201304
+                  </span>
+                </div>
+              </div>
+              <div className="ps-foot__col">
+                <span className="ps-foot__icon">
+                  <FaPhoneAlt />
+                </span>
+                <div>
+                  <span>+91-9999570772</span>
+                  <span>+91-9953000867</span>
+                </div>
+              </div>
+              <div className="ps-foot__col">
+                <span className="ps-foot__icon">
+                  <FaEnvelope />
+                </span>
+                <div>
+                  <a href="mailto:info@jenikaventures.com">
+                    info@jenikaventures.com
+                  </a>
+                  <a
+                    href="https://www.jenikaventures.com"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    www.jenikaventures.com
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

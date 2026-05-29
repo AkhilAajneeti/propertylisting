@@ -96,7 +96,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Link to="/DoorstepPropertyAccess.jsx" className="footerImg img-fluid">
+        <Link to="/doorstep-property-access" className="footerImg img-fluid">
           <img
             src="/Doorstep%20Property%20Access.jpg.jpeg"
             alt="Doorstep Property Access — Register with Jenika Ventures"
