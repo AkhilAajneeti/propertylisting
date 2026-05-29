@@ -36,30 +36,67 @@ const formatINR = (amount) => {
   }
 };
 
-// Loads the brand logo and returns base64 (color + grayscale) for embedding in the PDF.
-const loadLogoForPdf = (url) =>
+// Loads the brand logo downscaled + JPEG-compressed (color + grayscale) so the
+// embedded receipt PDF stays small. White background blends on the white page.
+const loadLogoForPdf = (url, maxDim = 640) =>
   new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => {
+      const scale = Math.min(
+        1,
+        maxDim / Math.max(img.naturalWidth, img.naturalHeight)
+      );
+      const w = Math.max(1, Math.round(img.naturalWidth * scale));
+      const h = Math.max(1, Math.round(img.naturalHeight * scale));
       const render = (filter) => {
         const canvas = document.createElement("canvas");
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
+        canvas.width = w;
+        canvas.height = h;
         const ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, w, h);
         if (filter) ctx.filter = filter;
-        ctx.drawImage(img, 0, 0);
-        return canvas.toDataURL("image/png");
+        ctx.drawImage(img, 0, 0, w, h);
+        return canvas.toDataURL("image/jpeg", 0.82);
       };
-      resolve({
-        color: render(null),
-        gray: render("grayscale(1)"),
-        width: img.naturalWidth,
-        height: img.naturalHeight,
-      });
+      resolve({ color: render(null), gray: render("grayscale(1)"), width: w, height: h });
     };
     img.onerror = reject;
     img.src = url;
   });
+
+// Rasterizes an inline SVG (gold circle + red glyph) to a small transparent PNG
+// for the PDF footer icons.
+const svgToPng = (svg, size = 64) =>
+  new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      canvas.getContext("2d").drawImage(img, 0, 0, size, size);
+      resolve(canvas.toDataURL("image/png"));
+    };
+    img.onerror = reject;
+    img.src = "data:image/svg+xml;base64," + btoa(svg);
+  });
+
+const ICON_BG = "#f0d68a";
+const ICON_FG = "#c80a17";
+const iconSvg = (transform, path) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="${ICON_BG}"/><g transform="${transform}"><path fill="${ICON_FG}" d="${path}"/></g></svg>`;
+const BUILDING_SVG = iconSvg(
+  "translate(20,16) scale(0.0625)",
+  "M48 0C21.5 0 0 21.5 0 48L0 464c0 26.5 21.5 48 48 48l96 0 0-80c0-26.5 21.5-48 48-48s48 21.5 48 48l0 80 96 0c26.5 0 48-21.5 48-48l0-416c0-26.5-21.5-48-48-48L48 0zM64 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zm112-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zM272 240c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM80 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16zm96 16c0-8.8 7.2-16 16-16l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32zM272 96l32 0c8.8 0 16 7.2 16 16l0 32c0 8.8-7.2 16-16 16l-32 0c-8.8 0-16-7.2-16-16l0-32c0-8.8 7.2-16 16-16z"
+);
+const PHONE_SVG = iconSvg(
+  "translate(16,16) scale(0.0625)",
+  "M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"
+);
+const MAIL_SVG = iconSvg(
+  "translate(16,16) scale(0.0625)",
+  "M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4L236.8 313.6c11.4 8.5 27 8.5 38.4 0L492.8 150.4c12.1-9.1 19.2-23.3 19.2-38.4c0-26.5-21.5-48-48-48L48 64zM0 176L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-208L294.4 339.2c-22.8 17.1-54 17.1-76.8 0L0 176z"
+);
 
 const PaymentStatus = () => {
   const [searchParams] = useSearchParams();
@@ -204,7 +241,7 @@ const PaymentStatus = () => {
         const logoH = (logoW * logo.height) / logo.width;
         doc.addImage(
           logo.color,
-          "PNG",
+          "JPEG",
           pageWidth - marginX - logoW,
           40,
           logoW,
@@ -217,7 +254,7 @@ const PaymentStatus = () => {
           doc.setGState(new doc.GState({ opacity: 0.06 }));
           doc.addImage(
             logo.gray,
-            "PNG",
+            "JPEG",
             (pageWidth - wmW) / 2,
             (pageHeight - wmH) / 2 - 30,
             wmW,
@@ -273,7 +310,7 @@ const PaymentStatus = () => {
       );
 
       // Red contact footer band — matches the letterhead
-      const footerH = 78;
+      const footerH = 84;
       const footerY = pageHeight - footerH;
       doc.setFillColor(240, 214, 138);
       doc.rect(0, footerY - 3, pageWidth, 3, "F");
@@ -282,30 +319,52 @@ const PaymentStatus = () => {
 
       doc.setDrawColor(240, 214, 138);
       doc.setLineWidth(0.7);
-      doc.line(288, footerY + 16, 288, footerY + footerH - 16);
-      doc.line(415, footerY + 16, 415, footerY + footerH - 16);
+      doc.line(290, footerY + 18, 290, footerY + footerH - 18);
+      doc.line(422, footerY + 18, 422, footerY + footerH - 18);
+
+      // Gold circle icons (rasterized from inline SVG, vertically centered)
+      let icons = {};
+      try {
+        const [bld, phn, mail] = await Promise.all([
+          svgToPng(BUILDING_SVG),
+          svgToPng(PHONE_SVG),
+          svgToPng(MAIL_SVG),
+        ]);
+        icons = { bld, phn, mail };
+      } catch {
+        icons = {};
+      }
+      const iconSize = 24;
+      const iconY = footerY + footerH / 2 - iconSize / 2;
+      if (icons.bld)
+        doc.addImage(icons.bld, "PNG", 34, iconY, iconSize, iconSize);
+      if (icons.phn)
+        doc.addImage(icons.phn, "PNG", 300, iconY, iconSize, iconSize);
+      if (icons.mail)
+        doc.addImage(icons.mail, "PNG", 430, iconY, iconSize, iconSize);
 
       // Column 1 — corporate office address
       doc.setTextColor(240, 214, 138);
       doc.setFont("helvetica", "bold");
       doc.setFontSize(8.5);
-      doc.text("Corporate Office :-", 40, footerY + 22);
+      doc.text("Corporate Office :-", 66, footerY + 30);
       doc.setTextColor(255, 255, 255);
       doc.setFontSize(7.5);
       const addrLines = doc.splitTextToSize(
         "203-205, 2nd Floor, Tower-1, Assotech Business Cresterra, Sector 135, Noida, Uttar Pradesh 201304",
-        232
+        208
       );
-      doc.text(addrLines, 40, footerY + 34);
+      doc.text(addrLines, 66, footerY + 42);
 
       // Column 2 — phone numbers
       doc.setFontSize(9);
-      doc.text("+91-9999570772", 300, footerY + 33);
-      doc.text("+91-9953000867", 300, footerY + 47);
+      doc.text("+91-9999570772", 332, footerY + 39);
+      doc.text("+91-9953000867", 332, footerY + 53);
 
       // Column 3 — email / website
-      doc.text("info@jenikaventures.com", 427, footerY + 33);
-      doc.text("www.jenikaventures.com", 427, footerY + 47);
+      doc.setFontSize(8.5);
+      doc.text("info@jenikaventures.com", 462, footerY + 39);
+      doc.text("www.jenikaventures.com", 462, footerY + 53);
 
       doc.save(`Receipt-${clientId}.pdf`);
     } catch (err) {
@@ -368,12 +427,13 @@ const PaymentStatus = () => {
         .ps-foot__col + .ps-foot__col { border-left: 1px solid rgba(245,235,172,0.45); }
         .ps-foot__col strong { display: block; color: #f0d68a; font-weight: 700; font-size: 12px; margin-bottom: 3px; }
         .ps-foot__col span { display: block; }
-        .ps-foot__col a { color: #fff; text-decoration: none; }
-        .ps-foot__icon {
+        .ps-foot__col a { display: block; color: #fff; text-decoration: none; }
+        .ps-foot__col .ps-foot__icon {
           width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%;
           background: #f0d68a; color: #c80a17;
           display: flex; align-items: center; justify-content: center; font-size: 14px;
         }
+        .ps-foot__col .ps-foot__icon svg { display: block; }
         .ps-icon {
           width: 84px; height: 84px; margin: 0 auto 18px;
           border-radius: 50%; display: flex; align-items: center; justify-content: center;
