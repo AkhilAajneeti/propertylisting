@@ -1097,15 +1097,44 @@ html {
 }
 
 .OurTeambanner {
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0)), url('/ourTeam/Team-2.jpg');
+  /* image now comes from the Swiper slider inside */
+  position: relative;
+  overflow: hidden;
   width: 100%;
   height: 90vh;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   display: flex;
   align-items: baseline;
   justify-content: center;
+}
+
+/* Slider fills the banner and sits behind the overlay/text */
+.OurTeambanner .team-banner-swiper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.OurTeambanner .team-banner-swiper .swiper-slide {
+  height: 100%;
+}
+
+.OurTeambanner .team-banner-swiper .slide-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Same dark gradient that was baked into the old background-image */
+.OurTeambanner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+  z-index: 1;
+  pointer-events: none;
 }
 
 .ClientTestimonial {
@@ -1281,6 +1310,8 @@ html {
   font-size: 55px;
   font-family: "Montserrat", sans-serif;
   transform: translate(0%, 90%);
+  position: relative;
+  z-index: 2;
 }
 
 @media (max-width:580px) {
@@ -1562,38 +1593,39 @@ html {
   position: relative;
 }
 
-/* Submenu panel */
+/* Submenu panel — opens below OUR TEAM (accordion), not on the right */
 .submenu-dropdown {
-  position: absolute;
-  top: -8px;
-  /* aligns properly */
-  left: 100%;
-  min-width: 220px;
-  padding: 8px 0;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  position: static;
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
   border: none;
-  display: none;
-  transition: all 0.2s ease;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
 }
 
 /* Show on hover */
 .dropdown-submenu:hover .submenu-dropdown {
-  display: block;
+  max-height: 300px;
 }
 
 /* Submenu item styling */
 .submenu-dropdown .dropdown-item {
-  padding: 10px 18px;
-  font-size: 14px;
+  padding: 10px 18px 10px 34px;
+  font-size: 15px;
+  color: #6b6b6b;
   transition: all 0.2s ease;
 }
 
-/* Hover effect */
+/* Hover effect — pink tint + left accent bar marks it as the child item */
 .submenu-dropdown .dropdown-item:hover {
-  background: #f5f5f5;
-  padding-left: 22px;
+  background: #fbe9e7;
+  color: #1a1a1a;
+  padding-left: 38px;
+  box-shadow: inset 3px 0 0 #ff3d3e;
 }
 
 /* OUR TEAM arrow alignment */
@@ -1610,13 +1642,17 @@ html {
 }
 
 .dropdown-submenu:hover>.dropdown-item span {
-  transform: translateX(3px);
+  transform: rotate(90deg);
 }
 
-/* new css */
-/* Smooth look */
-.submenu-dropdown .dropdown-item:hover {
-  background-color: #f8f9fa;
+/* Parent stays softly tinted while its submenu is open... */
+.dropdown-submenu:hover>.dropdown-item {
+  background: #fdf3f2;
+}
+
+/* ...and goes to the full pink only when hovered directly */
+.navbar-nav .dropdown-submenu>.dropdown-item:hover {
+  background: #fbe9e7;
 }
 
 .NewTag {

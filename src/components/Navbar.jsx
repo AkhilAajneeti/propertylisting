@@ -186,9 +186,8 @@ function CustomNavbar() {
               </div>
 
               <div
-                className={`mobile-accordion-content ${
-                  activeMenu === "about" ? "open" : ""
-                }`}
+                className={`mobile-accordion-content ${activeMenu === "about" ? "open" : ""
+                  }`}
               >
                 <NavLink to="/whoweare" onClick={handleClose}>
                   WHO WE ARE
@@ -199,28 +198,28 @@ function CustomNavbar() {
                   <NavLink
                     to="/our-team"
                     className="nested-accordion-title"
-                    onClick={() => {
-                      setActiveSubMenu(
-                        activeSubMenu === "team" ? null : "team",
-                      );
-                      handleClose(); // if you want menu to close
-                    }}
+                    onClick={handleClose}
                   >
                     <span>OUR TEAM</span>
 
                     <span
-                      className={`accordion-arrow ${
-                        activeSubMenu === "team" ? "rotate-arrow" : ""
-                      }`}
+                      className={`accordion-arrow ${activeSubMenu === "team" ? "rotate-arrow" : ""
+                        }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        setActiveSubMenu(
+                          activeSubMenu === "team" ? null : "team",
+                        );
+                      }}
                     >
                       ▼
                     </span>
                   </NavLink>
 
                   <div
-                    className={`nested-accordion-content ${
-                      activeSubMenu === "team" ? "open" : ""
-                    }`}
+                    className={`nested-accordion-content ${activeSubMenu === "team" ? "open" : ""
+                      }`}
                   >
                     <NavLink to="/our-team/ipo-advisory" onClick={handleClose}>
                       <FiChevronRight className="right-arrow" /> IPO Advisory
@@ -253,9 +252,8 @@ function CustomNavbar() {
               </div>
 
               <div
-                className={`mobile-accordion-content ${
-                  activeMenu === "project" ? "open" : ""
-                }`}
+                className={`mobile-accordion-content ${activeMenu === "project" ? "open" : ""
+                  }`}
               >
                 {sortedCategories.length === 0 ? (
                   <p className="text-center">Loading...</p>
@@ -291,9 +289,8 @@ function CustomNavbar() {
               </div>
 
               <div
-                className={`mobile-accordion-content ${
-                  activeMenu === "insights" ? "open" : ""
-                }`}
+                className={`mobile-accordion-content ${activeMenu === "insights" ? "open" : ""
+                  }`}
               >
                 <NavLink to="/insight/news&media" onClick={handleClose}>
                   NEWS MEDIA

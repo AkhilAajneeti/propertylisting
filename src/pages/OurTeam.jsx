@@ -9,6 +9,24 @@ import { fetchTeam } from "../redux/slices/teamSlice";
 gsap.registerPlugin(ScrollTrigger);
 import Loader from "../components/Loader";
 import SEO from "../components/seo/SEO";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade } from "swiper/modules";
+
+// Swiper styles
+import "swiper/css";
+import "swiper/css/effect-fade";
+
+// Banner slides
+const teamBanners = [
+  { src: "/ourTeam/team-banner-1.jpeg", alt: "Jenika Ventures Team" },
+  { src: "/ourTeam/team-banner-2.jpeg", alt: "Jenika Ventures Leadership Team" },
+  { src: "/ourTeam/team-banner-3.jpeg", alt: "Jenika Ventures Management Team" },
+  {
+    src: "/ourTeam/team-banner-4.jpeg",
+    alt: "Jenika Ventures Real Estate Experts",
+  },
+];
+
 const OurTeam = () => {
   const dispatch = useDispatch();
   const { members, loading } = useSelector((state) => state.team);
@@ -129,13 +147,37 @@ const OurTeam = () => {
         description="Meet the expert team at Jenika Ventures Private Limited. Our experienced real estate professionals help you find the best residential and commercial properties in Noida, Gurgaon, and Delhi NCR."
       />
       <div className="OurTeambanner has-prlx">
+        <Swiper
+          spaceBetween={0}
+          effect="fade"
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          modules={[Autoplay, EffectFade]}
+          className="team-banner-swiper"
+          loop={true}
+          speed={1200}
+        >
+          {teamBanners.map((banner, i) => (
+            <SwiperSlide key={banner.src}>
+              <img
+                src={banner.src}
+                alt={banner.alt}
+                className="slide-img"
+                width="1920"
+                height="600"
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         {/* <h2 className=" fw-bold split2  ">Our Team</h2> */}
       </div>
 
       {/* Founders Section */}
       <div className="founder container py-5">
         <h2 className="text-drop__line fs-1 fw-bold text-center py-4 ourFounder">
-          Our Founders
+          Our Promoters
         </h2>
 
         <div className="row align-items-center gy-5">
@@ -162,7 +204,7 @@ const OurTeam = () => {
                 />
               </a>
             </div>
-            <p className="text-start text-drop__line text-muted">Co-Founder</p>
+            <p className="text-start text-drop__line text-muted">Co-Founder & CEO</p>
             <p className="text-drop__line" style={{ textAlign: "justify" }}>
               Abhishek Raj is the CEO of Jenika Ventures Private Limited, a real estate
               consultancy he established in 2020 with a vision to bring trust,
@@ -229,11 +271,11 @@ const OurTeam = () => {
               className="text-drop__line fs-1 fw-bold text-center ourFounder"
               data-aos="fade-down"
             >
-              Management Team
+              Our Founding Members
             </h2>
           </div>
           {managementTeam.map((member) => (
-            <div className="col-12 col-lg-3 col-md-4 col-sm-6" key={member.id}>
+            <div className="col-12 col-lg-4 col-md-4 col-sm-6" key={member.id}>
               <div
                 className="team-card shine-animate-item p-3 text-center"
                 data-aos="fade-up"

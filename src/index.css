@@ -1365,9 +1365,14 @@ span img {
 
 .accordion-arrow {
   transition: transform 0.3s ease;
+  /* bigger tap target so the arrow is easy to hit on mobile */
+  padding: 4px 10px;
+  margin: -4px -10px;
+  cursor: pointer;
 }
 
-.accordion-arrow.rotate {
+.accordion-arrow.rotate,
+.accordion-arrow.rotate-arrow {
   transform: rotate(180deg);
 }
 

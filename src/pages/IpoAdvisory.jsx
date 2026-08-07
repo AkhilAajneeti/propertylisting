@@ -57,14 +57,13 @@ const IpoAdvisory = () => {
               />
             </div>
             <div className="advisor-card__body">
-              <p className="advisor-card__tag">Strategic Initiative</p>
+              <p className="advisor-card__tag">Mentor & Strategic Consultant</p>
               <h2 className="advisor-card__title">
-                A Strategic Initiative
-                <br />
-                by Jenika Ventures Private Limited
+                Suresh Mansharamani
+
               </h2>
               <p className="advisor-card__subtitle">
-                Guided by Suresh Mansharamani
+                Mentor & Strategic Consultant, IPO Advisory
               </p>
               <p className="advisor-card__text">
                 Jenika Ventures Private Limited brings a focused and structured approach to SME
@@ -93,12 +92,10 @@ const IpoAdvisory = () => {
             <div className="advisor-card__body order-1 order-sm-0">
               <p className="advisor-card__tag">CFO Advisory</p>
               <h2 className="advisor-card__title">
-                Chief Financial Officer
-                <br />
-                (CFO) Advisory
+                Tanuj Keswani 
               </h2>
               <p className="advisor-card__subtitle">
-                Financial Strategy, Structure &amp; Governance
+                CFO & IPO Advisory
               </p>
               <p className="advisor-card__text">
                 A strong financial foundation is essential for businesses aiming
