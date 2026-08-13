@@ -40,7 +40,9 @@ const propertySlice = createSlice({
     currentProject: null,
     searchResults: [],
     loading: false,
-    error: null,
+    projectsError: null,
+    currentProjectError: null,
+    searchError: null,
   },
   reducers: {},
 
@@ -48,6 +50,7 @@ const propertySlice = createSlice({
     builder
       .addCase(fetchProjects.pending, (state) => {
         state.loading = true;
+        state.projectsError = null;
       })
       .addCase(fetchProjects.fulfilled, (state, action) => {
         state.loading = false;
@@ -57,7 +60,7 @@ const propertySlice = createSlice({
       })
       .addCase(fetchProjects.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.projectsError = action.error.message;
       })
       // Single Project
       // .addCase(fetchProjectById.pending, (state) => {
@@ -73,6 +76,7 @@ const propertySlice = createSlice({
       // })
       .addCase(fetchProjectBySlug.pending, (state) => {
         state.loading = true;
+        state.currentProjectError= null;
       })
       .addCase(fetchProjectBySlug.fulfilled, (state, action) => {
         state.loading = false;
@@ -80,11 +84,12 @@ const propertySlice = createSlice({
       })
       .addCase(fetchProjectBySlug.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.currentProjectError = action.error.message;
       })
       //seaqrchedProject
       .addCase(fetchSearchProjects.pending, (state) => {
         state.loading = true;
+        state.searchError = null;
       })
       .addCase(fetchSearchProjects.fulfilled, (state, action) => {
         state.loading = false;
@@ -92,7 +97,7 @@ const propertySlice = createSlice({
       })
       .addCase(fetchSearchProjects.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.searchError = action.error.message;
       });
   },
 });

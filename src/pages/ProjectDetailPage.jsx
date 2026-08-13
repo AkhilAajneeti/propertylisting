@@ -25,7 +25,7 @@ const ProjectDetailPage = () => {
   const {
     currentProject: project,
     loading,
-    error,
+    currentProjectError:error,
   } = useSelector((state) => state.projects);
   // Fetch project
   // Fetch project using Redux

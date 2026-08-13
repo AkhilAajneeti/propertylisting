@@ -4474,3 +4474,227 @@ p {
   }
 
 }
+
+/* ============================================================
+   INDEPENDENCE DAY HEADER THEME (temporary)
+   Delete this whole block + restore /JV-Logo.png in Navbar.jsx
+   to go back to the normal header.
+   ============================================================ */
+
+/* Saffron -> white -> green wash across the header */
+.navbar {
+  background: linear-gradient(171deg, #fddbab 0%, #ffffff 50%, #d1ffd5 100%) !important;
+  position: relative;
+}
+
+
+/* Square tricolour logo - match the old logo's height */
+.navbar-brand .id-logo,
+.offcanvas-header .id-logo {
+  height: 96px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Nav links get the same 171deg tricolour, clipped to the text.
+   :not(.call-btn2) so the phone button keeps its own solid fill. */
+.navbar-nav .nav-link:not(.call-btn2) {
+  background: linear-gradient(171deg, #ff9933 0%, #000080 50%, #138808 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Hover runs across the word - saffron and green take most of it,
+   navy only a thin band through the middle */
+.navbar-nav .nav-link:not(.call-btn2):hover {
+  background: linear-gradient(140deg,
+      #ff9933 0%,
+      #ff9933 44%,
+      #000080 50%,
+      #138808 56%,
+      #138808 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-nav .nav-link::after {
+  background: linear-gradient(90deg, #ff9933 0 50%, #138808 50% 100%);
+}
+
+/* Call button - tricolour gradient pill, white number */
+.navbar .call-btn2,
+.offcanvas .mobile_button .call-btn2 {
+  position: relative;
+  z-index: 0;
+  background: linear-gradient(140deg, #ff9933 0%, #ff8000 35%, #ffffff 50%, #138808 100%);
+  border-radius: 999px;
+  padding: 9px 22px 9px 9px;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.45);
+  box-shadow: 0 4px 14px rgba(19, 136, 8, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease,
+    -webkit-text-fill-color 0.3s ease;
+}
+
+/* Inner fill - a very light wash of the same gradient, inset by 2px
+   so the full-strength gradient still reads as a ring */
+.navbar .call-btn2::before,
+.offcanvas .mobile_button .call-btn2::before {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: inherit;
+  background: linear-gradient(140deg, #ff9933 0%, #ff8000 35%, #ffffff 50%, #138808 100%);
+  z-index: -1;
+  transition: opacity 0.35s ease;
+}
+
+/* Hover: inner fill fades out to the ring gradient underneath */
+.navbar .call-btn2:hover::before,
+.offcanvas .mobile_button .call-btn2:hover::before {
+  opacity: 0;
+}
+
+.navbar .call-btn2:hover,
+.offcanvas .mobile_button .call-btn2:hover {
+  color: #000000 !important;
+  -webkit-text-fill-color: #000000 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(19, 136, 8, 0.32);
+}
+
+.call-btn2:hover img {
+  animation: idPhoneRing 0.6s ease-in-out;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.4));
+}
+
+@keyframes idPhoneRing {
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-14deg) scale(1.08);
+  }
+
+  40% {
+    transform: rotate(12deg) scale(1.08);
+  }
+
+  60% {
+    transform: rotate(-8deg) scale(1.05);
+  }
+
+  80% {
+    transform: rotate(5deg) scale(1.02);
+  }
+}
+
+/* Number gets the same tricolour text gradient as the nav links.
+   It lives on its own span so the button's background stays untouched -
+   background-clip:text on .call-btn2 itself would clip the pill gradient. */
+.call-btn2 .call-number {
+  background: #d63d3d;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  /* keeps the white middle band readable over the pill */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+/* Tricolour glyph itself - no badge behind it.
+   drop-shadow follows the icon outline, so it lifts off the button
+   without putting a shape behind the icon. */
+.call-btn2 img {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.16));
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  width: 26px;
+  transition: filter 0.3s ease;
+}
+
+/* ---- Dropdown items ----
+   background-clip:text clips every background layer, so the hover tint
+   can't live on the item itself - it goes on a ::before behind the text. */
+.navbar-nav .dropdown-item,
+.submenu-dropdown .dropdown-item,
+.dropdown-submenu:hover>.dropdown-item {
+  position: relative;
+  z-index: 0;
+  background: none;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+}
+
+/* Hover tint - saffron to green wash, sits behind the text */
+.navbar-nav .dropdown-item::before,
+.submenu-dropdown .dropdown-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #fff1de 0%, #ffffff 50%, #e4f6e2 100%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.navbar-nav .dropdown-item:hover::before,
+.submenu-dropdown .dropdown-item:hover::before {
+  opacity: 1;
+}
+
+/* OUR TEAM keeps a soft tint while its submenu is open */
+.dropdown-submenu:hover>.dropdown-item::before {
+  opacity: 0.5;
+}
+
+.navbar .dropdown-submenu>.dropdown-item:hover::before {
+  opacity: 1;
+}
+
+/* Hover keeps the text black - only the tint behind it changes */
+.navbar-nav .dropdown-item:hover,
+.submenu-dropdown .dropdown-item:hover,
+.navbar .dropdown-submenu>.dropdown-item:hover {
+  background: none;
+  color: #000000;
+  -webkit-text-fill-color: #000000;
+}
+
+/* Sub-item accent bar in flag green instead of red */
+.submenu-dropdown .dropdown-item:hover {
+  box-shadow: inset 3px 0 0 #138808;
+}
+
+/* Mobile menu items get the same tricolour text gradient */
+.offcanvas .nav-link:not(.call-btn2),
+.offcanvas .dropdown-item,
+.mobile-accordion-title,
+.mobile-accordion-content a,
+.nested-accordion-content a {
+  background: linear-gradient(171deg, #ff9933 0%, #000080 50%, #138808 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+@media (max-width: 991px) {
+
+  .navbar-brand .id-logo,
+  .offcanvas-header .id-logo {
+    height: 64px;
+  }
+}

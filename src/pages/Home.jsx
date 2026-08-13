@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { data: projects, error } = useSelector((state) => state.projects);
+  const { data: projects, projectsError:error } = useSelector((state) => state.projects);
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
@@ -58,7 +58,6 @@ const Home = () => {
     };
   }, [projects]);
 
-  if (error) return <p>Error loading projects: {error}</p>;
 
   return (
     <div>
@@ -108,7 +107,22 @@ const Home = () => {
       <Counter />
 
       {/* Pass projects directly to your RealEstateTabs */}
-      <RealEstateTabs projects={projects || []} />
+      {/* <RealEstateTabs projects={projects || []} /> */}
+      {/* Pass projects directly to your RealEstateTabs */}
+      {error ? (
+        <div className="container text-center py-5">
+          <p className="text-danger mb-3">Unable to load projects right now.</p>
+          <button
+            className="btn btn-outline-danger"
+            onClick={() => dispatch(fetchProjects())}
+          >
+            Retry
+          </button>
+        </div>
+      ) : (
+        <RealEstateTabs projects={projects || []} />
+      )}
+
 
       <Portfolio />
       <Testimonial bgColor="linear-gradient(1200deg, #f5e7ad 1.99%, #f5ebac 0.49%, #b49249 100%)" />

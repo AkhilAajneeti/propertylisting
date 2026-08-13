@@ -21,7 +21,7 @@ const Projects = () => {
   const {
     data: projects,
     loading,
-    error,
+    projectsError:error,
   } = useSelector((state) => state.projects);
 
   // ---------- state ----------

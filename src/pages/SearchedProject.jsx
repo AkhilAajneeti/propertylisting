@@ -13,7 +13,7 @@ const SearchedProject = () => {
 
   const query = new URLSearchParams(location.search).get("q");
 
-  const { searchResults, loading, error } = useSelector(
+  const { searchResults, loading, searchError:error } = useSelector(
     (state) => state.projects,
   );
   useEffect(() => {
