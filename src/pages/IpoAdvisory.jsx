@@ -57,13 +57,13 @@ const IpoAdvisory = () => {
               />
             </div>
             <div className="advisor-card__body">
-              <p className="advisor-card__tag">Mentor & Strategic Consultant</p>
+              {/* <p className="advisor-card__tag">Mentor & Strategic Consultant</p> */}
               <h2 className="advisor-card__title">
                 Suresh Mansharamani
 
               </h2>
               <p className="advisor-card__subtitle">
-                Mentor & Strategic Consultant, IPO Advisory
+                Mentor, Strategic Consultant & IPO Advisory
               </p>
               <p className="advisor-card__text">
                 Jenika Ventures Private Limited brings a focused and structured approach to SME

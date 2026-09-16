@@ -204,7 +204,7 @@ const OurTeam = () => {
                 />
               </a>
             </div>
-            <p className="text-start text-drop__line text-muted">Co-Founder & CEO</p>
+            <p className="text-start text-drop__line text-muted">Founder & CEO</p>
             <p className="text-drop__line" style={{ textAlign: "justify" }}>
               Abhishek Raj is the CEO of Jenika Ventures Private Limited, a real estate
               consultancy he established in 2020 with a vision to bring trust,

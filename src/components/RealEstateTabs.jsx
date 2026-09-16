@@ -5,6 +5,8 @@ import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay, EffectFade, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/pagination";
 
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBlogs } from "../redux/slices/blogSlice";
@@ -100,7 +102,11 @@ export default function RealEstateTabs({ projects }) {
               slidesPerView={3}
               spaceBetween={30}
               autoplay={{ delay: 0, disableOnInteraction: true }}
-              pagination={{ clickable: true }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true,
+                dynamicMainBullets: 3,
+              }}
               navigation={false}
               loop={limitedProjects.length > 3}
               speed={4000}
@@ -114,15 +120,11 @@ export default function RealEstateTabs({ projects }) {
               className="mySwiper-2"
             >
               {limitedProjects.length > 0 ? (
-                limitedProjects.map(
-                  (
-                    project // 👈 Only top 5 projects
-                  ) => (
-                    <SwiperSlide key={project.id}>
-                      <ProjectCard project={project} />
-                    </SwiperSlide>
-                  )
-                )
+                limitedProjects.map((project) => (
+                  <SwiperSlide key={project.id}>
+                    <ProjectCard project={project} />
+                  </SwiperSlide>
+                ))
               ) : (
                 <p className="text-center">No projects found</p>
               )}
