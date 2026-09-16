@@ -53,13 +53,7 @@ function CustomNavbar() {
       <Navbar bg="light" expand="lg" className="py-3">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <img
-              src="/independence_day_logo.png"
-              alt="Jenika Ventures - Happy Independence Day"
-              className="id-logo"
-              width="150"
-              height="150"
-            />
+            <img src="/JV-Logo.png" alt="Logo" width="150" />
           </Navbar.Brand>
 
           <Navbar.Toggle onClick={handleShow} />
@@ -150,8 +144,8 @@ function CustomNavbar() {
 
             <Nav>
               <Nav.Link href="tel:+919999570772" className="call-btn2">
-                <img src="/phone-call-tricolour.svg" alt="phone Button" />
-                <span className="call-number">9999570772</span>
+                <img src="/phone-call.png" alt="phone Button" />
+                9999570772
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -162,13 +156,7 @@ function CustomNavbar() {
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Navbar.Brand as={Link} to="/" onClick={handleClose}>
-            <img
-              src="/independence_day_logo.png"
-              alt="Jenika Ventures - Happy Independence Day"
-              className="id-logo"
-              width="150"
-              height="150"
-            />
+            <img src="/JV-Logo.png" alt="Logo" width="150" />
           </Navbar.Brand>
         </Offcanvas.Header>
 
@@ -334,8 +322,8 @@ function CustomNavbar() {
 
             <Nav className="mobile_button mt-3 d-flex justify-content-center">
               <Nav.Link href="tel:+919999570772" className="call-btn2">
-                <img src="/phone-call-tricolour.svg" alt="phone Button" />
-                <span className="call-number">9999570772</span>
+                <img src="/phone-call.png" alt="phone Button" />
+                9999570772
               </Nav.Link>
             </Nav>
           </Nav>
