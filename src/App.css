@@ -639,6 +639,15 @@ html {
   padding-top: 30px;
 }
 
+/* The menu now runs past the bottom of a phone screen, so the body has to
+   scroll. Bootstrap sets overflow-y already; this pins it down and keeps
+   the swipe inside the panel instead of dragging the page behind it. */
+.offcanvas-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Animate links inside offcanvas */
 .offcanvas .nav-link,
 .offcanvas .dropdown-item {
@@ -1428,6 +1437,17 @@ html {
 
   .filter-bar {
     flex-direction: column !important;
+  }
+
+  .filter-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-select {
+    width: 100%;
+    flex: 0 0 auto;
   }
 
   .filter-title {
@@ -2538,11 +2558,21 @@ p {
   justify-content: center;
 }
 
+/* A native select sizes itself to its widest option, and Configuration
+   carries "LOCKABLE FOOD COURT/RESTAURANTS" - 31 characters, which at the
+   20px phone font came out ~397px and burst straight out of the card.
+   A flex basis plus width:100% makes the box decide the width, not the text. */
 .filter-select {
   position: relative;
+  flex: 1 1 180px;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .filter-select select {
+  width: 100%;
+  max-width: 100%;
+  text-overflow: ellipsis;
   padding: 10px 40px 10px 16px;
   border: none;
   border-bottom: 1px solid #b1b1b1;
@@ -4745,7 +4775,14 @@ p {
   list-style: none;
   margin: 6px 0 0;
   padding: 0;
-  /* ~6 rows, then scroll - keeps the menu from running off screen */
+}
+
+/* Capped only in the navbar dropdown, where it would otherwise run off the
+   screen. In the offcanvas it must NOT be its own scroll area: it sits at
+   the bottom of the panel, so it swallowed the swipe that should have
+   scrolled the menu and the lower links became unreachable. */
+.location-nav__panel .location-search__list {
+  /* ~6 rows, then scroll */
   max-height: 210px;
   overflow-y: auto;
 }
