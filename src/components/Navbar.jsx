@@ -351,7 +351,7 @@ function CustomNavbar() {
 
             <div className="mobile-location-block mt-3">
               <div className="nav-location-heading">Location</div>
-              <LocationSearch variant="inline" onSelect={handleClose} />
+              <LocationSearch variant="mobile" onSelect={handleClose} />
             </div>
           </Nav>
         </Offcanvas.Body>

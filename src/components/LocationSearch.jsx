@@ -34,8 +34,8 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
   const navigate = useNavigate();
   const { data: projects = [] } = useSelector((state) => state.projects);
 
-  const isNavbar = variant === "navbar";
-  const [engaged, setEngaged] = useState(!isNavbar);
+  const isMobile = variant === "mobile";
+  const [engaged, setEngaged] = useState(false);
   const [text, setText] = useState("");
   const [active, setActive] = useState(0);
 
@@ -72,7 +72,7 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
   // The list stays up while the pointer is elsewhere, so a click outside is
   // what dismisses it.
   useEffect(() => {
-    if (!isNavbar) return undefined;
+    if (typeof document === "undefined") return undefined;
     const onDocDown = (e) => {
       if (rootRef.current && !rootRef.current.contains(e.target)) {
         setEngaged(false);
@@ -82,16 +82,14 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
     };
     document.addEventListener("mousedown", onDocDown);
     return () => document.removeEventListener("mousedown", onDocDown);
-  }, [isNavbar]);
+  }, []);
 
   const go = (name) => {
     if (!name) return;
     setText("");
     setActive(0);
-    if (isNavbar) {
-      setEngaged(false);
-      inputRef.current?.blur();
-    }
+    setEngaged(false);
+    inputRef.current?.blur();
     onSelect?.();
     navigate(`/search-projects?q=${encodeURIComponent(name)}`);
   };
@@ -110,10 +108,8 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
     } else if (e.key === "Escape") {
       e.preventDefault();
       setText("");
-      if (isNavbar) {
-        setEngaged(false);
-        inputRef.current?.blur();
-      }
+      setEngaged(false);
+      inputRef.current?.blur();
     }
   };
 
@@ -131,12 +127,10 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
               className={
                 "location-search__item" + (i === active ? " is-active" : "")
               }
-              /* onMouseDown, not onClick: blur fires first and hides the list,
-                 unmounting this button before a click can land. */
-              onMouseDown={(e) => {
-                e.preventDefault();
-                go(c.name);
-              }}
+              /* click, never mousedown: mousedown fires as soon as a finger
+                 lands, so scrolling the list navigated instead of scrolling.
+                 A click only fires on a genuine tap. */
+              onClick={() => go(c.name)}
               onMouseEnter={() => setActive(i)}
             >
               <span>{c.name}</span>
@@ -148,42 +142,24 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
     </ul>
   );
 
-  if (!isNavbar) {
-    return (
-      <div className="location-search">
-        <div className="location-search__field">
-          <PinIcon className="location-search__pin" />
-          <input
-            type="text"
-            className="location-search__input"
-            placeholder="Search a location"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            onKeyDown={handleKeyDown}
-            aria-label="Search projects by location"
-            autoComplete="off"
-          />
-        </div>
-        {list}
-      </div>
-    );
-  }
-
   return (
-    <div ref={rootRef} className="location-nav">
+    <div
+      ref={rootRef}
+      className={"location-nav" + (isMobile ? " location-nav--mobile" : "")}
+    >
       <div className="location-nav__pill">
         <input
           ref={inputRef}
           type="text"
           className="location-nav__input"
-          placeholder="Search city..."
+          placeholder={isMobile ? "Search a location..." : "Search city..."}
           value={text}
           onChange={(e) => {
             setEngaged(true);
             setText(e.target.value);
           }}
           onKeyDown={handleKeyDown}
-          onMouseDown={() => setEngaged(true)}
+          onFocus={() => setEngaged(true)}
           aria-label="Search projects by location"
           autoComplete="off"
         />

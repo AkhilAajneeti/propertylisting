@@ -42,9 +42,12 @@ function App() {
     }
     requestAnimationFrame(raf);
 
-    // allowNestedScroll: the normalizer hijacks touch document-wide, which
-    // left the mobile menu (and any other scrollable overlay) stuck.
-    ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
+    // Desktop only. On touch the normalizer captures and re-dispatches
+    // pointer events, which makes links fire mid-swipe - and Lenis is
+    // already smoothing scroll here, so running both is redundant.
+    if (ScrollTrigger.isTouch !== 1) {
+      ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
+    }
 
     const resize = () => ScrollTrigger.refresh();
     window.addEventListener("resize", resize);

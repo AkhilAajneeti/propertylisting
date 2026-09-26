@@ -646,6 +646,9 @@ html {
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
+  /* tells the browser this is a vertical scroller, so it can rule out a
+     tap early instead of firing one at the end of a swipe */
+  touch-action: pan-y;
 }
 
 /* Animate links inside offcanvas */
@@ -4612,11 +4615,6 @@ p {
   color: #8a8a8a;
 }
 
-/* inline variant (mobile offcanvas) */
-.location-search {
-  width: 100%;
-  min-width: 0;
-}
 
 /* The search field adds width on the right, which drags the centred nav
    links leftward. Flushing the row right hands ~44px of that back, and the
@@ -4696,6 +4694,26 @@ p {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
 }
 
+/* --- mobile offcanvas: identical design, laid out for a panel --- */
+.location-nav--mobile {
+  width: 100%;
+  margin-left: 0;
+}
+
+/* .offcanvas sets text-align:center, which the field and rows inherit */
+.location-nav--mobile .location-nav__input,
+.location-nav--mobile .location-search__item {
+  text-align: left;
+}
+
+.location-nav--mobile .location-nav__panel {
+  position: static;
+  width: 100%;
+  margin-top: 10px;
+  padding: 0;
+  box-shadow: none;
+}
+
 /* Shown only once someone starts searching */
 .location-nav__panel {
   position: absolute;
@@ -4709,34 +4727,30 @@ p {
   z-index: 3;
 }
 
-/* At 1200px the container is 1140px and only ~117px is free - too narrow to
-   type in. Fall back to the pin alone; clicking it still opens the list. */
+/* Desktop only. Between 992 and 1399px the navbar row has ~117px to spare -
+   too narrow to type in - so it falls back to the pin alone. The offcanvas
+   has a full-width column, so :not() keeps the mobile variant out of this. */
 @media (max-width: 1399.98px) {
-  .location-nav {
+  .location-nav:not(.location-nav--mobile) {
     width: 44px;
   }
 
-  .location-nav__pill {
+  .location-nav:not(.location-nav--mobile) .location-nav__pill {
     display: none;
   }
 }
 
-.location-nav__icon,
-.location-search__pin {
+.location-nav__icon {
   width: 16px;
   height: 16px;
   display: block;
   flex: 0 0 auto;
 }
 
-.location-search__pin {
-  color: rgb(205 181 112);
-}
 
 /* Undo the global svg-path rule (App.css ~1922) for these icons - it paints
    every path with a dashed-out 3px white stroke. */
-.location-nav__icon path,
-.location-search__pin path {
+.location-nav__icon path {
   fill: currentColor;
   stroke: none;
   stroke-width: 0;
@@ -4746,41 +4760,6 @@ p {
 
 .mobile-location-block {
   padding: 0 16px;
-}
-
-.location-search__field {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  border: 1px solid #e2e2e2;
-  border-radius: 6px;
-  background: #fff;
-}
-
-.location-search__field:focus-within {
-  border-color: #c80a17;
-}
-
-.location-search__pin {
-  flex: 0 0 auto;
-  color: rgb(205 181 112);
-}
-
-.location-search__icon {
-  flex: 0 0 auto;
-  color: #b9b9b9;
-  font-size: 13px;
-}
-
-.location-search__input {
-  flex: 1 1 auto;
-  min-width: 0;
-  border: none;
-  outline: none;
-  font-size: 14px;
-  background: transparent;
-  color: #222;
 }
 
 .location-search__list {
