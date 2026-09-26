@@ -7,11 +7,28 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Import required modules
-import { Scrollbar, Navigation } from "swiper/modules";
+import { Scrollbar, Navigation, Autoplay } from "swiper/modules";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
+// Swiper has no reduced-motion handling of its own, and an unattended
+// carousel is exactly what that setting is meant to stop.
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  typeof window.matchMedia === "function" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export default function App() {
+  const autoplay = prefersReducedMotion()
+    ? false
+    : {
+        delay: 4000,
+        // keeps running after someone uses the arrows or drags
+        disableOnInteraction: false,
+        // these cards are two or three lines of text - do not slide it
+        // out from under someone who is reading
+        pauseOnMouseEnter: true,
+      };
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.utils.toArray(".split").forEach((el) => {
@@ -52,13 +69,14 @@ export default function App() {
             grabCursor={true}
             loop={true}
             scrollbar={{ draggable: true, hide: false }}
+            autoplay={autoplay}
             // Unique class names - the testimonial sliders bind the shared
             // ".swiper-button-next" document-wide and would grab these.
             navigation={{
               prevEl: ".timeline-nav--prev",
               nextEl: ".timeline-nav--next",
             }}
-            modules={[Scrollbar, Navigation]}
+            modules={[Scrollbar, Navigation, Autoplay]}
             className="TimelineSwiper py-4"
             breakpoints={{
               0: {

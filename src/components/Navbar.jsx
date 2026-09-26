@@ -6,7 +6,7 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 import getProjectsByCategory from "../api/projectApi";
 import LocationSearch from "./LocationSearch";
@@ -17,6 +17,7 @@ function CustomNavbar() {
   const [activeMenu, setActiveMenu] = useState(null);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -104,6 +105,17 @@ function CustomNavbar() {
                 show={hoveredDropdown === "project"}
                 onMouseEnter={() => handleMouseEnter("project")}
                 onMouseLeave={handleMouseLeave}
+                onClick={(e) => {
+                  // Only the toggle itself - the category links inside the
+                  // menu must keep their own destinations. Matching the
+                  // element also covers keyboard Enter, which fires a click
+                  // targeted at the toggle.
+                  if (e.target.closest(".dropdown-toggle")) {
+                    e.preventDefault();
+                    setHoveredDropdown(null);
+                    navigate("/projects");
+                  }
+                }}
               >
                 {sortedCategories.map((cat) => (
                   <NavDropdown.Item
@@ -258,6 +270,10 @@ function CustomNavbar() {
                 className={`mobile-accordion-content ${activeMenu === "project" ? "open" : ""
                   }`}
               >
+                <NavLink to="/projects" onClick={handleClose}>
+                  All Projects
+                </NavLink>
+
                 {sortedCategories.length === 0 ? (
                   <p className="text-center">Loading...</p>
                 ) : (
