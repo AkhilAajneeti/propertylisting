@@ -175,7 +175,10 @@ function CustomNavbar() {
           </Navbar.Brand>
         </Offcanvas.Header>
 
-        <Offcanvas.Body>
+        {/* data-lenis-prevent: Lenis smooth-scroll (App.jsx) intercepts
+            touch and wheel across the document, so a nested scroll area
+            has to opt out or it cannot be scrolled at all. */}
+        <Offcanvas.Body data-lenis-prevent>
           <Nav className="flex-column text-center">
             <Nav.Link as={NavLink} to="/" onClick={handleClose}>
               Home

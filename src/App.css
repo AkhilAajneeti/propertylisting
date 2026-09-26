@@ -1379,6 +1379,9 @@ html {
   color: rgba(255, 255, 255, 0.9);
   font-size: 60px;
   font-family: "Montserrat", sans-serif;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 16px;
 }
 
 .whoweare h1 {
@@ -1415,6 +1418,8 @@ html {
   }
 
   .whoweare h1,
+  .BlogBanner h1,
+  .ContactBanner h1,
   .CareerBanner h1,
   .AwardsBanner h1 {
     color: white;
@@ -1439,16 +1444,6 @@ html {
     flex-direction: column !important;
   }
 
-  .filter-controls {
-    width: 100%;
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .filter-select {
-    width: 100%;
-    flex: 0 0 auto;
-  }
 
   .filter-title {
     font-size: 35px !important;
@@ -2555,16 +2550,18 @@ p {
   flex-wrap: wrap;
   gap: 16px;
   flex: 1;
+  /* flex items default to min-width:auto and refuse to shrink below their
+     content - this is what lets a long option overflow the card */
+  min-width: 0;
   justify-content: center;
 }
 
 /* A native select sizes itself to its widest option, and Configuration
    carries "LOCKABLE FOOD COURT/RESTAURANTS" - 31 characters, which at the
-   20px phone font came out ~397px and burst straight out of the card.
-   A flex basis plus width:100% makes the box decide the width, not the text. */
+   20px phone font came out ~397px and burst out of the card. Clamping the
+   box is enough; no flex sizing, which in a column would set height. */
 .filter-select {
   position: relative;
-  flex: 1 1 180px;
   min-width: 0;
   max-width: 100%;
 }
@@ -2595,6 +2592,21 @@ p {
   top: 12px;
   color: #666;
   pointer-events: none;
+}
+
+/* Has to sit after the rules above, not in the max-width:580px block higher
+   up the file - same specificity, so source order decides. */
+@media (max-width: 767.98px) {
+  .filter-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
 }
 
 .search-btn {

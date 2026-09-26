@@ -201,7 +201,11 @@ export default function LocationSearch({ variant = "inline", onSelect }) {
         <PinIcon className="location-nav__icon" />
       </button>
 
-      {engaged && <div className="location-nav__panel">{list}</div>}
+      {engaged && (
+        <div className="location-nav__panel" data-lenis-prevent>
+          {list}
+        </div>
+      )}
     </div>
   );
 }

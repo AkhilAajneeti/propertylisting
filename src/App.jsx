@@ -42,7 +42,9 @@ function App() {
     }
     requestAnimationFrame(raf);
 
-    ScrollTrigger.normalizeScroll(true);
+    // allowNestedScroll: the normalizer hijacks touch document-wide, which
+    // left the mobile menu (and any other scrollable overlay) stuck.
+    ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
 
     const resize = () => ScrollTrigger.refresh();
     window.addEventListener("resize", resize);
