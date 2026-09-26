@@ -7,7 +7,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // Import required modules
-import { Scrollbar } from "swiper/modules";
+import { Scrollbar, Navigation } from "swiper/modules";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -44,87 +44,130 @@ export default function App() {
         <p className="split text-center">
           Every year, Jenika Ventures Private Limited has made achievements we are proud of.
         </p>
-        <Swiper
-          slidesPerView={2} // show 2 slides
-          spaceBetween={20}
-          grabCursor={true}
-          scrollbar={{ draggable: true, hide: false }}
-          modules={[Scrollbar]}
-          className="TimelineSwiper py-4"
-          breakpoints={{
-            0: {
-              slidesPerView: 1, // 👈 mobile (default)
-            },
-            768: {
-              slidesPerView: 1, // 👈 tablets
-            },
-            1024: {
-              slidesPerView: 2, // 👈 desktop
-            },
-          }}
-        >
-          <SwiperSlide>
-            <div className="yearItems redgradient text-white p-4 position-relative">
-              <h4>2021 -</h4>
-              <p className="split">
-                Achieved ₹100+ crores in sales. Partnered with Grade A+
-                developers like Godrej, Tata, DLF and Lodha.
-              </p>
-              <div className="overImg position-absolute">
-                <img src="/counter-one-shape1.png" alt="" />
+        {/* Arrows live outside <Swiper> - the swiper container clips overflow */}
+        <div className="timelineSwiperWrap position-relative">
+          <Swiper
+            slidesPerView={2} // show 2 slides
+            spaceBetween={20}
+            grabCursor={true}
+            loop={true}
+            scrollbar={{ draggable: true, hide: false }}
+            // Unique class names - the testimonial sliders bind the shared
+            // ".swiper-button-next" document-wide and would grab these.
+            navigation={{
+              prevEl: ".timeline-nav--prev",
+              nextEl: ".timeline-nav--next",
+            }}
+            modules={[Scrollbar, Navigation]}
+            className="TimelineSwiper py-4"
+            breakpoints={{
+              0: {
+                slidesPerView: 1, // 👈 mobile (default)
+              },
+              768: {
+                slidesPerView: 1, // 👈 tablets
+              },
+              1024: {
+                slidesPerView: 2, // 👈 desktop
+              },
+            }}
+          >
+            <SwiperSlide>
+              <div className="yearItems redgradient text-white p-4 position-relative">
+                <h4>2021 -</h4>
+                <p className="split">
+                  Achieved ₹100+ crores in sales. Partnered with Grade A+
+                  developers like Godrej, Tata, DLF and Lodha.
+                </p>
+                <div className="overImg position-absolute">
+                  <img src="/counter-one-shape1.png" alt="" />
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="yearItems bg-brown-2 text-white p-4">
-              <h4>2022 -</h4>
-              <p className="split">
-                Breakthrough Delhi-NCR, Mumbai and Pune real estate markets.
-                Recognized as Outstanding Real Estate Company of the Year 2022.
-              </p>
-              <div className="overImg position-absolute">
-                <img src="/counter-one-shape1.png" alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="yearItems bg-brown-2 text-white p-4">
+                <h4>2022 -</h4>
+                <p className="split">
+                  Breakthrough Delhi-NCR, Mumbai and Pune real estate markets.
+                  Recognized as Outstanding Real Estate Company of the Year 2022.
+                </p>
+                <div className="overImg position-absolute">
+                  <img src="/counter-one-shape1.png" alt="" />
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="yearItems greengradient-2 text-white p-4">
-              <h4>2023 -</h4>
-              <p className="split">
-                Deepened collaboration with the Lodha Group. Diversified into
-                commercial and mixed-use projects. Surpassed ₹300+ crores in
-                sales with 80% YoY Growth.
-              </p>
-              <div className="overImg position-absolute">
-                <img src="/counter-one-shape1.png" alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="yearItems greengradient-2 text-white p-4">
+                <h4>2023 -</h4>
+                <p className="split">
+                  Deepened collaboration with the Lodha Group. Diversified into
+                  commercial and mixed-use projects. Surpassed ₹300+ crores in
+                  sales with 80% YoY Growth.
+                </p>
+                <div className="overImg position-absolute">
+                  <img src="/counter-one-shape1.png" alt="" />
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="yearItems yellowgradient-2 text-white p-4">
-              <h4>2024 -</h4>
-              <p className="split">
-                Expanded into Goa, Bengaluru & Hyderabad real estate markets.
-                Hit ₹750 crores in sales with 150% YoY Growth.
-              </p>
-              <div className="overImg position-absolute">
-                <img src="/counter-one-shape1.png" alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="yearItems yellowgradient-2 text-white p-4">
+                <h4>2024 -</h4>
+                <p className="split">
+                  Expanded into Goa, Bengaluru & Hyderabad real estate markets.
+                  Hit ₹750 crores in sales with 150% YoY Growth.
+                </p>
+                <div className="overImg position-absolute">
+                  <img src="/counter-one-shape1.png" alt="" />
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-          <SwiperSlide>
-            <div className="yearItems redgradient-2 text-white p-4">
-              <h4>2025 -</h4>
-              <p className="split">
-                Achieved the target of ₹2000 crores in sales making us a
-                top-tier real estate consultancy in India.{" "}
-              </p>
-              <div className="overImg position-absolute">
-                <img src="/counter-one-shape1.png" alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <div className="yearItems redgradient-2 text-white p-4">
+                <h4>2025 -</h4>
+                <p className="split">
+                  Achieved the target of ₹2000 crores in sales making us a
+                  top-tier real estate consultancy in India.{" "}
+                </p>
+                <div className="overImg position-absolute">
+                  <img src="/counter-one-shape1.png" alt="" />
+                </div>
               </div>
-            </div>
-          </SwiperSlide>
-        </Swiper>
+            </SwiperSlide>
+          </Swiper>
+
+          <button
+            type="button"
+            className="timeline-nav timeline-nav--prev"
+            aria-label="Previous milestone"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M15 5L8 12l7 7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="timeline-nav timeline-nav--next"
+            aria-label="Next milestone"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M9 5l7 7-7 7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </section>
     </>
   );

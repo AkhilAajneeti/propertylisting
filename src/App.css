@@ -937,6 +937,90 @@ html {
   height: -webkit-fill-available !important;
 }
 
+/* --- MILESTONES CAROUSEL ARROWS ---
+   Own class names on purpose: the global .swiper-button-prev/next rules
+   force position:static and rotate(180deg) for the testimonial layout,
+   where the arrows sit in a row under the slider. */
+.timelineSwiperWrap {
+  position: relative;
+  /* Gutters the arrows live in. The slider shrinks to the inner width, so
+     the buttons sit beside the cards rather than on their text, and they
+     stay inside .container instead of spilling into the viewport edge. */
+  padding-left: 58px;
+  padding-right: 58px;
+}
+
+.timeline-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  /* above the cards' 3D hover tilt */
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 50%;
+  background: #c80a17;
+  color: #ffffff;
+  /* ring + lift so the button still reads against a red or purple card */
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+}
+
+.timeline-nav svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* The global "svg path" rule (see ~line 1922) sets stroke-dasharray:34 +
+   stroke-dashoffset:34 for the animated check-box tick, which draws every
+   other icon on the site invisible. Undo it just for these chevrons. */
+.timeline-nav svg path {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  stroke-width: 2.5;
+  stroke: currentColor;
+}
+
+.timeline-nav:hover {
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 8px 22px rgba(200, 10, 23, 0.35);
+}
+
+.timeline-nav--prev {
+  left: 0;
+}
+
+.timeline-nav--next {
+  right: 0;
+}
+
+/* Swiper adds this to the nav elements at the first / last slide */
+.timeline-nav.swiper-button-disabled {
+  opacity: 0.35;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+/* One card per view below 768px - side arrows would sit on the text,
+   so the draggable scrollbar stays the mobile affordance. */
+@media (max-width: 767.98px) {
+  .timelineSwiperWrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .timeline-nav {
+    display: none;
+  }
+}
+
 .yearItems {
   height: -webkit-fill-available !important;
   position: relative;
@@ -1410,6 +1494,8 @@ html {
   height: 550px;
   width: 100vw;
   filter: brightness(0.6);
+  /* dark ground so the hero never flashes white before the poster paints */
+  background: #1a1a1a;
   object-fit: cover;
 }
 
@@ -4473,4 +4559,231 @@ p {
     object-fit: cover;
   }
 
+}
+/* --- LOCATION TYPE-AHEAD (PROJECT menu) --- */
+.nav-location-heading {
+  padding: 6px 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #8a8a8a;
+}
+
+/* inline variant (mobile offcanvas) */
+.location-search {
+  width: 100%;
+  min-width: 0;
+}
+
+/* The search field adds width on the right, which drags the centred nav
+   links leftward. Flushing the row right hands ~44px of that back, and the
+   field is sized so what remains is barely visible (~26px at 1400px+). */
+@media (min-width: 992px) {
+  .navbar .navbar-collapse.justify-content-center {
+    justify-content: flex-end !important;
+  }
+}
+
+/* --- navbar variant: always-visible pin + search field ---
+
+   No hover reveal, so it simply holds its width in the row and can never
+   cover the call button or CONTACT US. Width is kept modest because every
+   pixel here pushes the centred nav links further left. */
+.location-nav {
+  position: relative;
+  /* the nav row stretches its children; keep this level with the call button */
+  align-self: center;
+  flex: 0 0 auto;
+  width: 170px;
+  height: 44px;
+  margin-left: 12px;
+}
+
+.location-nav__pill {
+  width: 100%;
+  height: 100%;
+  /* clears the pin button sitting on top */
+  padding-left: 54px;
+  padding-right: 16px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e4e4e4;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.location-nav__pill:focus-within {
+  border-color: #c80a17;
+  box-shadow: 0 6px 20px rgba(200, 10, 23, 0.16);
+}
+
+.location-nav__input {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: #222222;
+}
+
+/* Same gradient as .call-btn2 so the pair reads as one control group */
+.location-nav__toggle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(327deg, #c80a17 20%, #000000 100%);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-nav__toggle:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Shown only once someone starts searching */
+.location-nav__panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 250px;
+  padding: 8px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.18);
+  z-index: 3;
+}
+
+/* At 1200px the container is 1140px and only ~117px is free - too narrow to
+   type in. Fall back to the pin alone; clicking it still opens the list. */
+@media (max-width: 1399.98px) {
+  .location-nav {
+    width: 44px;
+  }
+
+  .location-nav__pill {
+    display: none;
+  }
+}
+
+.location-nav__icon,
+.location-search__pin {
+  width: 16px;
+  height: 16px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.location-search__pin {
+  color: rgb(205 181 112);
+}
+
+/* Undo the global svg-path rule (App.css ~1922) for these icons - it paints
+   every path with a dashed-out 3px white stroke. */
+.location-nav__icon path,
+.location-search__pin path {
+  fill: currentColor;
+  stroke: none;
+  stroke-width: 0;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}
+
+.mobile-location-block {
+  padding: 0 16px;
+}
+
+.location-search__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.location-search__field:focus-within {
+  border-color: #c80a17;
+}
+
+.location-search__pin {
+  flex: 0 0 auto;
+  color: rgb(205 181 112);
+}
+
+.location-search__icon {
+  flex: 0 0 auto;
+  color: #b9b9b9;
+  font-size: 13px;
+}
+
+.location-search__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: transparent;
+  color: #222;
+}
+
+.location-search__list {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  /* ~6 rows, then scroll - keeps the menu from running off screen */
+  max-height: 210px;
+  overflow-y: auto;
+}
+
+.location-search__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  font-size: 14px;
+  color: #222;
+  text-align: left;
+  cursor: pointer;
+}
+
+.location-search__item.is-active,
+.location-search__item:hover {
+  background: #fdeced;
+  color: #c80a17;
+}
+
+.location-search__count {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: #9a9a9a;
+}
+
+.location-search__item.is-active .location-search__count {
+  color: #c80a17;
+}
+
+.location-search__empty {
+  padding: 8px 10px;
+  font-size: 13px;
+  color: #9a9a9a;
 }

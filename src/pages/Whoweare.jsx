@@ -68,6 +68,8 @@ const Whoweare = () => {
             autoPlay
             loop
             muted
+            playsInline
+            poster="/whoweare-poster.jpg"
             src="/video.mp4"
           ></video>
         </div>
@@ -185,7 +187,7 @@ const Whoweare = () => {
                     <a href="service-details.html">Global Reach</a>
                   </h3>
                   <p className="colorWhite">
-                    Trusted presence across 19+ cities in India and Dubai, UAE
+                    Trusted presence across 7+ cities in India and Dubai, UAE
                   </p>
                 </div>
               </div>
@@ -208,7 +210,7 @@ const Whoweare = () => {
                     <a href="service-details.html">Expert Team</a>
                   </h3>
                   <p className="colorWhite">
-                    A strong team of 2,200 experienced professionals
+                    A strong team of 80+ experienced professionals
                   </p>
                 </div>
               </div>

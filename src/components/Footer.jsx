@@ -133,7 +133,7 @@ export default function Footer() {
             <ul className="list-unstyled">
               <li>
                 <Link
-                  to="/projects?propertytype=Residential"
+                  to="/projects?category=residential-property"
                   className="link link--metis"
                 >
                   Residential
@@ -141,7 +141,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/projects?propertytype=CommerciaLink"
+                  to="/projects?category=commercial"
                   className="link link--metis"
                 >
                   Commercial
@@ -149,15 +149,15 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  to="/projects?propertytype=Studio"
+                  to="/projects?category=studio-apartments"
                   className="link link--metis"
                 >
-                  Studio Appartments
+                  Studio Apartments
                 </Link>
               </li>
               <li>
                 <Link
-                  to="/projects?propertytype=Plots"
+                  to="/projects?category=plots"
                   className="link link--metis"
                 >
                   Plots
@@ -170,34 +170,34 @@ export default function Footer() {
             <h6 className="fw-bold">Developers</h6>
             <ul className="list-unstyled">
               <li>
-                <a href="#" className="link link--metis">
+                <Link to="/projects?brand=tata" className="link link--metis">
                   TATA
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="link link--metis">
+                <Link to="/projects?brand=ats" className="link link--metis">
                   ATS
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="link link--metis">
+                <Link to="/projects?brand=omaxe" className="link link--metis">
                   Omaxe
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="link link--metis">
+                <Link to="/projects?brand=bhutani" className="link link--metis">
                   Bhutani
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="link link--metis">
+                <Link to="/projects?brand=m3m" className="link link--metis">
                   M3M
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="link link--metis">
+                <Link to="/projects?brand=godrej" className="link link--metis">
                   Godrej
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

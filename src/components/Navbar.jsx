@@ -9,6 +9,7 @@ import {
 import { Link, NavLink } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 import getProjectsByCategory from "../api/projectApi";
+import LocationSearch from "./LocationSearch";
 function CustomNavbar() {
   const [show, setShow] = useState(false);
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
@@ -147,6 +148,8 @@ function CustomNavbar() {
                 <img src="/phone-call.png" alt="phone Button" />
                 9999570772
               </Nav.Link>
+
+              <LocationSearch variant="navbar" />
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -326,6 +329,11 @@ function CustomNavbar() {
                 9999570772
               </Nav.Link>
             </Nav>
+
+            <div className="mobile-location-block mt-3">
+              <div className="nav-location-heading">Location</div>
+              <LocationSearch variant="inline" onSelect={handleClose} />
+            </div>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>

@@ -69,27 +69,27 @@ const Home = () => {
       <div className="dpa-marquee">
         <div className="dpa-marquee__track">
           <div className="dpa-marquee__item">
-            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__hl">GRAND FESTIVE DAYS coming your way</span>
             <span className="dpa-marquee__sep">✦</span>
-            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__cta">To know more, call</span>
             <span className="dpa-marquee__phone">📞 6390509090</span>
           </div>
           <div className="dpa-marquee__item" aria-hidden="true">
-            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__hl">GRAND FESTIVE DAYS coming your way</span>
             <span className="dpa-marquee__sep">✦</span>
-            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__cta">To know more, call</span>
             <span className="dpa-marquee__phone">📞 6390509090</span>
           </div>
           <div className="dpa-marquee__item" aria-hidden="true">
-            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__hl">GRAND FESTIVE DAYS coming your way</span>
             <span className="dpa-marquee__sep">✦</span>
-            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__cta">To know more, call</span>
             <span className="dpa-marquee__phone">📞 6390509090</span>
           </div>
           <div className="dpa-marquee__item" aria-hidden="true">
-            <span className="dpa-marquee__hl">“Real Estate ki Home Delivery”</span>
+            <span className="dpa-marquee__hl">GRAND FESTIVE DAYS coming your way</span>
             <span className="dpa-marquee__sep">✦</span>
-            <span className="dpa-marquee__cta">Call now to book your Doorstep Access</span>
+            <span className="dpa-marquee__cta">To know more, call</span>
             <span className="dpa-marquee__phone">📞 6390509090</span>
           </div>
         </div>
@@ -97,8 +97,8 @@ const Home = () => {
       <div>
         <Link to="/doorstep-property-access" className="footerImg img-fluid">
           <img
-            src="/Doorstep%20Property%20Access.jpg.jpeg"
-            alt="Doorstep Property Access — Register with Jenika Ventures"
+            src="/Coming-Soon.jpeg"
+            alt="Grand Festive Days coming soon - Jenika Ventures"
             style={{ height: "100%", width: "100%" }}
           />
         </Link>

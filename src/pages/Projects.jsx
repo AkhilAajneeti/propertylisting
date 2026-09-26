@@ -53,6 +53,7 @@ const Projects = () => {
   const params = new URLSearchParams(location.search);
   const category = params.get("category"); // e.g. "Commercial"
   const urlCity = params.get("city") || "";
+  const brand = params.get("brand"); // e.g. "godrej" - matched against projectbrand
 
   // ✅ Fetch data once when component mounts
   useEffect(() => {
@@ -71,6 +72,15 @@ const Projects = () => {
         const slug = (p.category || "").toLowerCase().replace(/\s+/g, "-");
         return slug === category;
       });
+    }
+
+    // Filter by developer - slug back to words, then substring match so
+    // "godrej" also catches "Godrej Arden"
+    if (brand) {
+      const b = brand.replace(/-/g, " ").toLowerCase();
+      result = result.filter((p) =>
+        (p.projectbrand || "").toLowerCase().includes(b),
+      );
     }
 
     // Filter by city
@@ -102,7 +112,7 @@ const Projects = () => {
 
     setFilteredProjects(result);
     setCurrentPage(1);
-  }, [projects, category, filters]);
+  }, [projects, category, brand, filters]);
 
   // initialize city filter from url if provided
   useEffect(() => {
