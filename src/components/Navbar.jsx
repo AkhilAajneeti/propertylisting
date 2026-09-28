@@ -149,43 +149,49 @@ function CustomNavbar() {
                   <div className="project-mega__col">
                     <div className="project-mega__head">Property Type</div>
 
-                    {sortedCategories.length === 0 ? (
-                      <div className="project-mega__loading">Loading...</div>
-                    ) : (
-                      sortedCategories.map((cat) => (
-                        <NavDropdown.Item
-                          key={cat.id}
-                          as={NavLink}
-                          className="project-mega__item"
-                          to={{
-                            pathname: "/projects",
-                            search: `?category=${cat.slug}`,
-                          }}
-                        >
-                          {cat.name}
-                        </NavDropdown.Item>
-                      ))
-                    )}
+                    {/* data-lenis-prevent: Lenis intercepts wheel events across
+                        the document, so a scroll area has to opt out of it. */}
+                    <div className="project-mega__list" data-lenis-prevent>
+                      {sortedCategories.length === 0 ? (
+                        <div className="project-mega__loading">Loading...</div>
+                      ) : (
+                        sortedCategories.map((cat) => (
+                          <NavDropdown.Item
+                            key={cat.id}
+                            as={NavLink}
+                            className="project-mega__item"
+                            to={{
+                              pathname: "/projects",
+                              search: `?category=${cat.slug}`,
+                            }}
+                          >
+                            {cat.name}
+                          </NavDropdown.Item>
+                        ))
+                      )}
+                    </div>
                   </div>
 
                   <div className="project-mega__col">
                     <div className="project-mega__head">Location</div>
 
-                    {cities.length === 0 ? (
-                      <div className="project-mega__loading">Loading...</div>
-                    ) : (
-                      cities.map((c) => (
-                        <NavDropdown.Item
-                          key={c.name}
-                          as={NavLink}
-                          className="project-mega__item"
-                          to={`/search-projects?q=${encodeURIComponent(c.name)}`}
-                        >
-                          <span>{c.name}</span>
-                          <span className="project-mega__count">{c.count}</span>
-                        </NavDropdown.Item>
-                      ))
-                    )}
+                    <div className="project-mega__list" data-lenis-prevent>
+                      {cities.length === 0 ? (
+                        <div className="project-mega__loading">Loading...</div>
+                      ) : (
+                        cities.map((c) => (
+                          <NavDropdown.Item
+                            key={c.name}
+                            as={NavLink}
+                            className="project-mega__item"
+                            to={`/search-projects?q=${encodeURIComponent(c.name)}`}
+                          >
+                            <span>{c.name}</span>
+                            <span className="project-mega__count">{c.count}</span>
+                          </NavDropdown.Item>
+                        ))
+                      )}
+                    </div>
                   </div>
                 </div>
               </NavDropdown>
