@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 // import axios from "axios";
 import Slider from "../components/Slider";
 import RealEstateTabs from "../components/RealEstateTabs";
@@ -95,13 +94,13 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <Link to="/doorstep-property-access" className="footerImg img-fluid">
+        <div className="footerImg img-fluid">
           <img
             src="/Coming-Soon.jpeg"
             alt="Grand Festive Days coming soon - Jenika Ventures"
             style={{ height: "100%", width: "100%" }}
           />
-        </Link>
+        </div>
       </div>
       <Slider />
       <Counter />

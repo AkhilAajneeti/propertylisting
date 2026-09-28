@@ -1320,7 +1320,8 @@ span img {
 }
 
 .nested-accordion-content.open {
-  max-height: 200px;
+  /* LOCATION holds 10 cities; 200px only ever fitted OUR TEAM */
+  max-height: 620px;
 }
 
 @media (max-width: 991px) {

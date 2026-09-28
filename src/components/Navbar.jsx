@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Navbar,
   Nav,
@@ -9,7 +9,8 @@ import {
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FiChevronRight } from "react-icons/fi";
 import getProjectsByCategory from "../api/projectApi";
-import LocationSearch from "./LocationSearch";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProjects } from "../redux/slices/propertySlice";
 function CustomNavbar() {
   const [show, setShow] = useState(false);
   const [hoveredDropdown, setHoveredDropdown] = useState(null);
@@ -18,6 +19,8 @@ function CustomNavbar() {
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { data: projects = [] } = useSelector((state) => state.projects);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -50,6 +53,28 @@ function CustomNavbar() {
     fetchCategories();
   }, []);
   const sortedCategories = [...categories].sort((a, b) => a.id - b.id);
+
+  // Only once the PROJECT menu is actually opened - this component is on
+  // every page and the full project list is several paginated requests.
+  const projectMenuOpen =
+    hoveredDropdown === "project" || activeMenu === "project";
+  useEffect(() => {
+    if (projectMenuOpen && projects.length === 0) {
+      dispatch(fetchProjects());
+    }
+  }, [projectMenuOpen, dispatch]);
+
+  // No /cities/ endpoint exists, so cities come from the projects.
+  const cities = useMemo(() => {
+    const counts = new Map();
+    (projects || []).forEach((p) => {
+      const city = (p.City || "").trim();
+      if (city) counts.set(city, (counts.get(city) || 0) + 1);
+    });
+    return [...counts.entries()]
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  }, [projects]);
   return (
     <>
       <Navbar bg="light" expand="lg" className="py-3">
@@ -102,6 +127,7 @@ function CustomNavbar() {
               {/* PROJECT */}
               <NavDropdown
                 title="PROJECT"
+                className="project-menu"
                 show={hoveredDropdown === "project"}
                 onMouseEnter={() => handleMouseEnter("project")}
                 onMouseLeave={handleMouseLeave}
@@ -117,18 +143,51 @@ function CustomNavbar() {
                   }
                 }}
               >
-                {sortedCategories.map((cat) => (
-                  <NavDropdown.Item
-                    key={cat.id}
-                    as={NavLink}
-                    to={{
-                      pathname: "/projects",
-                      search: `?category=${cat.slug}`,
-                    }}
-                  >
-                    {cat.name}
-                  </NavDropdown.Item>
-                ))}
+                {/* Two columns side by side - no hover-to-expand, both lists
+                    are visible as soon as the menu opens. */}
+                <div className="project-mega">
+                  <div className="project-mega__col">
+                    <div className="project-mega__head">Property Type</div>
+
+                    {sortedCategories.length === 0 ? (
+                      <div className="project-mega__loading">Loading...</div>
+                    ) : (
+                      sortedCategories.map((cat) => (
+                        <NavDropdown.Item
+                          key={cat.id}
+                          as={NavLink}
+                          className="project-mega__item"
+                          to={{
+                            pathname: "/projects",
+                            search: `?category=${cat.slug}`,
+                          }}
+                        >
+                          {cat.name}
+                        </NavDropdown.Item>
+                      ))
+                    )}
+                  </div>
+
+                  <div className="project-mega__col">
+                    <div className="project-mega__head">Location</div>
+
+                    {cities.length === 0 ? (
+                      <div className="project-mega__loading">Loading...</div>
+                    ) : (
+                      cities.map((c) => (
+                        <NavDropdown.Item
+                          key={c.name}
+                          as={NavLink}
+                          className="project-mega__item"
+                          to={`/search-projects?q=${encodeURIComponent(c.name)}`}
+                        >
+                          <span>{c.name}</span>
+                          <span className="project-mega__count">{c.count}</span>
+                        </NavDropdown.Item>
+                      ))
+                    )}
+                  </div>
+                </div>
               </NavDropdown>
 
               {/* INSIGHTS */}
@@ -161,7 +220,6 @@ function CustomNavbar() {
                 9999570772
               </Nav.Link>
 
-              <LocationSearch variant="navbar" />
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -277,22 +335,86 @@ function CustomNavbar() {
                   All Projects
                 </NavLink>
 
-                {sortedCategories.length === 0 ? (
-                  <p className="text-center">Loading...</p>
-                ) : (
-                  sortedCategories.map((cat) => (
-                    <NavLink
-                      key={cat.id}
-                      to={{
-                        pathname: "/projects",
-                        search: `?category=${cat.slug}`,
-                      }}
-                      onClick={handleClose}
+                {/* LOCATION - same nested accordion as OUR TEAM */}
+                <div className="nested-accordion">
+                  <div
+                    className="nested-accordion-title"
+                    onClick={() =>
+                      setActiveSubMenu(
+                        activeSubMenu === "location" ? null : "location",
+                      )
+                    }
+                  >
+                    <span>LOCATION</span>
+                    <span
+                      className={`accordion-arrow ${activeSubMenu === "location" ? "rotate-arrow" : ""
+                        }`}
                     >
-                      {cat.name}
-                    </NavLink>
-                  ))
-                )}
+                      ▼
+                    </span>
+                  </div>
+
+                  <div
+                    className={`nested-accordion-content ${activeSubMenu === "location" ? "open" : ""
+                      }`}
+                  >
+                    {cities.length === 0 ? (
+                      <p className="text-center">Loading...</p>
+                    ) : (
+                      cities.map((c) => (
+                        <NavLink
+                          key={c.name}
+                          to={`/search-projects?q=${encodeURIComponent(c.name)}`}
+                          onClick={handleClose}
+                        >
+                          <FiChevronRight className="right-arrow" /> {c.name}
+                        </NavLink>
+                      ))
+                    )}
+                  </div>
+                </div>
+
+                {/* PROPERTY TYPE */}
+                <div className="nested-accordion">
+                  <div
+                    className="nested-accordion-title"
+                    onClick={() =>
+                      setActiveSubMenu(
+                        activeSubMenu === "ptype" ? null : "ptype",
+                      )
+                    }
+                  >
+                    <span>PROPERTY TYPE</span>
+                    <span
+                      className={`accordion-arrow ${activeSubMenu === "ptype" ? "rotate-arrow" : ""
+                        }`}
+                    >
+                      ▼
+                    </span>
+                  </div>
+
+                  <div
+                    className={`nested-accordion-content ${activeSubMenu === "ptype" ? "open" : ""
+                      }`}
+                  >
+                    {sortedCategories.length === 0 ? (
+                      <p className="text-center">Loading...</p>
+                    ) : (
+                      sortedCategories.map((cat) => (
+                        <NavLink
+                          key={cat.id}
+                          to={{
+                            pathname: "/projects",
+                            search: `?category=${cat.slug}`,
+                          }}
+                          onClick={handleClose}
+                        >
+                          <FiChevronRight className="right-arrow" /> {cat.name}
+                        </NavLink>
+                      ))
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -349,10 +471,6 @@ function CustomNavbar() {
               </Nav.Link>
             </Nav>
 
-            <div className="mobile-location-block mt-3">
-              <div className="nav-location-heading">Location</div>
-              <LocationSearch variant="mobile" onSelect={handleClose} />
-            </div>
           </Nav>
         </Offcanvas.Body>
       </Offcanvas>
