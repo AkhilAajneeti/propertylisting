@@ -96,7 +96,7 @@ const Home = () => {
       <div>
         <div className="footerImg img-fluid">
           <img
-            src="/Coming-Soon.jpeg"
+            src="/oct-banner.jpeg"
             alt="Grand Festive Days coming soon - Jenika Ventures"
             style={{ height: "100%", width: "100%" }}
           />
