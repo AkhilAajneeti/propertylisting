@@ -3662,7 +3662,9 @@ p {
 }
 
 .card-config {
-  font-size: 20px;
+  /* 16px: some projects list several configurations and 20px pushed the
+     line into a wrap that made cards uneven */
+  font-size: 16px;
   color: black;
 }
 

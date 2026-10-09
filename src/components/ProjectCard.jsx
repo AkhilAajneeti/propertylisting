@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { formatConfigurationList } from "../utils/formatConfiguration";
 
 const ProjectCard = React.memo(({ project }) => {
   return (
@@ -40,7 +41,7 @@ const ProjectCard = React.memo(({ project }) => {
             <p className="card-config">
               <img src="/stack.png" alt="" className="project_param" />
               {project.Configuration?.length
-                ? project.Configuration.join(", ")
+                ? formatConfigurationList(project.Configuration)
                 : "Configuration not available"}
             </p>
           </Link>
