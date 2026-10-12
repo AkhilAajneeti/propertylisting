@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 // import axios from "axios";
 import Slider from "../components/Slider";
 import RealEstateTabs from "../components/RealEstateTabs";
@@ -94,13 +95,16 @@ const Home = () => {
         </div>
       </div>
       <div>
-        <div className="footerImg img-fluid">
+        <Link
+          to="/billionaires-property-festival"
+          className="footerImg img-fluid"
+        >
           <img
-            src="/oct-banner.jpeg"
-            alt="Grand Festive Days coming soon - Jenika Ventures"
+            src="/live-banner.jpg.jpeg"
+            alt="The Billionaires Property Festival - Buy 1 Get 1 Free"
             style={{ height: "100%", width: "100%" }}
           />
-        </div>
+        </Link>
       </div>
       <Slider />
       <Counter />

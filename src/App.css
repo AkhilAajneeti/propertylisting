@@ -4957,3 +4957,358 @@ p {
     padding-top: 18px;
   }
 }
+
+/* ============================================================
+   BILLIONAIRES PROPERTY FESTIVAL
+   ============================================================ */
+.bpf-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bpf-heading {
+  margin-bottom: 6px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: #8d0710;
+}
+
+.bpf-subheading {
+  margin-bottom: 26px;
+  font-size: 16px;
+  color: #6b6b6b;
+}
+
+/* --- properties carousel --- */
+.bpf-sliderWrap {
+  position: relative;
+  /* gutters the arrows sit in, so they never cover the cards */
+  padding-left: 58px;
+  padding-right: 58px;
+}
+
+.bpf-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  background: linear-gradient(327deg, #c80a17 20%, #000000 100%);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bpf-nav:hover {
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 8px 22px rgba(200, 10, 23, 0.35);
+}
+
+.bpf-nav svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+/* the global "svg path" rule paints every path with a dashed-out white
+   stroke - these chevrons need it undone, same as the milestones arrows */
+.bpf-nav svg path {
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+  stroke-width: 2.5;
+  stroke: currentColor;
+}
+
+.bpf-nav--prev {
+  left: 0;
+}
+
+.bpf-nav--next {
+  right: 0;
+}
+
+/* --- enquiry --- */
+.bpf-enquiry {
+  position: relative;
+  /* keeps the artwork from spilling onto the sections either side */
+  overflow: hidden;
+  padding: 60px 0 80px;
+  background:
+    radial-gradient(circle at 12% 14%, rgba(246, 195, 67, 0.26) 0%, transparent 44%),
+    linear-gradient(180deg, #fff8e9 0%, #ffffff 100%);
+}
+
+/* yyg8 line-art wave. It is a JPEG on solid white, so mix-blend-mode
+   multiply drops the white out and leaves only the gold-to-crimson
+   strands over the cream - no transparent PNG needed. */
+.bpf-enquiry::before {
+  content: "";
+  position: absolute;
+  /* bled past the edges so the slow drift never exposes a bare corner */
+  inset: -5% -3%;
+  background: url("/yyg8.jpg") center bottom / cover no-repeat;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  pointer-events: none;
+  animation: bpfDrift 20s ease-in-out infinite;
+}
+
+@keyframes bpfDrift {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(-18px, 10px, 0) scale(1.03);
+  }
+}
+
+.bpf-enquiry__card {
+  position: relative;
+  /* above the shapes */
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 38px 34px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid #f0e2c4;
+  box-shadow: 0 18px 46px rgba(141, 7, 16, 0.1);
+}
+
+.bpf-form .form-control {
+  padding: 12px 16px;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.bpf-form .form-control:focus {
+  border-color: #c80a17;
+  box-shadow: 0 0 0 3px rgba(200, 10, 23, 0.12);
+}
+
+.bpf-submit {
+  margin-top: 8px;
+  padding: 12px 38px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(327deg, #c80a17 20%, #000000 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.bpf-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(200, 10, 23, 0.3);
+}
+
+.bpf-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* --- thank you --- */
+.bpf-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(22, 3, 5, 0.58);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  animation: bpfFade 0.3s ease both;
+}
+
+.bpf-modal__card {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px 28px 32px;
+  border-radius: 18px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+  animation: bpfPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Contents rise in one after another rather than all at once with the card. */
+.bpf-modal__logoWrap {
+  position: relative;
+  animation: bpfRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+/* warm halo that blooms once behind the crest */
+.bpf-modal__logoWrap::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 0;
+  /* wider than the logo itself - the artwork is a JPEG on solid white, so
+     anything smaller would be hidden behind it */
+  width: 380px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(246, 195, 67, 0.45) 0%,
+      rgba(246, 195, 67, 0) 70%);
+  pointer-events: none;
+  animation: bpfGlow 1.3s ease 0.2s both;
+}
+
+.bpf-modal__title {
+  animation: bpfRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.26s both;
+}
+
+.bpf-modal__text {
+  animation: bpfRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.36s both;
+}
+
+/* the wrapper animates, not the button - a leftover transform on the button
+   itself would override its hover lift */
+.bpf-modal__btnWrap {
+  animation: bpfRise 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.46s both;
+}
+
+.bpf-modal__close {
+  animation: bpfFade 0.4s ease 0.5s both;
+}
+
+.bpf-modal__logo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: 0 auto 10px;
+}
+
+.bpf-modal__title {
+  margin-bottom: 8px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #8d0710;
+}
+
+.bpf-modal__text {
+  margin-bottom: 18px;
+  font-size: 15px;
+  color: #5c5c5c;
+}
+
+.bpf-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: #9a9a9a;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.bpf-modal__close:hover {
+  background: #f3f3f3;
+  color: #c80a17;
+}
+
+@keyframes bpfFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bpfRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bpfGlow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.55);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+
+  100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes bpfPop {
+  from { opacity: 0; transform: translateY(18px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (max-width: 767.98px) {
+  .bpf-heading {
+    font-size: 26px;
+  }
+
+  .bpf-sliderWrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bpf-nav {
+    display: none;
+  }
+
+  .bpf-enquiry__card {
+    padding: 26px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .bpf-modal,
+  .bpf-modal__card,
+  .bpf-modal__logoWrap,
+  .bpf-modal__logoWrap::before,
+  .bpf-modal__title,
+  .bpf-modal__text,
+  .bpf-modal__btnWrap,
+  .bpf-modal__close,
+  .bpf-enquiry::before {
+    animation: none;
+  }
+}

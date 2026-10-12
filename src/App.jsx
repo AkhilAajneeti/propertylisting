@@ -29,6 +29,7 @@ import IpoAdvisory from "./pages/IpoAdvisory";
 import DoorstepPropertyAccess from "./pages/DoorstepPropertyAccess";
 import ClientRegistration from "./pages/ClientRegistration";
 import PaymentStatus from "./pages/PaymentStatus";
+import BillionairesPropertyFestival from "./pages/BillionairesPropertyFestival";
 gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
   useEffect(() => {
@@ -91,6 +92,10 @@ function App() {
         />
         <Route path="/client-registration" element={<ClientRegistration />} />
         <Route path="/payment-status" element={<PaymentStatus />} />
+        <Route
+          path="/billionaires-property-festival"
+          element={<BillionairesPropertyFestival />}
+        />
       </Routes>
       <Footer />
     </>
