@@ -120,7 +120,7 @@ const Home = () => {
                 <path d="M12 6.5C12 6.5 13.4 2.5 16 2.5C17.7 2.5 18.4 4.6 17 5.6C15.8 6.4 12 6.5 12 6.5Z" />
               </svg>
 
-              <span className="dw-reveal__text">Reveal My Gift</span>
+              <span className="dw-reveal__text">Reveal Now</span>
 
               <span className="dw-reveal__chev" aria-hidden="true">
                 <svg viewBox="0 0 24 24">

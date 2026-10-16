@@ -5628,7 +5628,7 @@ p {
   position: relative;
   z-index: 1;
   font-family: "Montserrat", sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 1.1px;
   text-transform: uppercase;
@@ -5768,31 +5768,97 @@ p {
   line-height: normal;
 }
 
+/* The old rules here sized .dw-reveal itself. That element is now just the
+   gold rim (padding: 3px), so a padding of 9px 20px inflated the border
+   instead of the button - which is why it came out huge on a phone. Every
+   dimension now points at the part that actually owns it. */
 @media (max-width: 991.98px) {
   .dw-banner__cta {
     gap: 6px;
   }
 
   .dw-gift {
-    width: 68px;
-    height: 68px;
+    width: 62px;
+    height: 62px;
   }
 
   .dw-reveal {
-    padding: 9px 20px;
+    padding: 2.5px;
+  }
+
+  .dw-reveal__inner {
+    gap: 8px;
+    padding: 7px 7px 7px 14px;
+  }
+
+  .dw-reveal__text {
     font-size: 11.5px;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.7px;
+  }
+
+  .dw-reveal__gift {
+    width: 16px;
+    height: 16px;
+  }
+
+  .dw-reveal__chev {
+    width: 22px;
+    height: 22px;
+  }
+
+  .dw-reveal__chev svg {
+    width: 11px;
+    height: 11px;
+  }
+
+  .dw-banner__tc,
+  .bpf-banner__tc {
+    font-size: 9px;
+    letter-spacing: 0.3px;
   }
 }
 
 @media (max-width: 575.98px) {
+
+  /* the banner is only ~145px tall here - the gift would swamp it */
   .dw-gift {
     display: none;
   }
 
   .dw-reveal {
-    padding: 7px 16px;
-    font-size: 10px;
+    padding: 2px;
+  }
+
+  .dw-reveal__inner {
+    gap: 5px;
+    padding: 5px 5px 5px 11px;
+  }
+
+  .dw-reveal__text {
+    font-size: 9.5px;
+    letter-spacing: 0.4px;
+  }
+
+  .dw-reveal__gift {
+    width: 13px;
+    height: 13px;
+  }
+
+  .dw-reveal__chev {
+    width: 18px;
+    height: 18px;
+  }
+
+  .dw-reveal__chev svg {
+    width: 9px;
+    height: 9px;
+  }
+
+  .dw-banner__tc,
+  .bpf-banner__tc {
+    font-size: 7.5px;
+    right: 2%;
+    bottom: 5%;
   }
 }
 
