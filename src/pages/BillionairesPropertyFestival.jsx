@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import SEO from "../components/seo/SEO";
 import Loader from "../components/Loader";
 import ProjectCard from "../components/ProjectCard";
+import FireworksOverlay from "../components/FireworksOverlay";
+import ConfettiBurst from "../components/ConfettiBurst";
 import { fetchProjects } from "../redux/slices/propertySlice";
 import { submitContactForm } from "../api/contactApi";
 
@@ -28,6 +30,8 @@ export default function BillionairesPropertyFestival() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+  // Fires on arrival, then unmounts itself.
+  const [poppersDone, setPoppersDone] = useState(false);
 
   useEffect(() => {
     if (!projects || projects.length === 0) {
@@ -124,6 +128,10 @@ export default function BillionairesPropertyFestival() {
 
   return (
     <div className="bpf-page">
+      {!poppersDone && (
+        <ConfettiBurst onDone={() => setPoppersDone(true)} />
+      )}
+
       <SEO
         title="The Billionaires Property Festival | Jenika Ventures Private Limited"
         description="Buy 1 Get 1 Free this festive season - 11 October to 15 November 2026. Explore handpicked residential and commercial projects across Noida and Gurugram."
@@ -133,6 +141,7 @@ export default function BillionairesPropertyFestival() {
       {/* Banner - same artwork as the home page teaser */}
       <div className="bpf-banner">
         <img src={BANNER} alt="The Billionaires Property Festival - Buy 1 Get 1 Free" />
+        <FireworksOverlay />
       </div>
 
       {/* Properties */}
@@ -225,8 +234,9 @@ export default function BillionairesPropertyFestival() {
         <div className="container">
           <div className="bpf-enquiry__card">
             <h2 className="bpf-heading text-center">
-              Billionaire Property Festival Enquiry
+              The Billionaire Property Festival
             </h2>
+            <h4 className="bpf-eyebrow">Form Enquiry</h4>
             <p className="bpf-subheading text-center">
               Leave your details and our team will call you back
             </p>
@@ -323,9 +333,11 @@ export default function BillionairesPropertyFestival() {
             <h3 id="bpf-thanks-title" className="bpf-modal__title">
               Thank You!
             </h3>
+
+
             <p className="bpf-modal__text">
               Your enquiry has been received. Our team will get in touch with
-              you shortly about the Billionaires Property Festival.
+              you shortly about The Billionaires Property Festival.
             </p>
 
             <div className="bpf-modal__btnWrap">

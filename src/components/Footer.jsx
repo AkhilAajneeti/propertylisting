@@ -248,16 +248,17 @@ export default function Footer() {
           We value diversity within Jenika Ventures Private Limited and are committed to
           offering equal opportunities in employment...
         </div>
-        <div className="d-none pt-3 text-center small text-light">
-          Developed By{" "}
-          <a href="https://aajneeti.social/" target="_blank">
-            Aajneeti Connect Ltd.
-          </a>
-        </div>
+       
         <div className=" pt-3 text-center small text-light">
           © 2026 {" "}
           <a href="https://jenikaventures.com/" target="_blank">
             Jenika Ventures Private Limited
+          </a>
+        </div>
+         <div className=" pt-3 text-center small text-light">
+          Developed By {" "}
+          <a href="https://aajneeti.social/" target="_blank">
+            Aajneeti Connect Ltd.
           </a>
         </div>
       </div>
