@@ -94,18 +94,46 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Link
-          to="/billionaires-property-festival"
-          className="footerImg img-fluid"
-        >
-          <img
-            src="/live-banner.jpg.jpeg"
-            alt="The Billionaires Property Festival - Buy 1 Get 1 Free"
-            style={{ height: "100%", width: "100%" }}
-          />
-        </Link>
+      <div className="dw-banner">
+        <img
+          className="dw-banner__art"
+          src="/GoldenDiwaliFestivalBanner.png"
+          alt="The Billionaires Property Festival - Buy 1 Get 1 Free"
+        />
+
+        <div className="dw-banner__cta">
+          <div className="dw-gift">
+            <span className="dw-gift__halo" aria-hidden="true" />
+            <img src="/gift.png" alt="" aria-hidden="true" />
+          </div>
+
+
+          {/* Gold rim is a padded wrapper around an inner maroon pill - a
+              plain border cannot take a gradient. */}
+          <Link to="/billionaires-property-festival" className="dw-reveal">
+            <span className="dw-reveal__inner">
+              <svg className="dw-reveal__gift" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="10" width="18" height="11" rx="1.5" />
+                <rect x="2" y="6.5" width="20" height="4" rx="1" />
+                <line x1="12" y1="6.5" x2="12" y2="21" />
+                <path d="M12 6.5C12 6.5 10.6 2.5 8 2.5C6.3 2.5 5.6 4.6 7 5.6C8.2 6.4 12 6.5 12 6.5Z" />
+                <path d="M12 6.5C12 6.5 13.4 2.5 16 2.5C17.7 2.5 18.4 4.6 17 5.6C15.8 6.4 12 6.5 12 6.5Z" />
+              </svg>
+
+              <span className="dw-reveal__text">Reveal My Gift</span>
+
+              <span className="dw-reveal__chev" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              </span>
+            </span>
+          </Link>
+        </div>
+
+        <span className="dw-banner__tc">T&amp;C Apply</span>
       </div>
+
       <Slider />
       <Counter />
 

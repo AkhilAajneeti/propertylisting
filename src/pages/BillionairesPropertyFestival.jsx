@@ -142,6 +142,7 @@ export default function BillionairesPropertyFestival() {
       <div className="bpf-banner">
         <img src={BANNER} alt="The Billionaires Property Festival - Buy 1 Get 1 Free" />
         <FireworksOverlay />
+        <span className="bpf-banner__tc">T&amp;C Apply</span>
       </div>
 
       {/* Properties */}
