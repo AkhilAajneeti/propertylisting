@@ -236,7 +236,7 @@ export default function BillionairesPropertyFestival() {
             <h2 className="bpf-heading text-center">
               The Billionaire Property Festival
             </h2>
-            <h4 className="bpf-eyebrow">Form Enquiry</h4>
+            <h4 className="bpf-eyebrow">Enquiry Form</h4>
             <p className="bpf-subheading text-center">
               Leave your details and our team will call you back
             </p>
