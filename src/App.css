@@ -9,12 +9,29 @@
   list-style-type: none;
 }
 
+/* clip, not hidden: overflow-x:hidden on body turns body into a scroll
+   container, and both Lenis and ScrollTrigger expect the window to be the
+   scroller. clip suppresses the sideways overflow without that side
+   effect. hidden is kept first as a fallback for older browsers. */
+html,
 body {
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html {
-  scroll-behavior: smooth;
+  /* native smooth scrolling fights Lenis on desktop and the phone's own
+     momentum on touch */
+  scroll-behavior: auto;
+}
+
+/* Lenis' own requirements, per its docs */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
 }
 
 :root {
@@ -5872,5 +5889,17 @@ p {
   .dw-reveal__chev svg,
   .dw-reveal__inner::after {
     animation: none;
+  }
+}
+
+/* Brand mark - desktop and the offcanvas header both use this. */
+.jv-logo {
+  width: 145px;
+  height: auto;
+}
+
+@media (max-width: 767.98px) {
+  .jv-logo {
+    width: 100px;
   }
 }

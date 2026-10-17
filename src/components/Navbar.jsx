@@ -80,7 +80,7 @@ function CustomNavbar() {
       <Navbar bg="light" expand="lg" className="py-3">
         <Container>
           <Navbar.Brand as={Link} to="/">
-            <img src="/JV-Logo.png" alt="Logo" width="150" />
+            <img src="/JV-Logo.png" alt="Logo" className="jv-logo" width="145" />
           </Navbar.Brand>
 
           <Navbar.Toggle onClick={handleShow} />
@@ -235,7 +235,7 @@ function CustomNavbar() {
       <Offcanvas show={show} onHide={handleClose} placement="end">
         <Offcanvas.Header closeButton>
           <Navbar.Brand as={Link} to="/" onClick={handleClose}>
-            <img src="/JV-Logo.png" alt="Logo" width="150" />
+            <img src="/JV-Logo.png" alt="Logo" className="jv-logo" width="145" />
           </Navbar.Brand>
         </Offcanvas.Header>
 

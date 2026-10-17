@@ -33,29 +33,39 @@ import BillionairesPropertyFestival from "./pages/BillionairesPropertyFestival";
 gsap.registerPlugin(ScrollTrigger); // 👈 REQUIRED
 function App() {
   useEffect(() => {
-    const lenis = new Lenis({ smooth: true, lerp: 0.08 });
+    // A phone's address bar sliding in and out fires resize. The old
+    // manual ScrollTrigger.refresh() on every resize therefore re-measured
+    // every trigger mid-scroll, which is what made the page jump.
+    // ScrollTrigger refreshes itself; it just needs telling to ignore this.
+    ScrollTrigger.config({ ignoreMobileResize: true });
+
+    // Native scrolling on touch. Lenis easing layered on top of the phone's
+    // own momentum means the two disagree about scroll position frame to
+    // frame - that disagreement was the shaking.
+    const coarsePointer =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(pointer: coarse)").matches;
+    if (coarsePointer || ScrollTrigger.isTouch === 1) return undefined;
+
+    // smoothWheel is the real option name in Lenis 1.x - the old
+    // `smooth: true` was silently ignored. syncTouch stays off so touch
+    // input is never intercepted.
+    const lenis = new Lenis({
+      smoothWheel: true,
+      syncTouch: false,
+      lerp: 0.08,
+    });
 
     lenis.on("scroll", ScrollTrigger.update);
 
-    function raf(time) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    // Desktop only. On touch the normalizer captures and re-dispatches
-    // pointer events, which makes links fire mid-swipe - and Lenis is
-    // already smoothing scroll here, so running both is redundant.
-    if (ScrollTrigger.isTouch !== 1) {
-      ScrollTrigger.normalizeScroll({ allowNestedScroll: true });
-    }
-
-    const resize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", resize);
+    // Driven off GSAP's ticker rather than a second requestAnimationFrame
+    // loop, so there is one clock instead of two racing each other.
+    const tick = (time) => lenis.raf(time * 1000);
+    gsap.ticker.add(tick);
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      window.removeEventListener("resize", resize);
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      gsap.ticker.remove(tick);
       lenis.destroy();
     };
   }, []);

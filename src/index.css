@@ -1,6 +1,9 @@
 .mySwiper {
   width: 100%;
+  /* svh is the small viewport height - it does not change as the mobile
+     address bar slides, so the hero stops resizing mid-scroll. */
   height: 90vh;
+  height: 90svh;
   position: relative;
 }
 
